@@ -14,11 +14,10 @@ export type PostMeta = {
 
 export const getPosts = async (): Promise<PostMeta[]> => {
   const modules = import.meta.glob<{ frontmatter: Frontmatter }>(
-    "./blog-posts/*.mdx",
+    "./content/blog-posts/*.mdx",
     { eager: true },
   );
 
-  // @ts-expect-error - no types
   const build = await import("virtual:react-router/server-build");
 
   const posts = Object.entries(modules).map(([file, post]) => {
@@ -35,9 +34,19 @@ export const getPosts = async (): Promise<PostMeta[]> => {
   return sortBy(posts, (post) => post.frontmatter.published, "desc");
 };
 
-export const getFeaturedPosts = async (): Promise<PostMeta[]> => {
-  const posts = await getPosts();
-  return posts.filter((post) => post.frontmatter.featured);
+export const getFeaturedOrLatestPosts = async (): Promise<PostMeta[]> => {
+  let posts = await getPosts();
+  
+  posts = posts.slice(0, 3).map((post, index) => ({
+    ...post,
+    frontmatter: {
+      ...post.frontmatter,
+      featured: index <= 2, // Mark the latest post as featured
+    },
+  }));
+
+  const featuredPosts = posts.filter((post) => post.frontmatter.featured);
+  return featuredPosts;
 };
 
 function sortBy<T>(

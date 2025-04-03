@@ -6,6 +6,7 @@ import blogCss from "~/blog.css?url";
 import type { Route } from "./+types/blog-layout";
 
 export async function loader({ request }: Route.LoaderArgs) {
+  console.log("Loading blog layout...");
   const posts = await getPosts();
 
   // Get the frontmatter for the current post
@@ -16,9 +17,8 @@ export async function loader({ request }: Route.LoaderArgs) {
   return { posts, frontmatter: post?.frontmatter };
 }
 
-export async function clientLoader({ serverLoader }: Route.ClientLoaderArgs) {
-  preload(blogCss, { as: "style" });
-  return await serverLoader();
+export function links() {
+  return [{ rel: "preload", href: blogCss, as: "style" }];
 }
 
 export default function BlogLayout({ loaderData }: Route.ComponentProps) {
@@ -27,7 +27,7 @@ export default function BlogLayout({ loaderData }: Route.ComponentProps) {
       <link href={blogCss} rel="stylesheet" />
       {loaderData.frontmatter ? (
         <>
-          <title>{loaderData.frontmatter?.title}</title>
+          <title>{loaderData.frontmatter?.title} | Hum Sub</title>
           <meta
             name="description"
             content={loaderData.frontmatter?.description}
@@ -36,7 +36,10 @@ export default function BlogLayout({ loaderData }: Route.ComponentProps) {
       ) : null}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row-reverse gap-8">
-          <aside className="lg:w-80 lg:sticky lg:top-8 lg:self-start bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
+          <main className="flex-1 min-w-0 order-1 lg:order-2">
+            <Outlet />
+          </main>
+          <aside className="lg:w-80 lg:sticky lg:top-8 lg:self-start bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 order-2 lg:order-1">
             <h2 className="text-lg font-semibold mb-4">Recent Posts</h2>
             <ul className="space-y-3">
               {loaderData.posts.map((post) => (
@@ -58,9 +61,6 @@ export default function BlogLayout({ loaderData }: Route.ComponentProps) {
               ))}
             </ul>
           </aside>
-          <main className="flex-1 min-w-0">
-            <Outlet />
-          </main>
         </div>
       </div>
     </>

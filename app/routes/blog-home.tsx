@@ -1,16 +1,17 @@
 import { Link } from "react-router";
-import { getFeaturedPosts } from "~/posts.server";
+import { getFeaturedOrLatestPosts } from "~/posts.server";
 import type { Route } from "./+types/blog-home";
+import { Icon } from "@iconify-icon/react/dist/iconify.mjs";
 
-export async function loader({ context }: Route.LoaderArgs) {
-  const posts = await getFeaturedPosts();
+export async function loader() {
+  const posts = await getFeaturedOrLatestPosts();
   return { posts };
 }
 
 export default function Blog({ loaderData }: Route.ComponentProps) {
   return (
     <>
-      <title>Blog | Remix Store</title>
+      <title>Blog | Hum Sub</title>
       <meta
         name="description"
         content="Articles about React Router, web development, and modern web architecture"
@@ -44,19 +45,7 @@ export default function Blog({ loaderData }: Route.ComponentProps) {
                     </time>
                   </div>
                   <div className="flex items-center text-blue-600 dark:text-blue-400">
-                    <svg
-                      className="w-5 h-5 transform group-hover:translate-x-1 transition-transform"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
+                    <Icon icon="mdi:arrow-right" />
                   </div>
                 </div>
               </Link>

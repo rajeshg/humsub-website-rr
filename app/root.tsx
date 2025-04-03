@@ -9,6 +9,8 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import { ThemeProvider } from "./lib/theme-provider";
+
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -23,17 +25,43 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
+// Add script to avoid flash of incorrect theme
+const themeScript = `
+  let prefersDark;
+  try {
+    prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const storedTheme = localStorage.getItem('ui-theme');
+    if (storedTheme === 'light' || storedTheme === 'dark' || storedTheme === 'system') {
+      const theme = storedTheme === 'system' ? (prefersDark ? 'dark' : 'light') : storedTheme;
+      document.documentElement.classList.add(theme);
+    } else {
+      document.documentElement.classList.add(prefersDark ? 'dark' : 'light');
+    }
+  } catch (e) {
+    console.error(e);
+  }
+`;
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Hum Sub</title>
+        <meta
+          name="description"
+          content="Hum Sub is a non-profit cultural organization dedicated to sharing India's diverse traditions through community events in North Carolina's Triangle area. Join us for Diwali, Basant Bahar, Holi, and youth programs that foster cultural awareness and inclusivity."
+        />
         <Meta />
         <Links />
+        {/* Run this script before anything else to avoid theme flash */}
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body>
-        {children}
+        <ThemeProvider defaultTheme="system" storageKey="ui-theme">
+          {children}
+        </ThemeProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
