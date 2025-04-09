@@ -1,10 +1,10 @@
 {
-  "extends": "@total-typescript/tsconfig/bundler/dom/app",
-  "files": [],
-  "references": [{ "path": "./tsconfig.cloudflare.json" }],
-  "compilerOptions": {
-    "paths": {
-      "~/*": ["./app/*"]
-    }
-  }
+	"extends": "@total-typescript/tsconfig/bundler/dom/app",
+	"compilerOptions": {
+		"paths": {
+			"~/*": ["./app/*"]
+		}
+	},
+	"references": [{ "path": "./tsconfig.cloudflare.json" }],
+	"files": []
 }

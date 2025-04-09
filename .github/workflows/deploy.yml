@@ -16,7 +16,7 @@ permissions:
 
 jobs:
   deploy:
-    name: "Deploy to Cloudflare Workers"
+    name: Deploy to Cloudflare Workers
     timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:

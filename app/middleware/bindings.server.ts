@@ -1,10 +1,9 @@
-import {
-  unstable_createContext,
-  unstable_RouterContextProvider,
-} from "react-router";
+import type { unstable_RouterContextProvider } from "react-router"
 
-export const CloudflareContext = unstable_createContext<Cloudflare.Env>();
+import { unstable_createContext } from "react-router"
+
+export const CloudflareContext = unstable_createContext<Cloudflare.Env>()
 
 export function getBindings(context: unstable_RouterContextProvider) {
-  return context.get(CloudflareContext);
+	return context.get(CloudflareContext)
 }
