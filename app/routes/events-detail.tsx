@@ -32,6 +32,18 @@ export async function clientLoader({ serverLoader }: Route.ClientLoaderArgs) {
 	return await serverLoader()
 }
 
+export function meta({ params, data }: Route.MetaArgs) {
+	const { event } = data
+	const { title, image } = event.frontmatter || {}
+
+	return [
+		{ title },
+		{ property: "og:title", content: `${title} | Hum Sub` },
+		{ property: "og:image", content: `https://humsub-website-rr.socialmedia-6ce.workers.dev/${image}` },
+		{ property: "og:url", content: `https://humsub-website-rr.socialmedia-6ce.workers.dev/event/${params.slug}` },
+	]
+}
+
 export default function EventsDetail({ loaderData }: { loaderData: { event: Event } }) {
 	const { event } = loaderData
 	const { startDate, endDate } = event.frontmatter || {}

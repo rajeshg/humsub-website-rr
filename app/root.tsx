@@ -17,27 +17,33 @@ export const links: Route.LinksFunction = () => [
 	},
 ]
 
+export function meta({ location }: Route.MetaArgs) {
+	return [
+		{ title: "Hum Sub" },
+		{
+			name: "description",
+			content:
+				"Hum Sub is a non-profit cultural organization dedicated to sharing India's diverse traditions through community events in North Carolina's Triangle area.",
+		},
+		{ name: "og:type", content: "website" },
+		{
+			name: "og:description",
+			content:
+				"Hum Sub is a non-profit cultural organization dedicated to sharing India's diverse traditions through community events in North Carolina's Triangle area.",
+		},
+		{ name: "og:image", content: "https://humsub-website-rr.socialmedia-6ce.workers.dev/og-image.png" },
+		{ name: "og:image:width", content: "1000" },
+		{ name: "og:image:height", content: "525" },
+		{ name: "og:url", content: `https://humsub-website-rr.socialmedia-6ce.workers.dev${location.pathname}` },
+	]
+}
+
 export function Layout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head>
 				<meta charSet="utf-8" />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<title>Hum Sub</title>
-				<meta
-					name="description"
-					content="Hum Sub is a non-profit cultural organization dedicated to sharing India's diverse traditions through community events in North Carolina's Triangle area. Join us for Diwali, Basant Bahar, Holi, and youth programs that foster cultural awareness and inclusivity."
-				/>
-				<meta property="og:title" content="Hum Sub" />
-				<meta
-					property="og:description"
-					content="Hum Sub is a non-profit cultural organization dedicated to sharing India's diverse traditions through community events in North Carolina's Triangle area."
-				/>
-				<meta property="og:type" content="website" />
-				<meta property="og:url" content="https://humsub-website-rr.socialmedia-6ce.workers.dev/" />
-				<meta property="og:image" content="https://humsub-website-rr.socialmedia-6ce.workers.dev/og-image.png" />
-				<meta property="og:image:width" content="1000" />
-				<meta property="og:image:height" content="525" />
 				<Meta />
 				<Links />
 			</head>

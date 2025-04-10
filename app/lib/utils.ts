@@ -47,6 +47,16 @@ export function parseFrontmatterDate(rawDate: unknown): Date | null {
  */
 export function dateFormatter(dateString: string): string {
 	const nyTimeZone = "America/New_York"
+	// Check if the dateString is a date-only format (YYYY-MM-DD)
+	const isDateOnly = /^\d{4}-\d{2}-\d{2}$/.test(dateString)
+
+	// For date-only strings, create a date without timezone conversion
+	if (isDateOnly) {
+		const date = new Date(`${dateString}T00:00:00`)
+		return format(date, "MMM d, yyyy", { timeZone: nyTimeZone })
+	}
+
+	// For datetime strings, use fromZonedTime
 	const date = fromZonedTime(dateString, nyTimeZone)
 	const options = "MMM d, yyyy, h:mm a"
 
