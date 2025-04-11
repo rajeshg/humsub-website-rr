@@ -30,7 +30,6 @@ export default function DiscoverIndiaSeries() {
 					<strong>Dates and Location:</strong>
 				</p>
 				<ul>
-					<li>March 20, Thursday, 6:30 pm to 8:30 pm, Herbert C Young Community Center</li>
 					<li>May 3, Saturday, Eva Perry library, 3:30 to 4:30 pm</li>
 					<li>Sept 7, Sunday, Cary Regional Library, 2 pm to 4 pm</li>
 				</ul>
@@ -136,13 +135,21 @@ export default function DiscoverIndiaSeries() {
 					and the kolam epitomizes geometrical properties of symmetry, periodicity, and recursion. Join our kolam
 					artists to learn more!
 				</p>
-				<p>
-					<strong>Kolam Workshop:</strong> Mar 23, Sunday, 2 pm to 4 pm, Cary Regional Library
-				</p>
+				<p>Sept 18, Thursday, 6:30 pm to 8:30 pm, Cary Arts Center</p>
 				<p>
 					<strong>Presenters:</strong> Veena Kannan and Rohini M
 				</p>
-				<p>Sept 18, Thursday, 6:30 pm to 8:30 pm, Cary Arts Center</p>
+			</section>
+
+			<section>
+				<h2>Story of a temple</h2>
+
+				<p>
+					Learn about the Sri Venkateswara (SV) temple of Cary, including the significance of the
+					architectural details and the etiquette of temple worship. Also included in this nearly
+					month long exhibit are Indian marriage traditions.
+				</p>
+				<p>Sept 5-Sept 30, State Capitol</p>
 			</section>
 
 			<section>
@@ -160,15 +167,15 @@ export default function DiscoverIndiaSeries() {
 			</section>
 
 			<section>
-				<h2>Indian folklore through puppetry</h2>
+				<h2>Kathakali, a stylized dance form from Kerala</h2>
 				<p>
-					Puppet shows remain a favorite form of storytelling in India to this day. Traditionally, Indian mythology has
-					been passed down generations through the spoken rather than written word. Indian society has relied heavily on
-					stories to sustain its culture and identity. Come and enjoy this unique session that will take an innovative
-					approach to tell a well-loved tale through puppets.
+					Discover the fascinating world of Kathakali, a highly stylized and traditional dance form
+					from the South Indian state of Kerala. Meet Meenakshi, a “Third Culture kid”, whose
+					passion to learn this dance form is a story that will remain with you long after the
+					presentation.
 				</p>
 				<p>
-					<strong>Presenter:</strong> Sridevi Jagannath
+					<strong>Presenter:</strong> Meenakshi Menon
 				</p>
 				<p>Nov 14, Friday, 6:30 pm to 8:30 pm, Cary Arts Center</p>
 			</section>
