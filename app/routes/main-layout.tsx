@@ -151,10 +151,10 @@ export default function MainLayout() {
 											Home
 										</Link>
 									</SheetTrigger>
-									<Separator className="my-1" /> {/* Reduced margin */}
+									<Separator className="my-1" />
 									{/* About Us Section */}
 									<div className="space-y-1 pt-1">
-										<h6 className="px-3 py-1 font-semibold text-muted-foreground">About Us</h6> {/* Adjusted padding */}
+										<h6 className="px-3 py-1 font-semibold text-muted-foreground">About Us</h6>
 										<div className="pl-3 space-y-0.5">
 											<SheetTrigger asChild>
 												<Link
@@ -214,7 +214,7 @@ export default function MainLayout() {
 											</SheetTrigger>
 										</div>
 									</div>
-									<Separator className="my-1" /> {/* Reduced margin */}
+									<Separator className="my-1" />
 									<SheetTrigger asChild>
 										<Link
 											to="/blog"
@@ -223,10 +223,10 @@ export default function MainLayout() {
 											Blog
 										</Link>
 									</SheetTrigger>
-									<Separator className="my-1" /> {/* Reduced margin */}
+									<Separator className="my-1" />
 									{/* Programs Section */}
 									<div className="space-y-1 pt-1">
-										<h6 className="px-3 py-1 font-semibold text-muted-foreground">Programs</h6> {/* Adjusted padding */}
+										<h6 className="px-3 py-1 font-semibold text-muted-foreground">Programs</h6>
 										<div className="pl-3 space-y-0.5">
 											<SheetTrigger asChild>
 												<Link

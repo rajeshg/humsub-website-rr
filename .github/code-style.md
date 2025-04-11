@@ -17,6 +17,7 @@
 
 - Always use React functional components.
 - Always use the latest version of React.
+- Use shadcn components for UI components where available.
 
 # React Router
 
@@ -26,5 +27,6 @@ The module name is "react-router".
 
 # CSS
 
+- Use daisyui for styling
 - Use Tailwind CSS for styling.
 - Do not use inline styles unless necessary
