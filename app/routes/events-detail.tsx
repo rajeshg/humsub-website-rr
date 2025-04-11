@@ -1,9 +1,9 @@
 import { Icon } from "@iconify-icon/react"
 import { preload } from "react-dom"
-import { Outlet } from "react-router"
+import { Link, Outlet } from "react-router"
 import blogCss from "~/blog.css?url"
 import { Button } from "~/components/ui/button"
-import { dateRangeFormatter, parseFrontmatterDate } from "~/lib/utils"
+import { dateRangeFormatter, toISODateStringFromLocalEasternDateString } from "~/lib/utils"
 import type { Route } from "./+types/events-detail"
 import type { Event } from "./events-home"
 
@@ -11,15 +11,13 @@ export async function loader({ request }: Route.LoaderArgs) {
 	const url = new URL(request.url)
 	const path = url.pathname.split("/").pop()
 	const event = (await import(`../content/events/${path}.mdx`)) as Event
-	if (event.frontmatter?.startDate) {
-		const parsedDate = parseFrontmatterDate(event.frontmatter.startDate)
-		if (parsedDate) event.frontmatter.startDate = parsedDate.toISOString()
-		else console.warn(`Invalid start date format in ${path}:`, event.frontmatter.startDate, parsedDate)
+	if (event.frontmatter?.["start-date"]) {
+		event.frontmatter.startDateISO = toISODateStringFromLocalEasternDateString(event.frontmatter["start-date"])
 	}
-	if (event.frontmatter?.endDate) {
-		const parsedDate = parseFrontmatterDate(event.frontmatter.endDate)
-		if (parsedDate) event.frontmatter.endDate = parsedDate.toISOString()
-		else console.warn(`Invalid end date format in ${path}:`, event.frontmatter.endDate, parsedDate)
+	if (event.frontmatter?.["end-date"]) {
+		event.frontmatter.endDateISO = event.frontmatter["end-date"]
+			? toISODateStringFromLocalEasternDateString(event.frontmatter["end-date"])
+			: null
 	}
 	if (!event) {
 		throw new Response("Not Found", { status: 404 })
@@ -46,18 +44,27 @@ export function meta({ params, data }: Route.MetaArgs) {
 
 export default function EventsDetail({ loaderData }: { loaderData: { event: Event } }) {
 	const { event } = loaderData
-	const { startDate, endDate } = event.frontmatter || {}
+	const { startDateISO, endDateISO } = event.frontmatter || {}
 
 	return (
 		<>
+			<div className="mb-4">
+				<Link to="/events">
+					<Button size="lg" variant="outline">
+						<Icon icon="mdi:arrow-left" className="mr-2" />
+						View all events
+					</Button>
+				</Link>
+			</div>
 			<link href={blogCss} rel="stylesheet" />
 			<h1>{event.frontmatter?.title}</h1>
 			<section className="flex flex-col flex-wrap gap-2 md:gap-4 md:mx-auto text-center not-prose rounded-lg bg-base-200/50 dark:bg-slate-800/70 p-4 shadow-sm">
 				<div className="flex items-center gap-2">
 					<a
-						href={`https://www.google.com/calendar/render?action=TEMPLATE&text=${
-							event.frontmatter?.title
-						}&dates=${startDate?.replaceAll(/[-:]/g, "").slice(0, 8)}/${endDate?.replaceAll(/[-:]/g, "").slice(0, 8)}&details=${event.frontmatter?.description}&location=${event.frontmatter?.location}`}
+						href={`https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.frontmatter?.title || "")}
+							&dates=${startDateISO?.replaceAll(/[-:]/g, "")}/${endDateISO?.replaceAll(/[-:]/g, "")}
+							&details=${encodeURIComponent(event.frontmatter?.description || "")}
+							&location=${encodeURIComponent(event.frontmatter?.location || "")}`}
 						target="_blank"
 						rel="noopener noreferrer"
 						className="ml-5"
@@ -66,7 +73,7 @@ export default function EventsDetail({ loaderData }: { loaderData: { event: Even
 							<Icon icon="mdi:calendar" />
 						</Button>
 					</a>
-					<span>{dateRangeFormatter(startDate, endDate)}</span>
+					<span>{dateRangeFormatter(startDateISO, endDateISO)}</span>
 				</div>
 
 				{event.frontmatter?.location && (

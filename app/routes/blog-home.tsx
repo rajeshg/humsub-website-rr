@@ -35,7 +35,7 @@ export default function Blog({ loaderData }: Route.ComponentProps) {
 										</h2>
 										<p className="text-gray-600 dark:text-gray-300 mt-3">{post.frontmatter.description}</p>
 										<time className="text-sm text-gray-500 dark:text-gray-400 mt-4 block">
-											{new Date(post.frontmatter.published).toLocaleDateString()}
+											{new Date(post.frontmatter["published-date"]).toLocaleDateString()}
 										</time>
 									</div>
 									<div className="flex items-center text-blue-600 dark:text-blue-400">

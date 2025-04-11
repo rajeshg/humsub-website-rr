@@ -2,6 +2,7 @@ import { Icon } from "@iconify-icon/react"
 import { Link } from "react-router"
 
 import { dateRangeFormatter } from "~/lib/utils"
+import { Badge } from "./ui/badge"
 
 export default function EventCard({
 	title,
@@ -36,9 +37,7 @@ export default function EventCard({
 				/>
 				{isPast && (
 					<div className="absolute inset-0 bg-base-300/60 dark:bg-slate-900/70 flex items-center justify-center">
-						<span className="badge badge-lg bg-base-300 dark:bg-slate-700 text-base-content dark:text-slate-200">
-							Past Event
-						</span>
+						<Badge variant={"destructive"}>Past Event</Badge>
 					</div>
 				)}
 			</figure>

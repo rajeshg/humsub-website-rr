@@ -12,6 +12,7 @@ import {
 	NavigationMenuTrigger,
 	navigationMenuTriggerStyle,
 } from "~/components/ui/navigation-menu"
+import { Separator } from "~/components/ui/separator"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "~/components/ui/sheet"
 import { ThemeToggle } from "~/components/ui/theme-toggle"
 import { cn } from "~/lib/utils"
@@ -135,29 +136,30 @@ export default function MainLayout() {
 							<SheetTrigger className="md:hidden">
 								<Menu className="h-6 w-6" />
 							</SheetTrigger>
-							<SheetContent side="left" className="w-64 bg-background text-foreground overflow-y-auto gap-1">
-								<SheetHeader className="text-left py-2">
+							<SheetContent side="left" className="w-64 bg-background text-foreground overflow-y-auto p-0">
+								<SheetHeader className="text-left p-4 border-b">
+									<img src="/assets/25yr-logo.png" alt="Hum Sub Logo" width={40} className="mb-2" />
 									<SheetTitle>Hum Sub</SheetTitle>
 									<SheetDescription>Explore our programs, events, and resources</SheetDescription>
 								</SheetHeader>
-								<nav className="flex flex-col space-y-2">
+								<nav className="flex flex-col space-y-1 p-2">
 									<SheetTrigger asChild>
 										<Link
 											to="/"
-											className="block py-2 px-4 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors"
+											className="block py-2 px-3 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors text-lg font-medium" // Adjusted padding
 										>
 											Home
 										</Link>
 									</SheetTrigger>
-
+									<Separator className="my-1" /> {/* Reduced margin */}
 									{/* About Us Section */}
-									<div className="space-y-1">
-										<h6 className="px-4 font-semibold">About Us</h6>
-										<div className="pl-4 space-y-0.5">
+									<div className="space-y-1 pt-1">
+										<h6 className="px-3 py-1 font-semibold text-muted-foreground">About Us</h6> {/* Adjusted padding */}
+										<div className="pl-3 space-y-0.5">
 											<SheetTrigger asChild>
 												<Link
 													to="/about"
-													className="block py-1.5 px-4 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors"
+													className="block py-1.5 px-3 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors" // Adjusted padding
 												>
 													About
 												</Link>
@@ -165,7 +167,7 @@ export default function MainLayout() {
 											<SheetTrigger asChild>
 												<Link
 													to="/our-team"
-													className="block py-1.5 px-4 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors"
+													className="block py-1.5 px-3 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors" // Adjusted padding
 												>
 													Our Team
 												</Link>
@@ -173,7 +175,7 @@ export default function MainLayout() {
 											<SheetTrigger asChild>
 												<Link
 													to="/our-sponsors"
-													className="block py-1.5 px-4 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors"
+													className="block py-1.5 px-3 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors" // Adjusted padding
 												>
 													Sponsors & Partners
 												</Link>
@@ -181,7 +183,7 @@ export default function MainLayout() {
 											<SheetTrigger asChild>
 												<Link
 													to="/gallery"
-													className="block py-1.5 px-4 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors"
+													className="block py-1.5 px-3 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors" // Adjusted padding
 												>
 													Gallery
 												</Link>
@@ -189,7 +191,7 @@ export default function MainLayout() {
 											<SheetTrigger asChild>
 												<Link
 													to="/cultural-faq"
-													className="block py-1.5 px-4 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors"
+													className="block py-1.5 px-3 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors" // Adjusted padding
 												>
 													Cultural FAQ
 												</Link>
@@ -197,7 +199,7 @@ export default function MainLayout() {
 											<SheetTrigger asChild>
 												<Link
 													to="/volunteer"
-													className="block py-1.5 px-4 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors"
+													className="block py-1.5 px-3 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors" // Adjusted padding
 												>
 													Volunteer
 												</Link>
@@ -205,31 +207,31 @@ export default function MainLayout() {
 											<SheetTrigger asChild>
 												<Link
 													to="/contact-us"
-													className="block py-1.5 px-4 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors"
+													className="block py-1.5 px-3 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors" // Adjusted padding
 												>
 													Contact
 												</Link>
 											</SheetTrigger>
 										</div>
 									</div>
-
+									<Separator className="my-1" /> {/* Reduced margin */}
 									<SheetTrigger asChild>
 										<Link
 											to="/blog"
-											className="block py-2 px-4 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors"
+											className="block py-2 px-3 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors text-lg font-medium" // Adjusted padding
 										>
 											Blog
 										</Link>
 									</SheetTrigger>
-
+									<Separator className="my-1" /> {/* Reduced margin */}
 									{/* Programs Section */}
-									<div className="space-y-1">
-										<h6 className="px-4 font-semibold">Programs</h6>
-										<div className="pl-4 space-y-0.5">
+									<div className="space-y-1 pt-1">
+										<h6 className="px-3 py-1 font-semibold text-muted-foreground">Programs</h6> {/* Adjusted padding */}
+										<div className="pl-3 space-y-0.5">
 											<SheetTrigger asChild>
 												<Link
 													to="/youth-ambassador"
-													className="block py-1.5 px-4 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors"
+													className="block py-1.5 px-3 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors" // Adjusted padding
 												>
 													Youth Ambassador
 												</Link>
@@ -237,7 +239,7 @@ export default function MainLayout() {
 											<SheetTrigger asChild>
 												<Link
 													to="/yaa"
-													className="block py-1.5 px-4 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors"
+													className="block py-1.5 px-3 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors" // Adjusted padding
 												>
 													Youth Achievement Award
 												</Link>
@@ -245,7 +247,7 @@ export default function MainLayout() {
 											<SheetTrigger asChild>
 												<Link
 													to="/discover-india-series"
-													className="block py-1.5 px-4 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors"
+													className="block py-1.5 px-3 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors" // Adjusted padding
 												>
 													Discover India Series
 												</Link>
@@ -253,18 +255,18 @@ export default function MainLayout() {
 											<SheetTrigger asChild>
 												<Link
 													to="/diwali-essay-competition"
-													className="block py-1.5 px-4 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors"
+													className="block py-1.5 px-3 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors" // Adjusted padding
 												>
 													Diwali Essay Competition
 												</Link>
 											</SheetTrigger>
 										</div>
 									</div>
-
+									<Separator className="my-1" />
 									<SheetTrigger asChild>
 										<Link
 											to="/events"
-											className="block py-2 px-4 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors"
+											className="block py-2 px-3 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors text-lg font-medium" // Adjusted padding
 										>
 											Events
 										</Link>

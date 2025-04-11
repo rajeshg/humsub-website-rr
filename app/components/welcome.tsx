@@ -1,12 +1,11 @@
 import { Icon } from "@iconify-icon/react"
 
-import type { Event } from "~/routes/events-home"
-
 import { Link } from "react-router"
 import { PictureCarousel } from "~/components/picture-carousel"
 import { SponsorCarousel } from "~/components/sponsor-carousel"
+import type { EventMeta } from "~/events.server"
 
-export function Welcome({ events }: { events: Event[] }) {
+export function Welcome({ events }: { events: EventMeta[] }) {
 	return (
 		<div id="container" className="container mx-auto px-4 max-w-7xl">
 			<main className="flex flex-col dark:text-slate-100">
@@ -33,7 +32,7 @@ export function Welcome({ events }: { events: Event[] }) {
 									</figure>
 									<div className="flex flex-col gap-1">
 										<span className="font-medium truncate text-left">{event.frontmatter?.title}</span>
-										<span className="text-xs truncate text-left">{event.frontmatter?.startDate}</span>
+										<span className="text-xs truncate text-left">{event.frontmatter?.startDateUserFriendly}</span>
 									</div>
 								</Link>
 							))}

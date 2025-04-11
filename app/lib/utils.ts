@@ -1,12 +1,27 @@
 import type { ClassValue } from "clsx"
 
 import { clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
-
 import { format, fromZonedTime } from "date-fns-tz"
+import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs))
+}
+
+export function toISODateStringFromLocalEasternDateString(dateStr: string): string {
+	const timeZone = "America/New_York"
+	// Ensure there's a time component
+	const normalized = dateStr.includes(" ") ? dateStr : `${dateStr} 00:00:00`
+	// Convert to UTC - parse the string into a Date object first
+	const dateObj = new Date(normalized)
+	try {
+		const utcDate = fromZonedTime(dateObj, timeZone)
+		// Return ISO string
+		return utcDate.toISOString()
+	} catch (error) {
+		console.error("Error converting date string to ISO:", dateStr, error)
+		return dateStr
+	}
 }
 
 /**
@@ -39,34 +54,21 @@ export function parseFrontmatterDate(rawDate: unknown): Date | null {
 	return Number.isNaN(fallback.getTime()) ? null : fallback
 }
 
-/**
- * @param dateString - A date string in the format "MMM d, yyyy, h:mm a"
- * @description This function takes a date string in the format "YYYY-MM-DD HH:mm:ss" and converts it to a formatted string
- * in the format "MMM d, yyyy, h:mm a" using the America/New_York timezone.
- * @returns	 A formatted date string in the format "MMM d, yyyy, h:mm a" or "MMM d, yyyy" if the time is 00:00.
- */
-export function dateFormatter(dateString: string): string {
-	const nyTimeZone = "America/New_York"
-	// Check if the dateString is a date-only format (YYYY-MM-DD)
-	const isDateOnly = /^\d{4}-\d{2}-\d{2}$/.test(dateString)
-
-	// For date-only strings, create a date without timezone conversion
-	if (isDateOnly) {
-		const date = new Date(`${dateString}T00:00:00`)
-		return format(date, "MMM d, yyyy", { timeZone: nyTimeZone })
+export function formatDateISOToUserFriendly(isoDateString: string): string {
+	const date = new Date(isoDateString)
+	if (Number.isNaN(date.getTime())) {
+		console.error("Invalid ISO date string:", isoDateString)
+		return "Invalid date"
 	}
+	const etTimeZone = "America/New_York" // North Carolina is in Eastern Time
+	let formatted = format(date, "MMM d, yyyy, h:mm a", { timeZone: etTimeZone })
 
-	// For datetime strings, use fromZonedTime
-	const date = fromZonedTime(dateString, nyTimeZone)
-	const options = "MMM d, yyyy, h:mm a"
-
-	const startHour = date.getHours()
-
-	if (startHour === 0) {
-		return format(date, "MMM d, yyyy", { timeZone: nyTimeZone })
+	// If the time is midnight, only show the date
+	if (date.getUTCHours() === 0 && date.getUTCMinutes() === 0) {
+		return format(date, "MMM d, yyyy", { timeZone: etTimeZone })
 	}
-
-	return format(date, options, { timeZone: nyTimeZone })
+	formatted = formatted.replace(/, 12:00 AM/, "") // Remove the time if it's midnight
+	return formatted
 }
 
 /**

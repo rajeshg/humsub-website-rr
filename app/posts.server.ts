@@ -3,7 +3,7 @@
 export type Frontmatter = {
 	title: string
 	description: string
-	published: string // YYYY-MM-DD
+	"published-date": string // YYYY-MM-DD
 	featured: boolean
 }
 
@@ -28,7 +28,7 @@ export async function getPosts(): Promise<PostMeta[]> {
 			frontmatter: post.frontmatter,
 		}
 	})
-	return sortBy(posts, (post) => post.frontmatter.published, "desc")
+	return sortBy(posts, (post) => post.frontmatter["published-date"], "desc")
 }
 
 export async function getFeaturedOrLatestPosts(): Promise<PostMeta[]> {

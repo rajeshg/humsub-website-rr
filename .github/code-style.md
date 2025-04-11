@@ -1,7 +1,13 @@
 # Code Style Guide
 
-Always add comments.
 
+# Directory structure
+- common logic should be kept in `app/lib` directory
+- Ensure that all components are organized in a clear and logical manner.
+- All components should be placed in the `app/components` directory.
+- All routes should be placed in the `app/routes` directory. If it's an API route, it should be placed in the `app/routes/api` directory.
+- All assets should be placed in the `public/assets` directory.
+- All hooks should be placed in the `app/hooks` directory.
 # Typescript
 
 - Always use TypeScript.

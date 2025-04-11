@@ -1,26 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { dateFormatter, dateRangeFormatter } from "./utils"
-
-describe("dateFormatter", () => {
-	it("formats a date-only string (YYYY-MM-DD) correctly", () => {
-		const result = dateFormatter("2025-04-10")
-		expect(result).toBe("Apr 10, 2025")
-	})
-
-	it("formats a datetime string (YYYY-MM-DD HH:mm:ss) correctly", () => {
-		const result = dateFormatter("2025-04-10 14:30:00")
-		expect(result).toBe("Apr 10, 2025, 2:30 PM")
-	})
-
-	it("formats a datetime string with midnight time correctly", () => {
-		const result = dateFormatter("2025-04-10 00:00:00")
-		expect(result).toBe("Apr 10, 2025")
-	})
-
-	it("throws an error for invalid date strings", () => {
-		expect(() => dateFormatter("invalid-date")).toThrow()
-	})
-})
+import { dateRangeFormatter } from "./utils"
 
 describe("dateRangeFormatter", () => {
 	it("formats a single date without an end date correctly", () => {
