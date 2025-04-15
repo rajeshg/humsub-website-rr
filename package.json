@@ -49,7 +49,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
-		"@cloudflare/vite-plugin": "^1.0.5",
+		"@cloudflare/vite-plugin": "^1.0.7",
 		"@cloudflare/workers-types": "^4.20250415.0",
 		"@react-router/dev": "^7.5.0",
 		"@tailwindcss/vite": "^4.1.4",
@@ -57,13 +57,13 @@
 		"@total-typescript/tsconfig": "^1.0.4",
 		"@types/react": "^19.1.2",
 		"@types/react-dom": "^19.1.2",
-		"daisyui": "^5.0.19",
+		"daisyui": "^5.0.20",
 		"globals": "^16.0.0",
 		"tailwindcss": "^4.1.4",
 		"typescript": "^5.8.3",
 		"vite": "^6.2.6",
 		"vite-tsconfig-paths": "^5.1.4",
 		"vitest": "^3.1.1",
-		"wrangler": "^4.10.0"
+		"wrangler": "^4.11.1"
 	}
 }
