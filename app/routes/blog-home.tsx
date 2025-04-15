@@ -27,7 +27,7 @@ export default function Blog({ loaderData }: Route.ComponentProps) {
 							key={post.slug}
 							className="group relative bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden"
 						>
-							<Link to={post.slug} className="block p-6">
+							<Link to={post.slug} className="block p-6 no-underline">
 								<div className="flex flex-col sm:flex-row sm:items-start gap-6">
 									<div className="flex-1">
 										<h2 className="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">

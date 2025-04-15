@@ -41,6 +41,12 @@ export default function GalleryPage() {
 				<TabsContent value="pictures">
 					<ul className="prose dark:prose-invert">
 						<li>
+							<a href="https://flic.kr/s/aHBqjC8Z2S">Holi 2025</a>
+						</li>
+						<li>
+							<a href="https://flic.kr/s/aHBqjC8m6g">Basant Bahar 2025</a>
+						</li>
+						<li>
 							<a href="https://photos.app.goo.gl/YjXYubCGCdYyfQ4b9">YAA Luncheon 2024</a>
 						</li>
 						<li>

@@ -1,14 +1,11 @@
 {
-	// Disable the default formatter, use eslint instead
-	"prettier.enable": false,
-	"editor.formatOnSave": true,
-	// Auto fix
-	"editor.codeActionsOnSave": {
-		"source.fixAll.biome": "explicit",
-		"source.organizeImports": "explicit"
-	},
-	"[javascript]": {
-		"editor.defaultFormatter": "biomejs.biome"
+	"emeraldwalk.runonsave": {
+		"commands": [
+			{
+				"match": ".*",
+				"cmd": "bun run check:fix"
+			}
+		]
 	},
 	"typescript.preferences.autoImportFileExcludePatterns": ["lucide-react"],
 	"github.copilot.chat.codeGeneration.instructions": [
