@@ -35,8 +35,7 @@ export default function EventsHome({ loaderData }: Route.ComponentProps) {
 								title={event.frontmatter.title}
 								slug={event.slug}
 								location={event.frontmatter.location}
-								startDate={event.frontmatter.startDateISO ?? event.frontmatter["start-date"]}
-								endDate={event.frontmatter.endDateISO}
+								dateRange={event.frontmatter.dateRangeUserFriendly ?? ""}
 								isPast={false}
 								imageUrl={event.frontmatter.image}
 							/>
@@ -57,8 +56,7 @@ export default function EventsHome({ loaderData }: Route.ComponentProps) {
 								title={event.frontmatter.title}
 								slug={event.slug}
 								location={event.frontmatter.location}
-								startDate={event.frontmatter.startDateISO ?? event.frontmatter["start-date"]}
-								endDate={event.frontmatter.endDateISO}
+								dateRange={event.frontmatter.dateRangeUserFriendly ?? ""}
 								isPast={true}
 								imageUrl={event.frontmatter.image}
 							/>

@@ -9,6 +9,7 @@ export async function loader({ context }: Route.LoaderArgs) {
 	let value = rawValue ? (JSON.parse(rawValue) as EventMeta[]) : []
 
 	if (!value || value.length === 0) {
+		console.warn("Cache MISS")
 		const events = await getAllEvents()
 		const upcomingEvents = events
 			.filter((event) => new Date(event.frontmatter["start-date"]) >= new Date())

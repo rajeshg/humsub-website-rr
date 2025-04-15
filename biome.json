@@ -21,7 +21,7 @@
 			"suspicious": {
 				"recommended": true,
 				"noConsole": {
-					"level": "error",
+					"level": "warn",
 					"options": {
 						"allow": ["error", "warn"]
 					}

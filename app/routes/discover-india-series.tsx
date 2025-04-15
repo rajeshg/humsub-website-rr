@@ -145,9 +145,9 @@ export default function DiscoverIndiaSeries() {
 				<h2>Story of a temple</h2>
 
 				<p>
-					Learn about the Sri Venkateswara (SV) temple of Cary, including the significance of the
-					architectural details and the etiquette of temple worship. Also included in this nearly
-					month long exhibit are Indian marriage traditions.
+					Learn about the Sri Venkateswara (SV) temple of Cary, including the significance of the architectural details
+					and the etiquette of temple worship. Also included in this nearly month long exhibit are Indian marriage
+					traditions.
 				</p>
 				<p>Sept 5-Sept 30, State Capitol</p>
 			</section>
@@ -169,10 +169,9 @@ export default function DiscoverIndiaSeries() {
 			<section>
 				<h2>Kathakali, a stylized dance form from Kerala</h2>
 				<p>
-					Discover the fascinating world of Kathakali, a highly stylized and traditional dance form
-					from the South Indian state of Kerala. Meet Meenakshi, a “Third Culture kid”, whose
-					passion to learn this dance form is a story that will remain with you long after the
-					presentation.
+					Discover the fascinating world of Kathakali, a highly stylized and traditional dance form from the South
+					Indian state of Kerala. Meet Meenakshi, a “Third Culture kid”, whose passion to learn this dance form is a
+					story that will remain with you long after the presentation.
 				</p>
 				<p>
 					<strong>Presenter:</strong> Meenakshi Menon

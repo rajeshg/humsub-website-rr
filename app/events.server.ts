@@ -1,4 +1,4 @@
-import { toISODateStringFromLocalEasternDateString } from "./lib/utils"
+import { dateRangeFormatter, parseLocalDate } from "./lib/datetime"
 
 export type Frontmatter = {
 	slug: string
@@ -13,6 +13,7 @@ export type Frontmatter = {
 	endDateISO?: string
 	startDateUserFriendly?: string
 	endDateUserFriendly?: string
+	dateRangeUserFriendly?: string
 }
 
 export type EventMeta = {
@@ -30,28 +31,18 @@ export async function getAllEvents(): Promise<EventMeta[]> {
 		}))
 		for (const event of allEvents) {
 			if (event.frontmatter) {
-				event.frontmatter.startDateISO = toISODateStringFromLocalEasternDateString(event.frontmatter["start-date"])
+				event.frontmatter.startDateISO = parseLocalDate(event.frontmatter["start-date"]).dateTimeISO
 				event.frontmatter.endDateISO = event.frontmatter["end-date"]
-					? toISODateStringFromLocalEasternDateString(event.frontmatter["end-date"])
+					? parseLocalDate(event.frontmatter["end-date"]).dateTimeISO
 					: undefined
-				event.frontmatter.startDateUserFriendly = new Date(event.frontmatter.startDateISO).toLocaleString("en-US", {
-					year: "numeric",
-					month: "short",
-					day: "numeric",
-					hour: "numeric",
-					minute: "numeric",
-					timeZone: "America/New_York",
-				})
-				event.frontmatter.endDateUserFriendly = event.frontmatter.endDateISO
-					? new Date(event.frontmatter.endDateISO).toLocaleString("en-US", {
-							year: "numeric",
-							month: "short",
-							day: "numeric",
-							hour: "numeric",
-							minute: "numeric",
-							timeZone: "America/New_York",
-						})
+				event.frontmatter.startDateUserFriendly = parseLocalDate(event.frontmatter["start-date"]).dateTimeUserFriendly
+				event.frontmatter.endDateUserFriendly = event.frontmatter["end-date"]
+					? parseLocalDate(event.frontmatter["end-date"]).dateTimeUserFriendly
 					: undefined
+				event.frontmatter.dateRangeUserFriendly = dateRangeFormatter(
+					event.frontmatter.startDateISO,
+					event.frontmatter.endDateISO
+				)
 			}
 		}
 

@@ -1,22 +1,19 @@
 import { Icon } from "@iconify-icon/react"
 import { Link } from "react-router"
 
-import { dateRangeFormatter } from "~/lib/utils"
 import { Badge } from "./ui/badge"
 
 export default function EventCard({
 	title,
 	slug,
-	startDate,
-	endDate,
+	dateRange,
 	location,
 	imageUrl,
 	isPast,
 }: {
 	title: string
 	slug: string
-	startDate: string
-	endDate?: string
+	dateRange: string
 	location: string
 	imageUrl: string
 	isPast?: boolean
@@ -48,7 +45,7 @@ export default function EventCard({
 				<div className="mt-2 space-y-2 text-sm">
 					<div className="flex items-center gap-2">
 						<Icon icon="mdi:calendar" className="text-primary dark:text-amber-300 flex-shrink-0" />
-						<span className="text-base-content/80 dark:text-slate-300">{dateRangeFormatter(startDate, endDate)}</span>
+						<span className="text-base-content/80 dark:text-slate-300">{dateRange}</span>
 					</div>
 
 					<div className="flex items-center gap-2">

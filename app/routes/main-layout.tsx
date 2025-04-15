@@ -217,10 +217,10 @@ export default function MainLayout() {
 									<Separator className="my-1" />
 									<SheetTrigger asChild>
 										<Link
-											to="/blog"
+											to="/events"
 											className="block py-2 px-3 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors text-lg font-medium" // Adjusted padding
 										>
-											Blog
+											Events
 										</Link>
 									</SheetTrigger>
 									<Separator className="my-1" />
@@ -265,10 +265,10 @@ export default function MainLayout() {
 									<Separator className="my-1" />
 									<SheetTrigger asChild>
 										<Link
-											to="/events"
+											to="/blog"
 											className="block py-2 px-3 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors text-lg font-medium" // Adjusted padding
 										>
-											Events
+											Blog
 										</Link>
 									</SheetTrigger>
 								</nav>

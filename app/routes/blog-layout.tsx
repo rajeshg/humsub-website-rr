@@ -3,7 +3,7 @@ import { Link, Outlet } from "react-router"
 import blogCss from "~/blog.css?url"
 import { getPosts } from "~/posts.server"
 
-import { formatDateISOToUserFriendly, toISODateStringFromLocalEasternDateString } from "~/lib/utils"
+import { parseLocalDate } from "~/lib/datetime"
 import type { Route } from "./+types/blog-layout"
 
 export async function loader({ request }: Route.LoaderArgs) {
@@ -47,9 +47,7 @@ export default function BlogLayout({ loaderData }: Route.ComponentProps) {
 									>
 										<div className="font-medium text-gray-900 dark:text-white">{post.frontmatter.title}</div>
 										<div className="text-sm text-gray-500 dark:text-gray-400">
-											{formatDateISOToUserFriendly(
-												toISODateStringFromLocalEasternDateString(post.frontmatter["published-date"])
-											)}
+											{parseLocalDate(post.frontmatter["published-date"]).dateTimeUserFriendly}
 										</div>
 									</Link>
 								</li>

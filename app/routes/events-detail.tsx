@@ -3,23 +3,31 @@ import { preload } from "react-dom"
 import { Link, Outlet } from "react-router"
 import blogCss from "~/blog.css?url"
 import { Button } from "~/components/ui/button"
-import { dateRangeFormatter, toISODateStringFromLocalEasternDateString } from "~/lib/utils"
+import type { EventMeta } from "~/events.server"
+import { dateRangeFormatter, parseLocalDate } from "~/lib/datetime"
 import type { Route } from "./+types/events-detail"
-import type { Event } from "./events-home"
 
 export async function loader({ request }: Route.LoaderArgs) {
 	const url = new URL(request.url)
 	const path = url.pathname.split("/").pop()
-	const event = (await import(`../content/events/${path}.mdx`)) as Event
+	const event = (await import(`../content/events/${path}.mdx`)) as EventMeta
 	if (event.frontmatter?.["start-date"]) {
-		event.frontmatter.startDateISO = toISODateStringFromLocalEasternDateString(event.frontmatter["start-date"])
+		event.frontmatter.startDateISO = event.frontmatter["start-date"]
+			? parseLocalDate(event.frontmatter["start-date"], "America/New_York").dateTimeISO
+			: ""
 	}
 	if (event.frontmatter?.["end-date"]) {
 		event.frontmatter.endDateISO = event.frontmatter["end-date"]
-			? toISODateStringFromLocalEasternDateString(event.frontmatter["end-date"])
-			: null
+			? parseLocalDate(event.frontmatter["end-date"]).dateTimeISO
+			: undefined
 	}
-	if (!event) {
+	if (event.frontmatter.startDateISO) {
+		event.frontmatter.dateRangeUserFriendly = dateRangeFormatter(
+			event.frontmatter.startDateISO,
+			event.frontmatter.endDateISO
+		)
+	}
+	if (!event.frontmatter) {
 		throw new Response("Not Found", { status: 404 })
 	}
 	return { event }
@@ -42,9 +50,9 @@ export function meta({ params, data }: Route.MetaArgs) {
 	]
 }
 
-export default function EventsDetail({ loaderData }: { loaderData: { event: Event } }) {
+export default function EventsDetail({ loaderData }: Route.ComponentProps) {
 	const { event } = loaderData
-	const { startDateISO, endDateISO } = event.frontmatter || {}
+	const { startDateISO, endDateISO, dateRangeUserFriendly } = event.frontmatter
 
 	return (
 		<>
@@ -63,7 +71,6 @@ export default function EventsDetail({ loaderData }: { loaderData: { event: Even
 					<a
 						href={`https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.frontmatter?.title || "")}
 							&dates=${startDateISO?.replaceAll(/[-:]/g, "")}/${endDateISO?.replaceAll(/[-:]/g, "")}
-							&details=${encodeURIComponent(event.frontmatter?.description || "")}
 							&location=${encodeURIComponent(event.frontmatter?.location || "")}`}
 						target="_blank"
 						rel="noopener noreferrer"
@@ -73,7 +80,7 @@ export default function EventsDetail({ loaderData }: { loaderData: { event: Even
 							<Icon icon="mdi:calendar" />
 						</Button>
 					</a>
-					<span>{dateRangeFormatter(startDateISO, endDateISO)}</span>
+					<span>{dateRangeUserFriendly}</span>
 				</div>
 
 				{event.frontmatter?.location && (
