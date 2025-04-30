@@ -39,7 +39,7 @@ export async function loader({ context, params }: Route.LoaderArgs) {
 			}
 			const response = await fetch(url)
 			const data = (await response.json()) as YouTubeSearchResponse
-			videos = [...videos, ...data.items.map((item) => `https://www.youtube.com/embed/${item.id.videoId}`)]
+			videos = [...videos, ...data.items.map((item) => item.id.videoId)]
 			nextPageToken = data.nextPageToken || ""
 		} while (nextPageToken)
 	} catch (error) {

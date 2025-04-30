@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react"
+import LiteYouTubeEmbed from "react-lite-youtube-embed"
+import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css"
 
 export default function YoutubeGallery() {
 	const [videos, setVideos] = useState<string[]>([])
@@ -54,22 +56,13 @@ export default function YoutubeGallery() {
 			{!loading && !error && (
 				<>
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-						{currentVideos.map((video) => (
-							<div key={video} className="border rounded-md overflow-hidden shadow-md">
-								<iframe
-									title="youtube video"
-									width="100%"
-									height="200"
-									src={video}
-									// eslint-disable-next-line react-dom/no-unsafe-iframe-sandbox
-									sandbox="allow-scripts allow-same-origin"
-									allowFullScreen
-								></iframe>
+						{currentVideos.map((videoId) => (
+							<div key={videoId} className="border rounded-md overflow-hidden shadow-md aspect-video">
+								<LiteYouTubeEmbed id={videoId} title="Hum Sub Video" noCookie={true} />
 							</div>
 						))}
 					</div>
 
-					{/* Pagination controls */}
 					<div className="flex justify-center mt-8 gap-2">
 						<button
 							onClick={() => handlePageChange(currentPage - 1)}
@@ -81,8 +74,7 @@ export default function YoutubeGallery() {
 						</button>
 
 						<span className="flex items-center px-4">
-							Page {currentPage} of
-							{totalPages}
+							Page {currentPage} of {totalPages}
 						</span>
 
 						<button
