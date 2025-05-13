@@ -7,16 +7,19 @@
 			}
 		]
 	},
-	"typescript.preferences.autoImportFileExcludePatterns": ["lucide-react"],
+	"typescript.preferences.autoImportSpecifierExcludeRegexes": ["@radix-ui", "lucide-react"],
 	"github.copilot.chat.codeGeneration.instructions": [
 		{
-			"file": "code-style.md"
+			"file": "./.vscode/code-style.md"
 		},
 		{
-			"file": "avoid-use-effect.mdc"
+			"file": "./.vscode/avoid-use-effect.mdc"
 		},
 		{
-			"file": "react-router.md"
+			"file": "./.vscode/react-router.md"
+		},
+		{
+			"file": "./.vscode/daisyui.md"
 		}
 	]
 }

@@ -14,7 +14,7 @@ export function PictureCarousel() {
 
 	return (
 		<Carousel
-			className="w-full h-auto"
+			className="w-full relative"
 			opts={{
 				align: "start",
 				loop: true,
@@ -28,7 +28,9 @@ export function PictureCarousel() {
 			<CarouselContent>
 				{images.map((src) => (
 					<CarouselItem key={src}>
-						<img src={src} alt="event pic" className="w-full h-auto" loading="lazy" />
+						<div className="aspect-[16/9] relative overflow-hidden">
+							<img src={src} alt="event pic" className="w-full h-full object-cover object-center" loading="lazy" />
+						</div>
 					</CarouselItem>
 				))}
 			</CarouselContent>
