@@ -45,6 +45,20 @@ function ListItem({
 	)
 }
 
+export function PortalButton() {
+	return (
+		<a href="https://portal.humsub.org" target="_blank" rel="noreferrer noopener">
+			<button
+				type="button"
+				className="flex items-center px-4 py-2 bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/80 transition-colors"
+			>
+				<Icon icon="mdi:external-link" className="mr-2" />
+				<span>Portal</span>
+			</button>
+		</a>
+	)
+}
+
 export default function MainLayout() {
 	return (
 		<div className="flex flex-col min-h-screen bg-background text-foreground">
@@ -129,6 +143,7 @@ export default function MainLayout() {
 					</nav>
 
 					<div className="flex items-center space-x-2 relative">
+						<PortalButton />
 						<ThemeToggle />
 
 						{/* Mobile Navigation Button */}
@@ -310,6 +325,20 @@ export default function MainLayout() {
 					</div>
 				</div>
 			</footer>
+			{/* Global Site Tag (gtag.js) - Google Analytics */}
+			<script async src="https://www.googletagmanager.com/gtag/js?id=G-5WQKXND2YV"></script>
+
+			<script
+				// biome-ignore lint/security/noDangerouslySetInnerHtml: We are using this to set the gtag script inline
+				dangerouslySetInnerHTML={{
+					__html: `
+						window.dataLayer = window.dataLayer || [];
+						function gtag(){window.dataLayer.push(arguments);}
+						gtag('js', new Date());
+						gtag('config', 'G-5WQKXND2YV');
+					`,
+				}}
+			/>
 		</div>
 	)
 }

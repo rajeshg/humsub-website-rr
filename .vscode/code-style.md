@@ -29,4 +29,5 @@ The module name is "react-router".
 
 - Use daisyui for styling
 - Use Tailwind CSS for styling.
+- Consider both dark and light themes. It's important to ensure that the application is visually appealing and accessible to users in both light and dark modes.
 - Do not use inline styles unless necessary

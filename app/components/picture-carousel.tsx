@@ -1,6 +1,4 @@
-import Autoplay from "embla-carousel-autoplay"
-
-import { Carousel, CarouselContent, CarouselItem } from "~/components/ui/carousel"
+import ImageCarousel from "./image-carousel"
 
 export function PictureCarousel() {
 	const images = [
@@ -13,27 +11,11 @@ export function PictureCarousel() {
 	]
 
 	return (
-		<Carousel
-			className="w-full relative"
-			opts={{
-				align: "start",
-				loop: true,
-			}}
-			plugins={[
-				Autoplay({
-					delay: 2000,
-				}),
-			]}
-		>
-			<CarouselContent>
-				{images.map((src) => (
-					<CarouselItem key={src}>
-						<div className="aspect-[16/9] relative overflow-hidden">
-							<img src={src} alt="event pic" className="w-full h-full object-cover object-center" loading="lazy" />
-						</div>
-					</CarouselItem>
-				))}
-			</CarouselContent>
-		</Carousel>
+		<ImageCarousel
+			slides={images.map((src) => ({
+				src,
+				alt: "event pic",
+			}))}
+		/>
 	)
 }

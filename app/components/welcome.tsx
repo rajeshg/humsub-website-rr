@@ -3,6 +3,8 @@ import { Icon } from "@iconify-icon/react"
 import { Link } from "react-router"
 import { PictureCarousel } from "~/components/picture-carousel"
 import { SponsorCarousel } from "~/components/sponsor-carousel"
+import { Button } from "~/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card"
 import type { EventMeta } from "~/events.server"
 
 export function Welcome({ events }: { events: EventMeta[] }) {
@@ -62,65 +64,75 @@ export function Welcome({ events }: { events: EventMeta[] }) {
 					</section>
 				</div>
 				<section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 my-4 not-prose">
-					<div className="card shadow-lg bg-gradient-to-r from-base-100 to-base-300 dark:from-slate-700 dark:to-slate-800 border border-base-300 dark:border-slate-600 hover:border-primary dark:hover:border-amber-400 transition-all hover:-translate-y-1">
-						<div className="card-body">
-							<h2 className="text-xl font-semibold card-title text-primary dark:text-amber-300">Events</h2>
+					<Card className="shadow-lg bg-gradient-to-r from-base-100 to-base-300 dark:from-slate-700 dark:to-slate-800 border border-base-300 dark:border-slate-600 hover:border-primary dark:hover:border-amber-400 transition-all hover:-translate-y-1">
+						<CardHeader>
+							<CardTitle className="text-xl font-semibold text-primary dark:text-amber-300">Events</CardTitle>
+						</CardHeader>
+						<CardContent>
 							<p className="text-base-content/80 dark:text-slate-300">
 								We organize family-oriented cultural events with no general admission fees
 							</p>
-						</div>
-					</div>
-					<div className="card shadow-lg bg-gradient-to-r from-base-100 to-base-300 dark:from-slate-700 dark:to-slate-800 border border-base-300 dark:border-slate-600 hover:border-primary dark:hover:border-amber-400 transition-all hover:-translate-y-1">
-						<div className="card-body">
-							<h2 className="text-xl font-semibold card-title text-primary dark:text-amber-300">Youth Focus</h2>
+						</CardContent>
+					</Card>
+					<Card className="shadow-lg bg-gradient-to-r from-base-100 to-base-300 dark:from-slate-700 dark:to-slate-800 border border-base-300 dark:border-slate-600 hover:border-primary dark:hover:border-amber-400 transition-all hover:-translate-y-1">
+						<CardHeader>
+							<CardTitle className="text-xl font-semibold text-primary dark:text-amber-300">Youth Focus</CardTitle>
+						</CardHeader>
+						<CardContent>
 							<p className="text-base-content/80 dark:text-slate-300">
 								We invest in youth initiatives to develop next generation leaders
 							</p>
-						</div>
-					</div>
-					<div className="card shadow-lg bg-gradient-to-r from-base-100 to-base-300 dark:from-slate-700 dark:to-slate-800 border border-base-300 dark:border-slate-600 hover:border-primary dark:hover:border-amber-400 transition-all hover:-translate-y-1">
-						<div className="card-body">
-							<h2 className="text-xl font-semibold card-title text-primary dark:text-amber-300">Performers</h2>
+						</CardContent>
+					</Card>
+					<Card className="shadow-lg bg-gradient-to-r from-base-100 to-base-300 dark:from-slate-700 dark:to-slate-800 border border-base-300 dark:border-slate-600 hover:border-primary dark:hover:border-amber-400 transition-all hover:-translate-y-1">
+						<CardHeader>
+							<CardTitle className="text-xl font-semibold text-primary dark:text-amber-300">Performers</CardTitle>
+						</CardHeader>
+						<CardContent>
 							<p className="text-base-content/80 dark:text-slate-300">
 								We provide a platform for performers to showcase their talents
 							</p>
-						</div>
-					</div>
-					<div className="card shadow-lg bg-gradient-to-r from-base-100 to-base-300 dark:from-slate-700 dark:to-slate-800 border border-base-300 dark:border-slate-600 hover:border-primary dark:hover:border-amber-400 transition-all hover:-translate-y-1">
-						<div className="card-body">
-							<h2 className="text-xl font-semibold card-title text-primary dark:text-amber-300">Vendors</h2>
+						</CardContent>
+					</Card>
+					<Card className="shadow-lg bg-gradient-to-r from-base-100 to-base-300 dark:from-slate-700 dark:to-slate-800 border border-base-300 dark:border-slate-600 hover:border-primary dark:hover:border-amber-400 transition-all hover:-translate-y-1">
+						<CardHeader>
+							<CardTitle className="text-xl font-semibold text-primary dark:text-amber-300">Vendors</CardTitle>
+						</CardHeader>
+						<CardContent>
 							<p className="text-base-content/80 dark:text-slate-300">
 								We provide a platform for vendors to promote their products and services
 							</p>
-						</div>
-					</div>
-					<div className="card shadow-lg bg-gradient-to-r from-base-100 to-base-300 dark:from-slate-700 dark:to-slate-800 border border-base-300 dark:border-slate-600 hover:border-secondary dark:hover:border-teal-400 transition-all hover:-translate-y-1">
-						<div className="card-body">
-							<h2 className="text-xl font-semibold card-title text-primary dark:text-teal-300">Want to volunteer?</h2>
-							<p className="text-base-content/80 dark:text-slate-300 flex flex-col">
+						</CardContent>
+					</Card>
+					<Card className="shadow-lg bg-gradient-to-r from-base-100 to-base-300 dark:from-slate-700 dark:to-slate-800 border border-base-300 dark:border-slate-600 hover:border-primary dark:hover:border-teal-400 transition-all hover:-translate-y-1">
+						<CardHeader>
+							<CardTitle className="text-xl font-semibold text-primary dark:text-teal-300">
+								Want to volunteer?
+							</CardTitle>
+						</CardHeader>
+						<CardContent>
+							<div className="text-base-content/80 dark:text-slate-300 flex flex-col">
 								<span>We are a 100% volunteer organization and welcome volunteers of all ages.</span>
-								<a
-									href="/volunteer"
-									className="btn btn-secondary w-full mt-4 group"
-									target="_self"
-									rel="noopener noreferrer"
-									title="Volunteer with Hum Sub"
-								>
-									Apply
-									<span className="group-hover:translate-x-1 transition-transform">→</span>
-								</a>
-							</p>
-						</div>
-					</div>
-					<div className="card shadow-lg bg-gradient-to-r from-base-100 to-base-300 dark:from-slate-700 dark:to-slate-800 border border-base-300 dark:border-slate-600 hover:border-primary dark:hover:border-amber-400 transition-all hover:-translate-y-1">
-						<div className="card-body">
-							<h2 className="text-xl font-semibold card-title text-primary dark:text-amber-300">Non-Profit</h2>
+								<Button asChild className="w-full mt-4 group" variant="secondary">
+									<Link to="/volunteer" title="Volunteer with Hum Sub">
+										Apply
+										<span className="group-hover:translate-x-1 transition-transform ml-1">→</span>
+									</Link>
+								</Button>
+							</div>
+						</CardContent>
+					</Card>
+					<Card className="shadow-lg bg-gradient-to-r from-base-100 to-base-300 dark:from-slate-700 dark:to-slate-800 border border-base-300 dark:border-slate-600 hover:border-primary dark:hover:border-amber-400 transition-all hover:-translate-y-1">
+						<CardHeader>
+							<CardTitle className="text-xl font-semibold text-primary dark:text-amber-300">Non-Profit</CardTitle>
+						</CardHeader>
+						<CardContent>
 							<p className="text-base-content/80 dark:text-slate-300">
 								We are a registered 501(c)(3) non-profit organization dedicated to serving the community. We partner
 								with other non-profit organizations.
 							</p>
-						</div>
-					</div>
+						</CardContent>
+					</Card>
 				</section>
 
 				<section className="shadow-lg rounded-xl bg-base-100 dark:bg-slate-800 p-4 my-4 grid grid-cols-2 md:grid-cols-4 gap-4">

@@ -1,4 +1,5 @@
 import { Icon } from "@iconify-icon/react"
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card"
 
 // Define contact info type
 interface ContactInfo {
@@ -7,26 +8,6 @@ interface ContactInfo {
 	phone: string
 	email: string
 }
-
-// Create ContactCard component
-const ContactCard = ({ info }: { info: ContactInfo }) => (
-	<div className="card not-prose shadow-md hover:shadow-lg transition-all duration-200">
-		<div className="card-body text-balance break-words">
-			<h3 className="card-title text-gray-900 dark:text-gray-50">{info.title}</h3>
-			<div className="text-gray-600 dark:text-gray-400 space-y-1">
-				<div className="font-semibold">{info.name}</div>
-				<div className="flex items-center gap-2">
-					<Icon icon="lucide:phone" aria-hidden="true" className="w-4 h-4" />
-					<span>{info.phone}</span>
-				</div>
-				<div className="flex items-center gap-2">
-					<Icon icon="lucide:mail" aria-hidden="true" className="w-4 h-4" />
-					<span>{info.email}</span>
-				</div>
-			</div>
-		</div>
-	</div>
-)
 
 export default function ContactUs() {
 	// Officers data
@@ -125,21 +106,51 @@ export default function ContactUs() {
 		<>
 			<title>Contact Us | Hum Sub</title>
 			<h1>Contact Us</h1>
-			<h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-100">Officers</h2>
-			<p className="text-sm mb-4 text-gray-700 dark:text-gray-300">Main Phone: 919-371-4470, Option 1</p>
+			<h2 className="text-2xl font-bold mb-4">Officers</h2>
+			<p className="text-sm mb-4 text-muted-foreground">Main Phone: 919-371-4470, Option 1</p>
 
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
 				{officers.map((officer) => (
-					<ContactCard key={officer.title} info={officer} />
+					<Card key={officer.title} className="not-prose">
+						<CardHeader>
+							<CardTitle>{officer.title}</CardTitle>
+						</CardHeader>
+						<CardContent className="text-sm text-muted-foreground space-y-1">
+							<div className="font-semibold text-card-foreground">{officer.name}</div>
+							<div className="flex items-center gap-2">
+								<Icon icon="lucide:phone" aria-hidden="true" className="w-4 h-4" />
+								<span>{officer.phone}</span>
+							</div>
+							<div className="flex items-center gap-2">
+								<Icon icon="lucide:mail" aria-hidden="true" className="w-4 h-4" />
+								<span>{officer.email}</span>
+							</div>
+						</CardContent>
+					</Card>
 				))}
 			</div>
 
-			<h2 className="text-2xl font-bold mt-8 mb-4 text-gray-800 dark:text-gray-100">Committees</h2>
-			<p className="text-sm mb-4 text-gray-700 dark:text-gray-300">Main Phone: 919-371-4470, Option 2</p>
+			<h2 className="text-2xl font-bold mt-8 mb-4">Committees</h2>
+			<p className="text-sm mb-4 text-muted-foreground">Main Phone: 919-371-4470, Option 2</p>
 
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
 				{committees.map((committee) => (
-					<ContactCard key={committee.title} info={committee} />
+					<Card key={committee.title} className="not-prose">
+						<CardHeader>
+							<CardTitle>{committee.title}</CardTitle>
+						</CardHeader>
+						<CardContent className="text-sm text-muted-foreground space-y-1">
+							<div className="font-semibold text-card-foreground">{committee.name}</div>
+							<div className="flex items-center gap-2">
+								<Icon icon="lucide:phone" aria-hidden="true" className="w-4 h-4" />
+								<span>{committee.phone}</span>
+							</div>
+							<div className="flex items-center gap-2">
+								<Icon icon="lucide:mail" aria-hidden="true" className="w-4 h-4" />
+								<span>{committee.email}</span>
+							</div>
+						</CardContent>
+					</Card>
 				))}
 			</div>
 		</>

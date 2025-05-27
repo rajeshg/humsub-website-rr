@@ -23,7 +23,7 @@ export default function YouthAmbassador() {
 				src="/assets/ya/youth-ambassadors-2022.jpg"
 				alt="2022 Hum Sub Youth Ambassadors"
 				title="2022 Hum Sub Youth Ambassadors"
-				className="justify-center block mx-auto object-contain transition-transform duration-300 hover:scale-110"
+				className="justify-center block mx-auto object-contain transition-transform duration-300 hover:scale-105"
 			/>
 			<h2>Benefits of becoming a Youth Ambassador:</h2>
 			<ul>

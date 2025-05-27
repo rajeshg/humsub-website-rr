@@ -1,3 +1,5 @@
+import { Button } from "~/components/ui/button"
+
 export default function OurSponsors() {
 	return (
 		<div>
@@ -22,9 +24,11 @@ export default function OurSponsors() {
 					target="_blank"
 					rel="noopener noreferrer"
 					href="https://portal.humsub.org/index.php/login/volunteer"
-					className="btn btn-secondary w-full md:w-64 text-secondary-content mt-2 no-underline"
+					className="inline-block w-full md:w-64 mt-2 no-underline"
 				>
-					Sign up to volunteer
+					<Button variant="secondary" className="w-full">
+						Sign up to volunteer
+					</Button>
 				</a>
 			</div>
 		</div>

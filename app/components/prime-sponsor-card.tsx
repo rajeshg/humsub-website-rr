@@ -5,7 +5,7 @@ export default function PrimeSponsorCard({
 	imagePath,
 }: { name: string; href?: string; description?: string; imagePath: string }) {
 	return (
-		<div className="w-full md:w-[2/3] bg-base-100 shadow-sm flex flex-col justify-center place-items-center">
+		<div className="max-w-sm md:w-full md:w-[2/3] bg-base-100 shadow-sm flex flex-col justify-center place-items-center">
 			<figure className="mb-2 p-4">
 				{href ? (
 					<a href={href} target="_blank" rel="noreferrer">
