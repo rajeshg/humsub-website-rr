@@ -40,17 +40,14 @@ export default function HumSubDiwali2025() {
 								Contact us if you are interested in setting up a Vendor Booth to{" "}
 								<span className="font-semibold">market or sell your products or services during our events</span>.
 							</p>
-							<a
-								href="/assets/HD2025_Vendor_Application_Guidelines.pdf"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="link link-primary inline-block"
-							>
-								Click here to view our Vendor Guidelines!
-							</a>
 						</div>
 					</CardContent>
-					<CardFooter className="justify-end mt-4">
+					<CardFooter className="justify-end space-x-2 mt-4">
+						<Button asChild>
+							<a href="/assets/HD2025_Vendor_Application_Guidelines.pdf" target="_blank" rel="noopener noreferrer">
+								Vendor Guidelines
+							</a>
+						</Button>
 						<Button asChild>
 							<a href="https://portal.humsub.org/" target="_blank" rel="noopener noreferrer">
 								Apply Now
@@ -72,17 +69,14 @@ export default function HumSubDiwali2025() {
 								<span className="font-semibold">dance, drama, music</span>, or more—gather your team and light up our
 								stage with your collective talent!
 							</p>
-							<a
-								href="/assets/HumSub-Cultural-Guidelines.pdf"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="link link-primary inline-block"
-							>
-								Click here to view our Cultural Event Guidelines!
-							</a>
 						</div>
 					</CardContent>
-					<CardFooter className="justify-end mt-4">
+					<CardFooter className="justify-end space-x-2 mt-4">
+						<Button asChild>
+							<a href="/assets/HS-Diwali-2025-Guidelines.pdf" target="_blank" rel="noopener noreferrer">
+								Cultural Event Guidelines
+							</a>
+						</Button>
 						<Button asChild>
 							<a href="https://portal.humsub.org/" target="_blank" rel="noopener noreferrer">
 								Apply Now

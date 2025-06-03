@@ -29,7 +29,7 @@ export function Welcome({ events }: { events: EventMeta[] }) {
 											alt={event.frontmatter?.title}
 											width={100}
 											height={100}
-											className="object-cover w-full h-full"
+											className="object-contain object-top"
 										/>
 									</figure>
 									<div className="flex flex-col gap-1">

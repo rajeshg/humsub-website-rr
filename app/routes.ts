@@ -32,16 +32,21 @@ export default [
 		route("diwali-essay-competition", "routes/diwali-essay-competition.tsx"),
 		route("our-sponsors", "routes/our-sponsors.tsx"),
 		route("our-team", "routes/our-team.tsx"),
-		route("hum-sub-diwali-2025", "routes/hum-sub-diwali-2025.tsx"),
 		route("privacy-policy", "routes/privacy-policy.mdx"),
 		route("terms-and-conditions", "routes/terms-and-conditions.mdx"),
 		layout("routes/events-layout.tsx", [
 			route("events", "routes/events-home.tsx"),
 			route(
 				"event",
-				"routes/events-detail.tsx",
-				mdxFilesForEvents.map(({ path: routePath, file }) => route(routePath, file))
-			),
+				"routes/events-detail.tsx", [
+				route("diwali-2025", "routes/hum-sub-diwali-2025.tsx"),
+				...mdxFilesForEvents
+					.filter(({ path: routePath }) => routePath !== "diwali-2025")
+					.map(({ path: routePath, file }) => route(routePath, file)),
+			]),
+			route("hum-sub-diwali-2025", "routes/hum-sub-diwali-2025.tsx", {
+				id: "hum-sub-diwali-2025",
+			}),
 		]),
 		route("blog", "routes/blog-layout.tsx", [
 			index("routes/blog-home.tsx"),
