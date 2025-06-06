@@ -4,24 +4,23 @@ import { Carousel, CarouselContent, CarouselItem } from "~/components/ui/carouse
 
 export function SponsorCarousel() {
 	const images = [
-		"/assets/sponsors/BMW-joint-new-logo.png",
-		"/assets/sponsors/Radio-Nyra-logo.png",
-		"/assets/sponsors/cary-ballet-company-logo.png",
-		"/assets/sponsors/khara.webp",
-		"/assets/sponsors/pnc_bank_logo.jpg",
-		"/assets/sponsors/sponsor_ncimplant.png",
 		"/assets/sponsors/Marius_logo.png",
-		"/assets/sponsors/TNVLC-Logo-no-bg.png",
+		"/assets/sponsors/sam-it-solutions-logo.png",
 		"/assets/sponsors/coastal-logo.png",
-		"/assets/sponsors/lazy-daze.jpg",
 		"/assets/sponsors/publix.png",
-		"/assets/sponsors/town-of-cary-logo.png",
-		"/assets/sponsors/NCAC-color2.jpg",
-		"/assets/sponsors/WellsFargo-logo.png",
-		"/assets/sponsors/fidelity_investments_logo.jpg",
+		"/assets/sponsors/logo-lufthansa.png",
+		"/assets/sponsors/BMW-joint-new-logo.png",
 		"/assets/sponsors/pinnacle-financial-partners-color.jpg",
 		"/assets/sponsors/raj-jewels-logo.jpeg",
+		"/assets/sponsors/khara.webp",
+		"/assets/sponsors/fidelity_investments_logo.jpg",
+		"/assets/sponsors/Radio-Nyra-logo.png",
+		"/assets/sponsors/town-of-cary-logo.png",
 		"/assets/sponsors/uac-logo.png",
+		"/assets/sponsors/lazy-daze.jpg",
+		"/assets/sponsors/NCAC-color2.jpg",
+		"/assets/sponsors/TNVLC-Logo-no-bg.png",
+		"/assets/sponsors/cary-ballet-company-logo.png",
 	]
 
 	return (

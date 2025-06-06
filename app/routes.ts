@@ -36,9 +36,7 @@ export default [
 		route("terms-and-conditions", "routes/terms-and-conditions.mdx"),
 		layout("routes/events-layout.tsx", [
 			route("events", "routes/events-home.tsx"),
-			route(
-				"event",
-				"routes/events-detail.tsx", [
+			route("event", "routes/events-detail.tsx", [
 				route("diwali-2025", "routes/hum-sub-diwali-2025.tsx"),
 				...mdxFilesForEvents
 					.filter(({ path: routePath }) => routePath !== "diwali-2025")

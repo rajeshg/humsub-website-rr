@@ -8,11 +8,13 @@ export default function OurSponsors() {
 			<h1>2024 Sponsors</h1>
 
 			<h2>Prime Sponsor</h2>
-			<PrimeSponsorCard
-				name="Marius Pharmaceuticals"
-				imagePath="/assets/sponsors/Marius_logo.png"
-				description="Marius Pharmaceuticals is the prime sponsor for Hum Sub."
-			/>
+			<div className="flex justify-center gap-4">
+				<PrimeSponsorCard
+					name="Marius Pharmaceuticals"
+					imagePath="/assets/sponsors/Marius_logo.png"
+					description="Marius Pharmaceuticals is the prime sponsor for Hum Sub."
+				/>
+			</div>
 			<p>
 				Marius Pharmaceuticals - ReThink Testosterone's main goal is to help men dealing with low testosterone or Low T
 				(male hypogonadism) better understand the symptoms of the condition and the impact it has on overall health and
@@ -21,13 +23,14 @@ export default function OurSponsors() {
 
 			<h2>Diamond Sponsors</h2>
 			<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-transparent">
+				<SponsorCard name="SAM IT Solutions" imagePath="/assets/sponsors/sam-it-solutions-logo.png" />
 				<SponsorCard
 					name="Coastal Credit Union"
 					imagePath="/assets/sponsors/coastal-logo.png"
 					description="Exclusive sponsor for Youth achievement award"
 				/>
 				<SponsorCard
-					name="Coastal Credit Union"
+					name="Publix Super Markets"
 					imagePath="/assets/sponsors/publix.png"
 					description="Exclusive fireworks sponsor"
 				/>
@@ -35,13 +38,13 @@ export default function OurSponsors() {
 
 			<h2>Gold Sponsors</h2>
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-transparent">
+				<SponsorCard name="Lufthansa Airlines" imagePath="/assets/sponsors/logo-lufthansa.png" description="Exclusive Travel Partner"/>
 				<SponsorCard name="BMW of Southpoint" imagePath="/assets/sponsors/BMW-joint-new-logo.png" />
 				<SponsorCard
 					name="Pinnacle Financial Partners"
 					imagePath="/assets/sponsors/pinnacle-financial-partners-color.jpg"
 					description="Exclusive sponsor for Exhibition Booth"
 				/>
-				<SponsorCard name="Wells Fargo" imagePath="/assets/sponsors/WellsFargo-logo.png" />
 				<SponsorCard
 					name="Raj Jewels"
 					imagePath="/assets/sponsors/raj-jewels-logo.jpeg"
@@ -51,11 +54,6 @@ export default function OurSponsors() {
 
 			<h2>Silver Sponsors</h2>
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-transparent">
-				<SponsorCard
-					name="Nu Image Surgical & Dental Implant Center"
-					imagePath="/assets/sponsors/sponsor_ncimplant.png"
-				/>
-				<SponsorCard name="PNC Bank" imagePath="/assets/sponsors/pnc_bank_logo.jpg" />
 				<SponsorCard name="Khara Orthodontics" imagePath="/assets/sponsors/khara.webp" />
 			</div>
 
