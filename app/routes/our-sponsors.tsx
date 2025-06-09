@@ -1,5 +1,8 @@
 import PrimeSponsorCard from "~/components/prime-sponsor-card"
 import SponsorCard from "~/components/sponsor-card"
+import { Button } from "~/components/ui/button"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "~/components/ui/card"
+import { getSponsorsByLevel } from "~/lib/sponsors"
 
 export default function OurSponsors() {
 	return (
@@ -11,7 +14,8 @@ export default function OurSponsors() {
 			<div className="flex justify-center gap-4">
 				<PrimeSponsorCard
 					name="Marius Pharmaceuticals"
-					imagePath="/assets/sponsors/Marius_logo.png"
+					href="https://www.rethinktestosterone.com/"
+					imagePaths={["/assets/sponsors/Marius_logo.png", "/assets/sponsors/rethink-testosterone-marius.jpeg"]}
 					description="Marius Pharmaceuticals is the prime sponsor for Hum Sub."
 				/>
 			</div>
@@ -23,60 +27,44 @@ export default function OurSponsors() {
 
 			<h2>Diamond Sponsors</h2>
 			<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-transparent">
-				<SponsorCard name="SAM IT Solutions" imagePath="/assets/sponsors/sam-it-solutions-logo.png" />
-				<SponsorCard
-					name="Coastal Credit Union"
-					imagePath="/assets/sponsors/coastal-logo.png"
-					description="Exclusive sponsor for Youth achievement award"
-				/>
-				<SponsorCard
-					name="Publix Super Markets"
-					imagePath="/assets/sponsors/publix.png"
-					description="Exclusive fireworks sponsor"
-				/>
+				{getSponsorsByLevel("diamond").map((sponsor) => (
+					<SponsorCard key={sponsor.name} {...sponsor} />
+				))}
 			</div>
 
 			<h2>Gold Sponsors</h2>
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-transparent">
-				<SponsorCard name="Lufthansa Airlines" imagePath="/assets/sponsors/logo-lufthansa.png" description="Exclusive Travel Partner"/>
-				<SponsorCard name="BMW of Southpoint" imagePath="/assets/sponsors/BMW-joint-new-logo.png" />
-				<SponsorCard
-					name="Pinnacle Financial Partners"
-					imagePath="/assets/sponsors/pinnacle-financial-partners-color.jpg"
-					description="Exclusive sponsor for Exhibition Booth"
-				/>
-				<SponsorCard
-					name="Raj Jewels"
-					imagePath="/assets/sponsors/raj-jewels-logo.jpeg"
-					description="Exclusive sponsor for Celebrity Dance"
-				/>
+				{getSponsorsByLevel("gold").map((sponsor) => (
+					<SponsorCard key={sponsor.name} {...sponsor} />
+				))}
 			</div>
 
 			<h2>Silver Sponsors</h2>
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-transparent">
-				<SponsorCard name="Khara Orthodontics" imagePath="/assets/sponsors/khara.webp" />
+				{getSponsorsByLevel("silver").map((sponsor) => (
+					<SponsorCard key={sponsor.name} {...sponsor} />
+				))}
 			</div>
 
 			<h2>Bronze Sponsors</h2>
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-transparent">
-				<SponsorCard name="Fidelity Investments" imagePath="/assets/sponsors/fidelity_investments_logo.jpg" />
+				{getSponsorsByLevel("bronze").map((sponsor) => (
+					<SponsorCard key={sponsor.name} {...sponsor} />
+				))}
 			</div>
 
 			<h2>Media Partners</h2>
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-transparent">
-				<SponsorCard name="Radio Nyra" imagePath="/assets/sponsors/Radio-Nyra-logo.png" />
+				{getSponsorsByLevel("media").map((sponsor) => (
+					<SponsorCard key={sponsor.name} {...sponsor} />
+				))}
 			</div>
 
 			<h2>Grantors</h2>
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-transparent">
-				<SponsorCard name="Town of Cary, NC" imagePath="/assets/sponsors/town-of-cary-logo.png" />
-				<SponsorCard
-					name="United Arts - Wake County"
-					imagePath="/assets/sponsors/uac-logo.png"
-					description="Hum Sub is supported by the United Arts Wake County as well as the N.C. Arts Council, a division of the Department of Natural and Cultural Resources."
-				/>
-				<SponsorCard name="Lazy Daze Festival, Cary" imagePath="/assets/sponsors/lazy-daze.jpg" />
-				<SponsorCard name="North Carolina Arts Council" imagePath="/assets/sponsors/NCAC-color2.jpg" />
+				{getSponsorsByLevel("grantor").map((sponsor) => (
+					<SponsorCard key={sponsor.name} {...sponsor} />
+				))}
 			</div>
 
 			<p>
@@ -84,18 +72,39 @@ export default function OurSponsors() {
 				division of the Department of Natural and Cultural Resources.
 			</p>
 
-			<p>
-				For sponsorship opportunities, please contact <a href="mailto:sponsorship@humsub.net">sponsorship@humsub.net</a>
-			</p>
-
 			<h2>Partners</h2>
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-transparent">
-				<SponsorCard
-					name="Triangle Nonprofit & Volunteer Leadership Center"
-					imagePath="/assets/sponsors/TNVLC-Logo-no-bg.png"
-				/>
-				<SponsorCard name="Cary Ballet Company" imagePath="/assets/sponsors/cary-ballet-company-logo.png" />
+				{getSponsorsByLevel("partner").map((sponsor) => (
+					<SponsorCard key={sponsor.name} {...sponsor} />
+				))}
 			</div>
+
+			<Card className="shadow-lg hover:shadow-xl transition-shadow mt-4">
+				<CardHeader>
+					<CardTitle className="text-2xl text-primary">Become a sponsor</CardTitle>
+				</CardHeader>
+				<CardContent>
+					<div className="space-y-4">
+						Join us in celebrating 25 years of Hum Sub by becoming a sponsor! Your support will help us continue to
+						provide a platform for cultural exchange and community engagement. As a sponsor, you'll have the opportunity
+						to showcase your brand to a diverse audience and demonstrate your commitment to cultural diversity.
+					</div>
+				</CardContent>
+				<CardFooter className="justify-end space-x-2 mt-4">
+					<Button asChild>
+						<a href="mailto:sponsorship@humsub.net">Contact Us</a>
+					</Button>
+					<Button asChild>
+						<a
+							href="/assets/sponsor/HumSub_25th_Anniversary_Sponsorship_Benefits.pdf"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							Sponsorship Benefits
+						</a>
+					</Button>
+				</CardFooter>
+			</Card>
 		</div>
 	)
 }

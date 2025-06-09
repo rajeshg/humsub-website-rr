@@ -1,18 +1,30 @@
-export default function PrimeSponsorCard({
-	name,
-	href,
-	description,
-	imagePath,
-}: { name: string; href?: string; description?: string; imagePath: string }) {
+type PrimeSponsorCardProps = {
+	name: string
+	href?: string
+	description?: string
+	imagePaths?: string[]
+}
+
+export default function PrimeSponsorCard({ name, href, description, imagePaths }: PrimeSponsorCardProps) {
+	const images: string[] = imagePaths && imagePaths.length > 0 ? imagePaths : []
+
 	return (
-		<div className="max-w-sm md:w-full md:w-[2/3] bg-base-100 shadow-sm flex flex-col justify-center place-items-center">
-			<figure className="mb-2 p-4">
-				{href ? (
-					<a href={href} target="_blank" rel="noreferrer">
-						<img src={imagePath} alt={name} width={600} height={400} />
-					</a>
-				) : (
-					<img src={imagePath} alt={name} width={600} height={400} />
+		<div className="md:w-full md:w-[2/3] bg-base-100 shadow-sm flex flex-col justify-center place-items-center">
+			<figure className="mb-2 p-4 flex flex-col md:flex-row flex-wrap justify-center items-center gap-4">
+				{images.map((img, idx) =>
+					href ? (
+						<a
+							key={img + idx}
+							href={href}
+							target="_blank"
+							rel="noreferrer"
+							className="flex justify-center items-center"
+						>
+							<img src={img} alt={name} width={400} className="mx-auto max-h-48" />
+						</a>
+					) : (
+						<img key={img + idx} src={img} alt={name} width={400} className="mx-auto max-h-48" />
+					)
 				)}
 			</figure>
 			<div className="mt-0">
