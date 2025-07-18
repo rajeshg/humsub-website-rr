@@ -88,7 +88,7 @@ export const sponsors: Sponsor[] = [
 	// Media Partners
 	{
 		name: "Radio Nyra",
-		imagePath: "/assets/sponsors/Radio-Nyra-logo.png",
+		imagePath: "/assets/sponsors/Radio-Nyra-logo.jpeg",
 		level: "media",
 		href: "https://radionyra.com/",
 	},
