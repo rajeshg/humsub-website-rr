@@ -34,6 +34,7 @@ export default [
 		route("our-team", "routes/our-team.tsx"),
 		route("privacy-policy", "routes/privacy-policy.mdx"),
 		route("terms-and-conditions", "routes/terms-and-conditions.mdx"),
+		route("raffle-2025", "routes/2025-raffle.tsx"),
 		layout("routes/events-layout.tsx", [
 			route("events", "routes/events-home.tsx"),
 			route("event", "routes/events-detail.tsx", [

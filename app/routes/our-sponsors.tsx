@@ -8,22 +8,24 @@ export default function OurSponsors() {
 	return (
 		<div>
 			<title>Our Sponsors | Hum Sub</title>
-			<h1>2024 Sponsors</h1>
+			<h1>2025 Sponsors</h1>
 
-			<h2>Prime Sponsor</h2>
-			<div className="flex justify-center gap-4">
-				<PrimeSponsorCard
-					name="Marius Pharmaceuticals"
-					href="https://www.rethinktestosterone.com/"
-					imagePaths={["/assets/sponsors/Marius_logo.png", "/assets/sponsors/rethink-testosterone-marius.jpeg"]}
-					description="Marius Pharmaceuticals is the prime sponsor for Hum Sub."
-				/>
-			</div>
-			<p>
-				Marius Pharmaceuticals - ReThink Testosterone's main goal is to help men dealing with low testosterone or Low T
-				(male hypogonadism) better understand the symptoms of the condition and the impact it has on overall health and
-				options for treating it.
-			</p>
+			<Card className="border-2 border-orange-400">
+				<CardContent>
+					<h2 className="card-title text-black text-center text-primary text-3xl mt-2 mb-2">Prime Sponsor!</h2>
+					<PrimeSponsorCard
+						name="Marius Pharmaceuticals"
+						href="https://www.rethinktestosterone.com/"
+						imagePaths={["/assets/sponsors/Marius_logo.png", "/assets/sponsors/rethink-testosterone-marius.jpeg"]}
+						description="Marius Pharmaceuticals is the prime sponsor for Hum Sub."
+					/>
+					<p>
+						Marius Pharmaceuticals - ReThink Testosterone's main goal is to help men dealing with low testosterone or
+						Low T (male hypogonadism) better understand the symptoms of the condition and the impact it has on overall
+						health and options for treating it.
+					</p>
+				</CardContent>
+			</Card>
 
 			<h2>Diamond Sponsors</h2>
 			<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-transparent">

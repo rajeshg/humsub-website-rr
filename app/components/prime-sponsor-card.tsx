@@ -10,7 +10,7 @@ export default function PrimeSponsorCard({ name, href, description, imagePaths }
 
 	return (
 		<div className="md:w-full md:w-[2/3] bg-base-100 shadow-sm flex flex-col justify-center place-items-center">
-			<figure className="mb-2 p-4 flex flex-col md:flex-row flex-wrap justify-center items-center gap-4">
+			<figure className="mb-2 p-4 flex flex-col md:flex-row flex-wrap justify-center items-center gap-4 bg-white rounded-lg">
 				{images.map((img) =>
 					href ? (
 						<a key={img} href={href} target="_blank" rel="noreferrer" className="flex justify-center items-center">
