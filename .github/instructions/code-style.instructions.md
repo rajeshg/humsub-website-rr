@@ -1,3 +1,8 @@
+---
+description: Code Style Guide
+applyTo: "**"
+---
+
 # Code Style Guide
 
 

@@ -12,7 +12,7 @@ export default function OurSponsors() {
 
 			<Card className="border-2 border-orange-400">
 				<CardContent>
-					<h2 className="card-title text-black text-center text-primary text-3xl mt-2 mb-2">Prime Sponsor!</h2>
+					<h2 className="text-black text-center text-primary text-3xl mt-2 mb-2">Prime Sponsor!</h2>
 					<PrimeSponsorCard
 						name="Marius Pharmaceuticals"
 						href="https://www.rethinktestosterone.com/"
@@ -98,7 +98,7 @@ export default function OurSponsors() {
 					</Button>
 					<Button asChild>
 						<a
-							href="/assets/sponsor/HumSub_25th_Anniversary_Sponsorship_Benefits.pdf"
+							href="/assets/sponsors/HumSub_25th_Anniversary_Sponsorship_Benefits.pdf"
 							target="_blank"
 							rel="noopener noreferrer"
 						>

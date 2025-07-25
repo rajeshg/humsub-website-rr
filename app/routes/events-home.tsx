@@ -1,4 +1,6 @@
+import { Link } from "react-router"
 import EventCard from "~/components/event-card"
+import { Button } from "~/components/ui/button"
 import { getAllEvents } from "~/events.server"
 import type { Route } from "./+types/events-home"
 
@@ -35,15 +37,17 @@ export default function EventsHome({ loaderData }: Route.ComponentProps) {
 							className="w-full md:w-64 object-cover"
 						/>
 					</figure>
-					<div className="card-body mt-0">
-						<h2 className="card-title mt-0">Discover India Series</h2>
+					<div className="mt-0">
+						<h2 className="mt-0 text-2xl font-bold">Discover India Series</h2>
 						<p className="text-base">
 							Year-round event series celebrating India's rich culture and heritage. Click to learn more!
 						</p>
-						<div className="card-actions justify-end">
-							<a href="/discover-india-series" className="btn btn-primary">
-								Learn More
-							</a>
+						<div className="flex justify-end">
+							<Button asChild>
+								<Link to="/discover-india-series" className="no-underline">
+									Learn More
+								</Link>
+							</Button>
 						</div>
 					</div>
 				</div>

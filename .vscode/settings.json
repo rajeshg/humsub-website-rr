@@ -1,25 +1,3 @@
 {
-	"emeraldwalk.runonsave": {
-		"commands": [
-			{
-				"match": ".*",
-				"cmd": "bun run check:fix"
-			}
-		]
-	},
-	"typescript.preferences.autoImportSpecifierExcludeRegexes": ["@radix-ui", "lucide-react"],
-	"github.copilot.chat.codeGeneration.instructions": [
-		{
-			"file": "./.vscode/code-style.md"
-		},
-		{
-			"file": "./.vscode/avoid-use-effect.mdc"
-		},
-		{
-			"file": "./.vscode/react-router.md"
-		},
-		{
-			"file": "./.vscode/daisyui.md"
-		}
-	]
+	"typescript.preferences.autoImportSpecifierExcludeRegexes": ["@radix-ui", "lucide-react"]
 }

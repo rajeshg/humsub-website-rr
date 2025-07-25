@@ -1,7 +1,6 @@
 ---
-description: 
-globs: *.tsx,*.jsx
-alwaysApply: false
+description: Avoid useEffect
+applyTo: "*.tsx,*.jsx"
 ---
 ### Avoid useEffect
 
