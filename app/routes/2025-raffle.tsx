@@ -3,7 +3,7 @@ import { Button } from "~/components/ui/button"
 
 export default function Raffle2025() {
 	return (
-		<div className="min-h-screen bg-gray-50 dark:from-gray-900 dark:to-gray-800">
+		<div className="min-h-screen bg-gray-50 dark:bg-gray-800 dark:from-gray-900 dark:to-gray-800">
 			<div className="container mx-auto px-4 py-6 sm:py-8 lg:py-12">
 				{/* Header Section */}
 				<div className="text-center mb-8">
@@ -23,7 +23,7 @@ export default function Raffle2025() {
 							<h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
 								Win 2 Round-Trip Lufthansa Tickets
 							</h2>
-							<p className="text-lg text-gray-600 dark:text-gray-300">Valued at $2,500 each</p>
+							<p className="text-lg text-gray-600 dark:text-gray-300">Valued at $2,400 each</p>
 						</div>
 
 						<Raffle2025Button />
@@ -76,9 +76,9 @@ export default function Raffle2025() {
 					<AccordionItem value="item-1">
 						<AccordionTrigger className="font-semibold text-left">
 							Do we have to pay extra fee to Zeffy to buy raffle ticket?
-							</AccordionTrigger>
+						</AccordionTrigger>
 						<AccordionContent>
-							<p>There are no required additional fees to purchase a raffle ticket via Zeffy. You have the option to enter '0' on the payment page if you do not wish to make a donation. Please note that any donation amount goes solely to Zeffy.</p>
+							There are no required additional fees to purchase a raffle ticket via Zeffy. You have the option to enter '0' on the payment page if you do not wish to make a donation. Please note that any donation amount goes solely to Zeffy.
 						</AccordionContent>
 					</AccordionItem>
 					<AccordionItem value="item-2">
@@ -86,7 +86,7 @@ export default function Raffle2025() {
 							How many raffles will there be and what is the value of each ticket?
 						</AccordionTrigger>
 						<AccordionContent>
-							<p>There will be 2 raffles, one for each ticket. Each ticket is deemed to be of $2500 value.</p>
+							There will be 2 raffles, one for each ticket. Each ticket is deemed to be of $2400 value.
 						</AccordionContent>
 					</AccordionItem>
 					<AccordionItem value="item-3">
@@ -94,7 +94,7 @@ export default function Raffle2025() {
 							What do the winners receive and how can they use it?
 						</AccordionTrigger>
 						<AccordionContent>
-							<p>Winners will receive a voucher that they can use however they want, for themselves or a family member. We don't control that.</p>
+							Winners will receive a voucher that they can use however they want, for themselves or a family member. We don't control that.
 						</AccordionContent>
 					</AccordionItem>
 					<AccordionItem value="item-4">
@@ -102,7 +102,7 @@ export default function Raffle2025() {
 							Is it possible to buy more than one ticket to increase my odds of winning?
 						</AccordionTrigger>
 						<AccordionContent>
-							<p>Yes, it is possible to buy more than one ticket to increase your chances of winning.</p>
+							Yes, it is possible to buy more than one ticket to increase your chances of winning.
 						</AccordionContent>
 					</AccordionItem>
 					<AccordionItem value="item-5">
@@ -110,23 +110,7 @@ export default function Raffle2025() {
 							How are the winners picked?
 						</AccordionTrigger>
 						<AccordionContent>
-							<p>
-								On the event day, raffle buyers will have to visit the Hum Sub Information booth and collect their physical
-								raffle ticket with their code on it. They keep one half of the raffle ticket with themselves and drop it in a
-								container. Winners will be picked at 2 separate occasions throughout the day.
-							</p>
-						</AccordionContent>
-					</AccordionItem>
-					<AccordionItem value="item-6">
-						<AccordionTrigger className="font-semibold text-left">
-							Do winners have to be physically present on event day?
-						</AccordionTrigger>
-						<AccordionContent>
-							<p>
-								Either the winner or someone they delegate (with the actual raffle ticket) can claim the prize. The important
-								thing is they need to present the actual winning raffle ticket to claim. If no one claims, it will be opened
-								up and another raffle is taken.
-							</p>
+							Winner will be announced on event day (October 11, 2025) at the Hum Sub Diwali festival held at Koka Booth Amphitheatre (8003 Regency Pkwy, Cary, NC 27518).
 						</AccordionContent>
 					</AccordionItem>
 				</Accordion>

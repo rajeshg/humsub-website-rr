@@ -312,11 +312,14 @@ export default function MainLayout() {
 					<div className="flex flex-col items-start">
 						<h6 className="font-semibold text-gray-900 dark:text-gray-100 mb-3">Social</h6>
 						<div className="flex space-x-4">
-							<a href="https://twitter.com/HumSubInc" target="_blank" rel="noreferrer noopener">
-								<Icon icon="mdi:twitter" />
+							<a href="https://x.com/HumSubInc" target="_blank" rel="noreferrer noopener">
+								<Icon icon="line-md:twitter-x" />
 							</a>
 							<a href="https://www.youtube.com/@HumSubInc" target="_blank" rel="noreferrer noopener">
 								<Icon icon="mdi:youtube" />
+							</a>
+							<a href="https://www.instagram.com/humsubinc/" target="_blank" rel="noreferrer noopener">
+								<Icon icon="mdi:instagram" />
 							</a>
 							<a href="https://www.facebook.com/humsubinc" target="_blank" rel="noreferrer noopener">
 								<Icon icon="mdi:facebook" />
