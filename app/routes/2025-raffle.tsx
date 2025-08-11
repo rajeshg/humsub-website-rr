@@ -43,14 +43,14 @@ export default function Raffle2025() {
 							<div className="">
 								<p className="text-lg">
 									Celebrate Diwali with a chance to fly anywhere Lufthansa flies!<sup>*</sup>
-									<br/>
+									<br />
 									<ul>
 										<li>🎟️ $50 per raffle ticket</li>
 										<li>💡 $100 = 2 tickets = double the chances!</li>
 									</ul>
 								</p>
 								<p className="text-lg">
-									Don't miss out — let the skies be part of your celebration! 🛫🌟 <br/>
+									Don't miss out — let the skies be part of your celebration! 🛫🌟 <br />
 									<span className="text-sm">* Terms apply.</span>
 								</p>
 							</div>
@@ -71,49 +71,51 @@ export default function Raffle2025() {
 				</div>
 
 				<div className="max-w-3xl mx-auto mb-8">
-				<h3>Raffle FAQs</h3>
-				<Accordion type="single" collapsible defaultValue="item-1" className="w-full">
-					<AccordionItem value="item-1">
-						<AccordionTrigger className="font-semibold text-left">
-							Do we have to pay extra fee to Zeffy to buy raffle ticket?
-						</AccordionTrigger>
-						<AccordionContent>
-							There are no required additional fees to purchase a raffle ticket via Zeffy. You have the option to enter '0' on the payment page if you do not wish to make a donation. Please note that any donation amount goes solely to Zeffy.
-						</AccordionContent>
-					</AccordionItem>
-					<AccordionItem value="item-2">
-						<AccordionTrigger className="font-semibold text-left">
-							How many raffles will there be and what is the value of each ticket?
-						</AccordionTrigger>
-						<AccordionContent>
-							There will be 2 raffles, one for each ticket. Each ticket is deemed to be of $2400 value.
-						</AccordionContent>
-					</AccordionItem>
-					<AccordionItem value="item-3">
-						<AccordionTrigger className="font-semibold text-left">
-							What do the winners receive and how can they use it?
-						</AccordionTrigger>
-						<AccordionContent>
-							Winners will receive a voucher that they can use however they want, for themselves or a family member. We don't control that.
-						</AccordionContent>
-					</AccordionItem>
-					<AccordionItem value="item-4">
-						<AccordionTrigger className="font-semibold text-left">
-							Is it possible to buy more than one ticket to increase my odds of winning?
-						</AccordionTrigger>
-						<AccordionContent>
-							Yes, it is possible to buy more than one ticket to increase your chances of winning.
-						</AccordionContent>
-					</AccordionItem>
-					<AccordionItem value="item-5">
-						<AccordionTrigger className="font-semibold text-left">
-							How are the winners picked?
-						</AccordionTrigger>
-						<AccordionContent>
-							Winner will be announced on event day (October 11, 2025) at the Hum Sub Diwali festival held at Koka Booth Amphitheatre (8003 Regency Pkwy, Cary, NC 27518).
-						</AccordionContent>
-					</AccordionItem>
-				</Accordion>
+					<h3>Raffle FAQs</h3>
+					<Accordion type="single" collapsible defaultValue="item-1" className="w-full">
+						<AccordionItem value="item-1">
+							<AccordionTrigger className="font-semibold text-left">
+								Do we have to pay extra fee to Zeffy to buy raffle ticket?
+							</AccordionTrigger>
+							<AccordionContent>
+								There are no required additional fees to purchase a raffle ticket via Zeffy. You have the option to
+								enter '0' on the payment page if you do not wish to make a donation. Please note that any donation
+								amount goes solely to Zeffy.
+							</AccordionContent>
+						</AccordionItem>
+						<AccordionItem value="item-2">
+							<AccordionTrigger className="font-semibold text-left">
+								How many raffles will there be and what is the value of each ticket?
+							</AccordionTrigger>
+							<AccordionContent>
+								There will be 2 raffles, one for each ticket. Each ticket is deemed to be of $2400 value.
+							</AccordionContent>
+						</AccordionItem>
+						<AccordionItem value="item-3">
+							<AccordionTrigger className="font-semibold text-left">
+								What do the winners receive and how can they use it?
+							</AccordionTrigger>
+							<AccordionContent>
+								Winners will receive a voucher that they can use however they want, for themselves or a family member.
+								We don't control that.
+							</AccordionContent>
+						</AccordionItem>
+						<AccordionItem value="item-4">
+							<AccordionTrigger className="font-semibold text-left">
+								Is it possible to buy more than one ticket to increase my odds of winning?
+							</AccordionTrigger>
+							<AccordionContent>
+								Yes, it is possible to buy more than one ticket to increase your chances of winning.
+							</AccordionContent>
+						</AccordionItem>
+						<AccordionItem value="item-5">
+							<AccordionTrigger className="font-semibold text-left">How are the winners picked?</AccordionTrigger>
+							<AccordionContent>
+								Winner will be announced on event day (October 11, 2025) at the Hum Sub Diwali festival held at Koka
+								Booth Amphitheatre (8003 Regency Pkwy, Cary, NC 27518).
+							</AccordionContent>
+						</AccordionItem>
+					</Accordion>
 				</div>
 
 				{/* Footer */}
@@ -127,7 +129,7 @@ export default function Raffle2025() {
 
 function Raffle2025Button() {
 	return (
-		<div className="flex justify-center mt-6">	
+		<div className="flex justify-center mt-6">
 			<Button
 				asChild
 				size={"lg"}

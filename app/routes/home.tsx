@@ -1,12 +1,10 @@
+import { env } from "cloudflare:workers"
 import { Welcome } from "~/components/welcome"
 import { type EventMeta, getAllEvents } from "~/events.server"
-import { getBindings } from "~/middleware/bindings.server"
-import { getStore } from "~/middleware/store.client"
 import type { Route } from "./+types/home"
 
-export async function loader({ context }: Route.LoaderArgs) {
-	const { KV } = getBindings(context)
-	const rawValue = await KV.get("upcomingEvents")
+export async function loader() {
+	const rawValue = await env.KV.get("upcomingEvents")
 	let value = rawValue ? (JSON.parse(rawValue) as EventMeta[]) : []
 
 	if (!value || value.length === 0) {
@@ -18,20 +16,12 @@ export async function loader({ context }: Route.LoaderArgs) {
 			.slice(0, 3)
 
 		value = upcomingEvents
-		await KV.put("upcomingEvents", JSON.stringify(value), {
+		await env.KV.put("upcomingEvents", JSON.stringify(value), {
 			expirationTtl: 60 * 60 * 24, // 1 day
 		})
 	}
 
 	return { upcomingEvents: value }
-}
-
-export async function clientLoader({ serverLoader, context }: Route.ClientLoaderArgs) {
-	const store = getStore(context)
-	if (store.has("upcomingEvents")) return { upcomingEvents: store.get("upcomingEvents") }
-	const serverData = await serverLoader()
-	store.set("upcomingEvents", serverData.upcomingEvents)
-	return serverData
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {

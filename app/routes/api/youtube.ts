@@ -1,7 +1,6 @@
 // This will fetch videos on the server and send them to the client without exposing the API key.
 
-import { getBindings } from "~/middleware/bindings.server"
-
+import { env } from "cloudflare:workers"
 import type { Route } from "./+types/youtube"
 
 const CHANNEL_ID = "UCAAnYBbBb9gJ2cNOeG7lfNQ"
@@ -16,9 +15,9 @@ type YouTubeSearchResponse = {
 	nextPageToken?: string
 }
 
-export async function loader({ context, params }: Route.LoaderArgs) {
-	const { KV, YOUTUBE_API_KEY } = getBindings(context)
-	const cachedVideos = await KV.get("youtube-videos")
+export async function loader({ params }: Route.LoaderArgs) {
+	const cachedVideos = await env.KV.get("youtube-videos")
+	const YOUTUBE_API_KEY = env.YOUTUBE_API_KEY
 
 	if (cachedVideos) {
 		return {
@@ -50,7 +49,7 @@ export async function loader({ context, params }: Route.LoaderArgs) {
 	}
 	// put the videos in the cache
 	try {
-		await KV.put("youtube-videos", JSON.stringify(videos), {
+		await env.KV.put("youtube-videos", JSON.stringify(videos), {
 			expirationTtl: 60 * 60 * 24, // Cache for 1 day
 		})
 	} catch (error) {
