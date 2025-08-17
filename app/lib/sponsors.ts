@@ -68,22 +68,22 @@ export const sponsors: Sponsor[] = [
 		description: "Exclusive sponsor for Celebrity Dance",
 		href: "https://www.rajjewels.com/",
 	},
+	{
+		name: "PNC Bank",
+		imagePath: "/assets/sponsors/pnc_bank_logo.jpg",
+		level: "gold",
+		href: "https://www.pnc.com/",
+	},
 
 	// Silver Sponsors
 	{
-		name: "Khara Orthodontics",
-		imagePath: "/assets/sponsors/khara.webp",
+		name: "First Bank",
+		imagePath: "/assets/sponsors/first_bank_logo.jpg",
 		level: "silver",
-		href: "https://www.kharaortho.com/",
+		href: "https://localfirstbank.com/",
 	},
 
 	// Bronze Sponsors
-	{
-		name: "Fidelity Investments",
-		imagePath: "/assets/sponsors/fidelity_investments_logo.jpg",
-		level: "bronze",
-		href: "https://www.fidelity.com/",
-	},
 
 	// Media Partners
 	{

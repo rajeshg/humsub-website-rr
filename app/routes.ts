@@ -32,6 +32,7 @@ export default [
 		route("diwali-essay-competition", "routes/diwali-essay-competition.tsx"),
 		route("our-sponsors", "routes/our-sponsors.tsx"),
 		route("our-team", "routes/our-team.tsx"),
+		route("membership", "routes/membership.tsx"),
 		route("privacy-policy", "routes/privacy-policy.mdx"),
 		route("terms-and-conditions", "routes/terms-and-conditions.mdx"),
 		route("2025-raffle", "routes/2025-raffle.tsx"),

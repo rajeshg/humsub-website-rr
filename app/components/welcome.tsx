@@ -11,36 +11,74 @@ export function Welcome({ events }: { events: EventMeta[] }) {
 	return (
 		<div id="container" className="container mx-auto px-4 max-w-7xl">
 			<main className="flex flex-col dark:text-slate-100">
-				{events.length > 0 && (
-					<section className="flex flex-col md:flex-row gap-2 md:gap-8 md:mx-auto text-center not-prose rounded-lg bg-base-200/50 dark:bg-slate-800/70 p-4 shadow-sm">
-						<div className="text-lg font-semibold flex items-center justify-center">
-							<span className="animate-pulse text-primary dark:text-amber-300">Upcoming Events</span>
-						</div>
-						<div className="flex flex-col md:flex-row gap-2 md:gap-4 w-full">
-							{events.map((event) => (
+				<div className="flex flex-col md:flex-row gap-4">
+					{/* Membership and Raffle Links */}
+					<div className="flex flex-col items-center my-4 w-full md:w-1/2">
+						<div className="w-full h-full bg-base-100/60 dark:bg-slate-800/60 rounded-xl shadow border border-base-200 dark:border-slate-700 px-6 py-5 flex flex-col items-center backdrop-blur">
+							<h3 className="text-lg font-bold text-primary dark:text-amber-300 mt-0 mb-2 flex items-center gap-2">
+								<Icon icon="mdi:star-four-points" className="h-5 w-5 animate-spin [animation-duration:3s]" />
+								Join the Fun!
+							</h3>
+							<p className="text-sm text-center text-base-content/70 dark:text-slate-300 mb-3">
+								Become a member or try your luck in our raffle. Get involved and support the community!
+							</p>
+							<div className="flex w-full gap-3">
 								<Link
-									key={event.slug}
-									to={`/event/${event.slug}`}
-									className="flex flex-row gap-3 link link-hover link-primary dark:link-accent items-center transition-transform hover:scale-105 w-full max-w-xs mx-auto"
+									to="/membership"
+									title="Become a Member"
+									className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-lg font-semibold text-base md:text-lg transition-all
+									text-primary dark:text-amber-300 bg-primary/5 dark:bg-amber-300/10 hover:bg-primary/20 dark:hover:bg-amber-300/20
+									decoration-2 decoration-primary dark:decoration-amber-300 no-underline shadow-sm hover:scale-105"
 								>
-									<figure className="w-12 h-12 md:w-16 md:h-16 mask mask-decagon shadow-md flex-shrink-0 overflow-hidden">
-										<img
-											src={event.frontmatter?.image}
-											alt={event.frontmatter?.title}
-											width={100}
-											height={100}
-											className="object-contain object-top"
-										/>
-									</figure>
-									<div className="flex flex-col gap-1">
-										<span className="font-medium truncate text-left">{event.frontmatter?.title}</span>
-										<span className="text-xs truncate text-left">{event.frontmatter?.startDateUserFriendly}</span>
-									</div>
+									<Icon icon="mdi:account-group" className="h-5 w-5" />
+									Membership
 								</Link>
-							))}
+								<span className="self-center text-base-content/30 dark:text-slate-500 font-bold">|</span>
+								<Link
+									to="/2025-raffle"
+									title="Participate in Raffle"
+									className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-lg font-semibold text-base md:text-lg transition-all
+									text-primary dark:text-amber-300 bg-primary/5 dark:bg-amber-300/10 hover:bg-primary/20 dark:hover:bg-amber-300/20
+									decoration-2 decoration-primary dark:decoration-amber-300 no-underline shadow-sm hover:scale-105"
+								>
+									<Icon icon="mdi:ticket-percent" className="h-5 w-5" />
+									Raffle
+								</Link>
+							</div>
 						</div>
-					</section>
-				)}
+					</div>
+
+					{events.length > 0 && (
+						<section className="w-full md:w-1/2 my-4 flex flex-col text-center not-prose rounded-xl bg-base-200/50 dark:bg-slate-800/70 px-6 py-5 shadow-sm h-full">
+							<div className="text-lg font-semibold flex items-center justify-center mb-2">
+								<span className="animate-pulse text-primary dark:text-amber-300">Upcoming Events</span>
+							</div>
+							<div className="flex flex-col md:flex-row gap-2 md:gap-4 w-full">
+								{events.map((event) => (
+									<Link
+										key={event.slug}
+										to={`/event/${event.slug}`}
+										className="flex flex-row gap-3 link link-hover link-primary dark:link-accent items-center transition-transform hover:scale-105 w-full max-w-xs mx-auto"
+									>
+										<figure className="w-12 h-12 md:w-16 md:h-16 mask mask-decagon shadow-md flex-shrink-0 overflow-hidden">
+											<img
+												src={event.frontmatter?.image}
+												alt={event.frontmatter?.title}
+												width={100}
+												height={100}
+												className="object-contain object-top"
+											/>
+										</figure>
+										<div className="flex flex-col gap-1">
+											<span className="font-medium truncate text-left">{event.frontmatter?.title}</span>
+											<span className="text-xs truncate text-left">{event.frontmatter?.startDateUserFriendly}</span>
+										</div>
+									</Link>
+								))}
+							</div>
+						</section>
+					)}
+				</div>
 
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
 					<PictureCarousel />
