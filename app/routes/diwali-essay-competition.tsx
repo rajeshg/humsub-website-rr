@@ -5,10 +5,9 @@ export default function DiwaliEssayCompetition() {
 			<h1>Hum Sub - Diwali Essay Competition</h1>
 			<div className="flex flex-col justify-center items-center">
 				<img
-					src="/assets/Hum-Sub-Diwali-Essay-Competition-2024.jpeg"
+					src="/assets/Hum-Sub-Diwali-Essay-Competition-2025.png"
 					alt="Hum Sub - Essay Competition"
 					width={500}
-					height={300}
 				/>
 				<iframe
 					title="Hum Sub - Diwali Essay Competition"
@@ -18,8 +17,7 @@ export default function DiwaliEssayCompetition() {
 				></iframe>
 			</div>
 			<h3>
-				Apply for Hum Sub Diwali Essay Contest by submitting a 500-700 word essay. First prize – 1500$, Second prize -
-				1000$
+				Apply for Hum Sub Diwali Essay Contest by submitting a 500-700 word essay. First prize - 500$, Second prize - 250$
 			</h3>
 			<script type="text/javascript" src="https://form.jotform.com/jsform/242075159180051"></script>
 		</>
