@@ -1,19 +1,19 @@
+import { env } from "cloudflare:workers"
 import type { RequestHandler } from "react-router"
 import { createRequestHandler, unstable_RouterContextProvider } from "react-router"
 import { Counter } from "./counter"
-import { env } from "cloudflare:workers";
 
 let handler: RequestHandler | null = null
-const eventId = 'event-dashboard-1';
+const eventId = "event-dashboard-1"
 
 export default {
 	async fetch(request: Request) {
-		if (request.url.includes('/api/durable')) {
-			const id = env.COUNTER_DO.idFromName(eventId);
-			const stub = env.COUNTER_DO.get(id);
+		if (request.url.includes("/api/durable")) {
+			const id = env.COUNTER_DO.idFromName(eventId)
+			const stub = env.COUNTER_DO.get(id)
 
 			// Forward the request to the Durable Object
-			return stub.fetch(request);
+			return stub.fetch(request)
 		}
 		// Dynamically import React Router server build
 		// This helps reduce worker init time

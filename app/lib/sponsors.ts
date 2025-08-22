@@ -119,11 +119,6 @@ export const sponsors: Sponsor[] = [
 
 	// Partners
 	{
-		name: "Triangle Nonprofit & Volunteer Leadership Center",
-		imagePath: "/assets/sponsors/TNVLC-Logo-no-bg.png",
-		level: "partner",
-	},
-	{
 		name: "Cary Ballet Company",
 		imagePath: "/assets/sponsors/cary-ballet-company-logo.png",
 		level: "partner",

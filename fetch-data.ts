@@ -1,19 +1,19 @@
-import mysql from "mysql2/promise"
-import fs from "fs/promises"
 import path from "path"
+import fs from "fs/promises"
+import mysql from "mysql2/promise"
 
 async function main() {
-  // Update these values with your DB credentials
-  const connection = await mysql.createConnection({
-    host: "macdermott.pdx1-mysql-a7-2a.dreamhost.com",
-    user: "hs_prod_client",
-    password: "77FkEHdi4DT$y4z",
-    database: "humsub_portal_prod",
-  })
+	// Update these values with your DB credentials
+	const connection = await mysql.createConnection({
+		host: "macdermott.pdx1-mysql-a7-2a.dreamhost.com",
+		user: "hs_prod_client",
+		password: "77FkEHdi4DT$y4z",
+		database: "humsub_portal_prod",
+	})
 
-  try {
-    // Query: join child formdata rows with their parent formdata rows.
-    const query = `
+	try {
+		// Query: join child formdata rows with their parent formdata rows.
+		const query = `
       SELECT
         child.id AS child_id,
         child.formid AS child_formid,
@@ -43,116 +43,118 @@ async function main() {
         AND child.formstatusid IN (8,9)
       ORDER BY child.id ASC
       LIMIT 100;
-    `;
+    `
 
-    const [rows] = (await connection.execute(query)) as unknown as [unknown, unknown];
+		const [rows] = (await connection.execute(query)) as unknown as [unknown, unknown]
 
-    // --- Process choreographer id lists: parse, trim, dedupe, and collect all unique ids ---
-    const typedRowsForIds = (rows as Record<string, unknown>[]) ?? []
-    // Keep an array of id-arrays per-row (preserve row order)
-    const rowChoreographerIdArrays: string[][] = []
-    const uniqueIdSet = new Set<string>()
+		// --- Process choreographer id lists: parse, trim, dedupe, and collect all unique ids ---
+		const typedRowsForIds = (rows as Record<string, unknown>[]) ?? []
+		// Keep an array of id-arrays per-row (preserve row order)
+		const rowChoreographerIdArrays: string[][] = []
+		const uniqueIdSet = new Set<string>()
 
-    for (const r of typedRowsForIds) {
-      const raw = r["parent_choreographers_userid_list"] ?? ""
-      // normalize to string and split on commas and whitespace, filter empties
-      const ids = String(raw)
-        .split(/[,]+/)
-        .map((s) => s.trim())
-        .filter((s) => s !== "")
-      // dedupe per-row
-      const uniq = Array.from(new Set(ids))
-      uniq.forEach((id) => uniqueIdSet.add(id))
-      rowChoreographerIdArrays.push(uniq)
-    }
+		for (const r of typedRowsForIds) {
+			const raw = r["parent_choreographers_userid_list"] ?? ""
+			// normalize to string and split on commas and whitespace, filter empties
+			const ids = String(raw)
+				.split(/[,]+/)
+				.map((s) => s.trim())
+				.filter((s) => s !== "")
+			// dedupe per-row
+			const uniq = Array.from(new Set(ids))
+			uniq.forEach((id) => uniqueIdSet.add(id))
+			rowChoreographerIdArrays.push(uniq)
+		}
 
-    // Fetch user names for all unique ids in one query (if any)
-    const userMap = new Map<string, string>() // id -> "Firstname Lastname"
-    if (uniqueIdSet.size > 0) {
-      const idsArray = Array.from(uniqueIdSet)
-      const placeholders = idsArray.map(() => "?").join(",")
-      const usersQuery = `SELECT id, firstname, lastname FROM user WHERE id IN (${placeholders})`
-      const [userRows] = (await connection.execute(usersQuery, idsArray)) as unknown as [Record<string, unknown>[], unknown]
-      for (const u of userRows) {
-        const id = String(u.id)
-        const fname = String(u.firstname ?? "").trim()
-        const lname = String(u.lastname ?? "").trim()
-        const full = [fname, lname].filter(Boolean).join(" ").trim()
-        if (full) userMap.set(id, full)
-        else userMap.set(id, id) // fallback to id if no name available
-      }
-    }
+		// Fetch user names for all unique ids in one query (if any)
+		const userMap = new Map<string, string>() // id -> "Firstname Lastname"
+		if (uniqueIdSet.size > 0) {
+			const idsArray = Array.from(uniqueIdSet)
+			const placeholders = idsArray.map(() => "?").join(",")
+			const usersQuery = `SELECT id, firstname, lastname FROM user WHERE id IN (${placeholders})`
+			const [userRows] = (await connection.execute(usersQuery, idsArray)) as unknown as [
+				Record<string, unknown>[],
+				unknown,
+			]
+			for (const u of userRows) {
+				const id = String(u.id)
+				const fname = String(u.firstname ?? "").trim()
+				const lname = String(u.lastname ?? "").trim()
+				const full = [fname, lname].filter(Boolean).join(" ").trim()
+				if (full) userMap.set(id, full)
+				else userMap.set(id, id) // fallback to id if no name available
+			}
+		}
 
-    // Normalize types: convert parent_number_of_participants to number|null
-    const typedRows = (rows as Record<string, unknown>[]) ?? []
+		// Normalize types: convert parent_number_of_participants to number|null
+		const typedRows = (rows as Record<string, unknown>[]) ?? []
 
-    const normalized = typedRows.map((r) => {
-      const raw = r["parent_number_of_participants"]
-      if (raw === null || raw === undefined || raw === "") {
-        return { ...r, parent_number_of_participants: null }
-      }
-      const n = Number(raw)
-      if (!Number.isFinite(n)) {
-        return { ...r, parent_number_of_participants: null }
-      }
-      return { ...r, parent_number_of_participants: n }
-    })
+		const normalized = typedRows.map((r) => {
+			const raw = r["parent_number_of_participants"]
+			if (raw === null || raw === undefined || raw === "") {
+				return { ...r, parent_number_of_participants: null }
+			}
+			const n = Number(raw)
+			if (!Number.isFinite(n)) {
+				return { ...r, parent_number_of_participants: null }
+			}
+			return { ...r, parent_number_of_participants: n }
+		})
 
-    // Map normalized rows to the desired item shape
-    const items = normalized.map((r, idx) => {
-      const parentIdRaw = String(r["parent_id"] ?? "")
-      // convert "HD_<id>" -> "item-<id>"
-      const itemId = parentIdRaw;
+		// Map normalized rows to the desired item shape
+		const items = normalized.map((r, idx) => {
+			const parentIdRaw = String(r["parent_id"] ?? "")
+			// convert "HD_<id>" -> "item-<id>"
+			const itemId = parentIdRaw
 
-      const name = (r["parent_title"] ?? null) as string | null
-      const description = (r["parent_description"] ?? null) as string | null
-      const duration = (r["parent_exact_duration"] ?? null) as string | null
-      const teamSize = r["parent_number_of_participants"] as number | null
+			const name = (r["parent_title"] ?? null) as string | null
+			const description = (r["parent_description"] ?? null) as string | null
+			const duration = (r["parent_exact_duration"] ?? null) as string | null
+			const teamSize = r["parent_number_of_participants"] as number | null
 
-      // parent_item_style may encode TYPE or "TYPE/STYLE". Use a small heuristic:
-      const rawTypeStyle = String(r["parent_item_style"] ?? "")
-      // type is always PERFORMANCE; style is the rawTypeStyle (trimmed) or null if empty
-      const type = "PERFORMANCE"
-      const style = rawTypeStyle.trim() === "" ? null : rawTypeStyle.trim()
+			// parent_item_style may encode TYPE or "TYPE/STYLE". Use a small heuristic:
+			const rawTypeStyle = String(r["parent_item_style"] ?? "")
+			// type is always PERFORMANCE; style is the rawTypeStyle (trimmed) or null if empty
+			const type = "PERFORMANCE"
+			const style = rawTypeStyle.trim() === "" ? null : rawTypeStyle.trim()
 
-      // Build choreographer names for this row based on previously fetched userMap
-      const idListForRow = rowChoreographerIdArrays[idx] ?? []
-      const names = idListForRow
-        .map((id) => userMap.get(id))
-        .filter((n): n is string => typeof n === "string" && n.trim() !== "")
-      const choreographers = names.length > 0 ? names.join(", ") : null
+			// Build choreographer names for this row based on previously fetched userMap
+			const idListForRow = rowChoreographerIdArrays[idx] ?? []
+			const names = idListForRow
+				.map((id) => userMap.get(id))
+				.filter((n): n is string => typeof n === "string" && n.trim() !== "")
+			const choreographers = names.length > 0 ? names.join(", ") : null
 
-      return {
-        itemId,
-        name,
-        description,
-        type,
-        style,
-        teamSize,
-        choreographers,
-        state: "NONE",
-        timer_start_time: null,
-        duration,
-      }
-    })
+			return {
+				itemId,
+				name,
+				description,
+				type,
+				style,
+				teamSize,
+				choreographers,
+				state: "NONE",
+				timer_start_time: null,
+				duration,
+			}
+		})
 
-    // Write mapped items to results.json in project root
-    const outPath = path.join(process.cwd(), "results.json");
-    await fs.writeFile(outPath, JSON.stringify(items, null, 2), "utf8");
-    console.log(`Wrote results to ${outPath}`)
-
-  } catch (err) {
-    console.error("Query failed:", err)
-  } finally {
-    await connection.end()
-  }
+		// Write mapped items to results.json in project root
+		const outPath = path.join(process.cwd(), "results.json")
+		await fs.writeFile(outPath, JSON.stringify(items, null, 2), "utf8")
+		console.log(`Wrote results to ${outPath}`)
+	} catch (err) {
+		console.error("Query failed:", err)
+	} finally {
+		await connection.end()
+	}
 }
 
 main()
-  .then(() => {
-    // Success, nothing to do
-  })
-  .catch((err) => {
-    console.error(err)
-    // Optionally rethrow or handle error
-  })
+	.then(() => {
+		// Success, nothing to do
+	})
+	.catch((err) => {
+		console.error(err)
+		// Optionally rethrow or handle error
+	})
