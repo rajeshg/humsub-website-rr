@@ -1,5 +1,5 @@
-import path from "path"
-import fs from "fs/promises"
+import fs from "node:fs/promises"
+import path from "node:path"
 import mysql from "mysql2/promise"
 
 async function main() {
@@ -54,7 +54,7 @@ async function main() {
 		const uniqueIdSet = new Set<string>()
 
 		for (const r of typedRowsForIds) {
-			const raw = r["parent_choreographers_userid_list"] ?? ""
+			const raw = r.parent_choreographers_userid_list ?? ""
 			// normalize to string and split on commas and whitespace, filter empties
 			const ids = String(raw)
 				.split(/[,]+/)
@@ -62,7 +62,9 @@ async function main() {
 				.filter((s) => s !== "")
 			// dedupe per-row
 			const uniq = Array.from(new Set(ids))
-			uniq.forEach((id) => uniqueIdSet.add(id))
+			for (const id of uniq) {
+				uniqueIdSet.add(id)
+			}
 			rowChoreographerIdArrays.push(uniq)
 		}
 
@@ -90,7 +92,7 @@ async function main() {
 		const typedRows = (rows as Record<string, unknown>[]) ?? []
 
 		const normalized = typedRows.map((r) => {
-			const raw = r["parent_number_of_participants"]
+			const raw = r.parent_number_of_participants
 			if (raw === null || raw === undefined || raw === "") {
 				return { ...r, parent_number_of_participants: null }
 			}
@@ -103,17 +105,17 @@ async function main() {
 
 		// Map normalized rows to the desired item shape
 		const items = normalized.map((r, idx) => {
-			const parentIdRaw = String(r["parent_id"] ?? "")
+			const parentIdRaw = String(r.parent_id ?? "")
 			// convert "HD_<id>" -> "item-<id>"
 			const itemId = parentIdRaw
 
-			const name = (r["parent_title"] ?? null) as string | null
-			const description = (r["parent_description"] ?? null) as string | null
-			const duration = (r["parent_exact_duration"] ?? null) as string | null
-			const teamSize = r["parent_number_of_participants"] as number | null
+			const name = (r.parent_title ?? null) as string | null
+			const description = (r.parent_description ?? null) as string | null
+			const duration = (r.parent_exact_duration ?? null) as string | null
+			const teamSize = r.parent_number_of_participants as number | null
 
 			// parent_item_style may encode TYPE or "TYPE/STYLE". Use a small heuristic:
-			const rawTypeStyle = String(r["parent_item_style"] ?? "")
+			const rawTypeStyle = String(r.parent_item_style ?? "")
 			// type is always PERFORMANCE; style is the rawTypeStyle (trimmed) or null if empty
 			const type = "PERFORMANCE"
 			const style = rawTypeStyle.trim() === "" ? null : rawTypeStyle.trim()
@@ -142,7 +144,6 @@ async function main() {
 		// Write mapped items to results.json in project root
 		const outPath = path.join(process.cwd(), "results.json")
 		await fs.writeFile(outPath, JSON.stringify(items, null, 2), "utf8")
-		console.log(`Wrote results to ${outPath}`)
 	} catch (err) {
 		console.error("Query failed:", err)
 	} finally {
