@@ -7,13 +7,13 @@ function processGlobFiles(globFiles: Record<string, unknown>, folderName: string
 	return Object.keys(globFiles).map((path) => {
 		const fileName = path.split("/").pop() || ""
 		return {
-			path: fileName.replace(".mdx", ""),
+			path: fileName.replace(/\.mdx?$/, ""),
 			file: `content/${folderName}/${fileName}`,
 		}
 	})
 }
 
-const mdxFilesForBlog = processGlobFiles(import.meta.glob("../app/content/blog-posts/*.mdx"), "blog-posts")
+const mdxFilesForBlog = processGlobFiles(import.meta.glob("../app/content/blog-posts/*.{mdx,md}"), "blog-posts")
 
 const mdxFilesForEvents = processGlobFiles(import.meta.glob("../app/content/events/*.mdx"), "events")
 
