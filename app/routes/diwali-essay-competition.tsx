@@ -16,7 +16,12 @@ export default function DiwaliEssayCompetition() {
 				Apply for Hum Sub Diwali Essay Contest by submitting a 500-700 word essay. First prize - 500$, Second prize -
 				250$
 			</h3>
-			<script type="text/javascript" src="https://form.jotform.com/jsform/242075159180051"></script>
+			<iframe
+				title="Hum Sub - Diwali Essay Competition Form"
+				sandbox="allow-scripts allow-forms"
+				className="w-full h-[400px]"
+				src="https://form.jotform.com/242075159180051"
+			></iframe>
 		</>
 	)
 }

@@ -119,9 +119,16 @@ export const sponsors: Sponsor[] = [
 
 	// Partners
 	{
-		name: "Triangle Nonprofit & Volunteer Leadership Center",
-		imagePath: "/assets/sponsors/TNVLC-Logo-no-bg.png",
+		name: "The Pratt Villas",
+		imagePath: "/assets/sponsors/the-pratt-villas-logo.jpeg",
 		level: "partner",
+		description: "Hospitality partner generously hosting our artists and guests with exceptional accommodations.",
+	},
+	{
+		name: "Empowerly",
+		imagePath: "/assets/sponsors/empowerly.png",
+		level: "partner",
+		description: "Education partner and exclusive sponsor for our Essay Competition.",
 	},
 	{
 		name: "Cary Ballet Company",
