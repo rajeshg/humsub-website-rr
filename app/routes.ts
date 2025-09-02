@@ -52,6 +52,8 @@ export default [
 			index("routes/blog-home.tsx"),
 			...mdxFilesForBlog.map(({ path: routePath, file }) => route(routePath, file)),
 		]),
+		// Catch-all route for Chrome DevTools and other special paths
+		route("*", "routes/catch-all.tsx"),
 	]),
 	route("api/youtube", "routes/api/youtube.ts"),
 ] satisfies RouteConfig

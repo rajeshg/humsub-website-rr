@@ -10,6 +10,15 @@ export default async function handleRequest(
 	entryContext: EntryContext,
 	_routerContext: unstable_RouterContextProvider
 ) {
+	// Handle Chrome DevTools specific path
+	if (request.url.includes("/.well-known/appspecific/com.chrome.devtools.json")) {
+		return new Response(JSON.stringify({}), {
+			headers: {
+				"Content-Type": "application/json",
+			},
+		})
+	}
+
 	const userAgent = request.headers.get("user-agent")
 
 	const stream = await renderToReadableStream(<ServerRouter context={entryContext} url={request.url} />, {
