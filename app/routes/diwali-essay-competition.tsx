@@ -13,7 +13,7 @@ export default function DiwaliEssayCompetition() {
 					<iframe
 						title="Hum Sub - Diwali Essay Competition"
 						sandbox="allow-scripts allow-forms"
-						className="w-full min-w-[350px] h-[400px] sm:h-[400px] h-[100vh] border-0"
+						className="w-full min-w-[450px] h-[400px] sm:h-[400px] h-[100vh] border-0"
 						src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRWgsmmf3lUfAi-EDu13xc9qS4FNu-6L55nRGbP6mQZK7BZ-4oMNL2scXtnoDCbzHRUTfADhaMk65Gn/pubhtml?widget=true&amp;headers=false"
 					></iframe>
 				</div>
@@ -22,11 +22,11 @@ export default function DiwaliEssayCompetition() {
 				Apply for Hum Sub Diwali Essay Contest by submitting a 500-700 word essay. First prize - 500$, Second prize -
 				250$
 			</h3>
-			<div className="w-full max-w-[700px] mx-auto mt-4 px-2 overflow-x-auto rounded border border-gray-200 dark:border-gray-700">
+			<div className="w-full mx-auto mt-4 px-2 overflow-x-auto rounded border border-gray-200 dark:border-gray-700">
 				<iframe
 					title="Hum Sub - Diwali Essay Competition Form"
 					sandbox="allow-scripts allow-forms"
-					className="w-full min-w-[350px] h-[650px] border-0"
+					className="w-full min-w-[350px] min-h-[1650px] border-0 overflow-y-hidden"
 					src="https://form.jotform.com/242075159180051"
 				></iframe>
 			</div>
