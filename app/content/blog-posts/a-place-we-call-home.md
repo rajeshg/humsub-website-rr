@@ -1,13 +1,13 @@
 ---
 title: A place we call home
-description: A place we call home
+description: Discover the vibrant Indian American heritage in North Carolina through an exhibit featuring weddings, cuisine, costumes, and personal stories from diverse regions, celebrating cultural traditions and community impact.
 published-date: 2025-08-22
-heroImage: "/src/assets/blog/a-place-we-call-home/a-place-we-call-home.jpeg"
+heroImage: "/assets/blog/a-place-we-call-home/a-place-we-call-home.jpeg"
 ---
 
 # A Place We Call Home
 
-![A place we call home](/assets/blog/a-place-we-call-home.jpeg)
+![A place we call home](/assets/blog/a-place-we-call-home/a-place-we-call-home.jpeg)
 
 North Carolina—especially the Piedmont region and Research Triangle—has a large and growing Indian American population. Indian Americans are now an integral part of many communities across the state.
 
@@ -118,7 +118,7 @@ Gujarati weddings are vibrant and steeped in centuries-old customs, reflecting t
 
 ### Gujarati Marriage Cuisine
 
-Gujarati wedding feasts are renowned for their lavish, vegetarian spreads, balancing sweet, spicy, and tangy flavors. Some classic dishes:
+Gujarati wedding feasts are renowned for their lavish, vegetarian spreads, balancing sweet, spicy, and tangy flavors. Some classic dishes include:
 
 - **Undhiyu**: Mixed vegetable dish with brinjals, potatoes, yams, bananas, peas, and more, often served with puris.
 - **Dhokla**: Steamed savory cakes made from fermented rice and chickpea batter.
@@ -136,6 +136,121 @@ Gujarati wedding attire is a dazzling display of color and tradition.
 - **For Grooms**: The groom typically wears a Sherwani (a long, embroidered coat) or a Kurta with Churidar pants, often paired with a richly adorned dupatta (scarf) and a turban known as Safa or Pagdi.
 
 ![Gujarati wedding costumes](/assets/blog/a-place-we-call-home/gujaratiwedding-2.png)
+
+---
+
+## Telugu Wedding
+
+### Pre-Wedding Rituals
+
+The Nischayathartham ceremony marks the formal announcement of the marriage. During this pre-wedding ritual, an auspicious date and time for the wedding are chosen in the presence of both families. The couple exchanges rings to signify their commitment, and the bride receives gifts of jewelry, clothes, and silverware from her future mother-in-law as a blessing. This ceremony is a symbolic beginning of the wedding journey, strengthening the bond between the two families.
+
+![Nischayathartham ceremony with families exchanging rings](/assets/blog/a-place-we-call-home/telugu-wedding-1.png)
+![Bride receiving gifts during Nischayathartham](/assets/blog/a-place-we-call-home/telugu-wedding-2.png)
+![Auspicious date selection ritual](/assets/blog/a-place-we-call-home/telugu-wedding-3.png)
+
+A few days before the wedding, the Pellikuthuru and Pellikoduku ceremonies take place separately at the bride’s and groom’s homes. These rituals involve the application of naluga, a paste made from flour, turmeric, and aromatic oils, which is smeared on the body of the bride and groom. This is followed by a ceremonial bath using turmeric-infused water, symbolizing purification of the body and soul in preparation for the sacred union. These rituals are steeped in tradition and are accompanied by music, laughter, and blessings from family members.
+
+![Pellikuthuru ceremony with naluga application](/assets/blog/a-place-we-call-home/telugu-wedding-4.png)
+![Pellikoduku ritual bath preparation](/assets/blog/a-place-we-call-home/telugu-wedding-5.png)
+![Family blessings during the ceremony](/assets/blog/a-place-we-call-home/telugu-wedding-6.png)
+
+### Wedding Day Rituals
+
+On the wedding day, the Kanyadaan and Panigrahanam are central rituals where the bride’s parents offer their daughter to the groom in a deeply emotional ceremony. After washing the groom’s feet, the father of the bride places her hand in the groom’s, symbolizing trust and acceptance. The groom solemnly vows to love, respect, and protect his bride for life. Following this, the Jellakara-Bellam ritual takes place at the most auspicious time, where a paste of cumin (jeelakara) and jaggery (bellam) is placed on the couple’s heads, signifying their readiness to share life’s bitter and sweet moments together as a united pair.
+
+![Kanyadaan ritual with foot washing](/assets/blog/a-place-we-call-home/telugu-wedding-7.png)
+![Panigrahanam hand placement ceremony](/assets/blog/a-place-we-call-home/telugu-wedding-8.png)
+![Jellakara-Bellam paste application](/assets/blog/a-place-we-call-home/telugu-wedding-9.png)
+![Couple during the ritual](/assets/blog/a-place-we-call-home/telugu-wedding-10.png)
+
+Soon after, the Mangalsutram ritual begins. The bride and groom change into traditional white or cream-colored outfits with red, green, or yellow borders. The sacred mangalsutram, a yellow thread with two gold pendants at the center, is blessed by family members before the groom ties it around the bride’s neck with three symbolic knots. These knots represent Manasa (thoughts), Vacha (speech), and Karmana (action)—signifying the union of the couple in mind, word, and deed. This is followed by Talambralu and Pradhanam, a playful interlude in the wedding. The couple showers each other with colored rice or pearls as mantras are chanted, gradually turning into a joyful game with both families participating. Then, in the Pradhanam, a gold ring is dropped into a pot of milk and rose petals, and the couple competes to find it first. This fun-filled moment adds laughter and excitement, celebrating the beginning of their journey together.
+
+### Bride Attire
+
+![Telugu bride in traditional attire](/assets/blog/a-place-we-call-home/telugu-wedding-11.png)
+![Close-up of bridal jewelry and makeup](/assets/blog/a-place-we-call-home/telugu-wedding-12.png)
+
+## Tamil Weddings  
+*By Ramya Desikan*
+
+Tamil Brahmin weddings, known for their grandeur and vibrance, are steeped in Vedic rituals.
+
+### Pre-Wedding Ceremonies
+
+- **Nakshatra Porutham (Horoscope Matching):**  
+  Every traditional marriage in Tamil Nadu begins with matching the bride's and groom's horoscopes. The wedding proposal hinges critically on this step.
+
+- **Panthakkaal Muhurtham (The Announcement):**  
+  Family elders raise a decorated banana tree and place a tall wooden stick outside the house to announce the upcoming marriage. Prayers are offered for a smooth wedding.
+
+- **Sumangali Prarthanai (Honoring the Deceased):**  
+  Married women are invited to the bride's home and served a traditional feast to invoke the blessings of deceased sumangalis (women who died while their husbands were alive). This ritual honors the divine feminine energy and maintains ancestral continuity.
+
+- **Vratham (The Fast):**  
+  A day before the wedding, both families observe a fast and pray for the couple’s prosperity and happiness. Married women pour water into a clay pot filled with nine varieties of grains, allowing them to sprout throughout the day. The pot symbolizes the house, the grains the couple, and the sprouting signifies growth and prosperity.
+
+- **Naandi Shraadham:**  
+  Brahmin priests conduct rituals to invoke the blessings of family ancestors, who are offered gifts as a token of respect and gratitude.
+
+- **Nichayatartham (Formal Engagement):**  
+  The ritual begins with prayers to Lord Ganesha, the remover of obstacles. Gifts are exchanged between families, and the bride and groom don clothes gifted by their in-laws. Before exchanging rings, the groom's sister applies vermillion and sandalwood on the bride's forehead, and the bride's brother does the same for the groom. Garlands are also exchanged.
+
+### Wedding-Day Rituals
+
+- **Mangala Snanam (Ritual Bath):**  
+  On the wedding morning, the bride and groom apply turmeric, vermillion, and oil to their bodies and take a ceremonial bath.
+
+- **Gouri Pooja:**  
+  The bride worships Goddess Gouri, seeking blessings for a prosperous and healthy married life.
+
+- **Kashi Yatra:**  
+  The groom theatrically threatens to become an ascetic and leave for Kashi (a revered pilgrimage site), but is persuaded by the bride’s father and relatives to fulfill his duties as a householder. This symbolizes the importance of each stage of life. The groom is then welcomed back into the marriage hall with great pomp.
+
+- **Vara Pooja:**  
+  The bride's family welcomes the groom's family with platters of fruits, nuts, clothes, and more.
+
+- **Pada Pooja (Washing the Groom’s Feet):**  
+  As the groom enters the mandap, the bride's father washes his feet with a mixture of holy water, vermillion, milk, and sandalwood, then dries them with flower petals. This sacred act reveres the groom as divine and the wedding as a holy rite.
+
+- **Oonjal (Swing Ceremony):**  
+  The couple sits on a wooden swing while women sing traditional songs. The swinging motion symbolizes the ups and downs of married life, supported by family blessings. Rice balls, milk, and banana are waved around them and offered to ward off evil and invoke prosperity.
+
+- **Maalai Matral (Exchange of Garlands):**  
+  The bride and groom exchange garlands offered by their maternal uncles, symbolizing the union of two souls.
+
+- **Kannika Dhaanam (Giving Away the Bride):**  
+  After the oonjal, the couple moves to the mandap. The bride sits on her father's lap holding a coconut, which they collectively hand over to the groom. The bride's mother sprinkles holy water on the coconut, and a holy thread is tied on their wrists.
+
+- **Mangalya Dharanam (Tying the Sacred Thread):**  
+  The groom ties the mangalsutra (a thick thread dyed in turmeric) around the bride's neck, tying three knots.
+
+- **Saptapadi (The Seven Steps):**  
+  The groom walks with the bride around the sacred fire, holding her right hand and right toe, helping her take seven steps. At each step, he recites a Vedic hymn invoking Maha Vishnu's blessings. Each step represents a vow: mutual nourishment, strength, prosperity, family, respect, spiritual growth, and lifelong friendship.
+
+- **Ammi Midithu (Toe Ring Ritual):**  
+  The bride steps on a grinding stone, symbolizing her resolve to remain steadfast through life's challenges.
+
+### Post-Wedding Rituals
+
+- **Gruhapravesha (Entry into the Marital Home):**  
+  The newlyweds visit the groom's house, where his mother performs a traditional welcome. The bride enters her new home holding a lamp.
+
+- **Valeyadal (Playtime):**  
+  The groom's sister offers gifts to the bride, and the family plays traditional games to help the bride feel at home.
+
+### Wedding Attire
+
+- **Bride:**  
+  Wears a 9-yard silk saree (madisaar) in auspicious colors like red, maroon, or gold, with traditional temple jewelry in gold and fresh jasmine flowers in her hair. A large red or maroon bindi adorns her forehead.
+
+- **Groom:**  
+  Wears a white silk veshti (unstitched cloth wrapped around the waist and legs) in traditional style, with an angavastram (matching silk shawl) over the shoulder. Some wear a second cloth (uttiriyam) across the torso during rituals. The sacred thread (poonal) is worn across the chest, and a mark of sandalwood paste or vermilion is applied to the forehead.
+
+![alt text](/assets/blog/a-place-we-call-home/tamil-wedding-1.png)
+![alt text](/assets/blog/a-place-we-call-home/tamil-wedding-4.png)
+![alt text](/assets/blog/a-place-we-call-home/tamil-wedding-5.png)
+![alt text](/assets/blog/a-place-we-call-home/tamil-wedding-6.png)
 
 ---
 
@@ -266,6 +381,119 @@ A Kashmiri Pandit wedding is a vibrant and deeply traditional celebration, roote
 ![Kashmiri Pandit wedding attire](/assets/blog/a-place-we-call-home/kashmiripanditwedding-2.png)
 ![Kashmiri Pandit wedding attire](/assets/blog/a-place-we-call-home/kashmiripanditwedding-1.png)
 
+---
+
+## Maharashtrian wedding (By Shradha Joshi)
+
+![alt text](/assets/blog/a-place-we-call-home/maharastrian-wedding.png)
+
+A Marathi wedding is a simple, traditional, and joyous affair. The wedding rituals combine poojas and vows that are all about celebrating love and having fun. Some of the characteristic rituals in Marathi weddings are Simant Poojan, Saptapadi, Kanpili, Vihinichi Pangat, and Sunmukh (explained below). The Rukhwat, very unique to Marathi weddings, includes a display of homemade arts and crafts along with a variety of sweets and snacks.
+
+### How Does It Start?
+
+Maharashtrian wedding ceremonies are rooted in Vedic tradition, so religion and family play an important role in them. There are a series of rituals that happen before the actual wedding day. A family priest looks at the horoscopes of the girl and boy to assess compatibility. Once he gives the nod, an auspicious wedding date and time is set. At the engagement ceremony, called Sakhar Puda, families exchange sugar packets and gifts of coins, sarees, and jewelry to accept the marriage officially, and the couple then exchange rings.
+![alt text](/assets/blog/a-place-we-call-home/maharastrian-wedding-1.png)
+
+### Muhurta Karne
+
+Post-engagement ceremony, the pre-wedding rituals go into full swing. The prep for the wedding starts months before the wedding day! Five married women, known as the 'suhasinis', are invited by the bride’s mother to come over on an auspicious day. Together, they grind turmeric with an iron pestle, to be used later, as well as pulses and spices, and roll flour papads.
+
+### The Wedding Invitation
+
+In a Marathi wedding, the first invitation is always offered to Lord Ganesha for his blessings. It is an integral part of the Marathi wedding traditions.
+
+### Halad Chadhavne (Turmeric Ceremony)
+
+The five suhasinis from the Muhurta Karne first apply turmeric paste with mango leaves on the groom's forehead, shoulders, hands, and feet. They then take the same paste to the bride and perform the same ritual.
+
+![alt text](/assets/blog/a-place-we-call-home/maharastrian-wedding-2.png)
+
+### Chuda Bharne (Bangle Ceremony)
+
+During this ceremony, the bride is given a set of green glass bangles, along with gold or pearl ones. In Maharashtrian culture, green is seen as a symbol of life, creation, and fertility. It is considered to be a lucky color that represents hopes for a newly married couple’s happy life. Once the bangles are worn by the bride, she is not allowed to leave the house until the day of the wedding.
+
+![alt text](/assets/blog/a-place-we-call-home/maharastrian-wedding-3.png)
+
+### Ganpati Puja and Sod Munja
+
+Two days before the wedding, the bride and groom offer prayers to Lord Ganesh for a smooth wedding ceremony. A very special ceremony also happens at the groom’s home only, which is known as Sod Munja. It marks the boy’s transition from boyhood to adulthood and is a significant rite of passage in Hindu tradition.
+
+### Day of Wedding
+
+In the morning, the bride and groom both get ready for the wedding at a pre-determined auspicious time. The most important rituals are Sankalpa, Kanyadan, Saptapadi, Sunmukh, and Vihinichi Pangat.
+
+### Wedding Attire
+
+The bride typically wears a rich silk saree or navvari (9-yard) with gold jewelry and a shela (stole) made from finely woven silk with heavy gold thread work. She is adorned with traditional gold necklaces and bangles. A traditional nose pin called nath, made from pearls and ruby, is a statement piece. The hair is usually done up in a bun on which are strings of fresh flowers. The bride also wears jodvi (toe rings).
+
+The groom will don a heavily embroidered long tunic (kurta), dhoti, and a turban. They also wear a shela. Both bride and groom have the mundavalya, a holy ornamental thread that is tied around the heads of the bride and groom.
+
+![alt text](/assets/blog/a-place-we-call-home/maharastrian-wedding-4.png)
+
+### Wedding Day Rituals
+
+#### Varat
+
+The groom typically rides on a horse to the venue to the accompaniment of a musical band and much dancing by family and friends.
+![alt text](/assets/blog/a-place-we-call-home/maharastrian-wedding-5.png)
+
+#### Antarpat
+
+After the groom arrives, the bride is also brought to the wedding enclosure by her maternal uncle. A silk curtain (the antarpat) is hung between the bride and groom while a priest chants some sacred prayers. This is done because the two are not supposed to look at each other until after the priest finishes his chanting.
+![alt text](/assets/blog/a-place-we-call-home/maharastrian-wedding-6.png)
+
+#### Sankalpa
+
+The bride and groom finally lay eyes on one another. The couple then exchange garlands and showers them with whole rice (akshata).
+
+#### Kanyadan
+
+In a ritual common to all weddings in India, the father of the bride gives away his daughter to the bridegroom with blessings. The groom accepts her and promises to love and respect his wife forever.
+![alt text](/assets/blog/a-place-we-call-home/maharastrian-wedding-7.png)
+
+#### Lajahoma and Tying of the Sacred Thread (Mangalsutra)
+
+This is a very important ritual in a Marathi wedding. During the Lajahoma, the bride offers grains to the havan, or holy fire, while chanting three mantras which the groom repeats. The fourth mantra is uttered silently only by the bride. Following this, the bride's parents worship the couple as avatars of Lord Mahavishnu and Goddess Mahalakshmi. The bride and groom then tie a turmeric thread on each other's hands, and then the groom ties the mangalsutra around the bride’s neck. Finally, he applies vermilion (sindoor) on her forehead.
+
+##### Mangalsutra: The Sacred Thread of Marriage
+
+The mangalsutra is the most important piece of jewelry for a Maharashtrian bride, representing love, commitment, and the sacred bond of marriage.
+
+- **Traditional Design**: A chain with black beads and gold discs, believed to protect the couple from negativity.
+- **Modern Adaptations**: Today, brides can choose from minimalist, diamond-studded, and lightweight mangalsutra designs.
+- **Symbolism**: The two vatis (gold discs) represent Shiva and Shakti, signifying balance in marriage.
+![alt text](/assets/blog/a-place-we-call-home/maharastrian-wedding-8.png)
+
+#### Saptapadi (The Seven Steps)
+![alt text](/assets/blog/a-place-we-call-home/maharastrian-wedding-9.png)
+The couple takes seven rounds around the holy fire. The bride is required to touch seven betel nuts placed on top of small mounds of rice with her right foot. Once the seven rounds are done, she places her foot on a grindstone, while the groom holds her hand or foot, symbolizing that she needs to be strong and he will always support her.
+
+#### Kanpili
+
+The brother of the bride or the sibling of the bride playfully twists the ear of the groom, warning him to keep her happy and takes a promise that he will always take care of the sister and support her. The sibling then gets gifts from the groom’s side.
+
+![alt text](/assets/blog/a-place-we-call-home/maharastrian-wedding-10.png)
+
+### Wedding Reception and Vihinichi Pangat
+
+Once these rituals are completed, the couple is formally introduced to all the guests. The bride wears a saree that is gifted to her by the groom’s family, and the groom wears an outfit that the bride’s parents gift him. The unique aspect of this is a feast that is held for the mother-in-law of the bride. The mother-in-law is welcomed with flowers and served on a silver plate along with the bride and groom and immediate family members. The feast includes a variety of traditional dishes and at least five desserts.
+
+![alt text](/assets/blog/a-place-we-call-home/maharastrian-wedding-11.png)
+
+### Laxmi Poojan
+
+The wedding rituals come to an end with the Karmasamapti, wherein the couple offers prayers to Goddess Lakshmi. In some families, the groom will, at this point, give his bride a new name.
+
+### Sunmukh
+
+Literally meaning “bride's face,” in this symbolic ritual, the mother-in-law formally acknowledges and accepts her daughter-in-law into the family. She holds a mirror in front of her, and they all look at their reflection in the mirror.
+![alt text](/assets/blog/a-place-we-call-home/maharastrian-wedding-12.png)
+
+### Varat and Grihapravesh
+
+The bride bids farewell to her parents, and the groom carries the idol of Goddess Parvati from Gaurihar Puja done earlier. Usually, a large procession follows the bride to her in-law's home. During the Grihapravesh, the newlywed couple is welcomed to the groom's family home. The groom's mother washes the couple's feet with milk and water and performs an aarti. Then, while entering the house, the bride is asked to push down a kalash (holy pot) of rice. Then, with her right foot forward, the bride enters her new home accompanied by her husband.
+![alt text](/assets/blog/a-place-we-call-home/maharastrian-wedding-13.png)
+
 
 ## Coorgi (Kodava) Wedding  
 *By Priya Devviah*
@@ -381,3 +609,180 @@ Sikh weddings are not just about the union of two individuals—they are a beaut
 
 ---
 
+## Hindu Punjabi Wedding Customs
+
+### Marriage Customs, Cuisine, and Costumes Overview
+Hindu Punjabi weddings are grand, joyful celebrations filled with vibrant traditions. The festivities begin with the **roka** ceremony, symbolizing the couple's official commitment. This is followed by **sagai** (engagement), **mehendi** (henna), and **sangeet** (music).
+
+- The **mehendi** ceremony involves intricate henna designs on the bride's hands and feet, *symbolizing beauty and luck*.
+- The **sangeet** is a musical evening where families celebrate with dance and traditional songs.
+- The **chooda** ceremony marks the bride's journey into married life. Her maternal uncle and aunt present her with red and white bangles, *symbolizing prosperity*.
+- This is followed by the **haldi** (turmeric), **phere** (sacred circles), and **vidaai** (farewell) ceremonies.
+
+#### The Main Ceremonies
+- **Roka**: An image depicting the traditional Roka ceremony, *symbolizing the couple's official commitment*.
+- **Mehendi**: A close-up of the bride's hands adorned with intricate henna designs, *signifying beauty and luck*.
+- **Sangeet**: A lively scene from the Sangeet, *showcasing families celebrating with dance and traditional songs*.
+- **Chooda**: The bride wearing red and white bangles (Chooda) with golden Kaleere, *marking her journey into married life*.
+- **Haldi**: A joyful moment from the Haldi ceremony, *where turmeric paste is applied to the bride and groom for blessings*.
+- **Phere**: The couple circling the sacred fire seven times, *symbolizing their promises to each other*.
+- **Vidaai**: An emotional farewell as the bride departs from her family home.
+
+#### Punjabi / North Indian Cuisine
+Hindu Punjabi weddings are known for lavish feasts showcasing North Indian flavors.
+
+- **Appetizers**: Paneer Tikka, Aloo Tikki, and Hara Bhara Kabab.
+- **Main Courses**: Butter Chicken, Paneer Butter Masala, Dal Makhani, and Jeera Rice.
+- **Traditional Breads**: Naan, Roti, and Puri accompany these dishes.
+- **Desserts**: Gulab Jamun, Jalebi, Rasmalai, and Kheer.
+
+- **Paneer Tikka**: *Marinated paneer cubes grilled with spices and vegetables.*
+- **Aloo Tikki**: *Spiced potato patties, crispy on the outside and soft inside.*
+- **Hara Bhara Kabab**: *Green patties made from spinach, peas, and potatoes.*
+- **Butter Chicken**: *Tender chicken pieces in a creamy tomato-based sauce.*
+
+#### Costumes
+Traditional attire at Hindu Punjabi weddings is colorful and ornate.
+
+- **Bride**: Typically wears a heavily embroidered lehenga (long skirt) or saree in bright hues, *symbolizing love and prosperity*. Her outfit is adorned with gold jewelry, maang tikka (forehead ornament), nath (nose ring), and chooda (bridal bangles). The Chooda remains on the bride's wrists for months, *symbolizing her married status*.
+- **Groom**: Traditionally wears a sherwani or achkan with a turban and sehra (a veil of flowers, beads, or pearls), *reflecting grandeur and elegance*.
+
+---
+
+## Uttar Pradesh Weddings
+
+### Customs
+
+Weddings in Uttar Pradesh are deeply rooted in tradition and follow a series of elaborate customs that reflect the region’s cultural richness.
+
+- **Baraat**: The groom arrives at the bride’s home or wedding venue on a decorated horse or in a car, accompanied by friends and family dancing to the beat of dhols and brass bands.
+- **Kanyadaan**: The bride’s parents give away their daughter to the groom, signifying trust and the union of two families. These ceremonies are not only religious but also highly symbolic, often performed with Vedic chants and blessings from elders.
+- **Haldi (Turmeric Ceremony)**: Turmeric paste is applied to both the bride and groom to bless them with glowing skin and good fortune.
+- **Mehendi (Henna Application)**: Intricate henna patterns are drawn on the bride’s hands and feet, symbolizing beauty and love.
+
+These customs are celebrated with music, dance, and laughter, making them cherished moments for everyone involved.
+
+![alt text](/assets/blog/a-place-we-call-home/uttar-pradesh-wedding-2.png)
+
+### Costume
+
+The traditional wedding attire in Uttar Pradesh is both elegant and vibrant, showcasing the region’s love for rich fabrics and intricate craftsmanship.
+
+- **Bride**: Typically wears a lehenga or Banarasi saree, often in auspicious shades of red, maroon, or pink, adorned with heavy zari, stone, and sequin embroidery. Her outfit is complemented by gold jewelry, chooda (red and white bangles), and maang tikka (forehead ornament). The bridal look is completed with a ghunghat (veil).
+- **Groom**: Often wears a sherwani (long embroidered coat) paired with a churidar or dhoti, and a safa or pagdi (turban). A decorative sehra (floral veil) may also be worn. Accessories like mojari (traditional footwear) and a kamarbandh (waistband) complete the look.
+
+![alt text](/assets/blog/a-place-we-call-home/uttar-pradesh-wedding-3.png)
+
+### Cuisine
+
+Cuisine plays a central role in weddings in Uttar Pradesh, with a lavish spread of both vegetarian and non-vegetarian dishes that highlight the region’s Mughlai and Awadhi influences. Popular items include:
+
+- Kebabs
+- Biryani
+- Rogan josh
+- Shahi paneer
+- Puri-sabzi
+- Kachaudi
+- Dal makhani
+
+The food is usually presented in a buffet-style arrangement, often prepared by specialized wedding caterers known for their expertise in traditional UP dishes.
+
+No wedding feast in Uttar Pradesh is complete without an array of desserts:
+
+- Gulab jamun
+- Ras malai
+- Jalebi
+- Imarti
+
+A special mention goes to paan, a betel leaf preparation offered at the end of the meal to aid digestion and freshen the breath. The cuisine not only satisfies the palate but also adds to the overall sensory experience of the wedding celebration.
+
+---
+
+## Wedding of Uttrakhand – Kumaoni weddings
+
+Weddings in Uttarakhand are intimate and deeply spiritual, reflecting the cultural traditions of the Kumaoni and Garhwali communities amidst the serene backdrop of the Himalayas. Rituals such as the Kanyadaan and Phera are conducted with sacred chants echoing through the serene mountain air, often in the presence of local deities and ancestral blessings. Traditional folk songs like Mangal Geet are sung by the women of the house, creating a deeply emotional and communal atmosphere.
+
+The emphasis on simplicity, authenticity, and cultural pride makes weddings in Uttarakhand not just a celebration of two souls, but a tribute to the land, its people, and age-old traditions. The Kumaoni bride wears a richly adorned Ghagra-Choli(long skirt) or saree in deep reds or maroons, symbolizing prosperity and fertility. Her look is completed with ornate gold jewelry, including the signature nath (nose ring), pichora (a saffron-colored dupatta with traditional patterns), and a mukut(tiara) each piece carrying cultural significance. The groom, on the other hand, dons a white or cream Kurta-Churidar or Dhoti-Kurta, paired with a mukut (crown) representing valor and tradition. Both bride and groom often wear tilak(religious mark) on their foreheads, making Kumaoni weddings both visually striking and culturally profound.
+
+One unique and lighthearted ritual in a Kumaoni wedding is the unveiling of humorous puppets that mimic the in-laws from both sides. During the wedding preparations, the bride’s and groom’s families create playful look-alike figures of their future in-laws, highlighting their quirks in a fun and exaggerated way. The grand reveal takes place at the wedding venue, bringing laughter and joy as the traits of each in-law are humorously showcased, adding a touch of warmth and humor to the celebrations.
+
+![alt text](/assets/blog/a-place-we-call-home/uttarakhand-1.png)
+Picture 1: Kumaoni Bride and Groom – the big nose ring(nath) and the pichoda(the orange with red polka dots scarf) stands out. The groom wearing a big head gear(mukut) sets the kumaoni groom apart from others. 
+ 
+![alt text](/assets/blog/a-place-we-call-home/uttarakhand-2.png)
+Picture 2: Kanya Daan(giving away the daughter) – ritual where parents vow to give their daughter to the groom
+
+![alt text](/assets/blog/a-place-we-call-home/uttarakhand-3.png)
+Picture 3: The samdhi-samdhan(MIL-FIL) puppets lighten the mood
+
+---
+
+## Traditions of a Bengali Wedding
+A Bengali wedding is a vivid celebration of culture, family, and love—where rituals meet revelry, and age-old customs are embraced with enthusiasm. Rooted in Hindu traditions but often adapted with modern touches, Bengali weddings typically span several days and are filled with meaningful ceremonies, delicious food, music, and vibrant clothing. Every stage—from courtship to the bride’s welcome into her new home—is woven with symbolism, storytelling, and the warmth of close-knit families.
+
+The journey begins with Ashirbaad, the formal blessing of the bride and groom by their elders. Family members visit each other's homes to offer gold, rice, and blessings, signifying acceptance and auspicious beginnings. Then comes Gaye Holud, the turmeric ceremony held separately for the bride and groom. A paste made from turmeric, often sent from the bride’s or groom’s family, is applied to their skin to purify and beautify them before the wedding. This joyful, music-filled event is marked by laughter, bright yellow attire, and a festive spirit. Another heartfelt ritual is the Aiburobhaat, a special "last meal" given to the bride or groom in their parental home. It’s a symbolic send-off into married life, filled with traditional Bengali dishes and emotional blessings.
+
+On the wedding day, the groom arrives with his entourage—Bor Jatri—dressed in traditional dhoti and topor, and is welcomed with Baran, a ritual involving rice, water, and aarti. The bride, adorned in a red Benarasi saree and gold jewelry, makes her grand entrance during the Saat Paak—she is carried on a wooden seat and circles the groom seven times, symbolizing their spiritual connection. She keeps her face hidden with betel leaves until the Shubho Drishti, when the couple exchanges their first look in front of the sacred fire and guests. This is followed by Mala Bodol, the playful exchange of floral garlands, and the Sampradan, where the bride’s guardian ceremoniously gives her hand to the groom, initiating the sacred vows and fire rituals (Hom).
+
+After the wedding, the emotional Bidaay marks the bride’s farewell from her family home. She is welcomed into her new home with Bou Boron, where her mother-in-law greets her with traditional rituals. The next day is Bou Bhaat, the bride’s first meal in her new household, where the groom lovingly serves her food, marking his role as her partner and provider. This event often turns into a large family feast and a chance for both families to mingle more informally.
+
+Bengali weddings are not just about rituals—they are about relationships. Each ceremony has a purpose: to honor ancestors, celebrate love, unite families, and bless the couple’s journey ahead. With conch shells echoing, uludhwani ringing through the air, and plates full of mishti doi and rosogolla, a Bengali wedding is a cultural tapestry that leaves lasting memories in every heart it touches.
+![alt text](/assets/blog/a-place-we-call-home/bengali-wedding-1.png)
+![alt text](/assets/blog/a-place-we-call-home/bengali-wedding-2.png)
+![alt text](/assets/blog/a-place-we-call-home/bengali-wedding-3.png)
+![alt text](/assets/blog/a-place-we-call-home/bengali-wedding-4.png)
+![alt text](/assets/blog/a-place-we-call-home/bengali-wedding-5.png)
+![alt text](/assets/blog/a-place-we-call-home/bengali-wedding-6.png)
+---
+
+## Choice of Wedding Venue
+
+Choosing the right wedding venue is one of the most important decisions couples make. Popular options include hotel ballrooms, farms, and the Hindu Temple of North Carolina. Key considerations are the size of the gathering, the ability to use outside caterers, and facilities for traditional Indian wedding rituals.
+
+For some, like Anuja Mathur, the venue (The Cotton Room) needed to have "character and feel different from a hotel ballroom." Others, such as Megha Bisarya, preferred the modern décor of a hotel (Crabtree Marriott), highlighting features like a spacious ballroom, charming outdoor patio for an intimate cocktail hour, and green areas for photos. Additional factors include:
+
+- Space for a traditional wedding with a sacred fire
+- Allowing late receptions
+- Room for a baraat (ceremonial procession) and music
+- Indoor and outdoor flexibility
+- Proximity to the airport and the Triangle area for out-of-town guests
+
+According to Anita Johnson, Catering Sales Manager at Sheraton Imperial Hotel & Convention Center, their venue is among the "top 5, even top 3, venues in the area." She notes, "The biggest selling point is our hotel size to accommodate larger weddings. The Sheraton did many Indian weddings back in the early 2000s, but they have become even more frequent since around 2015." She adds, "This segment is important because I admire the traditions families still practice, and the Indian population has grown so much in the last 10-15 years in our area."
+
+**Anecdotes:**  
+- One couple brought in the UNC Mascot for their reception, celebrating their alma mater.  
+- Another couple walked down the aisle with their pet lab, delighting their guests.
+
+**Testimonial:**  
+> "Crabtree Marriott is a beautiful venue—we loved the modern décor throughout the hotel, the spacious ballroom for our wedding and reception, the charming outdoor patio for our cocktail hour, and the green areas for photos. Vanessa and the entire staff were a pleasure to work with, and the location was perfect for our out-of-town guests. Our special day couldn’t have been any better!"  
+> — Megha Bisarya
+
+#### What Couples Look For in a Venue
+
+- Unique character, not just a standard ballroom
+- Capacity for large gatherings (~300 guests)
+- Permission for a sacred fire during the ceremony
+- Flexibility for late-night receptions
+- Space and allowance for baraat music and procession
+- Ample preparation space for large bridal parties
+- Indoor/outdoor flexibility
+- Convenient travel for guests (close to airport, minimal local driving)
+
+#### Common Challenges
+
+- Securing permission for outside caterers and decorators
+- Accommodating large guest lists (300+)
+- Ensuring transparency and honesty from venue organizers, especially regarding readiness timelines for indoor spaces
+- Could accommodate large number of people (~300)
+- Allowed fire for the wedding itself
+- Allowed reception to go late
+- Allowed baraat music and had space for a baraat
+- Had space for getting ready for larger group of people
+- (Megha) outdoor and indoor flexibility at venue
+- Easy travel for out of town people (aka close airport and not too much local driving)
+
+#### Challenges
+
+- Allowing outside caterer for Indian food and decorator
+- Accommodating large number of guests (300+)
+- New venue organizer were not transparent and honest on timeline for indoor venue readiness
