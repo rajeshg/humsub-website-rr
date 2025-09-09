@@ -22,7 +22,15 @@ export default function PrimeSponsorCard({ name, href, description, imagePaths }
 				)}
 			</figure>
 			<div className="mt-0">
-				<h2 className="text-xl text-center justify-center mt-0 mb-2">{name}</h2>
+				<h2 className="text-xl text-center justify-center mt-0 mb-2">
+					{href ? (
+						<a href={href} target="_blank" rel="noopener noreferrer" className="text-xl text-center justify-center mt-0 mb-2">
+							{name}
+						</a>
+					) : (
+						<span className="text-xl text-center justify-center mt-0 mb-2">{name}</span>
+					)}
+				</h2>
 				<p className="text-center italic px-2">{description}</p>
 			</div>
 		</div>

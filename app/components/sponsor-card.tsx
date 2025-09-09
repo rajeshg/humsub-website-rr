@@ -18,7 +18,15 @@ export default function SponsorCard({
 				)}
 			</CardContent>
 			<CardHeader className="p-4 pt-0 text-center w-full">
-				<CardTitle className="text-xl mb-2">{name}</CardTitle>
+				<CardTitle className="text-xl mb-2">
+					{href ? (
+						<a href={href} target="_blank" rel="noopener noreferrer" className="text-xl mb-2">
+							{name}
+						</a>
+					) : (
+						<span>{name}</span>
+					)}
+				</CardTitle>
 				{description && <CardDescription className="italic px-2">{description}</CardDescription>}
 			</CardHeader>
 		</Card>

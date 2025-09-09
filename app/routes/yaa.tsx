@@ -30,9 +30,9 @@ export default function YAA() {
 					of the coveted scholarships.
 				</p>
 				<p>
-					For more information, please check YAA Guidelines at{" "}
-					<a href="https://humsub.org/yaag/" target="_blank" rel="noopener noreferrer">
-						https://humsub.org/yaag/
+					For more information, please check at{" "}
+					<a href="https://humsub.org/assets/YAA-2025-Guidelines.pdf" target="_blank" rel="noopener noreferrer">
+						YAA Guidelines
 					</a>
 					.
 				</p>
@@ -48,7 +48,7 @@ export default function YAA() {
 				</ul>
 				<p>YAA-2025 timeline is as follows:</p>
 				<ul>
-					<li>Applications Deadline: Sep 7, 2025</li>
+					<li>Applications Deadline: Sep 14, 2025</li>
 					<li>Winners Notified: Oct 11, 2025 at Hum Sub Diwali</li>
 					<li>Awards presented at Hum Sub Diwali 2025: Oct 11, 2025</li>
 				</ul>

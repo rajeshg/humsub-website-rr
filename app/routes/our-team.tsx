@@ -22,7 +22,7 @@ export default function OurTeam() {
 				<YACard name="Amardeep Bajaj" imagePath="/assets/team/amardeep-bajaj.jpg" description="Vice President" />
 				<YACard name="Ekta Bhatia" imagePath="/assets/team/ekta-bhatia.jpeg" description="Secretary" />
 				<YACard name="Kaajal Nanavati" imagePath="/assets/team/kaajal-nanavati.jpg" description="Treasurer" />
-				<YACard name="Anandakrishnan Narayanan" imagePath="/assets/team/male-profile-image-placeholder.png" />
+				<YACard name="Anandakrishnan Narayanan" imagePath="/assets/team/anand-narayanan.jpg" />
 				<YACard name="Prakash Punj" imagePath="/assets/team/prakash-punj.jpeg" />
 				<YACard name="Usha Sankar" imagePath="/assets/team/usha-sankar.jpg" />
 				<YACard name="Dipendra Lamichhane" imagePath="/assets/team/dipendra-lamichhane.jpg" />

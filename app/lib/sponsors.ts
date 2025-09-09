@@ -33,6 +33,13 @@ export const sponsors: Sponsor[] = [
 		href: "https://www.coastal24.com/",
 	},
 	{
+		name: "Empowerly",
+		imagePath: "/assets/sponsors/empowerly.png",
+		level: "diamond",
+		description: "Education partner and exclusive sponsor for our Essay Competition.",
+		href: "/sponsor/empowerly",
+	},
+	{
 		name: "Publix Super Markets",
 		imagePath: "/assets/sponsors/publix.png",
 		level: "diamond",
@@ -60,6 +67,13 @@ export const sponsors: Sponsor[] = [
 		level: "gold",
 		description: "Exclusive sponsor for Exhibition Booth",
 		href: "https://www.pnfp.com/",
+	},
+	{
+		name: "The Pratt Villas",
+		imagePath: "/assets/sponsors/the-pratt-villas-logo.jpeg",
+		level: "gold",
+		description: "Hospitality partner generously hosting our artists and guests with exceptional accommodations.",
+		href: "/sponsor/the-pratt-villas",
 	},
 	{
 		name: "Raj Jewels",
@@ -118,18 +132,6 @@ export const sponsors: Sponsor[] = [
 	},
 
 	// Partners
-	{
-		name: "The Pratt Villas",
-		imagePath: "/assets/sponsors/the-pratt-villas-logo.jpeg",
-		level: "partner",
-		description: "Hospitality partner generously hosting our artists and guests with exceptional accommodations.",
-	},
-	{
-		name: "Empowerly",
-		imagePath: "/assets/sponsors/empowerly.png",
-		level: "partner",
-		description: "Education partner and exclusive sponsor for our Essay Competition.",
-	},
 	{
 		name: "Cary Ballet Company",
 		imagePath: "/assets/sponsors/cary-ballet-company-logo.png",
