@@ -24,7 +24,12 @@ export default function PrimeSponsorCard({ name, href, description, imagePaths }
 			<div className="mt-0">
 				<h2 className="text-xl text-center justify-center mt-0 mb-2">
 					{href ? (
-						<a href={href} target="_blank" rel="noopener noreferrer" className="text-xl text-center justify-center mt-0 mb-2">
+						<a
+							href={href}
+							target="_blank"
+							rel="noopener noreferrer"
+							className="text-xl text-center justify-center mt-0 mb-2"
+						>
 							{name}
 						</a>
 					) : (

@@ -87,9 +87,11 @@ export default function MainLayout() {
 											<ListItem title="Our Team" href="/our-team">
 												Meet our team.
 											</ListItem>
+											{/*
 											<ListItem title="Sponsors & Partners" href="/our-sponsors">
 												Learn more about our sponsors and partners.
 											</ListItem>
+											*/}
 											<ListItem title="Gallery" href="/gallery">
 												View pictures and videos from past events.
 											</ListItem>
@@ -109,6 +111,11 @@ export default function MainLayout() {
 											</ListItem>
 										</ul>
 									</NavigationMenuContent>
+								</NavigationMenuItem>
+								<NavigationMenuItem>
+									<Link to="/our-sponsors" className={cn(navigationMenuTriggerStyle(), "text-foreground")}>
+										Sponsors
+									</Link>
 								</NavigationMenuItem>
 								<NavigationMenuItem>
 									<Link to="/gallery" className={cn(navigationMenuTriggerStyle(), "text-foreground")}>
@@ -197,14 +204,6 @@ export default function MainLayout() {
 											</SheetTrigger>
 											<SheetTrigger asChild>
 												<Link
-													to="/our-sponsors"
-													className="block py-1.5 px-3 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors"
-												>
-													Sponsors & Partners
-												</Link>
-											</SheetTrigger>
-											<SheetTrigger asChild>
-												<Link
 													to="/gallery"
 													className="block py-1.5 px-3 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors"
 												>
@@ -255,6 +254,15 @@ export default function MainLayout() {
 											</SheetTrigger>
 										</div>
 									</div>
+									<Separator className="my-1" />
+									<SheetTrigger asChild>
+										<Link
+											to="/our-sponsors"
+											className="block py-1.5 px-3 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors"
+										>
+											Sponsors
+										</Link>
+									</SheetTrigger>
 									<Separator className="my-1" />
 									<SheetTrigger asChild>
 										<Link

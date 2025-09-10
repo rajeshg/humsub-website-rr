@@ -1,5 +1,5 @@
-import { Badge } from "~/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+import { Badge } from "~/components/ui/badge"
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card"
 
 export default function DiwaliEssayCompetition() {
 	return (
@@ -12,9 +12,7 @@ export default function DiwaliEssayCompetition() {
 						<h1 className="text-4xl md:text-5xl font-extrabold text-blue-800 dark:text-blue-200 mb-2">
 							Hum Sub - Diwali Essay Competition
 						</h1>
-						<p className="text-lg text-gray-600 dark:text-gray-300">
-							Celebrate Diwali by sharing your thoughts!
-						</p>
+						<p className="text-lg text-gray-600 dark:text-gray-300">Celebrate Diwali by sharing your thoughts!</p>
 					</div>
 
 					{/* Flyer Image */}
@@ -31,9 +29,7 @@ export default function DiwaliEssayCompetition() {
 					{/* Contest Details & Rubric */}
 					<Card className="w-full max-w-5xl mb-8 shadow-lg">
 						<CardHeader>
-							<CardTitle className="text-xl font-bold">
-								Contest Details & Rubric
-							</CardTitle>
+							<CardTitle className="text-xl font-bold">Contest Details & Rubric</CardTitle>
 						</CardHeader>
 						<CardContent>
 							<div className="overflow-x-auto rounded bg-gray-50 dark:bg-gray-800 p-4">
@@ -66,24 +62,14 @@ export default function DiwaliEssayCompetition() {
 										Empowerly Partnership
 									</Badge>
 									<div className="text-2xl font-extrabold text-blue-800 dark:text-blue-200 mb-2">
-										1<sup>st</sup>{" "}
-										<span className="text-green-600 dark:text-green-300">
-											$500
-										</span>
-										<span className="mx-2 text-lg font-normal text-blue-400 dark:text-blue-300">
-											|
-										</span>
-										2<sup>nd</sup>{" "}
-										<span className="text-yellow-600 dark:text-yellow-300">
-											$250
-										</span>
+										1<sup>st</sup> <span className="text-green-600 dark:text-green-300">$500</span>
+										<span className="mx-2 text-lg font-normal text-blue-400 dark:text-blue-300">|</span>2<sup>nd</sup>{" "}
+										<span className="text-yellow-600 dark:text-yellow-300">$250</span>
 									</div>
 									<p className="font-semibold text-gray-800 dark:text-gray-100 text-lg mb-4">
 										Empowerly proudly partners with{" "}
-										<span className="text-blue-700 dark:text-blue-300 font-bold">
-											Hum Sub
-										</span>{" "}
-										to uplift student voices and empower youth education.
+										<span className="text-blue-700 dark:text-blue-300 font-bold">Hum Sub</span> to uplift student voices
+										and empower youth education.
 									</p>
 									<a
 										href="https://empowerly.com"
@@ -99,7 +85,9 @@ export default function DiwaliEssayCompetition() {
 					</Card>
 
 					{/* Entry Form Section */}
-					<h3 className="text-2xl md:text-3xl font-extrabold text-blue-800 dark:text-blue-200 mb-2">Submit your entry</h3>
+					<h3 className="text-2xl md:text-3xl font-extrabold text-blue-800 dark:text-blue-200 mb-2">
+						Submit your entry
+					</h3>
 					<div className="w-full max-w-5xl overflow-x-auto">
 						<iframe
 							title="Hum Sub - Diwali Essay Competition Form"
@@ -108,7 +96,6 @@ export default function DiwaliEssayCompetition() {
 							src="https://form.jotform.com/242075159180051"
 						></iframe>
 					</div>
-
 
 					{/* Footer */}
 					<footer className="w-full max-w-5xl mx-auto py-8 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md">
@@ -129,5 +116,5 @@ export default function DiwaliEssayCompetition() {
 				</div>
 			</div>
 		</>
-	);
+	)
 }

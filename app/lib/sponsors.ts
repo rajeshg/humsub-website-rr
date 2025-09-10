@@ -2,7 +2,7 @@ export type SponsorLevel = "prime" | "diamond" | "gold" | "silver" | "bronze" | 
 
 export interface Sponsor {
 	name: string
-	imagePath: string
+	imagePath: string | string[]
 	level: SponsorLevel
 	description?: string
 	href?: string
@@ -70,7 +70,7 @@ export const sponsors: Sponsor[] = [
 	},
 	{
 		name: "The Pratt Villas",
-		imagePath: "/assets/sponsors/the-pratt-villas-logo.jpeg",
+		imagePath: ["/assets/sponsors/the-pratt-villas-logo.jpeg", "/assets/sponsors/the-pratt-destination.jpeg"],
 		level: "gold",
 		description: "Hospitality partner generously hosting our artists and guests with exceptional accommodations.",
 		href: "/sponsor/the-pratt-villas",
@@ -79,7 +79,6 @@ export const sponsors: Sponsor[] = [
 		name: "Raj Jewels",
 		imagePath: "/assets/sponsors/raj-jewels-logo.jpeg",
 		level: "gold",
-		description: "Exclusive sponsor for Celebrity Dance",
 		href: "https://www.rajjewels.com/",
 	},
 	{
