@@ -6,6 +6,7 @@ export interface Sponsor {
 	level: SponsorLevel
 	description?: string
 	href?: string
+	label?: string
 }
 
 // Flat, ordered list for carousel and general use
@@ -16,6 +17,7 @@ export const sponsors: Sponsor[] = [
 		imagePath: "/assets/sponsors/Marius_logo.png",
 		level: "prime",
 		description: "Marius Pharmaceuticals is the prime sponsor for Hum Sub.",
+		label: "Prime Sponsor",
 	},
 
 	// Diamond Sponsors
@@ -31,6 +33,7 @@ export const sponsors: Sponsor[] = [
 		level: "diamond",
 		description: "Exclusive sponsor for Youth achievement award",
 		href: "https://www.coastal24.com/",
+		label: "Youth Achievement Award Sponsor",
 	},
 	{
 		name: "Empowerly",
@@ -38,6 +41,7 @@ export const sponsors: Sponsor[] = [
 		level: "diamond",
 		description: "Education partner and exclusive sponsor for our Essay Competition.",
 		href: "/sponsor/empowerly",
+		label: "Education partner",
 	},
 	{
 		name: "Publix Super Markets",
@@ -45,6 +49,7 @@ export const sponsors: Sponsor[] = [
 		level: "diamond",
 		description: "Exclusive fireworks sponsor",
 		href: "https://www.publix.com/",
+		label: "Fireworks Sponsor",
 	},
 
 	// Gold Sponsors
@@ -54,6 +59,7 @@ export const sponsors: Sponsor[] = [
 		level: "gold",
 		description: "Exclusive Travel Partner",
 		href: "https://www.lufthansa.com/us/en/homepage",
+		label: "Travel Partner",
 	},
 	{
 		name: "BMW of Southpoint",
@@ -67,6 +73,7 @@ export const sponsors: Sponsor[] = [
 		level: "gold",
 		description: "Exclusive sponsor for Exhibition Booth",
 		href: "https://www.pnfp.com/",
+		label: "Exhibition Booth Sponsor",
 	},
 	{
 		name: "The Pratt Villas",
@@ -74,6 +81,7 @@ export const sponsors: Sponsor[] = [
 		level: "gold",
 		description: "Hospitality partner generously hosting our artists and guests with exceptional accommodations.",
 		href: "/sponsor/the-pratt-villas",
+		label: "Hospitality Partner",
 	},
 	{
 		name: "Raj Jewels",
@@ -104,6 +112,7 @@ export const sponsors: Sponsor[] = [
 		imagePath: "/assets/sponsors/Radio-Nyra-logo.jpeg",
 		level: "media",
 		href: "https://radionyra.com/",
+		label: "Media Partner",
 	},
 
 	// Grantors

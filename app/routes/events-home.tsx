@@ -27,34 +27,32 @@ export default function EventsHome({ loaderData }: Route.ComponentProps) {
 		<div>
 			<title>Events | Hum Sub</title>
 			<h1>Events</h1>
-			{/* Discover India Series Link */}
-			<div className="mb-8">
-				<div className="flex flex-col md:flex-row gap-6">
-					<figure className="not-prose">
-						<img
-							src="/assets/discover-india-series-2025.jpeg"
-							alt="Discover India Series"
-							className="w-full md:w-64 object-cover"
-						/>
-					</figure>
-					<div className="mt-0">
-						<h2 className="mt-0 text-2xl font-bold">Discover India Series</h2>
-						<p className="text-base">
-							Year-round event series celebrating India's rich culture and heritage. Click to learn more!
-						</p>
-						<div className="flex justify-end">
-							<Button asChild>
-								<Link to="/discover-india-series" className="no-underline">
-									Learn More
-								</Link>
-							</Button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<section className="mb-16">
-				<h2>Upcoming Events</h2>
 
+			{/* Main Events Section */}
+			<section className="mb-8">
+				<p className="mb-4">
+					Hum Sub hosts flagship events like{" "}
+					<Link to="/events/diwali" className="underline text-primary hover:text-primary/80 transition-colors">
+						Diwali
+					</Link>
+					{", "}
+					<Link to="/events/holi" className="underline text-primary hover:text-primary/80 transition-colors">
+						Holi
+					</Link>
+					{", "}
+					<Link to="/events/basant-bahar" className="underline text-primary hover:text-primary/80 transition-colors">
+						Basant Bahar
+					</Link>
+					{", and an "}
+					<Link to="/events/exhibition" className="underline text-primary hover:text-primary/80 transition-colors">
+						Exhibition
+					</Link>{" "}
+					celebrating Indian culture and heritage.
+				</p>
+			</section>
+
+			<section className="mb-8">
+				<h2 className="mb-0 md:mb-2">Upcoming Events</h2>
 				{loaderData.upcomingEvents.length > 0 ? (
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 						{loaderData.upcomingEvents.map((event) => (
@@ -73,12 +71,35 @@ export default function EventsHome({ loaderData }: Route.ComponentProps) {
 					<p>No upcoming events.</p>
 				)}
 			</section>
+			{/* Discover India Series Link */}
+			<section className="mb-8">
+				<div className="flex flex-col md:flex-row gap-6">
+					<figure className="not-prose">
+						<img
+							src="/assets/discover-india-series-2025.jpeg"
+							alt="Discover India Series"
+							className="w-full md:w-64 max-h-56 object-contain"
+						/>
+					</figure>
+					<div className="mt-0">
+						<h2 className="mt-0 text-2xl font-bold">Discover India Series</h2>
+						<p className="text-base">
+							Year-round event series celebrating India's rich culture and heritage. Click to learn more!
+						</p>
+						<div className="flex justify-end">
+							<Button asChild>
+								<Link to="/discover-india-series">Learn More</Link>
+							</Button>
+						</div>
+					</div>
+				</div>
+			</section>
 
 			<section>
 				<h2>Past Events</h2>
 				{loaderData.pastEvents.length > 0 ? (
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-						{loaderData.pastEvents.map((event) => (
+						{loaderData.pastEvents.slice(0, 8).map((event) => (
 							<EventCard
 								key={event.slug}
 								title={event.frontmatter.title}

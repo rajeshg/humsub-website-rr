@@ -118,11 +118,6 @@ export default function MainLayout() {
 									</Link>
 								</NavigationMenuItem>
 								<NavigationMenuItem>
-									<Link to="/gallery" className={cn(navigationMenuTriggerStyle(), "text-foreground")}>
-										Gallery
-									</Link>
-								</NavigationMenuItem>
-								<NavigationMenuItem>
 									<Link to="/blog" className={cn(navigationMenuTriggerStyle(), "text-foreground")}>
 										Blog
 									</Link>

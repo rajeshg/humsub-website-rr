@@ -108,5 +108,5 @@ export default function SponsorPage() {
 		)
 	}
 
-	return <div className="max-w-3xl mx-auto p-4 no-prose">{sponsor.content}</div>
+	return <div className="max-w-3xl mx-auto p-4 not-prose">{sponsor.content}</div>
 }

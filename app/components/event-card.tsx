@@ -21,7 +21,7 @@ export default function EventCard({
 	isPast?: boolean
 }) {
 	return (
-		<Card className="h-full overflow-hidden flex flex-col transition-transform duration-300 hover:scale-105">
+		<Card className="h-full overflow-hidden flex flex-col transition-transform duration-300 hover:scale-105 py-0">
 			<div className="relative aspect-[16/9] overflow-hidden">
 				<img src={imageUrl} alt={title} width={400} height={225} className="w-full h-full object-cover object-top" />
 				{isPast && (
