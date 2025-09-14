@@ -81,6 +81,8 @@ export const sponsors: Sponsor[] = [
 		level: "gold",
 		description:
 			"Hospitality Partner generously sponsoring accommodations and hosting our artists and guests at HumSub Diwali.",
+		description:
+			"Hospitality Partner generously sponsoring accommodations and hosting our artists and guests at HumSub Diwali.",
 		href: "/sponsor/the-pratt-villas",
 		label: "Hospitality Partner",
 	},
@@ -110,9 +112,20 @@ export const sponsors: Sponsor[] = [
 		level: "silver",
 		href: "https://cornerstonepediatrics.org/",
 	},
+	{
+		name: "Khara Orthodontics",
+		imagePath: "/assets/sponsors/khara.webp",
+		level: "silver",
+		href: "https://www.kharabraces.com/",
+	},
 
 	// Bronze Sponsors
 
+	{
+		name: "Sudha and Satpal Rathie",
+		imagePath: "/assets/sponsors/sudha-satpal-rathie.png",
+		level: "bronze",
+	},
 	// Media Partners
 	{
 		name: "Radio Nyra",
@@ -127,6 +140,7 @@ export const sponsors: Sponsor[] = [
 		name: "Town of Cary, NC",
 		imagePath: "/assets/sponsors/town-of-cary-logo.png",
 		level: "grantor",
+		href: "https://www.carync.gov/",
 	},
 	{
 		name: "United Arts - Wake County",
@@ -134,16 +148,19 @@ export const sponsors: Sponsor[] = [
 		level: "grantor",
 		description:
 			"Hum Sub is supported by the United Arts Wake County as well as the N.C. Arts Council, a division of the Department of Natural and Cultural Resources.",
+		href: "https://unitedarts.org/",
 	},
 	{
 		name: "Lazy Daze Festival, Cary",
 		imagePath: "/assets/sponsors/lazy-daze.jpg",
 		level: "grantor",
+		href: "https://www.carync.gov/recreation-enjoyment/events/festivals/lazy-daze-arts-and-crafts-festival",
 	},
 	{
 		name: "North Carolina Arts Council",
 		imagePath: "/assets/sponsors/NCAC-color2.jpg",
 		level: "grantor",
+		href: "https://www.ncarts.org/",
 	},
 
 	// Partners
@@ -151,6 +168,7 @@ export const sponsors: Sponsor[] = [
 		name: "Cary Ballet Company",
 		imagePath: "/assets/sponsors/cary-ballet-company-logo.png",
 		level: "partner",
+		href: "https://www.caryballetcompany.org/",
 	},
 ]
 
