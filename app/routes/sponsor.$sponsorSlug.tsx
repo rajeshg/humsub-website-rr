@@ -48,7 +48,8 @@ const SPONSOR_DATA: Record<string, { name: string; description: string; logo?: s
 	"the-pratt-villas": {
 		name: "The Pratt Villas",
 		logo: thePrattVillasLogo,
-		description: "Hospitality partner generously hosting our artists and guests with exceptional accommodations.",
+		description:
+			"Hospitality Partner generously sponsoring accommodations and hosting our artists and guests at HumSub Diwali.",
 		content: (
 			<>
 				<div className="flex flex-col md:flex-row items-center gap-8 bg-white dark:bg-gray-900 rounded-lg shadow-lg p-8 my-8">
@@ -66,13 +67,15 @@ const SPONSOR_DATA: Record<string, { name: string; description: string; logo?: s
 							Hospitality Partner
 						</span>
 						<p className="mb-4 text-lg text-gray-700 dark:text-gray-200">
-							The Pratt Villas offers luxury and corporate rentals, real estate, and relocation consulting in the
-							Triangle of NC. Renowned for their exceptional accommodations and personalized service, they provide a
-							true "Stile Di Vita Sontuoso"—a luxurious lifestyle—for every guest.
+							The Pratt Villas stands as a premier destination for luxury furnished boutique residences, catering to
+							corporate housing as well as short-, mid-, and long-term stays. Soon to be joined by their newest premium
+							venture — The Pratt Destination — an exclusive venue for weddings and corporate events. Celebrated for
+							exceptional accommodations and personalized service, they embody Stile Di Vita Sontuoso — offering every
+							guest an experience of true luxurious living.
 						</p>
 						<p className="mb-4 text-gray-600 dark:text-gray-300">
-							As our <b>Hospitality Partner</b>, The Pratt Villas generously hosts our artists and guests, ensuring a
-							memorable and comfortable experience during Hum Sub events.
+							As our <b>Hospitality Partner</b>, The Pratt Villas graciously hosts our artists and guests, creating a
+							truly comfortable and memorable experience during HumSub Diwali.
 						</p>
 						<a
 							href="https://theprattvillas.com/"

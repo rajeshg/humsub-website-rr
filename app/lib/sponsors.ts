@@ -79,7 +79,8 @@ export const sponsors: Sponsor[] = [
 		name: "The Pratt Villas",
 		imagePath: ["/assets/sponsors/the-pratt-villas-logo.jpeg", "/assets/sponsors/the-pratt-destination.jpeg"],
 		level: "gold",
-		description: "Hospitality partner generously hosting our artists and guests with exceptional accommodations.",
+		description:
+			"Hospitality Partner generously sponsoring accommodations and hosting our artists and guests at HumSub Diwali.",
 		href: "/sponsor/the-pratt-villas",
 		label: "Hospitality Partner",
 	},
@@ -102,6 +103,12 @@ export const sponsors: Sponsor[] = [
 		imagePath: "/assets/sponsors/first_bank_logo.jpg",
 		level: "silver",
 		href: "https://localfirstbank.com/",
+	},
+	{
+		name: "Cornerstone Pediatric and Adolescent Medicine",
+		imagePath: "/assets/sponsors/cornerstone-pediatrics.png",
+		level: "silver",
+		href: "https://cornerstonepediatrics.org/",
 	},
 
 	// Bronze Sponsors
