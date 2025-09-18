@@ -12,5 +12,11 @@
 	"kv_namespaces": [{ "binding": "KV", "id": "3f35c1ccd68f43a79e9fcbaecf376377" }],
 	"durable_objects": {
 		"bindings": [{ "name": "COUNTER_DO", "class_name": "Counter" }]
-	}
+	},
+	"migrations": [
+		{
+			"tag": "v1",
+			"new_classes": ["Counter"]
+		}
+	]
 }
