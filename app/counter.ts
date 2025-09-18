@@ -62,121 +62,66 @@ export class Counter extends DurableObject {
 		this.clients = new Set()
 		this.timers = new Map()
 
-		// Initialize the event state using results.json when available.
-		// Fallback to the previous hard-coded defaults if results.json is missing or invalid.
+		// Simplified event state initialization
+		const defaultItems: Item[] = [
+			{
+				itemId: "item-1",
+				name: "Item 1",
+				type: "PERFORMANCE",
+				state: "NONE",
+				timer_start_time: null,
+				description: null,
+				style: null,
+				teamSize: null,
+				choreographers: null,
+				duration: null,
+				durationSeconds: null,
+			},
+			{
+				itemId: "item-2",
+				name: "Item 2",
+				type: "PERFORMANCE",
+				state: "CHECKED IN",
+				timer_start_time: null,
+				durationSeconds: 12,
+				description: null,
+				style: null,
+				teamSize: null,
+				choreographers: null,
+				duration: null,
+			},
+			{
+				itemId: "break-1",
+				name: "Break 1",
+				type: "BREAK",
+				state: "NONE",
+				timer_start_time: null,
+			},
+			{
+				itemId: "item-3",
+				name: "Item 3",
+				type: "PERFORMANCE",
+				state: "NONE",
+				timer_start_time: null,
+				description: null,
+				style: null,
+				teamSize: null,
+				choreographers: null,
+				duration: null,
+				durationSeconds: null,
+			},
+		]
+
+		let parsed: Partial<EventState> = {}
 		try {
-			const parsed = results && typeof results === "object" ? (results as Partial<EventState>) : {}
-			this.event = {
-				name: parsed.name ?? "Hum Sub Diwali 2025",
-				startDate: parsed.startDate ?? "2025-10-11T09:00:00Z",
-				endDate: parsed.endDate ?? null,
-				items: Array.isArray(parsed)
-					? (parsed as Item[])
-					: [
-							{
-								itemId: "item-1",
-								name: "Item 1",
-								type: "PERFORMANCE",
-								state: "NONE",
-								timer_start_time: null,
-								// new defaults
-								description: null,
-								style: null,
-								teamSize: null,
-								choreographers: null,
-								duration: null,
-								durationSeconds: null,
-							},
-							{
-								itemId: "item-2",
-								name: "Item 2",
-								type: "PERFORMANCE",
-								state: "CHECKED IN",
-								timer_start_time: null,
-								durationSeconds: 12,
-								description: null,
-								style: null,
-								teamSize: null,
-								choreographers: null,
-								duration: null,
-							},
-							{
-								itemId: "break-1",
-								name: "Break 1",
-								type: "BREAK",
-								state: "NONE",
-								timer_start_time: null,
-							},
-							{
-								itemId: "item-3",
-								name: "Item 3",
-								type: "PERFORMANCE",
-								state: "NONE",
-								timer_start_time: null,
-								description: null,
-								style: null,
-								teamSize: null,
-								choreographers: null,
-								duration: null,
-								durationSeconds: null,
-							},
-						],
-			}
-		} catch {
-			// fallback in case of any parsing/assignment errors
-			this.event = {
-				name: "Hum Sub Diwali 2025",
-				startDate: "2025-10-11T09:00:00Z",
-				endDate: null,
-				items: [
-					{
-						itemId: "item-1",
-						name: "Item 1",
-						type: "PERFORMANCE",
-						state: "NONE",
-						timer_start_time: null,
-						description: null,
-						style: null,
-						teamSize: null,
-						choreographers: null,
-						duration: null,
-						durationSeconds: null,
-					},
-					{
-						itemId: "item-2",
-						name: "Item 2",
-						type: "PERFORMANCE",
-						state: "CHECKED IN",
-						timer_start_time: null,
-						durationSeconds: 12,
-						description: null,
-						style: null,
-						teamSize: null,
-						choreographers: null,
-						duration: null,
-					},
-					{
-						itemId: "break-1",
-						name: "Break 1",
-						type: "BREAK",
-						state: "NONE",
-						timer_start_time: null,
-					},
-					{
-						itemId: "item-3",
-						name: "Item 3",
-						type: "PERFORMANCE",
-						state: "NONE",
-						timer_start_time: null,
-						description: null,
-						style: null,
-						teamSize: null,
-						choreographers: null,
-						duration: null,
-						durationSeconds: null,
-					},
-				],
-			}
+			parsed = results && typeof results === "object" ? (results as Partial<EventState>) : {}
+		} catch { }
+
+		this.event = {
+			name: parsed.name ?? "Hum Sub Diwali 2025",
+			startDate: parsed.startDate ?? "2025-10-11T09:00:00Z",
+			endDate: parsed.endDate ?? null,
+			items: Array.isArray(parsed.items) ? parsed.items as Item[] : defaultItems,
 		}
 
 		// Normalize durationSeconds for PERFORMANCE items when a duration string exists
@@ -229,7 +174,7 @@ export class Counter extends DurableObject {
 							// schedule asynchronously
 							try {
 								this.scheduleTimerEnd(it as PerformanceItem)
-							} catch {}
+							} catch { }
 						}
 					}
 				}
@@ -246,7 +191,7 @@ export class Counter extends DurableObject {
 		if (existing) {
 			try {
 				clearTimeout(existing as unknown as number)
-			} catch {}
+			} catch { }
 			this.timers.delete(item.itemId)
 		}
 
@@ -339,13 +284,13 @@ export class Counter extends DurableObject {
 							item.state = state as PerformanceState
 							// If marking as CHECKED IN or BACKSTAGE, clear any running timers
 							if (item.state === "CHECKED IN" || item.state === "BACKSTAGE") {
-								;(item as PerformanceItem).timer_start_time = null
-								;(item as PerformanceItem).timer_end_time = null
+								; (item as PerformanceItem).timer_start_time = null
+									; (item as PerformanceItem).timer_end_time = null
 								const t = this.timers.get(item.itemId)
 								if (t) {
 									try {
 										clearTimeout(t as unknown as number)
-									} catch {}
+									} catch { }
 									this.timers.delete(item.itemId)
 								}
 							}
@@ -361,7 +306,7 @@ export class Counter extends DurableObject {
 				}
 
 				if (durationSeconds !== undefined && item.type === "PERFORMANCE") {
-					;(item as PerformanceItem).durationSeconds = durationSeconds
+					; (item as PerformanceItem).durationSeconds = durationSeconds
 					if ((item as PerformanceItem).timer_start_time) {
 						this.scheduleTimerEnd(item as PerformanceItem)
 					}
@@ -404,7 +349,7 @@ export class Counter extends DurableObject {
 				// If this item just became PERFORMING, ensure only one PERFORMANCE item is performing at a time.
 				if (item.type === "PERFORMANCE" && item.state === "PERFORMING") {
 					// Always clear the timer_end_time when state becomes PERFORMING
-					;(item as PerformanceItem).timer_end_time = null
+					; (item as PerformanceItem).timer_end_time = null
 
 					for (const other of this.event.items) {
 						if (other.itemId !== item.itemId && other.type === "PERFORMANCE") {
@@ -423,14 +368,14 @@ export class Counter extends DurableObject {
 				// If item transitioned to DONE, set timer_end_time if missing
 				if ((item as PerformanceItem).state === "DONE") {
 					if (!(item as PerformanceItem).timer_end_time) {
-						;(item as PerformanceItem).timer_end_time = Date.now()
+						; (item as PerformanceItem).timer_end_time = Date.now()
 					}
 					// clear any scheduled timer
 					const t = this.timers.get(item.itemId)
 					if (t) {
 						try {
 							clearTimeout(t as unknown as number)
-						} catch {}
+						} catch { }
 						this.timers.delete(item.itemId)
 					}
 				}
@@ -620,13 +565,13 @@ export class Counter extends DurableObject {
 						item.state = data.newState as PerformanceState
 						// If marking as CHECKED IN or BACKSTAGE, clear any running timers
 						if (item.state === "CHECKED IN" || item.state === "BACKSTAGE") {
-							;(item as PerformanceItem).timer_start_time = null
-							;(item as PerformanceItem).timer_end_time = null
+							; (item as PerformanceItem).timer_start_time = null
+								; (item as PerformanceItem).timer_end_time = null
 							const t = this.timers.get(item.itemId)
 							if (t) {
 								try {
 									clearTimeout(t as unknown as number)
-								} catch {}
+								} catch { }
 								this.timers.delete(item.itemId)
 							}
 						}
@@ -635,7 +580,7 @@ export class Counter extends DurableObject {
 
 				// If this item just became PERFORMING, ensure only one PERFORMANCE item is performing at a time
 				if (item.type === "PERFORMANCE" && item.state === "PERFORMING") {
-					;(item as PerformanceItem).timer_end_time = null
+					; (item as PerformanceItem).timer_end_time = null
 					for (const other of this.event.items) {
 						if (other.itemId !== item.itemId && other.type === "PERFORMANCE") {
 							const perf = other as PerformanceItem
@@ -651,13 +596,13 @@ export class Counter extends DurableObject {
 				// If item transitioned to DONE, set timer_end_time if missing
 				if (item.state === "DONE") {
 					if (!(item as PerformanceItem).timer_end_time) {
-						;(item as PerformanceItem).timer_end_time = Date.now()
+						; (item as PerformanceItem).timer_end_time = Date.now()
 					}
 					const t = this.timers.get(item.itemId)
 					if (t) {
 						try {
 							clearTimeout(t as unknown as number)
-						} catch {}
+						} catch { }
 						this.timers.delete(item.itemId)
 					}
 				}
@@ -724,9 +669,7 @@ export class Counter extends DurableObject {
 		for (const client of this.clients) {
 			try {
 				client.send(data)
-			} catch {
-				// ignore send errors and continue
-			}
+			} catch { }
 		}
 	}
 }
