@@ -1,4 +1,4 @@
 {
 	"typescript.preferences.autoImportSpecifierExcludeRegexes": ["@radix-ui", "lucide-react"],
-	"markdownPasteImage.imageNamePrefix": "blog-place-home"
+	"workbench.colorTheme": "Night Owl Light"
 }

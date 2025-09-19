@@ -4,7 +4,7 @@ applyTo: "**"
 ---
 
 # Code Style Guide
-
+- It's okay to add console.log statements for debugging if asked explicitly.
 
 # Directory structure
 - common logic should be kept in `app/lib` directory

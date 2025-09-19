@@ -15,7 +15,10 @@ export function convertToTimezoneOffsettedString(dateString: string, timezone: s
 		const zonedDate = new TZDate(parseISO(dateString), timezone) // Parse ISO date and apply timezone
 		return format(zonedDate, "yyyy-MM-dd'T'HH:mm:ss.SSSXXX") // Format with timezone offset
 	} catch (error) {
-		console.error("error with convertToTimezoneOffsettedString", error)
+		// Only log in non-test environments to avoid stderr noise during testing
+		if (!import.meta.env?.VITEST) {
+			console.error("error with convertToTimezoneOffsettedString", error)
+		}
 		return "Invalid date" // Handle invalid date strings gracefully
 	}
 }

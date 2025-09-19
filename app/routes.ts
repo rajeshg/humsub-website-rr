@@ -37,6 +37,7 @@ export default [
 		route("privacy-policy", "routes/privacy-policy.mdx"),
 		route("terms-and-conditions", "routes/terms-and-conditions.mdx"),
 		route("2025-raffle", "routes/2025-raffle.tsx"),
+		route("durable", "routes/durable.tsx"),
 		layout("routes/events-layout.tsx", [
 			route("events/diwali", "routes/events/diwali.tsx"),
 			route("events/holi", "routes/events/holi.tsx"),
@@ -64,5 +65,6 @@ export default [
 		// Catch-all route for Chrome DevTools and other special paths
 		route("*", "routes/catch-all.tsx"),
 	]),
+	route("stage-timer", "routes/stage-timer.tsx"),
 	route("api/youtube", "routes/api/youtube.ts"),
 ] satisfies RouteConfig
