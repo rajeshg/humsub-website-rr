@@ -1,6 +1,6 @@
 import { Icon } from "@iconify-icon/react"
 import { preload } from "react-dom"
-import { Link, Outlet } from "react-router"
+import { Link, Outlet, redirect } from "react-router"
 import blogCss from "~/blog.css?url"
 import { Button } from "~/components/ui/button"
 import type { EventMeta } from "~/events.server"
@@ -10,6 +10,16 @@ import type { Route } from "./+types/events-detail"
 export async function loader({ request }: Route.LoaderArgs) {
 	const url = new URL(request.url)
 	const path = url.pathname.split("/").pop()
+
+	// Handle redirects for specific events
+	const redirects: Record<string, string> = {
+		"diwali-2025": "/hum-sub-diwali-2025",
+		// Add more redirects here as needed
+	}
+	if (path && redirects[path]) {
+		return redirect(redirects[path], { status: 301 })
+	}
+
 	const event = (await import(`../content/events/${path}.mdx`)) as EventMeta
 	if (event.frontmatter?.["start-date"]) {
 		event.frontmatter.startDateISO = event.frontmatter["start-date"]

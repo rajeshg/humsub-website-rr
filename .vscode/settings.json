@@ -1,4 +1,4 @@
 {
 	"typescript.preferences.autoImportSpecifierExcludeRegexes": ["@radix-ui", "lucide-react"],
-	"workbench.colorTheme": "Night Owl Light"
+	"workbench.colorTheme": "Visual Studio Light"
 }

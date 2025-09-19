@@ -73,13 +73,14 @@ export default function OurSponsors() {
 				Hum Sub is supported by the United Arts Council of Raleigh and Wake County as well as the NC Arts Council, a
 				division of the Department of Natural and Cultural Resources.
 			</p>
-
+			{/* - No partners anymore. Removed Cary Ballet.
 			<h2>Partners</h2>
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-transparent">
 				{getSponsorsByLevel("partner").map((sponsor) => (
 					<SponsorCard key={sponsor.name} {...sponsor} />
 				))}
 			</div>
+			*/}
 
 			<Card className="shadow-lg hover:shadow-xl transition-shadow mt-4">
 				<CardHeader>

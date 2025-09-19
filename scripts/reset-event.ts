@@ -59,7 +59,7 @@ async function main() {
 			console.error("Reset failed", res.status, parsed)
 			process.exit(1)
 		}
-	process.stdout.write(`${JSON.stringify({ status: res.status, body: parsed }, null, 2)}\n`)
+		process.stdout.write(`${JSON.stringify({ status: res.status, body: parsed }, null, 2)}\n`)
 	} catch (err) {
 		console.error("Request failed:", err)
 		process.exit(1)

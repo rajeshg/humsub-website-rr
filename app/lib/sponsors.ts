@@ -162,12 +162,6 @@ export const sponsors: Sponsor[] = [
 	},
 
 	// Partners
-	{
-		name: "Cary Ballet Company",
-		imagePath: "/assets/sponsors/cary-ballet-company-logo.png",
-		level: "partner",
-		href: "https://www.caryballetcompany.org/",
-	},
 ]
 
 // Utility function to get sponsors by level - more efficient than maintaining a separate structure

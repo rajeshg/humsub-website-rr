@@ -82,7 +82,7 @@ export default function Membership() {
 
 				<div className="text-center mt-8">
 					<a
-						href="https://portal.humsub.org/"
+						href="/membership/signup"
 						target="_blank"
 						rel="noopener noreferrer"
 						aria-label="Sign up for Hum Sub membership (opens in new tab)"
