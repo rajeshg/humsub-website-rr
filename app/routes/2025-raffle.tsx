@@ -10,9 +10,6 @@ export default function Raffle2025() {
 					<h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
 						Hum Sub Diwali 2025 Raffle
 					</h1>
-					<div className="inline-flex items-center px-4 py-2 bg-blue-100 dark:bg-blue-900/30 rounded-full">
-						<span className="text-blue-700 dark:text-blue-300 font-medium">Sponsored by Lufthansa</span>
-					</div>
 				</div>
 
 				{/* Prize Announcement */}
@@ -24,6 +21,15 @@ export default function Raffle2025() {
 								Win 2 Round-Trip Lufthansa Tickets
 							</h2>
 							<p className="text-lg text-gray-600 dark:text-gray-300">Valued at $2,400 each</p>
+
+							<div className="flex flex-col items-center px-4 py-2">
+								<img
+									src="/assets/sponsors/logo-lufthansa.png"
+									alt="Lufthansa Logo"
+									className="h-18 w-auto mr-2 mt-1 mb-1"
+								/>
+								<span className="text-blue-700 dark:text-blue-300 font-medium">Sponsored by Lufthansa</span>
+							</div>
 						</div>
 
 						<Raffle2025Button />
@@ -113,6 +119,14 @@ export default function Raffle2025() {
 							<AccordionContent>
 								Winner will be announced on event day (October 11, 2025) at the Hum Sub Diwali festival held at Koka
 								Booth Amphitheatre (8003 Regency Pkwy, Cary, NC 27518).
+							</AccordionContent>
+						</AccordionItem>
+						<AccordionItem value="item-6">
+							<AccordionTrigger className="font-semibold text-left">
+								Is there a time limit on when the Lufthansa voucher has to be used from the raffle?
+							</AccordionTrigger>
+							<AccordionContent>
+								The Lufthansa voucher must be used within one year of the raffle date, which is October 11, 2025.
 							</AccordionContent>
 						</AccordionItem>
 					</Accordion>

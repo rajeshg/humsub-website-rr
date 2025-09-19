@@ -139,7 +139,7 @@ export default function HumSubDiwali2025() {
 							<p>
 								<strong className="text-primary">Admission:</strong>
 								<Badge variant="default" className="ml-2 bg-green-600 hover:bg-green-700 text-white">
-									FREE TO THE PUBLIC
+									FREE TO THE PUBLIC (seating with membership)
 								</Badge>
 							</p>
 						</div>
@@ -148,43 +148,25 @@ export default function HumSubDiwali2025() {
 							<div>
 								<strong className="text-primary">Seating:</strong>
 								<p>
-									Seniors (65 and older only with a valid government ID) have access to free seating (limited seats) all
-									day long. Free seats for everyone upfront until daytime programs end.
+									Seating at the Hum Sub Diwali event is <strong>only possible through membership</strong>. Each person
+									requiring a seat must have an annual membership for just{" "}
+									<strong className="text-green-600">$10</strong>.
 								</p>
-							</div>
-
-							<div>
-								<strong className="text-primary">Seating after 5 PM:</strong>
 								<p>
-									Starting 5:00PM (possibly earlier), <span className="font-semibold text-error">EVERYONE</span> must
-									have a ticket to reserve a spot at the seating area (Except for Seniors 65+).
+									Membership provides priority access to premium seating areas for the entire day, including all daytime
+									programs and evening special performances.
 								</p>
-							</div>
-
-							<ul className="list-disc pl-5 space-y-2">
-								<li>Children 2 & under are free but MUST sit on a lap.</li>
-								<li>
-									Seniors 65 & Older MUST show a valid Government Issued ID at the Hum Sub Information Booth for a
-									wristband to enter the seating area.
-								</li>
-							</ul>
-
-							<div className="alert alert-warning alert-soft mt-4">
-								<span className="font-semibold">NOTE:</span> SEATING IS SUBJECT TO AVAILABILITY
-							</div>
-
-							<div className="mt-4">
-								<strong className="text-primary">Seating arrangements:</strong>
-								<Button variant="outline" size="sm" className="ml-2" asChild>
-									<a
-										href="/assets/HD2024-SeatingArrangements-v2.pdf"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="no-underline"
-									>
-										View PDF
-									</a>
-								</Button>
+								<p>
+									If you need to sign up for membership, please visit our{" "}
+									<Link to="/membership" className="link link-primary">
+										membership page
+									</Link>{" "}
+									to learn more about the benefits, including front-section access, special offers year-round, and more.
+								</p>
+								<div className="alert alert-info alert-soft mt-4 text-sm">
+									<span className="font-semibold">Note:</span> Membership seating is available on a first come, first
+									served basis.
+								</div>
 							</div>
 						</div>
 					</div>

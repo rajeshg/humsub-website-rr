@@ -13,12 +13,12 @@ export type PostMeta = {
 }
 
 export async function getPosts(): Promise<PostMeta[]> {
-	const modules = import.meta.glob<{ frontmatter: Frontmatter }>("./content/blog-posts/*.mdx", { eager: true })
+	const modules = import.meta.glob<{ frontmatter: Frontmatter }>("./content/blog-posts/*.{md,mdx}", { eager: true })
 
 	const build = await import("virtual:react-router/server-build")
 
 	const posts = Object.entries(modules).map(([file, post]) => {
-		const id = file.replace("./", "").replace(/\.mdx$/, "")
+		const id = file.replace("./", "").replace(/\.mdx?$/, "")
 		const slug = build.routes[id]?.path
 
 		if (slug === undefined) throw new Error(`No route for ${id}`)

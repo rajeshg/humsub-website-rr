@@ -1,6 +1,6 @@
 import { env } from "cloudflare:workers"
 import type { RequestHandler } from "react-router"
-import { createRequestHandler, unstable_RouterContextProvider } from "react-router"
+import { createRequestHandler, RouterContextProvider } from "react-router"
 import { Counter } from "./counter"
 import type { EventState } from "./counter"
 
@@ -42,7 +42,7 @@ export default {
 		if (handler === null) handler = createRequestHandler(build)
 
 		// Create a new router context for each request
-		const context = new unstable_RouterContextProvider()
+		const context = new RouterContextProvider()
 
 		// Call the handler with the request and context and return the response
 		return await handler(request, context)

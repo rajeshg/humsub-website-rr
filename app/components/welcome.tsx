@@ -53,12 +53,12 @@ export function Welcome({ events }: { events: EventMeta[] }) {
 							<div className="text-lg font-semibold flex items-center justify-center mb-2">
 								<span className="animate-pulse text-primary dark:text-amber-300">Upcoming Events</span>
 							</div>
-							<div className="flex flex-col md:flex-row gap-2 md:gap-4 w-full">
+							<div className="flex flex-col gap-2 md:gap-4 w-full">
 								{events.map((event) => (
 									<Link
 										key={event.slug}
 										to={`/event/${event.slug}`}
-										className="flex flex-row gap-3 link link-hover link-primary dark:link-accent items-center transition-transform hover:scale-105 w-full max-w-xs mx-auto"
+										className="flex flex-row gap-3 link link-hover link-primary dark:link-accent items-center transition-transform hover:scale-105 w-full mx-auto"
 									>
 										<figure className="w-12 h-12 md:w-16 md:h-16 mask mask-decagon shadow-md flex-shrink-0 overflow-hidden">
 											<img
@@ -69,9 +69,13 @@ export function Welcome({ events }: { events: EventMeta[] }) {
 												className="object-contain object-top"
 											/>
 										</figure>
-										<div className="flex flex-col gap-1">
-											<span className="font-medium truncate text-left">{event.frontmatter?.title}</span>
-											<span className="text-xs truncate text-left">{event.frontmatter?.startDateUserFriendly}</span>
+										<div className="flex flex-col gap-1 truncate">
+											<span className="font-medium text-left" title={event.frontmatter?.title}>
+												{event.frontmatter?.title}
+											</span>
+											<span className="text-xs text-left" title={event.frontmatter?.startDateUserFriendly}>
+												{event.frontmatter?.startDateUserFriendly}
+											</span>
 										</div>
 									</Link>
 								))}

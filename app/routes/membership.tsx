@@ -17,9 +17,15 @@ export default function Membership() {
 			<h1 className="text-3xl sm:text-4xl font-bold text-center mb-4">Hum Sub Membership</h1>
 
 			<section className="prose prose-neutral dark:prose-invert mx-auto">
+				<div className="text-center mb-6">
+					<div className="text-2xl font-bold text-green-600 dark:text-green-400">$10</div>
+					<div className="text-sm text-muted-foreground">Annual Membership</div>
+				</div>
+
 				<p>
 					Membership is an annual plan that gives you priority access to our Diwali event's best seating and
-					members-only perks — all while helping us fund and grow community programming.
+					members-only perks — all while helping us fund and grow community programming. Our membership follows the
+					calendar year for easy renewal planning.
 				</p>
 
 				<h2 className="mt-6 text-xl font-semibold">What you get</h2>

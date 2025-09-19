@@ -29,10 +29,20 @@ export default function YAA() {
 					up the sponsorship for YAA. Hum Sub’s goal is for the YAA program to be featured on school newsletters as one
 					of the coveted scholarships.
 				</p>
+
+				<div className="flex flex-col items-center px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm bg-white dark:bg-gray-800">
+					<img
+						src="/assets/sponsors/coastal-logo.png"
+						alt="Coastal Credit Union Logo - Diamond Sponsor"
+						className="max-h-32 mx-auto object-contain mb-4"
+						title="Coastal Credit Union - Diamond Sponsor"
+					/>
+					<span className="text-blue-700 dark:text-blue-300 font-medium">Sponsored by Coastal Credit Union</span>
+				</div>
 				<p>
-					For more information, please check YAA Guidelines at{" "}
-					<a href="https://humsub.org/yaag/" target="_blank" rel="noopener noreferrer">
-						https://humsub.org/yaag/
+					For more information, please check at{" "}
+					<a href="https://humsub.org/assets/YAA-2025-Guidelines.pdf" target="_blank" rel="noopener noreferrer">
+						YAA Guidelines
 					</a>
 					.
 				</p>
@@ -48,7 +58,7 @@ export default function YAA() {
 				</ul>
 				<p>YAA-2025 timeline is as follows:</p>
 				<ul>
-					<li>Applications Deadline: Sep 7, 2025</li>
+					<li>Applications Deadline: Sep 14, 2025</li>
 					<li>Winners Notified: Oct 11, 2025 at Hum Sub Diwali</li>
 					<li>Awards presented at Hum Sub Diwali 2025: Oct 11, 2025</li>
 				</ul>

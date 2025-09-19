@@ -5,6 +5,8 @@ export default function OurSponsors() {
 		<div>
 			<title>Volunteer | Hum Sub</title>
 			<h1>Volunteer</h1>
+			<img src="/assets/volunteers.jpeg" alt="volunteer" className="my-4 mx-auto md:max-w-2xl" />
+
 			<p>
 				Volunteers are the backbone of any organization. We at Hum Sub value, cherish, and appreciate volunteers in all
 				age groups (minimum age of volunteer is 14; minimum age to register independently is 16) who support us during
@@ -26,9 +28,7 @@ export default function OurSponsors() {
 					href="https://portal.humsub.org/index.php/login/volunteer"
 					className="inline-block w-full md:w-64 mt-2 no-underline"
 				>
-					<Button variant="secondary" className="w-full">
-						Sign up to volunteer
-					</Button>
+					<Button className="w-full">Sign up to volunteer</Button>
 				</a>
 			</div>
 		</div>
