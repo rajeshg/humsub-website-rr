@@ -62,67 +62,16 @@ export class Counter extends DurableObject {
 		this.clients = new Set()
 		this.timers = new Map()
 
-		// Simplified event state initialization
-		const defaultItems: Item[] = [
-			{
-				itemId: "item-1",
-				name: "Item 1",
-				type: "PERFORMANCE",
-				state: "NONE",
-				timer_start_time: null,
-				description: null,
-				style: null,
-				teamSize: null,
-				choreographers: null,
-				duration: null,
-				durationSeconds: null,
-			},
-			{
-				itemId: "item-2",
-				name: "Item 2",
-				type: "PERFORMANCE",
-				state: "CHECKED IN",
-				timer_start_time: null,
-				durationSeconds: 12,
-				description: null,
-				style: null,
-				teamSize: null,
-				choreographers: null,
-				duration: null,
-			},
-			{
-				itemId: "break-1",
-				name: "Break 1",
-				type: "BREAK",
-				state: "NONE",
-				timer_start_time: null,
-			},
-			{
-				itemId: "item-3",
-				name: "Item 3",
-				type: "PERFORMANCE",
-				state: "NONE",
-				timer_start_time: null,
-				description: null,
-				style: null,
-				teamSize: null,
-				choreographers: null,
-				duration: null,
-				durationSeconds: null,
-			},
-		]
-
-		let parsed: Partial<EventState> = {}
-		try {
-			parsed = results && typeof results === "object" ? (results as Partial<EventState>) : {}
-		} catch { }
-
+		// Use contents of results.json directly if it is an array, otherwise fallback to empty array
 		this.event = {
-			name: parsed.name ?? "Hum Sub Diwali 2025",
-			startDate: parsed.startDate ?? "2025-10-11T09:00:00Z",
-			endDate: parsed.endDate ?? null,
-			items: Array.isArray(parsed.items) ? parsed.items as Item[] : defaultItems,
+			name: "Hum Sub Diwali 2025",
+			startDate: "2025-10-11T09:00:00Z",
+			endDate: null,
+			items: Array.isArray(results) ? results as Item[] : [],
 		}
+
+		// Fire-and-forget loading of persisted event (if any)
+		this.loadState().catch(() => { /* ignore load errors */ })
 
 		// Normalize durationSeconds for PERFORMANCE items when a duration string exists
 		for (const it of this.event.items) {
@@ -184,6 +133,45 @@ export class Counter extends DurableObject {
 			})
 	}
 
+	// Type guard for EventState without using `any`
+	private isEventState(obj: unknown): obj is EventState {
+		return typeof obj === "object" && obj !== null && Array.isArray((obj as { items?: unknown }).items)
+	}
+
+	// Load persisted event from storage and apply it
+	private async loadState() {
+		try {
+			const persisted = await this.stateObj.storage.get("event")
+			if (persisted && typeof persisted === "object") {
+				this.event = persisted as EventState
+			}
+			// After loading, normalize durations and schedule timers as before
+			for (const it of this.event.items) {
+				if (it.type === "PERFORMANCE") {
+					const p = it as PerformanceItem
+					if ((p.durationSeconds === undefined || p.durationSeconds === null) && p.duration) {
+						const parsedSec = parseDurationToSeconds(p.duration)
+						if (parsedSec !== null) p.durationSeconds = parsedSec
+					}
+					if (p.timer_start_time && p.durationSeconds) {
+						try { this.scheduleTimerEnd(p) } catch {}
+					}
+				}
+			}
+		} catch (err) {
+			console.error("Failed to load persisted event:", err)
+		}
+	}
+
+	// Persist the full event to storage
+	private async saveState() {
+		try {
+			await this.stateObj.storage.put("event", this.event)
+		} catch (err) {
+			console.error("Failed to persist event:", err)
+		}
+	}
+
 	// Schedule a timer to end a performance when its duration elapses
 	private scheduleTimerEnd(item: PerformanceItem) {
 		// clear existing timer
@@ -220,6 +208,45 @@ export class Counter extends DurableObject {
 		}, ms) as unknown as number
 
 		this.timers.set(item.itemId, id)
+	}
+
+	// Reset or overwrite the full event state. If payload is provided and valid, use it;
+	// otherwise fall back to the embedded results.json contents.
+	async resetEvent(payload?: EventState) {
+		// clear scheduled timers
+		for (const t of this.timers.values()) {
+			try { clearTimeout(t as unknown as number) } catch { }
+		}
+		this.timers.clear()
+
+		if (payload && this.isEventState(payload)) {
+			this.event = payload
+		} else {
+			this.event = {
+				name: "Hum Sub Diwali 2025",
+				startDate: "2025-10-11T09:00:00Z",
+				endDate: null,
+				items: Array.isArray(results) ? (results as Item[]) : [],
+			}
+		}
+
+		// Normalize durations and schedule timers for PERFORMANCE items
+		for (const it of this.event.items) {
+			if (it.type === "PERFORMANCE") {
+				const p = it as PerformanceItem
+				if ((p.durationSeconds === undefined || p.durationSeconds === null) && p.duration) {
+					const parsedSec = parseDurationToSeconds(p.duration)
+					if (parsedSec !== null) p.durationSeconds = parsedSec
+				}
+				if (p.timer_start_time && p.durationSeconds) {
+					try { this.scheduleTimerEnd(p) } catch {}
+				}
+			}
+		}
+
+		// persist and notify clients
+		await this.saveState()
+		this.broadcast({ type: "event_reset", state: this.event })
 	}
 
 	// Handle incoming HTTP requests
@@ -382,6 +409,8 @@ export class Counter extends DurableObject {
 
 				// Broadcast the updated item to all clients
 				this.broadcast({ type: "item_updated", item })
+				// persist full event
+				this.saveState().catch(() => {})
 			}
 
 			return new Response(JSON.stringify({ success: true }))
@@ -462,6 +491,8 @@ export class Counter extends DurableObject {
 				type: "item_created",
 				item: newItem,
 			})
+			// persist full event
+			this.saveState().catch(() => {})
 
 			return new Response(JSON.stringify({ itemId }))
 		}
@@ -512,6 +543,8 @@ export class Counter extends DurableObject {
 					"order",
 					this.event.items.map((i) => i.itemId)
 				)
+				// persist full event as well
+				await this.saveState()
 
 				// broadcast updated order/state
 				this.broadcast({ type: "order_updated", order: this.event.items.map((i) => i.itemId), state: this.event })
@@ -519,6 +552,17 @@ export class Counter extends DurableObject {
 				return new Response(JSON.stringify({ success: true }), { status: 200 })
 			} catch {
 				return new Response(JSON.stringify({ error: "invalid payload" }), { status: 400 })
+			}
+		}
+
+		// API to reset/overwrite the event state
+		if (request.method === "POST" && url.pathname === "/api/durable/resetEvent") {
+			try {
+				const body = await request.json().catch(() => null)
+				await this.resetEvent(this.isEventState(body) ? body : undefined)
+				return new Response(JSON.stringify({ success: true }))
+			} catch (err) {
+				return new Response(JSON.stringify({ error: String(err) }), { status: 500 })
 			}
 		}
 
@@ -537,7 +581,7 @@ export class Counter extends DurableObject {
 		socket.addEventListener("message", (event) => {
 			try {
 				const data = JSON.parse(event.data) as Record<string, unknown>
-				this.handleWebSocketMessage(data)
+				this.handleWebSocketMessage(data).catch((err: unknown) => console.error("WS handler error:", err))
 			} catch (error) {
 				console.error("Failed to parse WebSocket message:", error)
 			}
@@ -549,7 +593,7 @@ export class Counter extends DurableObject {
 	}
 
 	// Handle WebSocket messages from clients
-	private handleWebSocketMessage(data: Record<string, unknown>) {
+	private async handleWebSocketMessage(data: Record<string, unknown>): Promise<void> {
 		if (data.action === "updateState" && data.itemId && data.newState) {
 			const item = this.event.items.find((i) => i.itemId === data.itemId)
 			if (item) {
@@ -609,6 +653,8 @@ export class Counter extends DurableObject {
 
 				// Broadcast the updated item to all clients
 				this.broadcast({ type: "item_updated", item })
+				// persist full event
+				await this.saveState().catch(() => {})
 			}
 		} else if (data.action === "startTimer" && data.itemId) {
 			const item = this.event.items.find((i) => i.itemId === data.itemId)
@@ -639,6 +685,7 @@ export class Counter extends DurableObject {
 
 				// Broadcast the updated item to all clients
 				this.broadcast({ type: "item_updated", item: perfItem })
+				await this.saveState().catch(() => {})
 			}
 		} else if (data.action === "reorderItems" && Array.isArray(data.itemIds)) {
 			// Handle item reordering
@@ -656,10 +703,11 @@ export class Counter extends DurableObject {
 			this.event.items = newOrder
 
 			// Save the new order to storage
-			this.stateObj.storage.put("order", data.itemIds)
+			await this.stateObj.storage.put("order", data.itemIds)
 
 			// Broadcast the reordered items
 			this.broadcast({ type: "order_updated", order: data.itemIds })
+			await this.saveState().catch(() => {})
 		}
 	}
 
