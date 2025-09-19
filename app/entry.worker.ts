@@ -1,6 +1,6 @@
 import { env } from "cloudflare:workers"
 import type { RequestHandler } from "react-router"
-import { createRequestHandler, RouterContextProvider } from "react-router"
+import { RouterContextProvider, createRequestHandler } from "react-router"
 import { Counter } from "./counter"
 import type { EventState } from "./counter"
 

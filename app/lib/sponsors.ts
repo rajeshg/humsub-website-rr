@@ -81,8 +81,6 @@ export const sponsors: Sponsor[] = [
 		level: "gold",
 		description:
 			"Hospitality Partner generously sponsoring accommodations and hosting our artists and guests at HumSub Diwali.",
-		description:
-			"Hospitality Partner generously sponsoring accommodations and hosting our artists and guests at HumSub Diwali.",
 		href: "/sponsor/the-pratt-villas",
 		label: "Hospitality Partner",
 	},

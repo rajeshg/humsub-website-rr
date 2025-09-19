@@ -67,11 +67,13 @@ export class Counter extends DurableObject {
 			name: "Hum Sub Diwali 2025",
 			startDate: "2025-10-11T09:00:00Z",
 			endDate: null,
-			items: Array.isArray(results) ? results as Item[] : [],
+			items: Array.isArray(results) ? (results as Item[]) : [],
 		}
 
 		// Fire-and-forget loading of persisted event (if any)
-		this.loadState().catch(() => { /* ignore load errors */ })
+		this.loadState().catch(() => {
+			/* ignore load errors */
+		})
 
 		// Normalize durationSeconds for PERFORMANCE items when a duration string exists
 		for (const it of this.event.items) {
@@ -123,7 +125,7 @@ export class Counter extends DurableObject {
 							// schedule asynchronously
 							try {
 								this.scheduleTimerEnd(it as PerformanceItem)
-							} catch { }
+							} catch {}
 						}
 					}
 				}
@@ -154,7 +156,9 @@ export class Counter extends DurableObject {
 						if (parsedSec !== null) p.durationSeconds = parsedSec
 					}
 					if (p.timer_start_time && p.durationSeconds) {
-						try { this.scheduleTimerEnd(p) } catch {}
+						try {
+							this.scheduleTimerEnd(p)
+						} catch {}
 					}
 				}
 			}
@@ -179,7 +183,7 @@ export class Counter extends DurableObject {
 		if (existing) {
 			try {
 				clearTimeout(existing as unknown as number)
-			} catch { }
+			} catch {}
 			this.timers.delete(item.itemId)
 		}
 
@@ -215,7 +219,9 @@ export class Counter extends DurableObject {
 	async resetEvent(payload?: EventState) {
 		// clear scheduled timers
 		for (const t of this.timers.values()) {
-			try { clearTimeout(t as unknown as number) } catch { }
+			try {
+				clearTimeout(t as unknown as number)
+			} catch {}
 		}
 		this.timers.clear()
 
@@ -239,7 +245,9 @@ export class Counter extends DurableObject {
 					if (parsedSec !== null) p.durationSeconds = parsedSec
 				}
 				if (p.timer_start_time && p.durationSeconds) {
-					try { this.scheduleTimerEnd(p) } catch {}
+					try {
+						this.scheduleTimerEnd(p)
+					} catch {}
 				}
 			}
 		}
@@ -311,13 +319,13 @@ export class Counter extends DurableObject {
 							item.state = state as PerformanceState
 							// If marking as CHECKED IN or BACKSTAGE, clear any running timers
 							if (item.state === "CHECKED IN" || item.state === "BACKSTAGE") {
-								; (item as PerformanceItem).timer_start_time = null
-									; (item as PerformanceItem).timer_end_time = null
+								;(item as PerformanceItem).timer_start_time = null
+								;(item as PerformanceItem).timer_end_time = null
 								const t = this.timers.get(item.itemId)
 								if (t) {
 									try {
 										clearTimeout(t as unknown as number)
-									} catch { }
+									} catch {}
 									this.timers.delete(item.itemId)
 								}
 							}
@@ -333,7 +341,7 @@ export class Counter extends DurableObject {
 				}
 
 				if (durationSeconds !== undefined && item.type === "PERFORMANCE") {
-					; (item as PerformanceItem).durationSeconds = durationSeconds
+					;(item as PerformanceItem).durationSeconds = durationSeconds
 					if ((item as PerformanceItem).timer_start_time) {
 						this.scheduleTimerEnd(item as PerformanceItem)
 					}
@@ -376,7 +384,7 @@ export class Counter extends DurableObject {
 				// If this item just became PERFORMING, ensure only one PERFORMANCE item is performing at a time.
 				if (item.type === "PERFORMANCE" && item.state === "PERFORMING") {
 					// Always clear the timer_end_time when state becomes PERFORMING
-					; (item as PerformanceItem).timer_end_time = null
+					;(item as PerformanceItem).timer_end_time = null
 
 					for (const other of this.event.items) {
 						if (other.itemId !== item.itemId && other.type === "PERFORMANCE") {
@@ -395,14 +403,14 @@ export class Counter extends DurableObject {
 				// If item transitioned to DONE, set timer_end_time if missing
 				if ((item as PerformanceItem).state === "DONE") {
 					if (!(item as PerformanceItem).timer_end_time) {
-						; (item as PerformanceItem).timer_end_time = Date.now()
+						;(item as PerformanceItem).timer_end_time = Date.now()
 					}
 					// clear any scheduled timer
 					const t = this.timers.get(item.itemId)
 					if (t) {
 						try {
 							clearTimeout(t as unknown as number)
-						} catch { }
+						} catch {}
 						this.timers.delete(item.itemId)
 					}
 				}
@@ -609,13 +617,13 @@ export class Counter extends DurableObject {
 						item.state = data.newState as PerformanceState
 						// If marking as CHECKED IN or BACKSTAGE, clear any running timers
 						if (item.state === "CHECKED IN" || item.state === "BACKSTAGE") {
-							; (item as PerformanceItem).timer_start_time = null
-								; (item as PerformanceItem).timer_end_time = null
+							;(item as PerformanceItem).timer_start_time = null
+							;(item as PerformanceItem).timer_end_time = null
 							const t = this.timers.get(item.itemId)
 							if (t) {
 								try {
 									clearTimeout(t as unknown as number)
-								} catch { }
+								} catch {}
 								this.timers.delete(item.itemId)
 							}
 						}
@@ -624,7 +632,7 @@ export class Counter extends DurableObject {
 
 				// If this item just became PERFORMING, ensure only one PERFORMANCE item is performing at a time
 				if (item.type === "PERFORMANCE" && item.state === "PERFORMING") {
-					; (item as PerformanceItem).timer_end_time = null
+					;(item as PerformanceItem).timer_end_time = null
 					for (const other of this.event.items) {
 						if (other.itemId !== item.itemId && other.type === "PERFORMANCE") {
 							const perf = other as PerformanceItem
@@ -640,13 +648,13 @@ export class Counter extends DurableObject {
 				// If item transitioned to DONE, set timer_end_time if missing
 				if (item.state === "DONE") {
 					if (!(item as PerformanceItem).timer_end_time) {
-						; (item as PerformanceItem).timer_end_time = Date.now()
+						;(item as PerformanceItem).timer_end_time = Date.now()
 					}
 					const t = this.timers.get(item.itemId)
 					if (t) {
 						try {
 							clearTimeout(t as unknown as number)
-						} catch { }
+						} catch {}
 						this.timers.delete(item.itemId)
 					}
 				}
@@ -717,7 +725,7 @@ export class Counter extends DurableObject {
 		for (const client of this.clients) {
 			try {
 				client.send(data)
-			} catch { }
+			} catch {}
 		}
 	}
 }
