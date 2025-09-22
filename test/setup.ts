@@ -67,3 +67,21 @@ global.advanceMockTime = (ms: number) => {
 // Mock timers
 vi.stubGlobal("setInterval", vi.fn())
 vi.stubGlobal("clearInterval", vi.fn())
+
+// Mock Cloudflare Workers
+vi.mock("cloudflare:workers", () => ({
+	DurableObject: class MockDurableObject {},
+	WebSocketPair: class MockWebSocketPair {
+		constructor() {
+			return [{}, {}]
+		}
+	},
+	Response: class MockResponse {
+		constructor(body: any, init?: any) {
+			this.body = body
+			this.init = init
+		}
+		body: any
+		init: any
+	},
+}))

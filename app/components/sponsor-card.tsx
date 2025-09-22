@@ -19,7 +19,7 @@ export default function SponsorCard({
 										src={img}
 										alt={name}
 										loading="lazy"
-										className="aspect-square w-full max-w-48 h-full object-contain shadow-sm mt-1 mb-1"
+										className="aspect-square w-full max-w-48 h-full object-contain shadow-sm mt-1 mb-1 p-1 bg-white rounded-lg"
 									/>
 								</a>
 							) : (
@@ -27,7 +27,7 @@ export default function SponsorCard({
 									src={img}
 									alt={name}
 									loading="lazy"
-									className="aspect-square w-full max-w-48 h-full object-contain shadow-sm mt-1 mb-1"
+									className="aspect-square w-full max-w-48 h-full object-contain shadow-sm mt-1 mb-1 p-1 bg-white rounded-lg"
 									key={`${img}-${name}`}
 								/>
 							)}

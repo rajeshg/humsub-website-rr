@@ -64,6 +64,11 @@ export const useWebSocket = (workerPath: string) => {
 					})
 					return
 				}
+
+				if (msg.type === "view_state_updated" && msg.state && typeof msg.state === "object") {
+					setEventState(msg.state as EventState)
+					return
+				}
 			} catch {
 				// ignore malformed messages
 			}

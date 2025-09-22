@@ -42,6 +42,23 @@ export interface EventState {
 	startDate: string | null
 	endDate: string | null
 	items: Item[]
+	// View state management
+	viewState: "item" | "image" | "upcoming"
+	selectedItemId: string | null
+	selectedImage: string | null
+	imageMode: "single" | "collection"
+	imageCollection: string[]
+	collectionInterval: number
+	// Hibernation recovery
+	collectionCurrentIndex: number
+	collectionLastRotation: number
+	activeTimers: TimerState[]
+}
+
+export interface TimerState {
+	itemId: string
+	type: "performance" | "collection" | "filler"
+	endTime: number
 }
 
 export interface Env {
@@ -55,6 +72,10 @@ export class Counter extends DurableObject {
 	private stateObj: DurableObjectState
 	// local timers for scheduled end-of-performance actions
 	private timers: Map<string, number>
+	// View state management
+	private fillerImages: string[] = []
+	private collectionTimer: number | null = null
+	private currentCollectionIndex = 0
 
 	constructor(state: DurableObjectState, env: Env) {
 		super(state, env)
@@ -62,12 +83,26 @@ export class Counter extends DurableObject {
 		this.clients = new Set()
 		this.timers = new Map()
 
+		// Initialize filler images from the manifest
+		this.initializeFillerImages()
+
 		// Use contents of results.json directly if it is an array, otherwise fallback to empty array
 		this.event = {
 			name: "Hum Sub Diwali 2025",
 			startDate: "2025-10-11T09:00:00Z",
 			endDate: null,
 			items: Array.isArray(results) ? (results as Item[]) : [],
+			// View state defaults
+			viewState: "item",
+			selectedItemId: null,
+			selectedImage: null,
+			imageMode: "single",
+			imageCollection: [],
+			collectionInterval: 30,
+			// Hibernation recovery
+			collectionCurrentIndex: 0,
+			collectionLastRotation: 0,
+			activeTimers: [],
 		}
 
 		// Fire-and-forget loading of persisted event (if any)
@@ -145,8 +180,38 @@ export class Counter extends DurableObject {
 		try {
 			const persisted = await this.stateObj.storage.get("event")
 			if (persisted && typeof persisted === "object") {
-				this.event = persisted as EventState
+				const enhancedState = persisted as EventState & {
+					activeTimers?: TimerState[]
+				}
+
+				// Load basic event state with defaults for new fields
+				this.event = {
+					name: enhancedState.name,
+					startDate: enhancedState.startDate,
+					endDate: enhancedState.endDate,
+					items: enhancedState.items,
+					// View state defaults
+					viewState: enhancedState.viewState || "item",
+					selectedItemId: enhancedState.selectedItemId || null,
+					selectedImage: enhancedState.selectedImage || null,
+					imageMode: enhancedState.imageMode || "single",
+					imageCollection: enhancedState.imageCollection || [],
+					collectionInterval: enhancedState.collectionInterval || 30,
+					// Hibernation recovery
+					collectionCurrentIndex: enhancedState.collectionCurrentIndex || 0,
+					collectionLastRotation: enhancedState.collectionLastRotation || 0,
+					activeTimers: enhancedState.activeTimers || [],
+				}
+
+				// Restore collection state
+				this.currentCollectionIndex = this.event.collectionCurrentIndex
+
+				// Recalculate and restart timers
+				if (enhancedState.activeTimers) {
+					this.restoreTimers(enhancedState.activeTimers)
+				}
 			}
+
 			// After loading, normalize durations and schedule timers as before
 			for (const it of this.event.items) {
 				if (it.type === "PERFORMANCE") {
@@ -170,7 +235,40 @@ export class Counter extends DurableObject {
 	// Persist the full event to storage
 	private async saveState() {
 		try {
-			await this.stateObj.storage.put("event", this.event)
+			// Capture current timer states before saving
+			const activeTimers: TimerState[] = []
+
+			// For performance timers
+			for (const [itemId, _timerId] of this.timers) {
+				const item = this.event.items.find((i) => i.itemId === itemId)
+				if (item && item.type === "PERFORMANCE") {
+					const perf = item as PerformanceItem
+					if (perf.timer_start_time && perf.durationSeconds) {
+						activeTimers.push({
+							itemId,
+							type: "performance",
+							endTime: perf.timer_start_time + perf.durationSeconds * 1000,
+						})
+					}
+				}
+			}
+
+			// For collection timer
+			if (this.collectionTimer && this.event.imageMode === "collection") {
+				activeTimers.push({
+					itemId: "collection",
+					type: "collection",
+					endTime: Date.now() + this.event.collectionInterval * 1000,
+				})
+			}
+
+			// Save enhanced state
+			const enhancedState = {
+				...this.event,
+				activeTimers,
+			}
+
+			await this.stateObj.storage.put("event", enhancedState)
 		} catch (err) {
 			console.error("Failed to persist event:", err)
 		}
@@ -214,6 +312,129 @@ export class Counter extends DurableObject {
 		this.timers.set(item.itemId, id)
 	}
 
+	// View state management methods
+	private updateViewState() {
+		const hasActivePerformance = this.event.items.some(
+			(item) => item.state === "PERFORMING" || item.state === "READY TO GO"
+		)
+
+		if (hasActivePerformance) {
+			this.event.viewState = "item"
+			this.event.selectedItemId = this.getCurrentItemId()
+			// Clear any selected image when switching to item view
+			this.event.selectedImage = null
+			this.event.imageMode = "single"
+			this.event.imageCollection = []
+			this.clearCollectionTimer()
+		} else if (this.event.imageMode === "collection" && this.event.imageCollection.length > 0) {
+			this.event.viewState = "image"
+			this.startCollectionRotation()
+		} else if (this.event.selectedImage) {
+			this.event.viewState = "image"
+			this.clearCollectionTimer()
+		} else {
+			// Check if there are upcoming performances to show
+			const nextItem = this.getNextUpcomingItem()
+			if (nextItem) {
+				this.event.viewState = "item"
+				this.event.selectedItemId = nextItem.itemId
+				this.clearCollectionTimer()
+			} else if (this.fillerImages.length > 0) {
+				this.event.viewState = "image"
+				this.event.imageMode = "collection"
+				this.event.imageCollection = this.fillerImages
+				this.startCollectionRotation()
+			} else {
+				this.event.viewState = "item"
+				this.clearCollectionTimer()
+			}
+		}
+		this.broadcast({ type: "view_state_updated", state: this.event })
+	}
+
+	private startCollectionRotation() {
+		if (this.event.imageCollection.length === 0) return
+
+		this.clearCollectionTimer()
+		this.selectRandomFromCollection()
+
+		const interval = (this.event.collectionInterval || 30) * 1000
+		this.collectionTimer = setTimeout(() => {
+			this.startCollectionRotation()
+		}, interval) as unknown as number
+	}
+
+	private selectRandomFromCollection() {
+		if (this.event.imageCollection.length === 0) return
+
+		let newIndex: number
+		do {
+			newIndex = Math.floor(Math.random() * this.event.imageCollection.length)
+		} while (newIndex === this.event.collectionCurrentIndex && this.event.imageCollection.length > 1)
+
+		this.event.collectionCurrentIndex = newIndex
+		this.event.selectedImage = this.event.imageCollection[newIndex] || null
+		this.event.collectionLastRotation = Date.now()
+	}
+
+	private clearCollectionTimer() {
+		if (this.collectionTimer) {
+			clearTimeout(this.collectionTimer as unknown as number)
+			this.collectionTimer = null
+		}
+	}
+
+	private getCurrentItemId(): string | null {
+		const current = this.event.items.find((item) => item.state === "PERFORMING" || item.state === "READY TO GO")
+		return current ? current.itemId : null
+	}
+
+	private getNextUpcomingItem(): Item | null {
+		// Find the first upcoming item (BACKSTAGE, CHECKED IN, etc.)
+		const upcomingStates = ["BACKSTAGE", "CHECKED IN", "NONE"]
+		const nextItem = this.event.items.find((item) => upcomingStates.includes(item.state))
+		return nextItem || null
+	}
+
+	// Initialize filler images from the image manifest
+	private async initializeFillerImages() {
+		try {
+			// Dynamically import the image collections
+			const { imageCollections } = await import("./lib/image-manifest")
+
+			// Get filler images and convert to paths
+			this.fillerImages = imageCollections.filler.map((img) => img.path)
+		} catch (error) {
+			console.error("Error loading filler images:", error)
+			// Fallback to some default images
+			this.fillerImages = ["/assets/stage-timer/filler/diwali.png", "/assets/stage-timer/filler/holi.png"]
+		}
+	}
+
+	// Restore timers after hibernation
+	private restoreTimers(timers: TimerState[]) {
+		const now = Date.now()
+
+		for (const timer of timers) {
+			if (timer.endTime > now) {
+				const delay = timer.endTime - now
+
+				if (timer.type === "performance") {
+					// Restore performance timer
+					const item = this.event.items.find((i) => i.itemId === timer.itemId)
+					if (item && item.type === "PERFORMANCE") {
+						this.scheduleTimerEnd(item as PerformanceItem)
+					}
+				} else if (timer.type === "collection") {
+					// Restore collection rotation
+					this.collectionTimer = setTimeout(() => {
+						this.startCollectionRotation()
+					}, delay) as unknown as number
+				}
+			}
+		}
+	}
+
 	// Reset or overwrite the full event state. If payload is provided and valid, use it;
 	// otherwise fall back to the embedded results.json contents.
 	async resetEvent(payload?: EventState) {
@@ -233,6 +454,17 @@ export class Counter extends DurableObject {
 				startDate: "2025-10-11T09:00:00Z",
 				endDate: null,
 				items: Array.isArray(results) ? (results as Item[]) : [],
+				// View state defaults
+				viewState: "item",
+				selectedItemId: null,
+				selectedImage: null,
+				imageMode: "single",
+				imageCollection: [],
+				collectionInterval: 30,
+				// Hibernation recovery
+				collectionCurrentIndex: 0,
+				collectionLastRotation: 0,
+				activeTimers: [],
 			}
 		}
 
@@ -414,6 +646,9 @@ export class Counter extends DurableObject {
 						this.timers.delete(item.itemId)
 					}
 				}
+
+				// Update view state based on the new item state
+				this.updateViewState()
 
 				// Broadcast the updated item to all clients
 				this.broadcast({ type: "item_updated", item })
@@ -659,6 +894,9 @@ export class Counter extends DurableObject {
 					}
 				}
 
+				// Update view state based on the new item state
+				this.updateViewState()
+
 				// Broadcast the updated item to all clients
 				this.broadcast({ type: "item_updated", item })
 				// persist full event
@@ -691,6 +929,9 @@ export class Counter extends DurableObject {
 					this.scheduleTimerEnd(perfItem)
 				}
 
+				// Update view state based on the new item state
+				this.updateViewState()
+
 				// Broadcast the updated item to all clients
 				this.broadcast({ type: "item_updated", item: perfItem })
 				await this.saveState().catch(() => {})
@@ -715,6 +956,27 @@ export class Counter extends DurableObject {
 
 			// Broadcast the reordered items
 			this.broadcast({ type: "order_updated", order: data.itemIds })
+			await this.saveState().catch(() => {})
+		} else if (data.action === "selectImage" && typeof data.imagePath === "string") {
+			this.event.viewState = "image"
+			this.event.imageMode = "single"
+			this.event.selectedImage = data.imagePath
+			this.clearCollectionTimer()
+			this.broadcast({ type: "view_state_updated", state: this.event })
+			await this.saveState().catch(() => {})
+		} else if (data.action === "selectImageCollection" && Array.isArray(data.imagePaths)) {
+			this.event.viewState = "image"
+			this.event.imageMode = "collection"
+			this.event.imageCollection = data.imagePaths as string[]
+			this.event.collectionInterval = (data.interval as number) || 30
+			this.startCollectionRotation()
+			this.broadcast({ type: "view_state_updated", state: this.event })
+			await this.saveState().catch(() => {})
+		} else if (data.action === "clearImageSelection") {
+			this.event.selectedImage = null
+			this.event.imageCollection = []
+			this.clearCollectionTimer()
+			this.updateViewState()
 			await this.saveState().catch(() => {})
 		}
 	}

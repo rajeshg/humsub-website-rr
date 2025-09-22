@@ -47,8 +47,14 @@ export const sponsors: Sponsor[] = [
 		name: "Publix Super Markets",
 		imagePath: "/assets/sponsors/publix.png",
 		level: "diamond",
-		description: "Exclusive fireworks sponsor",
 		href: "https://www.publix.com/",
+	},
+	{
+		name: "Patagonia Health",
+		imagePath: "/assets/sponsors/patagonia-health.webp",
+		level: "diamond",
+		description: "Exclusive fireworks sponsor",
+		href: "https://patagoniahealth.com/",
 		label: "Fireworks Sponsor",
 	},
 

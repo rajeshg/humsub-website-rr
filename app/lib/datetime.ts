@@ -12,8 +12,16 @@ const DEFAULT_TIMEZONE = "America/New_York"
  */
 export function convertToTimezoneOffsettedString(dateString: string, timezone: string = DEFAULT_TIMEZONE): string {
 	try {
-		const zonedDate = new TZDate(parseISO(dateString), timezone) // Parse ISO date and apply timezone
-		return format(zonedDate, "yyyy-MM-dd'T'HH:mm:ss.SSSXXX") // Format with timezone offset
+		// For date-only strings (no time), treat as local time in the target timezone
+		let parsedDate: Date
+		if (/^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
+			// Date-only string: treat as midnight in the target timezone
+			parsedDate = new TZDate(`${dateString}T00:00:00`, timezone)
+		} else {
+			// Date-time string: parse as ISO and apply timezone
+			parsedDate = new TZDate(parseISO(dateString), timezone)
+		}
+		return format(parsedDate, "yyyy-MM-dd'T'HH:mm:ss.SSSXXX") // Format with timezone offset
 	} catch (error) {
 		// Only log in non-test environments to avoid stderr noise during testing
 		if (!import.meta.env?.VITEST) {

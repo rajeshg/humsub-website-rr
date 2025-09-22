@@ -2,5 +2,5 @@ import { Loader2 } from "lucide-react"
 import { cn } from "~/lib/utils"
 
 export const Spinner = ({ className, ...props }: React.ComponentProps<"svg">) => {
-	return <Loader2 className={cn("animate-spin", className)} {...props} />
+	return <Loader2 className={cn("animate-spin", className)} role="status" aria-label="Loading" {...props} />
 }

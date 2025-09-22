@@ -15,9 +15,9 @@ export const CompactEventCard: React.FC<CompactEventCardProps> = ({ item }) => {
 			{/* Vertical state indicator with text */}
 			{item.state !== "NONE" && (
 				<div className="absolute left-0 top-0 bottom-0 h-full">
-					<div className={`w-12 h-full ${style.barColor} flex items-center justify-center overflow-visible`}>
+					<div className={`w-8 md:w-12 h-full ${style.barColor} flex items-center justify-center overflow-visible`}>
 						<span
-							className="absolute text-sm md:text-lg font-bold text-white uppercase tracking-wider select-none"
+							className="absolute text-xs md:text-lg font-bold text-white uppercase tracking-wider select-none"
 							style={{
 								writingMode: "vertical-rl",
 								transform: "rotate(180deg)",
@@ -30,15 +30,13 @@ export const CompactEventCard: React.FC<CompactEventCardProps> = ({ item }) => {
 				</div>
 			)}
 
-			<div className="px-3 py-3 ml-12">
-				{" "}
-				{/* Increased margin-left for narrower bar on mobile */}
+			<div className="px-2 py-2 ml-8 md:ml-12">
 				<div className="flex items-center justify-between">
-					<div className="flex items-center gap-2 min-w-0 flex-grow">
+					<div className="flex items-center gap-1 md:gap-2 min-w-0 flex-grow">
 						{/* smaller default name on mobile */}
-						<span className="font-bold text-base md:text-2xl truncate">{item.name}</span>
+						<span className="font-bold text-sm md:text-2xl truncate">{item.name}</span>
 						{item.type === "BREAK" && (
-							<span className="text-xs md:text-lg font-bold px-2 py-0.5 rounded bg-yellow-200 dark:bg-yellow-600 text-yellow-800 dark:text-yellow-50">
+							<span className="text-xs md:text-lg font-bold px-1 md:px-2 py-0.5 rounded bg-yellow-200 dark:bg-yellow-600 text-yellow-800 dark:text-yellow-50">
 								BREAK
 							</span>
 						)}
@@ -53,10 +51,10 @@ export const CompactEventCard: React.FC<CompactEventCardProps> = ({ item }) => {
 				</div>
 				{/* Performance metadata - improved visibility */}
 				{item.type === "PERFORMANCE" && (
-					<div className="flex justify-between mt-3">
-						<div className="flex flex-col gap-1">
-							<div className="flex gap-3 text-xs md:text-sm text-slate-600 dark:text-slate-300 font-medium">
-								{(item as PerformanceItem).style && <div>{(item as PerformanceItem).style}</div>}
+					<div className="flex justify-between mt-2 md:mt-3">
+						<div className="flex flex-col gap-1 min-w-0 flex-1">
+							<div className="flex gap-2 md:gap-3 text-xs md:text-sm text-slate-600 dark:text-slate-300 font-medium">
+								{(item as PerformanceItem).style && <div className="truncate">{(item as PerformanceItem).style}</div>}
 							</div>
 
 							{/* Show choreographers - first 2 names if multiple */}
@@ -78,7 +76,7 @@ export const CompactEventCard: React.FC<CompactEventCardProps> = ({ item }) => {
 							)}
 						</div>
 						{(item as PerformanceItem).duration && (
-							<div className="text-xs md:text-sm font-mono bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded">
+							<div className="text-xs md:text-sm font-mono bg-slate-100 dark:bg-slate-700 px-1 md:px-2 py-0.5 md:py-1 rounded ml-2 flex-shrink-0">
 								{(item as PerformanceItem).duration}
 							</div>
 						)}

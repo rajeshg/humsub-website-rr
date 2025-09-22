@@ -170,9 +170,49 @@ export default function HumSubDiwali2025() {
 							</h1>
 							<div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-amber-500 dark:from-orange-400 dark:to-amber-400 mx-auto rounded-full animate-in zoom-in-50 duration-1000 delay-700"></div>
 						</div>
+						{/* Featured Artists - Improved Layout */}
+						<div className="space-y-8 mb-12 animate-in slide-in-from-bottom-4 duration-1000 delay-800">
+							<div className="text-center space-y-2">
+								<h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">Featured Artists</h3>
+								<div className="w-16 h-0.5 bg-gradient-to-r from-orange-500 to-amber-500 mx-auto rounded-full"></div>
+							</div>
 
+							<div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+								{/* Featured Artist - Aditya Narayan */}
+								<div className="flex flex-col items-center space-y-4">
+									<div className="relative group">
+										<img
+											src="/assets/events/aditya-narayan-artist-2025.jpeg"
+											alt="Aditya Narayan"
+											className="w-full max-w-sm h-80 object-cover rounded-2xl shadow-2xl border-4 border-white dark:border-gray-800 group-hover:scale-105 transition-transform duration-300"
+										/>
+										<div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
+									</div>
+									<div className="text-center space-y-1">
+										<h4 className="text-xl font-bold text-gray-900 dark:text-white">Aditya Narayan</h4>
+										<p className="text-sm text-gray-600 dark:text-gray-400">Bollywood Playback Singer</p>
+									</div>
+								</div>
+
+								{/* Supporting Artist - Sana Arora */}
+								<div className="flex flex-col items-center space-y-4">
+									<div className="relative group">
+										<img
+											src="/assets/events/sana-arora-artist-2025.webp"
+											alt="Sana Arora"
+											className="w-full max-w-sm h-80 object-cover rounded-2xl shadow-2xl border-4 border-white dark:border-gray-800 group-hover:scale-105 transition-transform duration-300"
+										/>
+										<div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
+									</div>
+									<div className="text-center space-y-1">
+										<h4 className="text-xl font-bold text-gray-900 dark:text-white">Sana Arora</h4>
+										<p className="text-sm text-gray-600 dark:text-gray-400">Vocalist & Performer</p>
+									</div>
+								</div>
+							</div>
+						</div>{" "}
 						{/* Event Details with Enhanced Card */}
-						<div className="bg-white/90 dark:bg-gray-800/95 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-orange-200/50 dark:border-orange-600/30 shadow-2xl max-w-2xl mx-auto transform hover:scale-105 transition-transform duration-300 animate-in slide-in-from-bottom-4 duration-1000 delay-500">
+						<div className="bg-white/90 dark:bg-gray-800/95 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-orange-200/50 dark:border-orange-600/30 shadow-2xl max-w-2xl mx-auto transform hover:scale-105 transition-transform duration-300 animate-in slide-in-from-bottom-4 duration-1000 delay-500 mb-8">
 							<div className="space-y-4 text-gray-800 dark:text-gray-100">
 								<div className="flex items-center gap-3 md:text-xl font-medium">
 									<div className="p-2 bg-orange-100 dark:bg-orange-900/60 rounded-full">
@@ -184,7 +224,7 @@ export default function HumSubDiwali2025() {
 									<div className="p-2 bg-orange-100 dark:bg-orange-900/60 rounded-full">
 										<MapPin className="h-6 w-6 text-amber-600 dark:text-amber-300" />
 									</div>
-									<span>Koka Booth Amphitheater, Cary, NC</span>
+									<span>Koka Booth Amphitheatre, Cary, NC</span>
 								</div>
 								<div className="text-center pt-2">
 									<Badge
@@ -196,22 +236,22 @@ export default function HumSubDiwali2025() {
 								</div>
 							</div>
 						</div>
-
 						{/* Countdown Timer */}
-						<Hero eventDate={eventDate} />
+						<div className="space-y-8">
+							<Hero eventDate={eventDate} />
 
-						<div className="animate-in slide-in-from-bottom-4 duration-1000 delay-700">
-							<p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto font-medium">
-								Join us for a full day of celebration, delicious food, vibrant performances, community booths, and a{" "}
-								<span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-amber-600 font-semibold">
-									spectacular fireworks finale
-								</span>
-								.
-							</p>
+							<div className="animate-in slide-in-from-bottom-4 duration-1000 delay-700">
+								<p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto font-medium text-center">
+									Join us for a full day of celebration, delicious food, vibrant performances, community booths, and a{" "}
+									<span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-amber-600 font-semibold">
+										spectacular fireworks finale
+									</span>
+									.
+								</p>
+							</div>
 						</div>
-
 						{/* Enhanced Action Buttons */}
-						<div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-6 animate-in slide-in-from-bottom-4 duration-1000 delay-1000">
+						<div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 pt-6 animate-in slide-in-from-bottom-4 duration-1000 delay-1000">
 							<Button
 								asChild
 								size="lg"
@@ -244,39 +284,66 @@ export default function HumSubDiwali2025() {
 			</section>
 
 			{/* Main Content Container */}
-			<div className="container mx-auto px-4 py-12 space-y-12">
-				<section className="mb-6">
-					<h2 className="text-3xl font-bold mb-4 text-primary text-center">Plan Your Visit</h2>
+			<div className="container mx-auto px-4 sm:px-6 md:px-8 py-12 md:py-20 space-y-16 md:space-y-24">
+				<section className="space-y-12">
+					<div className="text-center space-y-6">
+						<h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-orange-600 via-amber-600 to-yellow-600 dark:from-orange-300 dark:via-amber-300 dark:to-yellow-300 bg-clip-text text-transparent">
+							Plan Your Visit
+						</h2>
+						<div className="flex items-center justify-center gap-4">
+							<div className="w-16 h-0.5 bg-gradient-to-r from-transparent to-orange-400 rounded-full"></div>
+							<div className="w-8 h-1 bg-gradient-to-r from-orange-500 to-amber-500 rounded-full"></div>
+							<div className="w-16 h-0.5 bg-gradient-to-r from-amber-400 to-transparent rounded-full"></div>
+						</div>
+						<p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+							Everything you need to know for an amazing day at Hum Sub Diwali 2025
+						</p>
+					</div>
 
-					{/* Venue Details - Separate Card */}
-					<Card className="shadow-lg hover:shadow-xl transition-shadow mb-3">
-						<CardHeader>
-							<CardTitle className="text-xl text-primary flex items-center gap-2">
-								<MapPin className="h-6 w-6" />
-								Venue Details
+					{/* Venue Details - Enhanced Card */}
+					<Card className="shadow-xl hover:shadow-2xl transition-all duration-500 border border-orange-200/50 dark:border-orange-800/50 bg-gradient-to-br from-white via-orange-50/30 to-amber-50/30 dark:from-gray-900 dark:via-orange-950/20 dark:to-amber-950/20 hover:scale-[1.02] transform">
+						<CardHeader className="pb-4">
+							<CardTitle className="text-2xl text-primary flex items-center gap-3">
+								<div className="p-2 bg-primary/10 rounded-lg">
+									<MapPin className="h-6 w-6" />
+								</div>
+								Venue Information
 							</CardTitle>
 						</CardHeader>
-						<CardContent>
-							<p>
-								<strong>Location:</strong> Koka Booth Amphitheater, 8003 Regency Pkwy, Cary, NC 27518
-							</p>
-							<p>
-								<strong>Parking:</strong> $10 General / $20 Preferred Parking
-							</p>
-							<p>
-								<strong>Admission:</strong>{" "}
-								<Badge variant="default" className="bg-green-600 hover:bg-green-700 text-white">
-									FREE TO THE PUBLIC
-								</Badge>
-							</p>
-							<p className="text-slate-600 dark:text-slate-300 mt-2">
-								<strong>Seating:</strong> Membership required for seating. Buy tickets for $10 annual membership.
-							</p>
-							<p>
-								<strong>Cashless Venue:</strong> Koka Booth Amphitheatre is a cashless venue. Cash is not accepted at
-								the Box Office, Concessions, Parking or at Guest Services. For this event many outside vendors will
-								accept cash and/or credit/debit cards. ATMS will NOT be on-site.
-							</p>
+						<CardContent className="space-y-4">
+							<div className="space-y-3">
+								<div className="flex flex-col sm:flex-row sm:items-center gap-2">
+									<span className="font-semibold text-primary min-w-[100px]">Location:</span>
+									<span>Koka Booth Amphitheatre, 8003 Regency Pkwy, Cary, NC 27518</span>
+								</div>
+								<div className="flex flex-col sm:flex-row sm:items-center gap-2">
+									<span className="font-semibold text-primary min-w-[100px]">Parking:</span>
+									<span>$10 General / $20 Preferred Parking</span>
+								</div>
+								<div className="flex flex-col sm:flex-row sm:items-center gap-2">
+									<span className="font-semibold text-primary min-w-[100px]">Admission:</span>
+									<Badge
+										variant="default"
+										className="bg-green-600 hover:bg-green-700 text-white text-sm px-3 py-1 w-fit"
+									>
+										🎉 FREE TO THE PUBLIC 🎉
+									</Badge>
+								</div>
+							</div>
+
+							<div className="bg-orange-50 dark:bg-orange-950/20 p-4 rounded-lg border border-orange-200 dark:border-orange-800">
+								<p className="text-sm text-orange-800 dark:text-orange-200">
+									<span className="font-semibold">Seating Note:</span> Membership required for reserved seating. $10
+									annual membership available.
+								</p>
+							</div>
+
+							<div className="bg-blue-50 dark:bg-blue-950/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+								<p className="text-sm text-blue-800 dark:text-blue-200">
+									<span className="font-semibold">Cashless Venue:</span> Koka Booth Amphitheatre is cashless. Many event
+									vendors will accept cash and cards. No ATMs on-site.
+								</p>
+							</div>
 						</CardContent>
 						<CardFooter className="flex justify-center">
 							<Button
@@ -296,131 +363,220 @@ export default function HumSubDiwali2025() {
 						</CardFooter>
 					</Card>
 
-					{/* Accordion for other sections */}
-					<Accordion type="single" collapsible className="w-full space-y-4" defaultValue="schedule">
-						<AccordionItem
-							value="schedule"
-							className="bg-orange-100/90 dark:bg-orange-900/40 data-[state=open]:bg-orange-100/90 dark:data-[state=open]:bg-orange-900/40"
-						>
-							<AccordionTrigger className="text-center bg-orange-100/90 dark:bg-orange-900/40 hover:bg-orange-100/90 dark:hover:bg-orange-900/40 data-[state=open]:bg-orange-100/90 dark:data-[state=open]:bg-orange-900/40 px-4 justify-center text-lg">
-								<span className="flex items-center justify-center gap-2 w-full uppercase">
-									<CalendarDays className="h-5 w-5 text-orange-700 dark:text-orange-300" />
-									Schedule & Highlights
-								</span>
-							</AccordionTrigger>
-							<AccordionContent className="bg-orange-100/90 dark:bg-orange-900/40 px-4 text-base">
-								<ul className="space-y-2">
-									<li>
-										<strong>9:00 AM</strong> — Gates Open, Food & Vendor Village
-									</li>
-									<li>
-										<strong>9:45 AM</strong> — Cultural Performances Begin (Main Stage)
-									</li>
-									<li>
-										<strong>5:00 PM</strong> — Special Evening Show
-									</li>
-									<li>
-										<strong>9:00 PM</strong> — Fireworks Finale
-									</li>
-								</ul>
-								<p className="mt-4 text-slate-600 dark:text-slate-300">
-									Exhibition booths, food vendors, and family-friendly activities will be available throughout the day.
-								</p>
-							</AccordionContent>
-						</AccordionItem>
-						<AccordionItem
-							value="bag-policy"
-							className="bg-green-100/90 dark:bg-green-900/40 data-[state=open]:bg-green-100/90 dark:data-[state=open]:bg-green-900/40"
-						>
-							<AccordionTrigger className="text-center bg-green-100/90 dark:bg-green-900/40 hover:bg-green-100/90 dark:hover:bg-green-900/40 data-[state=open]:bg-green-100/90 dark:data-[state=open]:bg-green-900/40 px-4 justify-center text-lg uppercase">
-								<span className="flex items-center justify-center gap-2 w-full">
-									<Package className="h-5 w-5 text-green-700 dark:text-green-300" />
-									Bag Policy & Items Allowed
-								</span>
-							</AccordionTrigger>
-							<AccordionContent className="bg-green-100/90 dark:bg-green-900/40 px-4 text-base">
-								<div className="space-y-4">
-									<div>
-										<h4 className="font-semibold text-green-800 dark:text-green-200 mb-2">Bag Policy:</h4>
-										<ul className="space-y-1">
-											<li>Bags 6"x 8" or smaller permitted</li>
-											<li>Clear bags up to 12" x 12" x 9"</li>
-											<li>Medical and parenting bags allowed</li>
-											<li>All bags subject to search</li>
-										</ul>
-										<p className="mt-2 text-red-600">
-											<strong>Note:</strong> Umbrellas not allowed due to sight lines.
-										</p>
+					{/* Detailed Information Sections */}
+					<div className="mt-16">
+						<Accordion type="single" collapsible className="w-full space-y-6" defaultValue="schedule">
+							<AccordionItem
+								value="schedule"
+								className="border border-orange-200/60 dark:border-orange-800/60 rounded-xl overflow-hidden bg-gradient-to-r from-orange-50/80 via-amber-50/60 to-yellow-50/40 dark:from-orange-950/30 dark:via-amber-950/20 dark:to-yellow-950/10 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.01] transform backdrop-blur-sm"
+							>
+								<AccordionTrigger className="px-8 py-6 hover:bg-gradient-to-r hover:from-orange-100/70 hover:to-amber-100/50 dark:hover:from-orange-900/40 dark:hover:to-amber-900/30 transition-all duration-300 text-lg font-bold hover:text-orange-700 dark:hover:text-orange-300">
+									<span className="flex items-center gap-3 w-full">
+										<div className="p-2 bg-orange-200 dark:bg-orange-800 rounded-full">
+											<CalendarDays className="h-5 w-5 text-orange-700 dark:text-orange-300" />
+										</div>
+										<span>Schedule & Highlights</span>
+									</span>
+								</AccordionTrigger>
+								<AccordionContent className="px-6 pb-6 bg-white/50 dark:bg-gray-900/50">
+									<div className="space-y-4">
+										<div className="grid gap-3">
+											<div className="flex items-center gap-4 p-3 bg-white dark:bg-gray-800 rounded-lg border border-orange-100 dark:border-orange-900">
+												<span className="text-lg font-bold text-orange-600 dark:text-orange-400 min-w-[80px]">
+													9:00 AM
+												</span>
+												<span>Gates Open, Food & Vendor Village</span>
+											</div>
+											<div className="flex items-center gap-4 p-3 bg-white dark:bg-gray-800 rounded-lg border border-orange-100 dark:border-orange-900">
+												<span className="text-lg font-bold text-orange-600 dark:text-orange-400 min-w-[80px]">
+													9:45 AM
+												</span>
+												<span>Cultural Performances Begin (Main Stage)</span>
+											</div>
+											<div className="flex items-center gap-4 p-3 bg-white dark:bg-gray-800 rounded-lg border border-orange-100 dark:border-orange-900">
+												<span className="text-lg font-bold text-orange-600 dark:text-orange-400 min-w-[80px]">
+													5:00 PM
+												</span>
+												<span>Special Evening Show with Featured Artists</span>
+											</div>
+											<div className="flex items-center gap-4 p-3 bg-gradient-to-r from-amber-100 to-orange-100 dark:from-amber-900/20 dark:to-orange-900/20 rounded-lg border border-amber-200 dark:border-amber-800">
+												<span className="text-lg font-bold text-amber-600 dark:text-amber-400 min-w-[80px]">
+													9:00 PM
+												</span>
+												<span className="font-semibold">✨ Grand Fireworks Finale ✨</span>
+											</div>
+										</div>
+										<div className="mt-4 p-4 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800">
+											<p className="text-blue-800 dark:text-blue-200 text-sm">
+												<span className="font-semibold">All Day:</span> Exhibition booths, food vendors, and
+												family-friendly activities available throughout the event.
+											</p>
+										</div>
 									</div>
+								</AccordionContent>
+							</AccordionItem>
+							<AccordionItem
+								value="venue-layout"
+								className="border border-blue-200/60 dark:border-blue-800/60 rounded-xl overflow-hidden bg-gradient-to-r from-blue-50/80 via-indigo-50/60 to-purple-50/40 dark:from-blue-950/30 dark:via-indigo-950/20 dark:to-purple-950/10 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.01] transform backdrop-blur-sm"
+							>
+								<AccordionTrigger className="px-8 py-6 hover:bg-gradient-to-r hover:from-blue-100/70 hover:to-indigo-100/50 dark:hover:from-blue-900/40 dark:hover:to-indigo-900/30 transition-all duration-300 text-lg font-bold hover:text-blue-700 dark:hover:text-blue-300">
+									<span className="flex items-center gap-3 w-full">
+										<div className="p-2 bg-blue-200 dark:bg-blue-800 rounded-full">
+											<MapPin className="h-5 w-5 text-blue-700 dark:text-blue-300" />
+										</div>
+										<span>Venue Layout & Map</span>
+									</span>
+								</AccordionTrigger>
+								<AccordionContent className="px-6 pb-6 bg-white/50 dark:bg-gray-900/50">
+									<div className="space-y-4">
+										<div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-blue-100 dark:border-blue-900">
+											<img
+												src="/assets/events/hd2025-venue-layout.jpeg"
+												alt="Venue Layout"
+												className="w-full max-w-4xl mx-auto rounded-lg shadow-lg border border-gray-200 dark:border-gray-700"
+											/>
+										</div>
+										<div className="bg-amber-50 dark:bg-amber-950/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+											<p className="text-amber-800 dark:text-amber-200 text-sm">
+												<span className="font-semibold">⚠️ Note:</span> Venue layout is subject to change. Please check
+												back closer to the event date for the most up-to-date map.
+											</p>
+										</div>
+									</div>
+								</AccordionContent>
+							</AccordionItem>
+							<AccordionItem
+								value="bag-policy"
+								className="border border-green-200/60 dark:border-green-800/60 rounded-xl overflow-hidden bg-gradient-to-r from-green-50/80 via-emerald-50/60 to-teal-50/40 dark:from-green-950/30 dark:via-emerald-950/20 dark:to-teal-950/10 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.01] transform backdrop-blur-sm"
+							>
+								<AccordionTrigger className="px-8 py-6 hover:bg-gradient-to-r hover:from-green-100/70 hover:to-emerald-100/50 dark:hover:from-green-900/40 dark:hover:to-emerald-900/30 transition-all duration-300 text-lg font-bold hover:text-green-700 dark:hover:text-green-300">
+									<span className="flex items-center gap-3 w-full">
+										<div className="p-2 bg-green-200 dark:bg-green-800 rounded-full">
+											<Package className="h-5 w-5 text-green-700 dark:text-green-300" />
+										</div>
+										<span>Bag Policy & Allowed Items</span>
+									</span>
+								</AccordionTrigger>
+								<AccordionContent className="px-8 pb-8 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
+									<div className="space-y-6">
+										<div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-green-100 dark:border-green-900">
+											<h4 className="font-bold text-green-800 dark:text-green-200 mb-3 text-lg">📋 Bag Policy</h4>
+											<div className="grid gap-2">
+												<div className="flex items-center gap-3 p-2 bg-green-50 dark:bg-green-950/20 rounded border border-green-100 dark:border-green-900">
+													<span className="text-green-600">✓</span>
+													<span>Small bags: 6" x 8" or smaller</span>
+												</div>
+												<div className="flex items-center gap-3 p-2 bg-green-50 dark:bg-green-950/20 rounded border border-green-100 dark:border-green-900">
+													<span className="text-green-600">✓</span>
+													<span>Clear bags: Up to 12" x 12" x 9"</span>
+												</div>
+												<div className="flex items-center gap-3 p-2 bg-green-50 dark:bg-green-950/20 rounded border border-green-100 dark:border-green-900">
+													<span className="text-green-600">✓</span>
+													<span>Medical and parenting bags allowed</span>
+												</div>
+												<div className="flex items-center gap-3 p-2 bg-blue-50 dark:bg-blue-950/20 rounded border border-blue-100 dark:border-blue-900">
+													<span className="text-blue-600">ℹ️</span>
+													<span>All bags subject to search</span>
+												</div>
+											</div>
+											<p className="mt-2 text-red-600">
+												<strong>Note:</strong> Umbrellas not allowed due to sight lines.
+											</p>
+										</div>
 
-									<div>
-										<h4 className="font-semibold text-green-800 dark:text-green-200 mb-2">Items Allowed:</h4>
-										<p className="mb-2">Guests can bring the following items to THIS EVENT:</p>
-										<ul>
-											<li>Bags 6" x 8" or smaller are permitted.</li>
-											<li>12" x 12" x 9" Clear bags only.</li>
-											<li>All items must fit in clear bags.</li>
-											<li>Plastic factory-sealed bottled water (1 per person).</li>
-											<li>No glass, cans, or flavored water.</li>
-											<li>
-												Select lawn chairs: No footrest, canopy, lounge chairs, tri-fold chairs, or swinging chairs. See
-												examples. Please remove the chair from the bag at the security checkpoint.
-											</li>
-											<li>Raincoats & ponchos.</li>
-											<li>Strollers.</li>
-											<li>Tablets.</li>
-											<li>Reusable bottles (no glass).</li>
-											<li>Water fill stations available in the Cobblestone Courtyard.</li>
-											<li>All allowed bags will be searched.</li>
-											<li>All patrons will walk through metal detectors.</li>
-										</ul>
-										<p className="mt-4 text-slate-600 dark:text-slate-300">
-											For more information on parking, prohibited items, and more, please visit{" "}
-											<a
-												href="https://www.boothamphitheatre.com/events/detail/hum-sub-diwali-2025"
-												target="_blank"
-												rel="noopener noreferrer"
-												className="text-blue-600 hover:text-blue-800 underline"
-											>
-												Koka Booth Amphitheater's website
-											</a>
-											.
-										</p>
+										<div>
+											<h4 className="font-semibold text-green-800 dark:text-green-200 mb-2">Items Allowed:</h4>
+											<p className="mb-2">Guests can bring the following items to THIS EVENT:</p>
+											<ul>
+												<li>Bags 6" x 8" or smaller are permitted.</li>
+												<li>12" x 12" x 9" Clear bags only.</li>
+												<li>All items must fit in clear bags.</li>
+												<li>Plastic factory-sealed bottled water (1 per person).</li>
+												<li>No glass, cans, or flavored water.</li>
+												<li>
+													Select lawn chairs: No footrest, canopy, lounge chairs, tri-fold chairs, or swinging chairs.
+													See examples. Please remove the chair from the bag at the security checkpoint.
+												</li>
+												<li>Raincoats & ponchos.</li>
+												<li>Strollers.</li>
+												<li>Tablets.</li>
+												<li>Reusable bottles (no glass).</li>
+												<li>Water fill stations available in the Cobblestone Courtyard.</li>
+												<li>All allowed bags will be searched.</li>
+												<li>All patrons will walk through metal detectors.</li>
+											</ul>
+											<p className="mt-4 text-slate-600 dark:text-slate-300">
+												For more information on parking, prohibited items, and more, please visit{" "}
+												<a
+													href="https://www.boothamphitheatre.com/events/detail/hum-sub-diwali-2025"
+													target="_blank"
+													rel="noopener noreferrer"
+													className="text-blue-600 hover:text-blue-800 underline"
+												>
+													Koka Booth Amphitheatre's website
+												</a>
+												.
+											</p>
+										</div>
 									</div>
-								</div>
-							</AccordionContent>
-						</AccordionItem>
-					</Accordion>
+								</AccordionContent>
+							</AccordionItem>
+						</Accordion>
+					</div>
 				</section>
-				<section className="mb-6">
-					<h2 className="text-3xl font-bold mb-4 text-primary text-center">Get Involved</h2>
-					<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+				<section className="space-y-12">
+					<div className="text-center space-y-6">
+						<h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-300 dark:via-purple-300 dark:to-pink-300 bg-clip-text text-transparent">
+							Get Involved
+						</h2>
+						<div className="flex items-center justify-center gap-4">
+							<div className="w-16 h-0.5 bg-gradient-to-r from-transparent to-blue-400 rounded-full"></div>
+							<div className="w-8 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+							<div className="w-16 h-0.5 bg-gradient-to-r from-purple-400 to-transparent rounded-full"></div>
+						</div>
+						<p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+							Join our community and make Hum Sub Diwali 2025 even more special
+						</p>
+					</div>
+
+					<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
 						{/* Vendor & Cultural Participation */}
-						<Card className="shadow-lg hover:shadow-xl transition-shadow gap-2">
-							<CardHeader>
-								<CardTitle className="text-xl text-primary">Vendor & Cultural Participation</CardTitle>
+						<Card className="shadow-xl hover:shadow-2xl transition-all duration-500 border border-amber-200/50 dark:border-amber-800/50 bg-gradient-to-br from-white via-amber-50/30 to-orange-50/30 dark:from-gray-900 dark:via-amber-950/20 dark:to-orange-950/20 hover:scale-[1.02] transform">
+							<CardHeader className="pb-4">
+								<CardTitle className="text-xl text-primary flex items-center gap-3">
+									<div className="p-2 bg-amber-100 dark:bg-amber-900/20 rounded-lg">
+										<span className="text-xl">🎪</span>
+									</div>
+									Vendor & Cultural Participation
+								</CardTitle>
 							</CardHeader>
-							<CardContent>
-								<p className="text-base text-slate-700 dark:text-slate-300">
-									Vendor and Cultural applications are now closed.
-									<br />
-									Please check back next year for opportunities to participate in Hum Sub Diwali 2026.
+							<CardContent className="space-y-3">
+								<div className="bg-red-50 dark:bg-red-950/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+									<p className="text-red-800 dark:text-red-200 font-medium">📋 Applications are now closed</p>
+								</div>
+								<p className="text-muted-foreground">
+									Thank you for your interest! Please check back next year for opportunities to participate in Hum Sub
+									Diwali 2026.
 								</p>
 							</CardContent>
 						</Card>
 
 						{/* Mobile Apps */}
-						<Card className="shadow-lg hover:shadow-xl transition-shadow gap-2">
-							<CardHeader>
-								<CardTitle className="text-xl text-primary">Download Our Mobile Apps</CardTitle>
+						<Card className="shadow-xl hover:shadow-2xl transition-all duration-500 border border-blue-200/50 dark:border-blue-800/50 bg-gradient-to-br from-white via-blue-50/30 to-indigo-50/30 dark:from-gray-900 dark:via-blue-950/20 dark:to-indigo-950/20 hover:scale-[1.02] transform">
+							<CardHeader className="pb-4">
+								<CardTitle className="text-xl text-primary flex items-center gap-3">
+									<div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
+										<span className="text-xl">📱</span>
+									</div>
+									Hum Sub Mobile App
+								</CardTitle>
 							</CardHeader>
-							<CardContent>
-								<p className="text-base text-slate-700 dark:text-slate-300">
-									Don't miss out on the convenience and efficiency our mobile apps offer. Download them now and
-									experience the difference for yourself!
+							<CardContent className="space-y-4">
+								<p className="text-muted-foreground">
+									Stay connected and get the most out of your Hum Sub experience with our mobile app!
 								</p>
 							</CardContent>
-							<CardFooter className="flex flex-col sm:flex-row justify-center gap-4">
+							<CardFooter className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 pt-6">
 								<Button asChild className="w-full sm:w-auto">
 									<a
 										href="https://apps.apple.com/us/app/hum-sub/id6636518213"
@@ -445,9 +601,24 @@ export default function HumSubDiwali2025() {
 						</Card>
 					</div>
 				</section>
-				<section className="not-prose shadow-lg rounded-xl bg-white dark:bg-base-100 dark:bg-slate-800 p-4 my-4">
-					<h4 className="text-2xl font-bold text-center mb-4 text-primary dark:text-amber-300">Our Sponsors</h4>
-					<Diwali2025SponsorsGrid />
+				<section className="space-y-12">
+					<div className="text-center space-y-6">
+						<h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 dark:from-green-300 dark:via-emerald-300 dark:to-teal-300 bg-clip-text text-transparent">
+							Our Sponsors
+						</h2>
+						<div className="flex items-center justify-center gap-4">
+							<div className="w-16 h-0.5 bg-gradient-to-r from-transparent to-green-400 rounded-full"></div>
+							<div className="w-8 h-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full"></div>
+							<div className="w-16 h-0.5 bg-gradient-to-r from-emerald-400 to-transparent rounded-full"></div>
+						</div>
+						<p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+							Thank you to our amazing sponsors who make this celebration possible
+						</p>
+					</div>
+
+					<div className="bg-gradient-to-br from-white via-green-50/30 to-emerald-50/30 dark:from-gray-900 dark:via-green-950/20 dark:to-emerald-950/20 rounded-2xl shadow-xl border border-green-200/50 dark:border-green-800/50 p-6 sm:p-8 md:p-12 hover:shadow-2xl transition-all duration-500 backdrop-blur-sm">
+						<Diwali2025SponsorsGrid />
+					</div>
 				</section>
 			</div>
 		</>

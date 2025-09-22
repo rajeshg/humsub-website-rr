@@ -4,15 +4,19 @@ import { useEffect, useState } from "react"
 import { Toaster } from "sonner"
 import type { BreakState, Item, PerformanceState } from "~/counter"
 import { Button } from "../ui/button"
+import { ImagePicker } from "./image-picker"
 import { SortableItemCard } from "./sortable-item-card"
 
 const dedupe = (arr: string[]) => Array.from(new Set(arr))
+
+type ViewMode = "items" | "images"
 
 export const EventDashboard: React.FC<{ role: "registration" | "backstage" | null }> = ({ role }) => {
 	const [items, setItems] = useState<Item[]>([])
 	const [role_users, setRoleUsers] = useState<string[]>([])
 	const [openDrawerId, setOpenDrawerId] = useState<string | null>(null)
 	const [showCompletedItems, setShowCompletedItems] = useState(false)
+	const [viewMode, setViewMode] = useState<ViewMode>("items")
 	const [now, setNow] = useState(Date.now())
 	const wsUrl = "/api/durable"
 
@@ -176,63 +180,105 @@ export const EventDashboard: React.FC<{ role: "registration" | "backstage" | nul
 
 	return (
 		<div className="flex flex-col h-full">
-			<div className="p-4 border-b">
-				<div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
+			<div className="p-4 border-b space-y-4">
+				{/* Main header row */}
+				<div className="flex justify-between items-start">
 					<div className="flex flex-col gap-1">
 						<h1 className="text-2xl font-bold">Event Dashboard</h1>
-						<div className="flex items-center gap-4 text-sm text-muted-foreground">
-							<span>
-								Connection: <span className={wsStatus === "open" ? "text-green-600" : "text-red-600"}>{wsStatus}</span>
-							</span>
-							{role_users.length > 0 && <span>Connected: {role_users.join(", ")}</span>}
-						</div>
-					</div>
-					<Button
-						variant="outline"
-						size="sm"
-						onClick={() => setShowCompletedItems(!showCompletedItems)}
-						className="flex items-center gap-2 min-w-fit"
-					>
-						{showCompletedItems ? (
-							<>
-								<span>Hide Completed</span>
-								<span className="text-xs bg-muted px-1.5 py-0.5 rounded">
-									{items.filter((item) => item.state === "DONE").length}
-								</span>
-							</>
-						) : (
-							<>
-								<span>Show Completed</span>
-								<span className="text-xs bg-muted px-1.5 py-0.5 rounded">
-									{items.filter((item) => item.state === "DONE").length}
-								</span>
-							</>
+						{role_users.length > 0 && (
+							<div className="text-sm text-muted-foreground">Connected: {role_users.join(", ")}</div>
 						)}
-					</Button>
+					</div>
+
+					{/* Subtle connection status indicator */}
+					<div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+						<div
+							className={`w-2 h-2 rounded-full ${
+								wsStatus === "open"
+									? "bg-green-500 animate-pulse"
+									: wsStatus === "connecting"
+										? "bg-yellow-500 animate-pulse"
+										: "bg-red-500"
+							}`}
+							title={`Connection: ${wsStatus}`}
+						/>
+						<span className="capitalize">{wsStatus}</span>
+					</div>
+				</div>
+
+				{/* Controls row */}
+				<div className="flex flex-col sm:flex-row gap-3 sm:items-center">
+					{/* View Mode Tabs - Backstage Only */}
+					{role === "backstage" && (
+						<div className="flex items-center gap-1 bg-muted p-1 rounded-lg w-fit">
+							<Button
+								variant={viewMode === "items" ? "default" : "ghost"}
+								size="sm"
+								onClick={() => setViewMode("items")}
+								className="text-xs px-3 py-1.5 h-auto"
+							>
+								📋 Items
+							</Button>
+							<Button
+								variant={viewMode === "images" ? "default" : "ghost"}
+								size="sm"
+								onClick={() => setViewMode("images")}
+								className="text-xs px-3 py-1.5 h-auto"
+							>
+								🖼️ Images
+							</Button>
+						</div>
+					)}
+
+					{/* Filter controls */}
+					<div className="flex items-center gap-2">
+						<span className="text-sm text-muted-foreground">Show:</span>
+						<Button
+							variant={showCompletedItems ? "default" : "outline"}
+							size="sm"
+							onClick={() => setShowCompletedItems(!showCompletedItems)}
+							className="text-xs px-3 py-1.5 h-auto"
+						>
+							Completed ({items.filter((item) => item.state === "DONE").length})
+						</Button>
+					</div>
 				</div>
 			</div>
-
 			<div className="flex-1 overflow-auto p-4">
-				<DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-					<SortableContext items={filteredItems.map((item) => item.id)} strategy={verticalListSortingStrategy}>
-						<div className="space-y-4">
-							{filteredItems.map((item) => (
-								<SortableItemCard
-									key={item.itemId}
-									item={item}
-									onUpdateState={handleUpdateState}
-									onStartTimer={handleStartTimer}
-									now={now}
-									role={role}
-									openDrawerId={openDrawerId}
-									setOpenDrawerId={setOpenDrawerId}
-								/>
-							))}
-						</div>
-					</SortableContext>
-				</DndContext>
-			</div>
-
+				{viewMode === "items" ? (
+					<DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+						<SortableContext items={filteredItems.map((item) => item.id)} strategy={verticalListSortingStrategy}>
+							<div className="space-y-4">
+								{filteredItems.map((item) => (
+									<SortableItemCard
+										key={item.itemId}
+										item={item}
+										onUpdateState={handleUpdateState}
+										onStartTimer={handleStartTimer}
+										now={now}
+										role={role}
+										openDrawerId={openDrawerId}
+										setOpenDrawerId={setOpenDrawerId}
+									/>
+								))}
+							</div>
+						</SortableContext>
+					</DndContext>
+				) : (
+					<div className="h-full">
+						<ImagePicker
+							onSelectImage={(imagePath) => {
+								const message = { action: "selectImage", imagePath }
+								send(JSON.stringify(message))
+							}}
+							onClearSelection={() => {
+								const message = { action: "clearImageSelection" }
+								send(JSON.stringify(message))
+							}}
+						/>
+					</div>
+				)}
+			</div>{" "}
 			<Toaster />
 		</div>
 	)

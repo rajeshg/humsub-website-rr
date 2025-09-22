@@ -47,7 +47,7 @@ export const SortableItemCard: React.FC<SortableItemCardProps> = ({
 	return (
 		<div ref={setNodeRef} style={style} className="w-full">
 			<Card
-				className={`relative w-full pt-8 overflow-hidden min-h-0 shadow-md rounded-xl border border-gray-200 dark:border-gray-700 ${
+				className={`relative w-full pt-8 shadow-md rounded-xl border border-gray-200 dark:border-gray-700 ${
 					item.state === "DONE"
 						? "bg-gray-50 dark:bg-gray-800/50 opacity-75"
 						: item.type === "BREAK"
@@ -55,7 +55,7 @@ export const SortableItemCard: React.FC<SortableItemCardProps> = ({
 							: "bg-white dark:bg-zinc-900"
 				}`}
 			>
-				<div className="flex flex-col md:flex-row px-8 pb-0 ml-10">
+				<div className="flex flex-col md:flex-row md:px-2 pb-0 ml-10">
 					{/* State indicator bar */}
 					<div className="absolute left-0 top-0 bottom-0 h-full">
 						<div
@@ -78,7 +78,7 @@ export const SortableItemCard: React.FC<SortableItemCardProps> = ({
 
 					{/* Drag handle */}
 					{role !== "registration" && (
-						<div className="absolute left-2/3 top-3 -translate-x-1/2">
+						<div className="absolute left-1/2 top-3 ml-5 -translate-x-1/2">
 							<div className="flex items-center justify-center cursor-grab" {...attributes} {...listeners} aria-hidden>
 								<Icon icon="teenyicons:drag-horizontal-outline" className="w-5 h-5" />
 							</div>
@@ -89,7 +89,7 @@ export const SortableItemCard: React.FC<SortableItemCardProps> = ({
 						<CardHeader>
 							<CardTitle className="flex items-center w-full mb-2">
 								<div className="flex items-center gap-3 min-w-0">
-									<span className="truncate mr-4 pr-6 text-lg">{item.name}</span>
+									<span className="whitespace-normal break-words mr-4 pr-6 text-lg">{item.name}</span>
 									{item.type === "BREAK" && (
 										<span className="text-xs font-medium px-2 py-1 rounded bg-yellow-200 dark:bg-yellow-700 text-yellow-800 dark:text-yellow-100">
 											BREAK
@@ -153,12 +153,8 @@ export const SortableItemCard: React.FC<SortableItemCardProps> = ({
 							</div>
 						</CardContent>
 
-						<CardFooter>
-							<div className="my-3">
-								<div className="flex flex-row flex-wrap justify-start gap-3">
-									<ActionButtons item={item} role={role} onUpdateState={onUpdateState} onStartTimer={onStartTimer} />
-								</div>
-							</div>
+						<CardFooter className="pt-3">
+							<ActionButtons item={item} role={role} onUpdateState={onUpdateState} onStartTimer={onStartTimer} />
 						</CardFooter>
 					</div>
 
