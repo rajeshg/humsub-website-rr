@@ -14,6 +14,7 @@ export default function OurTeam() {
 				src="../assets/team/humsub-bod-team-2024.jpeg"
 				alt="2025 Board of Directors"
 				title="2025 Board of Directors"
+				className="mx-auto"
 			/>
 
 			<h2>2025 Board Of Directors of Hum Sub Inc</h2>

@@ -10,7 +10,7 @@ type SponsorCarouselProps = {
 	label?: string
 }
 
-export function SponsorCarousel({ imageClass = "h-48", label = "Sponsors" }: SponsorCarouselProps) {
+export function SponsorCarousel({ imageClass = "h-32", label = "Sponsors" }: SponsorCarouselProps) {
 	const headingId = `sponsors-${label.replace(/\s+/g, "-").toLowerCase()}`
 
 	return (
@@ -31,7 +31,7 @@ export function SponsorCarousel({ imageClass = "h-48", label = "Sponsors" }: Spo
 			>
 				<CarouselContent>
 					{sponsors.map((sponsor) => (
-						<CarouselItem key={sponsor.name} className="md:basis-1/4 basis-1/2 flex flex-col items-center">
+						<CarouselItem key={sponsor.name} className="md:basis-1/6 basis-1/2 flex flex-col items-center">
 							<img
 								src={Array.isArray(sponsor.imagePath) ? sponsor.imagePath[0] : sponsor.imagePath}
 								alt={`${sponsor.name} logo`}
@@ -39,7 +39,7 @@ export function SponsorCarousel({ imageClass = "h-48", label = "Sponsors" }: Spo
 								loading="lazy"
 							/>
 							<Badge
-								className={`capitalize mt-3 ${
+								className={`text-[12px] capitalize mt-3 whitespace-normal text-center ${
 									sponsor.label ? "bg-blue-600 text-white dark:bg-blue-400 dark:text-black" : ""
 								}`}
 							>

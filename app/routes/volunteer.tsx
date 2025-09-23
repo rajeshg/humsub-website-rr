@@ -1,3 +1,4 @@
+import { Link } from "react-router"
 import { Button } from "~/components/ui/button"
 
 export default function OurSponsors() {
@@ -12,6 +13,17 @@ export default function OurSponsors() {
 				age groups (minimum age of volunteer is 14; minimum age to register independently is 16) who support us during
 				our events by giving us their time, talent, support, and hard work. It takes many hands and many hearts to
 				complete our mission.
+			</p>
+			<p>
+				To volunteer with us, we kindly ask that you become a member first. This ensures our volunteers are part of our
+				community and get priority access to opportunities.{" "}
+				<Link
+					to="/membership/signup"
+					className="text-blue-600 dark:text-blue-400 underline hover:text-blue-800 dark:hover:text-blue-200"
+				>
+					Sign up for membership here
+				</Link>
+				.
 			</p>
 			<p>
 				By working together, great things can be accomplished. Unity provides a strength that is denied to the

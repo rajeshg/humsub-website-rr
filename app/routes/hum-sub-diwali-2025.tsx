@@ -1,5 +1,6 @@
-import { CalendarDays, MapPin, Package } from "lucide-react"
+import { CalendarDays, MapPin, Package, Users } from "lucide-react"
 import { useEffect, useState } from "react"
+import { Link } from "react-router"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "~/components/ui/accordion"
 import { Badge } from "~/components/ui/badge"
 import { Button } from "~/components/ui/button"
@@ -145,7 +146,7 @@ export default function HumSubDiwali2025() {
 	const eventDate = new Date(2025, 9, 11, 9, 0, 0) // Month is 0-indexed, so 9 = October
 
 	return (
-		<>
+		<div className="container bg-white dark:bg-black">
 			{/* Hero Section */}
 			<section className="relative bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 dark:from-slate-900 dark:via-orange-950 dark:to-amber-950 py-16 md:py-24 overflow-hidden">
 				{/* Decorative Background Elements */}
@@ -301,7 +302,7 @@ export default function HumSubDiwali2025() {
 					</div>
 
 					{/* Venue Details - Enhanced Card */}
-					<Card className="shadow-xl hover:shadow-2xl transition-all duration-500 border border-orange-200/50 dark:border-orange-800/50 bg-gradient-to-br from-white via-orange-50/30 to-amber-50/30 dark:from-gray-900 dark:via-orange-950/20 dark:to-amber-950/20 hover:scale-[1.02] transform">
+					<Card className="shadow-sm hover:shadow-md transition-all duration-200 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
 						<CardHeader className="pb-4">
 							<CardTitle className="text-2xl text-primary flex items-center gap-3">
 								<div className="p-2 bg-primary/10 rounded-lg">
@@ -368,17 +369,17 @@ export default function HumSubDiwali2025() {
 						<Accordion type="single" collapsible className="w-full space-y-6" defaultValue="schedule">
 							<AccordionItem
 								value="schedule"
-								className="border border-orange-200/60 dark:border-orange-800/60 rounded-xl overflow-hidden bg-gradient-to-r from-orange-50/80 via-amber-50/60 to-yellow-50/40 dark:from-orange-950/30 dark:via-amber-950/20 dark:to-yellow-950/10 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.01] transform backdrop-blur-sm"
+								className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all duration-200"
 							>
-								<AccordionTrigger className="px-8 py-6 hover:bg-gradient-to-r hover:from-orange-100/70 hover:to-amber-100/50 dark:hover:from-orange-900/40 dark:hover:to-amber-900/30 transition-all duration-300 text-lg font-bold hover:text-orange-700 dark:hover:text-orange-300">
+								<AccordionTrigger className="px-6 py-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-lg font-semibold">
 									<span className="flex items-center gap-3 w-full">
-										<div className="p-2 bg-orange-200 dark:bg-orange-800 rounded-full">
-											<CalendarDays className="h-5 w-5 text-orange-700 dark:text-orange-300" />
+										<div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-full">
+											<CalendarDays className="h-5 w-5 text-orange-600 dark:text-orange-400" />
 										</div>
 										<span>Schedule & Highlights</span>
 									</span>
 								</AccordionTrigger>
-								<AccordionContent className="px-6 pb-6 bg-white/50 dark:bg-gray-900/50">
+								<AccordionContent className="px-6 pb-6 bg-gray-50/50 dark:bg-gray-800/50">
 									<div className="space-y-4">
 										<div className="grid gap-3">
 											<div className="flex items-center gap-4 p-3 bg-white dark:bg-gray-800 rounded-lg border border-orange-100 dark:border-orange-900">
@@ -417,29 +418,29 @@ export default function HumSubDiwali2025() {
 							</AccordionItem>
 							<AccordionItem
 								value="venue-layout"
-								className="border border-blue-200/60 dark:border-blue-800/60 rounded-xl overflow-hidden bg-gradient-to-r from-blue-50/80 via-indigo-50/60 to-purple-50/40 dark:from-blue-950/30 dark:via-indigo-950/20 dark:to-purple-950/10 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.01] transform backdrop-blur-sm"
+								className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all duration-200"
 							>
-								<AccordionTrigger className="px-8 py-6 hover:bg-gradient-to-r hover:from-blue-100/70 hover:to-indigo-100/50 dark:hover:from-blue-900/40 dark:hover:to-indigo-900/30 transition-all duration-300 text-lg font-bold hover:text-blue-700 dark:hover:text-blue-300">
+								<AccordionTrigger className="px-6 py-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-lg font-semibold">
 									<span className="flex items-center gap-3 w-full">
-										<div className="p-2 bg-blue-200 dark:bg-blue-800 rounded-full">
-											<MapPin className="h-5 w-5 text-blue-700 dark:text-blue-300" />
+										<div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-full">
+											<MapPin className="h-5 w-5 text-blue-600 dark:text-blue-400" />
 										</div>
 										<span>Venue Layout & Map</span>
 									</span>
 								</AccordionTrigger>
-								<AccordionContent className="px-6 pb-6 bg-white/50 dark:bg-gray-900/50">
+								<AccordionContent className="px-6 pb-6 bg-gray-50/50 dark:bg-gray-800/50">
 									<div className="space-y-4">
-										<div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-blue-100 dark:border-blue-900">
+										<div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
 											<img
 												src="/assets/events/hd2025-venue-layout.jpeg"
 												alt="Venue Layout"
 												className="w-full max-w-4xl mx-auto rounded-lg shadow-lg border border-gray-200 dark:border-gray-700"
 											/>
 										</div>
-										<div className="bg-amber-50 dark:bg-amber-950/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
-											<p className="text-amber-800 dark:text-amber-200 text-sm">
-												<span className="font-semibold">⚠️ Note:</span> Venue layout is subject to change. Please check
-												back closer to the event date for the most up-to-date map.
+										<div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+											<p className="text-gray-700 dark:text-gray-300 text-sm">
+												<span className="font-semibold text-amber-600 dark:text-amber-400">⚠️ Note:</span> Venue layout
+												is subject to change. Please check back closer to the event date for the most up-to-date map.
 											</p>
 										</div>
 									</div>
@@ -447,45 +448,50 @@ export default function HumSubDiwali2025() {
 							</AccordionItem>
 							<AccordionItem
 								value="bag-policy"
-								className="border border-green-200/60 dark:border-green-800/60 rounded-xl overflow-hidden bg-gradient-to-r from-green-50/80 via-emerald-50/60 to-teal-50/40 dark:from-green-950/30 dark:via-emerald-950/20 dark:to-teal-950/10 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.01] transform backdrop-blur-sm"
+								className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all duration-200"
 							>
-								<AccordionTrigger className="px-8 py-6 hover:bg-gradient-to-r hover:from-green-100/70 hover:to-emerald-100/50 dark:hover:from-green-900/40 dark:hover:to-emerald-900/30 transition-all duration-300 text-lg font-bold hover:text-green-700 dark:hover:text-green-300">
+								<AccordionTrigger className="px-6 py-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-lg font-semibold">
 									<span className="flex items-center gap-3 w-full">
-										<div className="p-2 bg-green-200 dark:bg-green-800 rounded-full">
-											<Package className="h-5 w-5 text-green-700 dark:text-green-300" />
+										<div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-full">
+											<Package className="h-5 w-5 text-green-600 dark:text-green-400" />
 										</div>
 										<span>Bag Policy & Allowed Items</span>
 									</span>
 								</AccordionTrigger>
-								<AccordionContent className="px-8 pb-8 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
+								<AccordionContent className="px-6 pb-6 bg-gray-50/50 dark:bg-gray-800/50">
 									<div className="space-y-6">
-										<div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-green-100 dark:border-green-900">
-											<h4 className="font-bold text-green-800 dark:text-green-200 mb-3 text-lg">📋 Bag Policy</h4>
+										<div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+											<h4 className="font-bold text-gray-900 dark:text-gray-100 mb-3 text-lg">
+												<span className="text-green-600 dark:text-green-400">📋</span> Bag Policy
+											</h4>
 											<div className="grid gap-2">
-												<div className="flex items-center gap-3 p-2 bg-green-50 dark:bg-green-950/20 rounded border border-green-100 dark:border-green-900">
-													<span className="text-green-600">✓</span>
+												<div className="flex items-center gap-3 p-2 bg-gray-50 dark:bg-gray-700 rounded border border-gray-200 dark:border-gray-600">
+													<span className="text-green-600 dark:text-green-400">✓</span>
 													<span>Small bags: 6" x 8" or smaller</span>
 												</div>
-												<div className="flex items-center gap-3 p-2 bg-green-50 dark:bg-green-950/20 rounded border border-green-100 dark:border-green-900">
-													<span className="text-green-600">✓</span>
+												<div className="flex items-center gap-3 p-2 bg-gray-50 dark:bg-gray-700 rounded border border-gray-200 dark:border-gray-600">
+													<span className="text-green-600 dark:text-green-400">✓</span>
 													<span>Clear bags: Up to 12" x 12" x 9"</span>
 												</div>
-												<div className="flex items-center gap-3 p-2 bg-green-50 dark:bg-green-950/20 rounded border border-green-100 dark:border-green-900">
-													<span className="text-green-600">✓</span>
+												<div className="flex items-center gap-3 p-2 bg-gray-50 dark:bg-gray-700 rounded border border-gray-200 dark:border-gray-600">
+													<span className="text-green-600 dark:text-green-400">✓</span>
 													<span>Medical and parenting bags allowed</span>
 												</div>
-												<div className="flex items-center gap-3 p-2 bg-blue-50 dark:bg-blue-950/20 rounded border border-blue-100 dark:border-blue-900">
-													<span className="text-blue-600">ℹ️</span>
+												<div className="flex items-center gap-3 p-2 bg-gray-50 dark:bg-gray-700 rounded border border-gray-200 dark:border-gray-600">
+													<span className="text-blue-600 dark:text-blue-400">ℹ️</span>
 													<span>All bags subject to search</span>
 												</div>
 											</div>
-											<p className="mt-2 text-red-600">
-												<strong>Note:</strong> Umbrellas not allowed due to sight lines.
+											<p className="mt-2 text-gray-700 dark:text-gray-300">
+												<span className="font-semibold text-red-600 dark:text-red-400">Note:</span> Umbrellas not
+												allowed due to sight lines.
 											</p>
 										</div>
 
 										<div>
-											<h4 className="font-semibold text-green-800 dark:text-green-200 mb-2">Items Allowed:</h4>
+											<h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-2">
+												<span className="text-green-600 dark:text-green-400">Items Allowed:</span>
+											</h4>
 											<p className="mb-2">Guests can bring the following items to THIS EVENT:</p>
 											<ul>
 												<li>Bags 6" x 8" or smaller are permitted.</li>
@@ -539,66 +545,140 @@ export default function HumSubDiwali2025() {
 						</p>
 					</div>
 
-					<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
-						{/* Vendor & Cultural Participation */}
-						<Card className="shadow-xl hover:shadow-2xl transition-all duration-500 border border-amber-200/50 dark:border-amber-800/50 bg-gradient-to-br from-white via-amber-50/30 to-orange-50/30 dark:from-gray-900 dark:via-amber-950/20 dark:to-orange-950/20 hover:scale-[1.02] transform">
-							<CardHeader className="pb-4">
-								<CardTitle className="text-xl text-primary flex items-center gap-3">
-									<div className="p-2 bg-amber-100 dark:bg-amber-900/20 rounded-lg">
-										<span className="text-xl">🎪</span>
+					{/* Get Involved Accordion Sections */}
+					<div className="mt-16">
+						<Accordion type="single" collapsible className="w-full space-y-6" defaultValue="vendor-participation">
+							<AccordionItem
+								value="vendor-participation"
+								className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all duration-200"
+							>
+								<AccordionTrigger className="px-6 py-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-lg font-semibold">
+									<span className="flex items-center gap-3 w-full">
+										<div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-full">
+											<span className="text-xl text-amber-600 dark:text-amber-400">🎪</span>
+										</div>
+										<span>Vendor & Cultural Participation</span>
+									</span>
+								</AccordionTrigger>
+								<AccordionContent className="px-6 pb-6 bg-gray-50/50 dark:bg-gray-800/50">
+									<div className="space-y-4">
+										<div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+											<p className="text-gray-700 dark:text-gray-300 font-medium">
+												<span className="text-red-600 dark:text-red-400">📋</span> Applications are now closed
+											</p>
+										</div>
+										<p className="text-muted-foreground">
+											Thank you for your interest! Please check back next year for opportunities to participate in Hum
+											Sub Diwali 2026.
+										</p>
 									</div>
-									Vendor & Cultural Participation
-								</CardTitle>
-							</CardHeader>
-							<CardContent className="space-y-3">
-								<div className="bg-red-50 dark:bg-red-950/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
-									<p className="text-red-800 dark:text-red-200 font-medium">📋 Applications are now closed</p>
-								</div>
-								<p className="text-muted-foreground">
-									Thank you for your interest! Please check back next year for opportunities to participate in Hum Sub
-									Diwali 2026.
-								</p>
-							</CardContent>
-						</Card>
+								</AccordionContent>
+							</AccordionItem>
 
-						{/* Mobile Apps */}
-						<Card className="shadow-xl hover:shadow-2xl transition-all duration-500 border border-blue-200/50 dark:border-blue-800/50 bg-gradient-to-br from-white via-blue-50/30 to-indigo-50/30 dark:from-gray-900 dark:via-blue-950/20 dark:to-indigo-950/20 hover:scale-[1.02] transform">
-							<CardHeader className="pb-4">
-								<CardTitle className="text-xl text-primary flex items-center gap-3">
-									<div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-										<span className="text-xl">📱</span>
+							<AccordionItem
+								value="volunteer"
+								className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all duration-200"
+							>
+								<AccordionTrigger className="px-6 py-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-lg font-semibold">
+									<span className="flex items-center gap-3 w-full">
+										<div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-full">
+											<Users className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+										</div>
+										<span>Volunteer With Us</span>
+									</span>
+								</AccordionTrigger>
+								<AccordionContent className="px-6 pb-6 bg-gray-50/50 dark:bg-gray-800/50">
+									<div className="space-y-4">
+										<div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+											<h4 className="font-bold text-gray-900 dark:text-gray-100 mb-3 text-lg">
+												<span className="text-purple-600 dark:text-purple-400">🤝</span> Join Our Volunteer Team
+											</h4>
+											<p className="text-muted-foreground mb-4">
+												Volunteers are the backbone of any organization. We at Hum Sub value, cherish, and appreciate
+												volunteers in all age groups (minimum age of volunteer is 14; minimum age to register
+												independently is 16) who support us during our events.
+											</p>
+											<p className="text-muted-foreground mb-4">
+												By working together, great things can be accomplished. At Hum Sub, our strength lies in our
+												volunteer system. We encourage you to sign up for volunteer duties at our events including Hum
+												Sub Diwali, Basant Bahar, and special events.
+											</p>
+											<p className="text-muted-foreground mb-4">
+												To volunteer with us, we kindly ask that you become a member first. This ensures our volunteers
+												are part of our community and get priority access to opportunities.{" "}
+												<Link
+													to="/membership/signup"
+													className="text-blue-600 dark:text-blue-400 underline hover:text-blue-800 dark:hover:text-blue-200"
+												>
+													Sign up for membership here
+												</Link>
+												.
+											</p>
+											<div className="flex justify-center mt-6">
+												<Button asChild size="lg" className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3">
+													<a
+														href="https://portal.humsub.org/index.php/login/volunteer"
+														target="_blank"
+														rel="noopener noreferrer"
+														className="no-underline"
+													>
+														Sign Up to Volunteer
+													</a>
+												</Button>
+											</div>
+										</div>
 									</div>
-									Hum Sub Mobile App
-								</CardTitle>
-							</CardHeader>
-							<CardContent className="space-y-4">
-								<p className="text-muted-foreground">
-									Stay connected and get the most out of your Hum Sub experience with our mobile app!
-								</p>
-							</CardContent>
-							<CardFooter className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 pt-6">
-								<Button asChild className="w-full sm:w-auto">
-									<a
-										href="https://apps.apple.com/us/app/hum-sub/id6636518213"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="no-underline"
-									>
-										Download for iOS
-									</a>
-								</Button>
-								<Button variant="secondary" asChild className="w-full sm:w-auto">
-									<a
-										href="https://play.google.com/store/apps/details?id=com.humsub2.app"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="no-underline"
-									>
-										Download for Android
-									</a>
-								</Button>
-							</CardFooter>
-						</Card>
+								</AccordionContent>
+							</AccordionItem>
+
+							<AccordionItem
+								value="mobile-app"
+								className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all duration-200"
+							>
+								<AccordionTrigger className="px-6 py-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-lg font-semibold">
+									<span className="flex items-center gap-3 w-full">
+										<div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-full">
+											<span className="text-xl text-blue-600 dark:text-blue-400">📱</span>
+										</div>
+										<span>Hum Sub Mobile App</span>
+									</span>
+								</AccordionTrigger>
+								<AccordionContent className="px-6 pb-6 bg-gray-50/50 dark:bg-gray-800/50">
+									<div className="space-y-4">
+										<div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+											<h4 className="font-bold text-gray-900 dark:text-gray-100 mb-3 text-lg">
+												<span className="text-blue-600 dark:text-blue-400">📱</span> Stay Connected
+											</h4>
+											<p className="text-muted-foreground mb-4">
+												Stay connected and get the most out of your Hum Sub experience with our mobile app!
+											</p>
+											<div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mt-6">
+												<Button asChild className="w-full sm:w-auto">
+													<a
+														href="https://apps.apple.com/us/app/hum-sub/id6636518213"
+														target="_blank"
+														rel="noopener noreferrer"
+														className="no-underline"
+													>
+														Download for iOS
+													</a>
+												</Button>
+												<Button variant="secondary" asChild className="w-full sm:w-auto">
+													<a
+														href="https://play.google.com/store/apps/details?id=com.humsub2.app"
+														target="_blank"
+														rel="noopener noreferrer"
+														className="no-underline"
+													>
+														Download for Android
+													</a>
+												</Button>
+											</div>
+										</div>
+									</div>
+								</AccordionContent>
+							</AccordionItem>
+						</Accordion>
 					</div>
 				</section>
 				<section className="space-y-12">
@@ -616,11 +696,11 @@ export default function HumSubDiwali2025() {
 						</p>
 					</div>
 
-					<div className="bg-gradient-to-br from-white via-green-50/30 to-emerald-50/30 dark:from-gray-900 dark:via-green-950/20 dark:to-emerald-950/20 rounded-2xl shadow-xl border border-green-200/50 dark:border-green-800/50 p-6 sm:p-8 md:p-12 hover:shadow-2xl transition-all duration-500 backdrop-blur-sm">
+					<div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 sm:p-8 md:p-12">
 						<Diwali2025SponsorsGrid />
 					</div>
 				</section>
 			</div>
-		</>
+		</div>
 	)
 }

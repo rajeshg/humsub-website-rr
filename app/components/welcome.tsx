@@ -9,8 +9,8 @@ import type { EventMeta } from "~/events.server"
 
 export function Welcome({ events }: { events: EventMeta[] }) {
 	return (
-		<div id="container" className="container mx-auto px-4 max-w-7xl">
-			<main className="flex flex-col dark:text-slate-100">
+		<div id="container" className="container mx-auto max-w-7xl not-prose">
+			<main className="md:mx-4 flex flex-col dark:text-slate-100">
 				<div className="flex flex-col md:flex-row gap-4">
 					{/* Membership and Raffle Links */}
 					<div className="flex flex-col items-center my-4 w-full md:w-1/2">
@@ -22,27 +22,29 @@ export function Welcome({ events }: { events: EventMeta[] }) {
 							<p className="text-sm text-center text-base-content/70 dark:text-slate-300 mb-3">
 								Become a member or try your luck in our raffle. Get involved and support the community!
 							</p>
-							<div className="flex w-full gap-3">
+							<div className="flex w-full gap-3 flex-col sm:flex-row">
 								<Link
 									to="/membership"
 									title="Become a Member"
-									className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-lg font-semibold text-base md:text-lg transition-all
+									className="w-full sm:flex-1 sm:min-w-0 flex items-center justify-center gap-2 px-3 py-2 rounded-lg font-semibold text-base md:text-lg transition-all
 									text-primary dark:text-amber-300 bg-primary/5 dark:bg-amber-300/10 hover:bg-primary/20 dark:hover:bg-amber-300/20
 									decoration-2 decoration-primary dark:decoration-amber-300 no-underline shadow-sm hover:scale-105"
 								>
 									<Icon icon="mdi:account-group" className="h-5 w-5" />
-									Membership
+									<span className="truncate">Membership</span>
 								</Link>
-								<span className="self-center text-base-content/30 dark:text-slate-500 font-bold">|</span>
+								<span className="hidden sm:inline self-center text-base-content/30 dark:text-slate-500 font-bold">
+									|
+								</span>
 								<Link
 									to="/2025-raffle"
 									title="Participate in Raffle"
-									className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-lg font-semibold text-base md:text-lg transition-all
+									className="w-full sm:flex-1 sm:min-w-0 flex items-center justify-center gap-2 px-3 py-2 rounded-lg font-semibold text-base md:text-lg transition-all
 									text-primary dark:text-amber-300 bg-primary/5 dark:bg-amber-300/10 hover:bg-primary/20 dark:hover:bg-amber-300/20
 									decoration-2 decoration-primary dark:decoration-amber-300 no-underline shadow-sm hover:scale-105"
 								>
 									<Icon icon="mdi:ticket-percent" className="h-5 w-5" />
-									Raffle
+									<span className="truncate">Raffle</span>
 								</Link>
 							</div>
 						</div>
@@ -177,38 +179,59 @@ export function Welcome({ events }: { events: EventMeta[] }) {
 					</Card>
 				</section>
 
-				<section className="shadow-lg rounded-xl bg-base-100 dark:bg-slate-800 p-4 my-4 grid grid-cols-2 md:grid-cols-4 gap-4">
-					<div className="relative bg-base-200/50 dark:bg-slate-700/70 rounded-lg p-4 flex flex-col">
-						<div className="absolute top-1/2 right-4 transform -translate-y-1/2 text-blue-700 dark:text-blue-400">
-							<Icon icon="mdi:lightning-bolt" className="h-6 w-6" />
+				<section className="shadow-lg rounded-xl bg-base-100 dark:bg-slate-800 p-2 my-4 grid grid-cols-2 md:grid-cols-4 gap-3">
+					<div className="bg-base-200/50 dark:bg-slate-700/70 rounded-lg p-3 md:p-2 flex flex-col items-center text-center gap-2">
+						<div className="flex flex-col justify-center items-center gap-1">
+							<div className="flex items-center justify-center h-6 w-6 text-blue-700 dark:text-blue-400">
+								<Icon icon="mdi:lightning-bolt" className="h-full w-full" />
+							</div>
+							<div className="text-sm font-medium text-gray-700 dark:text-slate-200 leading-none">Attendees</div>
 						</div>
-						<div className="text-sm font-medium text-gray-700 dark:text-slate-200">Attendees</div>
-						<div className="text-2xl font-bold text-blue-700 dark:text-blue-400 mt-1">15,000+</div>
-						<div className="text-xs text-gray-700 dark:text-slate-200 mt-1">Largest event in South-East USA</div>
+						<div className="text-2xl md:text-3xl font-extrabold text-blue-700 dark:text-blue-400 leading-tight">
+							15,000+
+						</div>
+						<div className="text-xs text-gray-700 dark:text-slate-200">Largest event in South-East USA</div>
 					</div>
-					<div className="relative bg-base-200/50 dark:bg-slate-700/70 rounded-lg p-4 flex flex-col">
-						<div className="absolute top-1/2 right-4 transform -translate-y-1/2 text-red-700 dark:text-red-400">
-							<Icon icon="mdi:heart" className="h-6 w-6" />
+
+					<div className="bg-base-200/50 dark:bg-slate-700/70 rounded-lg p-3 md:p-2 flex flex-col items-center text-center gap-2">
+						<div className="flex flex-col justify-center items-center gap-1">
+							<div className="flex items-center justify-center h-6 w-6 text-red-700 dark:text-red-400">
+								<Icon icon="mdi:heart" className="h-full w-full" />
+							</div>
+							<div className="text-sm font-medium text-gray-700 dark:text-slate-200 leading-none">Performers</div>
 						</div>
-						<div className="text-sm font-medium text-gray-700 dark:text-slate-200">Performers</div>
-						<div className="text-2xl font-bold text-red-700 dark:text-red-400 mt-1">1,200+</div>
-						<div className="text-xs text-gray-700 dark:text-slate-200 mt-1">On stage</div>
+						<div className="text-2xl md:text-3xl font-extrabold text-red-700 dark:text-red-400 leading-tight">
+							1,200+
+						</div>
+						<div className="text-xs text-gray-700 dark:text-slate-200">On stage</div>
 					</div>
-					<div className="relative bg-base-200/50 dark:bg-slate-700/70 rounded-lg p-4 flex flex-col">
-						<div className="absolute top-1/2 right-4 transform -translate-y-1/2 text-yellow-700 dark:text-yellow-400">
-							<Icon icon="mdi:store" className="h-6 w-6" />
+
+					<div className="bg-base-200/50 dark:bg-slate-700/70 rounded-lg p-3 md:p-2 flex flex-col items-center text-center gap-2">
+						<div className="flex flex-col justify-center items-center gap-1">
+							<div className="flex items-center justify-center h-6 w-6 text-yellow-700 dark:text-yellow-400">
+								<Icon icon="mdi:store" className="h-full w-full" />
+							</div>
+							<div className="text-sm font-medium text-gray-700 dark:text-slate-200 leading-none">Vendors</div>
 						</div>
-						<div className="text-sm font-medium text-gray-700 dark:text-slate-200">Vendors</div>
-						<div className="text-2xl font-bold text-yellow-700 dark:text-yellow-400 mt-1">50+</div>
-						<div className="text-xs text-gray-700 dark:text-slate-200 mt-1">Food / Fashion / Business</div>
+						<div className="text-2xl md:text-3xl font-extrabold text-yellow-700 dark:text-yellow-400 leading-tight">
+							50+
+						</div>
+						<div className="text-xs text-gray-700 dark:text-slate-200">Food / Fashion / Business</div>
 					</div>
-					<div className="relative bg-base-200/50 dark:bg-slate-700/70 rounded-lg p-4 flex flex-col">
-						<div className="absolute top-1/2 right-4 transform -translate-y-1/2 text-green-700 dark:text-green-400">
-							<Icon icon="mdi:information" className="h-6 w-6" />
+
+					<div className="bg-base-200/50 dark:bg-slate-700/70 rounded-lg p-3 md:p-2 flex flex-col items-center text-center gap-2">
+						<div className="flex flex-col justify-center items-center gap-1">
+							<div className="flex items-center justify-center h-6 w-6 text-green-700 dark:text-green-400">
+								<Icon icon="mdi:information" className="h-full w-full" />
+							</div>
+							<div className="text-sm font-medium text-gray-700 dark:text-slate-200 leading-none">
+								Years in existence
+							</div>
 						</div>
-						<div className="text-sm font-medium text-gray-700 dark:text-slate-200">Years in existence</div>
-						<div className="text-2xl font-bold text-green-700 dark:text-green-400 mt-1">25</div>
-						<div className="text-xs text-gray-700 dark:text-slate-200 mt-1">since 2000</div>
+						<div className="text-2xl md:text-3xl font-extrabold text-green-700 dark:text-green-400 leading-tight">
+							25
+						</div>
+						<div className="text-xs text-gray-700 dark:text-slate-200">since 2000</div>
 					</div>
 				</section>
 				<section className="not-prose shadow-lg rounded-xl bg-base-100 dark:bg-slate-800 p-4 my-4">
