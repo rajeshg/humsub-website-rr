@@ -10,6 +10,16 @@
 - **Typecheck**: `bun rr:typegen && bun cf:typegen && tsc`
 - **Dev Server**: `vite dev`
 
+### Additional Test Commands
+- **Run All Tests**: `bun run test`
+- **Test with Coverage**: `bun run test:coverage`
+- **Test in Watch Mode**: `bun run test:watch`
+- **Interactive Test UI**: `bun run test:ui`
+- **Component Tests Only**: `bun run test:components`
+- **Event Dashboard Tests**: `bun run test:event-dashboard`
+- **Check Code Quality**: `bun run check`
+- **Auto-fix Formatting**: `bun run check:fix`
+
 ## Code Style Guidelines
 
 ### TypeScript
@@ -69,6 +79,9 @@
 - Test files: `*.test.ts`
 - Follow describe/it/expect pattern
 - Test utilities and components thoroughly
+- Coverage reports generated in `./coverage/` directory
+- JUnit XML output: `test-results.xml`
+- Current coverage: ~5.35% overall, with well-tested modules like DateTime utilities (83.33%) and Utils (100%)
 
 ## Copilot Instructions
 - Focus on React/TypeScript best practices

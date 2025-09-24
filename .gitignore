@@ -10,3 +10,4 @@
 .DS_Store
 .dev.vars
 worker-configuration.d.ts
+test-results.xml
