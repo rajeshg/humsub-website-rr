@@ -1,5 +1,5 @@
-import { CalendarDays, MapPin, Package, Users } from "lucide-react"
-import { useEffect, useState } from "react"
+import { CalendarDays, Car, MapPin, Package, Users } from "lucide-react"
+import { useTimeUntil } from "~/lib/timeuntil"
 import { Link } from "react-router"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "~/components/ui/accordion"
 import { Badge } from "~/components/ui/badge"
@@ -12,35 +12,7 @@ interface HeroProps {
 }
 
 function Hero({ eventDate }: HeroProps) {
-	const [timeLeft, setTimeLeft] = useState({
-		months: 0,
-		days: 0,
-		hours: 0,
-		minutes: 0,
-		isExpired: false,
-	})
-
-	useEffect(() => {
-		const timer = setInterval(() => {
-			const now = new Date().getTime()
-			const eventTime = eventDate.getTime()
-			const distance = eventTime - now
-
-			if (distance > 0) {
-				// Calculate time units
-				const months = Math.floor(distance / (1000 * 60 * 60 * 24 * 30.44)) // Average month length
-				const days = Math.floor((distance % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24))
-				const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-				const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
-
-				setTimeLeft({ months, days, hours, minutes, isExpired: false })
-			} else {
-				setTimeLeft({ months: 0, days: 0, hours: 0, minutes: 0, isExpired: true })
-			}
-		}, 1000)
-
-		return () => clearInterval(timer)
-	}, [eventDate])
+	const timeLeft = useTimeUntil(eventDate)
 
 	return (
 		<>
@@ -446,6 +418,97 @@ export default function HumSubDiwali2025() {
 									</div>
 								</AccordionContent>
 							</AccordionItem>
+							<AccordionItem
+								value="parking"
+								className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all duration-200"
+							>
+								<AccordionTrigger className="px-6 py-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-lg font-semibold">
+									<span className="flex items-center gap-3 w-full">
+										<div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-full">
+											<Car className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+										</div>
+										<span>Parking Information</span>
+									</span>
+								</AccordionTrigger>
+								<AccordionContent className="px-6 pb-6 bg-gray-50/50 dark:bg-gray-800/50">
+									{/* Responsive PDF: show embedded viewer on sm+; provide a mobile-friendly fallback */}
+									<div className="w-full">
+										{/* Desktop / Tablet: attempt inline PDF rendering */}
+										<div className="hidden sm:block">
+											<object
+												data="/assets/events/Hum_Sub_Diwali_Parking_KBA_2025.pdf"
+												type="application/pdf"
+												width="100%"
+												height="80vh"
+												className="rounded-lg border border-gray-200 dark:border-gray-700 min-h-[1200px]"
+												aria-label="Hum Sub Diwali 2025 Parking PDF"
+											>
+												{/* Fallback iframe for browsers that don't render PDFs inside <object> */}
+												<iframe
+													src="/assets/events/Hum_Sub_Diwali_Parking_KBA_2025.pdf"
+													title="Hum Sub Diwali 2025 Parking PDF"
+													width="100%"
+													height="80vh"
+													className="rounded-lg border-0"
+													style={{ border: "none", overflow: "hidden" }}
+												>
+													This browser does not support embedded PDFs. You can{" "}
+													<a
+														href="/assets/events/Hum_Sub_Diwali_Parking_KBA_2025.pdf"
+														target="_blank"
+														rel="noopener noreferrer"
+														className="underline text-blue-600"
+													>
+														download the PDF
+													</a>
+													.
+												</iframe>
+											</object>
+										</div>
+
+										{/* Mobile fallback: accessible controls when inline embed is blocked on some mobile browsers */}
+										<div className="block sm:hidden space-y-4 text-center">
+											{/* Simple inline SVG PDF icon so we don't rely on extra assets */}
+											<div className="flex justify-center">
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													viewBox="0 0 24 24"
+													fill="none"
+													stroke="currentColor"
+													className="h-16 w-16 text-gray-400 dark:text-gray-500"
+													aria-hidden="true"
+												>
+													<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+													<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M14 2v6h6" />
+													<text x="6" y="17" className="text-sm" fill="currentColor" fontSize="8" fontFamily="System, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial">PDF</text>
+												</svg>
+											</div>
+
+											<p className="text-sm text-muted-foreground max-w-md mx-auto">
+												PDF preview may not be supported in some mobile browsers. Open or download the parking map to view it.
+											</p>
+
+											<div className="flex justify-center gap-3">
+												<a
+													href="/assets/events/Hum_Sub_Diwali_Parking_KBA_2025.pdf"
+													target="_blank"
+													rel="noopener noreferrer"
+													className="inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-lg shadow-sm hover:bg-blue-700 transition"
+												>
+													Open PDF
+												</a>
+												<a
+													href="/assets/events/Hum_Sub_Diwali_Parking_KBA_2025.pdf"
+													download
+													className="inline-flex items-center justify-center px-4 py-2 border rounded-lg text-sm"
+												>
+													Download
+												</a>
+											</div>
+										</div>
+									</div>
+								</AccordionContent>
+							</AccordionItem>	
 							<AccordionItem
 								value="bag-policy"
 								className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all duration-200"

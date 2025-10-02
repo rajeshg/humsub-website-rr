@@ -50,11 +50,10 @@ export const sponsors: Sponsor[] = [
 		href: "https://www.publix.com/",
 	},
 	{
-		name: "Patagonia Health",
-		imagePath: "/assets/sponsors/patagonia-health.webp",
+		name: "Madhur Mathur and Ashok Mathur",
+		imagePath: "/assets/sponsors/madhur_ashok_mathur.png",
 		level: "diamond",
 		description: "Exclusive fireworks sponsor",
-		href: "https://patagoniahealth.com/",
 		label: "Fireworks Sponsor",
 	},
 

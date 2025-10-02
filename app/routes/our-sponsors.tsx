@@ -63,7 +63,7 @@ export default function OurSponsors() {
 			</div>
 
 			<h2>Grantors</h2>
-			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-transparent">
+			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 bg-transparent">
 				{getSponsorsByLevel("grantor").map((sponsor) => (
 					<SponsorCard key={sponsor.name} {...sponsor} />
 				))}

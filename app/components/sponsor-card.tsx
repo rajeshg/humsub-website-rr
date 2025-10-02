@@ -1,3 +1,4 @@
+import React from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card"
 
 export default function SponsorCard({
@@ -12,9 +13,9 @@ export default function SponsorCard({
 			<CardContent className="p-3 pb-2 flex justify-center items-center">
 				<div className="flex items-center justify-center p-2 gap-2">
 					{images.map((img) => (
-						<>
+						<React.Fragment key={`${img}-${name}`}>
 							{href ? (
-								<a href={href} target="_blank" rel="noopener noreferrer" key={`${img}-${name}`}>
+								<a href={href} target="_blank" rel="noopener noreferrer">
 									<img
 										src={img}
 										alt={name}
@@ -28,10 +29,9 @@ export default function SponsorCard({
 									alt={name}
 									loading="lazy"
 									className="aspect-square w-full max-w-48 h-full object-contain shadow-sm mt-1 mb-1 p-1 bg-white rounded-lg"
-									key={`${img}-${name}`}
 								/>
 							)}
-						</>
+						</React.Fragment>
 					))}
 				</div>
 			</CardContent>

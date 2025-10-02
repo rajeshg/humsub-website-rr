@@ -16,7 +16,10 @@ import { Separator } from "~/components/ui/separator"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "~/components/ui/sheet"
 import { ThemeToggle } from "~/components/ui/theme-toggle"
 import { cn } from "~/lib/utils"
+import CountdownHeader from "~/components/countdown-header"
 
+const diwaliDate = new Date(2025, 9, 11, 9, 0, 0)
+			
 function ListItem({
 	ref,
 	href,
@@ -322,6 +325,8 @@ export default function MainLayout() {
 				</div>
 			</header>
 			<main className="flex-grow relative bg-gradient-to-br from-blue-400/10 via-purple-500/10 to-pink-500/10 dark:from-blue-700/10 dark:via-purple-800/10 dark:to-pink-800/10">
+				<CountdownHeader eventDate={diwaliDate} />
+			
 				<div className="relative z-10 prose dark:prose-invert max-w-7xl mx-auto py-4 px-2 ">
 					<Outlet />
 				</div>
