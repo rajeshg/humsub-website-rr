@@ -18,7 +18,7 @@
 	},
 	"linter": {
 		"enabled": true,
-		"ignore": ["**/*.css", "test/**/*.ts"],
+		"ignore": ["**/*.css", "test/**/*.ts", "vite-plugin-image-manifest.ts", "app/lib/image-manifest.ts"],
 		"rules": {
 			"recommended": true,
 			"suspicious": {

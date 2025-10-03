@@ -1,5 +1,5 @@
 // Auto-generated image manifest - do not edit manually
-// Generated on: 2025-10-03T11:58:14.870Z
+// Generated on: 2025-10-03T12:26:47.320Z
 
 export const imageCollections = {
 	"filler": [
