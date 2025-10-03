@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react"
-import { Spinner } from "~/components/spinner"
 import { Button } from "~/components/ui/button"
+import { imageCollections } from "~/lib/image-manifest"
 
 interface ImageData {
 	name: string
@@ -14,45 +13,11 @@ interface ImagePickerProps {
 }
 
 export function ImagePicker({ onSelectImage, onClearSelection }: ImagePickerProps) {
-	const [images, setImages] = useState<ImageData[]>([])
-	const [loading, setLoading] = useState(true)
-	const [error, setError] = useState<string | null>(null)
-
-	useEffect(() => {
-		// Import the image collections directly
-		const loadImages = async () => {
-			try {
-				setLoading(true)
-				setError(null)
-
-				// Dynamically import the image collections
-				const { imageCollections } = await import("~/lib/image-manifest")
-
-				// Combine all images from all folders
-				const allImages = [...imageCollections.filler, ...imageCollections.specialpromo]
-
-				setImages(allImages)
-			} catch (err) {
-				console.error("Error loading images:", err)
-				setError("Failed to load images")
-			} finally {
-				setLoading(false)
-			}
-		}
-
-		loadImages()
-	}, [])
+	// Combine all images from all folders
+	const images: ImageData[] = [...imageCollections.filler, ...imageCollections.specialpromo]
 
 	const handleSelectImage = (imagePath: string) => {
 		onSelectImage(imagePath)
-	}
-
-	if (loading) {
-		return (
-			<div className="flex justify-center p-4">
-				<Spinner className="w-6 h-6" />
-			</div>
-		)
 	}
 
 	return (
@@ -91,8 +56,7 @@ export function ImagePicker({ onSelectImage, onClearSelection }: ImagePickerProp
 				))}
 			</div>
 
-			{error && <div className="text-center text-red-500 py-8">{error}</div>}
-			{images.length === 0 && !error && <div className="text-center text-gray-500 py-8">No images available</div>}
+			{images.length === 0 && <div className="text-center text-gray-500 py-8">No images available</div>}
 		</div>
 	)
 }

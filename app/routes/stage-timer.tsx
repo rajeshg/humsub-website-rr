@@ -218,11 +218,7 @@ export default function StageTimer() {
 												now={now}
 											/>
 										) : (
-											<ImageDisplay
-												imagePath={`/assets/stage-timer/filler/${fillerImage}`}
-												isCollection={false}
-												now={now}
-											/>
+											<div className="w-full h-full"></div>
 										)
 									) : currentItem?.durationSeconds ? (
 										<div className="w-full h-full flex flex-col items-center justify-center gap-6">
@@ -446,24 +442,20 @@ export default function StageTimer() {
 														now={now}
 													/>
 												) : (
-													<ImageDisplay
-														imagePath={`/assets/stage-timer/filler/${fillerImage}`}
-														isCollection={false}
-														now={now}
-													/>
+													<div className="w-full h-full"></div>
 												)
 											) : currentItem?.durationSeconds ? (
-												<div className="w-full h-full flex flex-col items-center justify-center gap-6">
-													<div className="text-center">
-														<div className="mb-4">
-															<span className="inline-block px-4 py-2 bg-purple-600 text-white text-lg md:text-xl font-semibold rounded-full">
-																{currentItem.timer_start_time ? "Now Playing" : "Up Next"}
-															</span>
-														</div>
-														<h2 className="text-xl md:text-5xl font-bold text-slate-800 dark:text-white mb-2 md:mb-4 whitespace-normal break-words px-2">
+												<div className="w-full h-full flex flex-col items-center justify-center gap-1">
+													<div className="text-center mb-1">
+														<span className="inline-block px-3 py-1 bg-purple-600 text-white text-sm md:text-lg font-semibold rounded-full mb-1">
+															{currentItem.timer_start_time ? "Now Playing" : "Up Next"}
+														</span>
+														<h2 className="text-lg md:text-2xl font-bold text-slate-800 dark:text-white whitespace-normal break-words px-2">
 															{currentItem.name}
 														</h2>
-														<div className="text-3xl md:text-7xl font-mono font-bold text-slate-400 tracking-wider">
+													</div>
+													<div className="flex items-center justify-between w-full px-4 gap-4">
+														<div className="text-2xl md:text-4xl font-mono font-bold text-slate-400 tracking-wider flex-shrink-0">
 															{currentItem.timer_start_time
 																? formatTime(
 																		Math.max(
@@ -478,39 +470,39 @@ export default function StageTimer() {
 																	)
 																: formatTime(currentItem.durationSeconds || 0)}
 														</div>
-													</div>
-													<div className="w-3/4">
-														<Progress
-															value={
-																currentItem.timer_start_time
-																	? Math.min(
-																			100,
-																			Math.round(
-																				((now - currentItem.timer_start_time) /
-																					((currentItem.durationSeconds || 0) * 1000)) *
-																					100
-																			)
-																		)
-																	: 0
-															}
-															className={
-																currentItem.timer_start_time
-																	? Math.round(
-																			((now - currentItem.timer_start_time) /
-																				((currentItem.durationSeconds || 0) * 1000)) *
-																				100
-																		) >= 80
-																		? "h-8 [&>div]:bg-red-600 dark:[&>div]:bg-red-400"
-																		: Math.round(
+														<div className="flex-1 min-w-0">
+															<Progress
+																value={
+																	currentItem.timer_start_time
+																		? Math.min(
+																				100,
+																				Math.round(
 																					((now - currentItem.timer_start_time) /
 																						((currentItem.durationSeconds || 0) * 1000)) *
 																						100
-																				) >= 50
-																			? "h-8 [&>div]:bg-amber-500 dark:[&>div]:bg-amber-400"
-																			: "h-8 [&>div]:bg-emerald-500 dark:[&>div]:bg-emerald-400"
-																	: "h-8 [&>div]:bg-emerald-500/40 dark:[&>div]:bg-emerald-400/40"
-															}
-														/>
+																				)
+																			)
+																		: 0
+																}
+																className={
+																	currentItem.timer_start_time
+																		? Math.round(
+																				((now - currentItem.timer_start_time) /
+																					((currentItem.durationSeconds || 0) * 1000)) *
+																					100
+																			) >= 80
+																			? "h-4 [&>div]:bg-red-600 dark:[&>div]:bg-red-400"
+																			: Math.round(
+																						((now - currentItem.timer_start_time) /
+																							((currentItem.durationSeconds || 0) * 1000)) *
+																							100
+																					) >= 50
+																				? "h-4 [&>div]:bg-amber-500 dark:[&>div]:bg-amber-400"
+																				: "h-4 [&>div]:bg-emerald-500 dark:[&>div]:bg-emerald-400"
+																		: "h-4 [&>div]:bg-emerald-500/40 dark:[&>div]:bg-emerald-400/40"
+																}
+															/>
+														</div>
 													</div>
 												</div>
 											) : (

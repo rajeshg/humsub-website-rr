@@ -396,7 +396,7 @@ export class Counter extends DurableObject {
 		return nextItem || null
 	}
 
-	// Initialize filler images from the image manifest
+	// Initialize filler images from the auto-generated manifest
 	private async initializeFillerImages() {
 		try {
 			// Dynamically import the image collections

@@ -1,11 +1,11 @@
 import { CalendarDays, Car, MapPin, Package, Users } from "lucide-react"
-import { useTimeUntil } from "~/lib/timeuntil"
 import { Link } from "react-router"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "~/components/ui/accordion"
 import { Badge } from "~/components/ui/badge"
 import { Button } from "~/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "~/components/ui/card"
 import { sponsors as sponsors2025 } from "~/lib/sponsors"
+import { useTimeUntil } from "~/lib/timeuntil"
 
 interface HeroProps {
 	eventDate: Date
@@ -368,7 +368,7 @@ export default function HumSubDiwali2025() {
 											</div>
 											<div className="flex items-center gap-4 p-3 bg-white dark:bg-gray-800 rounded-lg border border-orange-100 dark:border-orange-900">
 												<span className="text-lg font-bold text-orange-600 dark:text-orange-400 min-w-[80px]">
-													5:00 PM
+													5:30 PM
 												</span>
 												<span>Special Evening Show with Featured Artists</span>
 											</div>
@@ -381,8 +381,9 @@ export default function HumSubDiwali2025() {
 										</div>
 										<div className="mt-4 p-4 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800">
 											<p className="text-blue-800 dark:text-blue-200 text-sm">
-												<span className="font-semibold">All Day:</span> Exhibition booths, food vendors, and
-												family-friendly activities available throughout the event.
+												<span className="font-semibold">All Day:</span> Enjoy exhibition booths, food vendors, and
+												family-friendly activities available throughout the event. Special programs and demonstrations
+												will be held hourly at the exhibition booth until 5 PM.
 											</p>
 										</div>
 									</div>
@@ -478,14 +479,29 @@ export default function HumSubDiwali2025() {
 													className="h-16 w-16 text-gray-400 dark:text-gray-500"
 													aria-hidden="true"
 												>
-													<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+													<path
+														strokeLinecap="round"
+														strokeLinejoin="round"
+														strokeWidth="1.5"
+														d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+													/>
 													<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M14 2v6h6" />
-													<text x="6" y="17" className="text-sm" fill="currentColor" fontSize="8" fontFamily="System, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial">PDF</text>
+													<text
+														x="6"
+														y="17"
+														className="text-sm"
+														fill="currentColor"
+														fontSize="8"
+														fontFamily="System, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial"
+													>
+														PDF
+													</text>
 												</svg>
 											</div>
 
 											<p className="text-sm text-muted-foreground max-w-md mx-auto">
-												PDF preview may not be supported in some mobile browsers. Open or download the parking map to view it.
+												PDF preview may not be supported in some mobile browsers. Open or download the parking map to
+												view it.
 											</p>
 
 											<div className="flex justify-center gap-3">
@@ -508,7 +524,7 @@ export default function HumSubDiwali2025() {
 										</div>
 									</div>
 								</AccordionContent>
-							</AccordionItem>	
+							</AccordionItem>
 							<AccordionItem
 								value="bag-policy"
 								className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all duration-200"

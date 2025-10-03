@@ -7,10 +7,12 @@ import remarkFrontmatter from "remark-frontmatter"
 import remarkMdxFrontmatter from "remark-mdx-frontmatter"
 import { defineConfig } from "vite"
 import tsconfigPaths from "vite-tsconfig-paths"
+import { imageManifestPlugin } from "./vite-plugin-image-manifest"
 
 export default defineConfig({
 	server: { port: 3000 },
 	plugins: [
+		imageManifestPlugin(),
 		cloudflare({ viteEnvironment: { name: "ssr" } }),
 		tailwindcss(),
 		mdx({
