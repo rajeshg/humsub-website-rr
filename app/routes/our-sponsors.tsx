@@ -15,7 +15,7 @@ export default function OurSponsors() {
 					<h2 className="text-black text-center text-primary text-3xl mt-2 mb-2">Prime Sponsor!</h2>
 					<PrimeSponsorCard
 						name="Marius Pharmaceuticals"
-						href="https://www.rethinktestosterone.com/"
+						href="/sponsor/marius"
 						imagePaths={["/assets/sponsors/Marius_logo.png", "/assets/sponsors/rethink-testosterone-marius.jpeg"]}
 						description="Marius Pharmaceuticals is the prime sponsor for Hum Sub."
 					/>

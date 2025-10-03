@@ -17,6 +17,7 @@ export const sponsors: Sponsor[] = [
 		imagePath: "/assets/sponsors/Marius_logo.png",
 		level: "prime",
 		description: "Marius Pharmaceuticals is the prime sponsor for Hum Sub.",
+		href: "/sponsor/marius",
 		label: "Prime Sponsor",
 	},
 

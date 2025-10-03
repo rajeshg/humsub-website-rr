@@ -1,8 +1,59 @@
 import { useParams } from "react-router"
+import mariusLogo from "../../public/assets/sponsors/Marius_logo.png"
 import empowerlyLogo from "../../public/assets/sponsors/empowerly.png"
 import thePrattVillasLogo from "../../public/assets/sponsors/the-pratt-villas-logo.jpeg"
 
 const SPONSOR_DATA: Record<string, { name: string; description: string; logo?: string; content: React.ReactNode }> = {
+	marius: {
+		name: "Marius Pharmaceuticals",
+		logo: mariusLogo,
+		description: "Marius Pharmaceuticals is the prime sponsor for Hum Sub.",
+		content: (
+			<>
+				<div className="flex flex-col md:flex-row items-center gap-8 bg-white dark:bg-gray-900 rounded-lg shadow-lg p-8 my-8">
+					<div>
+						<img src={mariusLogo} alt="Marius Pharmaceuticals Logo" className="w-48 h-48 object-contain rounded-lg" />
+						<img
+							src="/assets/sponsors/rethink-testosterone-marius.jpeg"
+							alt="ReThink Testosterone"
+							className="w-48 h-48 object-contain rounded-lg mt-4"
+						/>
+					</div>
+					<div className="flex-1">
+						<h2 className="text-3xl font-bold mb-2">Marius Pharmaceuticals</h2>
+						<span className="inline-block mb-2 px-3 py-1 bg-purple-100 text-purple-800 rounded text-xs font-semibold">
+							Prime Sponsor
+						</span>
+						<p className="mb-4 text-lg text-gray-700 dark:text-gray-200">
+							Marius Pharmaceuticals is dedicated to improving men's health through innovative treatments for conditions
+							like low testosterone (Low T or male hypogonadism). Their mission is to help men better understand the
+							symptoms of low testosterone and the impact it has on overall health and well-being.
+						</p>
+						<p className="mb-4 text-gray-600 dark:text-gray-300">
+							As our <b>Prime Sponsor</b> for Hum Sub, Marius Pharmaceuticals supports our celebration of cultural
+							diversity and community engagement, helping us bring together people from all backgrounds to share in the
+							joy of Indian culture and traditions.
+						</p>
+						<a
+							href="https://www.rethinktestosterone.com/"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="inline-block px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 transition no-underline"
+						>
+							Learn more at rethinktestosterone.com
+						</a>
+					</div>
+				</div>
+				<div className="bg-white dark:bg-gray-900 rounded-lg p-6 mt-4 border border-gray-200 dark:border-gray-700">
+					<h3 className="text-xl font-semibold mb-2 text-purple-700">Thank you, Marius Pharmaceuticals!</h3>
+					<p className="text-gray-700 dark:text-gray-200">
+						Your partnership helps us create meaningful connections and celebrate our community's rich cultural
+						heritage.
+					</p>
+				</div>
+			</>
+		),
+	},
 	empowerly: {
 		name: "Empowerly",
 		logo: empowerlyLogo,
