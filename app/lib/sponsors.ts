@@ -56,6 +56,12 @@ export const sponsors: Sponsor[] = [
 		description: "Exclusive fireworks sponsor",
 		label: "Fireworks Sponsor",
 	},
+	{
+		name: "BMW of Southpoint",
+		imagePath: "/assets/sponsors/BMW-joint-new-logo.png",
+		level: "diamond",
+		href: "https://www.bmwsouthpoint.com/",
+	},
 
 	// Gold Sponsors
 	{
@@ -65,12 +71,6 @@ export const sponsors: Sponsor[] = [
 		description: "Exclusive Travel Partner",
 		href: "https://www.lufthansa.com/us/en/homepage",
 		label: "Travel Partner",
-	},
-	{
-		name: "BMW of Southpoint",
-		imagePath: "/assets/sponsors/BMW-joint-new-logo.png",
-		level: "gold",
-		href: "https://www.bmwsouthpoint.com/",
 	},
 	{
 		name: "Pinnacle Financial Partners",
@@ -128,6 +128,12 @@ export const sponsors: Sponsor[] = [
 		name: "Sudha and Satpal Rathie",
 		imagePath: "/assets/sponsors/sudha-satpal-rathie.png",
 		level: "bronze",
+	},
+	{
+		name: "Lime & Lemon Indian Grill & Bar",
+		imagePath: "/assets/sponsors/lime-n-lemon-grill.jpeg",
+		level: "bronze",
+		href: "https://www.lnlrestaurant.com/",
 	},
 	// Media Partners
 	{

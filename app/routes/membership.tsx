@@ -83,7 +83,7 @@ export default function Membership() {
 
 				<div className="text-center mt-8">
 					<Link to="/membership/signup" aria-label="Open membership sign-up">
-						<Button size="lg">Join as a Member</Button>
+						<Button size="lg">Signup for Membership</Button>
 					</Link>
 				</div>
 
@@ -160,9 +160,9 @@ export default function Membership() {
 						<AccordionItem value="faq-8">
 							<AccordionTrigger>Do I need a ticket or membership to take photos?</AccordionTrigger>
 							<AccordionContent>
-								Photos are allowed without a ticket or membership, but the front section is <strong>reserved for members</strong>. Please follow on-site
-								signage and ushers. We encourage performers' families to become members for priority seating, a better stage view, and to
-								support community programming.
+								To enhance the experience for our valued Hum Sub Members, the front-stage seating and photo area will be reserved exclusively for Members at Hum Sub Diwali 2025.
+								📸 Parents and families are still welcome to take photos from other venue areas. For the best access and uninterrupted views, we encourage you to <Link to="/membership/signup" className="text-blue-600 underline">become a Member</Link> {" "} and enjoy this special benefit.
+								Your membership supports scholarships, cultural programs, and year-round community initiatives—thank you for helping us keep our traditions alive.
 							</AccordionContent>
 						</AccordionItem>
 
