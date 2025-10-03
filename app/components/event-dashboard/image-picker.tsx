@@ -1,5 +1,5 @@
 import { Button } from "~/components/ui/button"
-import { imageCollections } from "~/lib/image-manifest"
+import imageCollections from "~/lib/image-manifest.json"
 
 interface ImageData {
 	name: string

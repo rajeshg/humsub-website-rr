@@ -43,17 +43,10 @@ function generateImageManifest() {
 			}
 		}
 
-		// Generate the manifest file
-		const manifestContent = `// Auto-generated image manifest - do not edit manually
-// Generated on: ${new Date().toISOString()}
+		// Generate the manifest file as JSON
+		const manifestContent = JSON.stringify(imageCollections, null, 2)
 
-export const imageCollections = ${JSON.stringify(imageCollections, null, "\t")} as const
-
-export type ImageCollection = typeof imageCollections
-export type FolderName = keyof ImageCollection
-`
-
-		const manifestPath = join(process.cwd(), "app", "lib", "image-manifest.ts")
+		const manifestPath = join(process.cwd(), "app", "lib", "image-manifest.json")
 		writeFileSync(manifestPath, manifestContent, "utf-8")
 		// Report generation via warn so it's visible but avoids lint a11y/noConsole rule
 		console.warn(

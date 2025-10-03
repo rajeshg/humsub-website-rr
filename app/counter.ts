@@ -400,7 +400,7 @@ export class Counter extends DurableObject {
 	private async initializeFillerImages() {
 		try {
 			// Dynamically import the image collections
-			const { imageCollections } = await import("./lib/image-manifest")
+			const { default: imageCollections } = await import("./lib/image-manifest.json")
 
 			// Get filler images and convert to paths
 			this.fillerImages = imageCollections.filler.map((img) => img.path)
