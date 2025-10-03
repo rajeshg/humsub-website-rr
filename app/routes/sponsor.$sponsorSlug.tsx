@@ -1,4 +1,6 @@
+import LiteYouTubeEmbed from "react-lite-youtube-embed"
 import { useParams } from "react-router"
+import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css"
 import mariusLogo from "../../public/assets/sponsors/Marius_logo.png"
 import empowerlyLogo from "../../public/assets/sponsors/empowerly.png"
 import thePrattVillasLogo from "../../public/assets/sponsors/the-pratt-villas-logo.jpeg"
@@ -43,6 +45,12 @@ const SPONSOR_DATA: Record<string, { name: string; description: string; logo?: s
 						>
 							Learn more at rethinktestosterone.com
 						</a>
+					</div>
+				</div>
+				<div className="bg-white dark:bg-gray-900 rounded-lg p-6 mt-4 border border-gray-200 dark:border-gray-700">
+					<h3 className="text-xl font-semibold mb-4 text-purple-700">Learn More About Marius Pharmaceuticals</h3>
+					<div className="aspect-video w-full max-w-2xl mx-auto">
+						<LiteYouTubeEmbed id="kQulwTLdXr0" title="Marius Pharmaceuticals" noCookie={true} />
 					</div>
 				</div>
 				<div className="bg-white dark:bg-gray-900 rounded-lg p-6 mt-4 border border-gray-200 dark:border-gray-700">

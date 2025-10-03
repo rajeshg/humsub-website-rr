@@ -63,9 +63,9 @@ export const CountdownHeader: FC<Props> = ({ eventDate }) => {
 						</div>
 
 						{/* Line 2: chips + buy button. Use horizontal scroll on x-axis for very small widths */}
-						<div className="flex items-center justify-center md:justify-between gap-3 md:gap-4 w-full">
-							<div className="flex-1 min-w-0">
-								<div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+						<div className="flex items-center justify-center gap-2 md:gap-3 w-full">
+							<div className="flex-none min-w-0">
+								<div className="flex items-center gap-1.5 md:gap-2 overflow-x-auto no-scrollbar py-1">
 									{t.isEventHappening ? (
 										<div className="px-4 py-2 rounded-full bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-sm font-semibold border border-green-200 dark:border-green-700 animate-pulse">
 											🎉 Happening Now!
@@ -90,7 +90,7 @@ export const CountdownHeader: FC<Props> = ({ eventDate }) => {
 							</div>
 
 							{/* CTA */}
-							<div className="flex-shrink-0 ml-2">
+							<div className="flex-shrink-0 ml-4">
 								<Link
 									to="/membership/signup"
 									className="inline-flex items-center px-4 py-2 text-sm font-semibold text-white bg-orange-600 hover:bg-orange-700 dark:bg-orange-500 dark:hover:bg-orange-600 rounded-md shadow-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-1"
