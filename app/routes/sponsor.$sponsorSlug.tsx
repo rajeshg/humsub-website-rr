@@ -30,9 +30,10 @@ const SPONSOR_DATA: Record<string, { name: string; description: string; logo?: s
 							symptoms of low testosterone and the impact it has on overall health and well-being.
 						</p>
 						<p className="mb-4 text-gray-600 dark:text-gray-300">
-							As our <b>Prime Sponsor</b> for Hum Sub, Marius Pharmaceuticals supports our celebration of cultural
-							diversity and community engagement, helping us bring together people from all backgrounds to share in the
-							joy of Indian culture and traditions.
+							As our <b>Prime Sponsor</b> for Hum Sub, Marius Pharmaceuticals has been a cornerstone of our community
+							for <b>more than 20 years</b>, supporting our celebration of cultural diversity and community engagement.
+							Their long-standing partnership helps us bring together people from all backgrounds to share in the joy of
+							Indian culture and traditions.
 						</p>
 						<a
 							href="https://www.rethinktestosterone.com/"
@@ -47,8 +48,8 @@ const SPONSOR_DATA: Record<string, { name: string; description: string; logo?: s
 				<div className="bg-white dark:bg-gray-900 rounded-lg p-6 mt-4 border border-gray-200 dark:border-gray-700">
 					<h3 className="text-xl font-semibold mb-2 text-purple-700">Thank you, Marius Pharmaceuticals!</h3>
 					<p className="text-gray-700 dark:text-gray-200">
-						Your partnership helps us create meaningful connections and celebrate our community's rich cultural
-						heritage.
+						Your partnership spanning more than 20 years helps us create meaningful connections and celebrate our
+						community's rich cultural heritage. We are deeply grateful for your continued support.
 					</p>
 				</div>
 			</>
