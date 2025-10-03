@@ -48,7 +48,7 @@ const SPONSOR_DATA: Record<string, { name: string; description: string; logo?: s
 					</div>
 				</div>
 				<div className="bg-white dark:bg-gray-900 rounded-lg p-6 mt-4 border border-gray-200 dark:border-gray-700">
-					<h3 className="text-xl font-semibold mb-4 text-purple-700">Learn More About Marius Pharmaceuticals</h3>
+					<h3 className="text-xl font-semibold mb-4 text-purple-700">Leaders & Legends Podcast</h3>
 					<div className="aspect-video w-full max-w-2xl mx-auto">
 						<LiteYouTubeEmbed id="kQulwTLdXr0" title="Marius Pharmaceuticals" noCookie={true} />
 					</div>
