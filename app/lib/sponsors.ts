@@ -1,4 +1,13 @@
-export type SponsorLevel = "prime" | "diamond" | "gold" | "silver" | "bronze" | "media" | "grantor" | "partner"
+export type SponsorLevel =
+	| "prime"
+	| "diamond"
+	| "gold"
+	| "silver"
+	| "bronze"
+	| "media"
+	| "grantor"
+	| "partner"
+	| "small-business-supporter"
 
 export interface Sponsor {
 	name: string
@@ -83,7 +92,7 @@ export const sponsors: Sponsor[] = [
 	},
 	{
 		name: "The Pratt Villas",
-		imagePath: ["/assets/sponsors/the-pratt-villas-logo.jpeg", "/assets/sponsors/the-pratt-destination.jpeg"],
+		imagePath: "/assets/sponsors/the-pratt-villas-logo.jpeg",
 		level: "gold",
 		description:
 			"Hospitality Partner generously sponsoring accommodations and hosting our artists and guests at HumSub Diwali.",
@@ -182,6 +191,13 @@ export const sponsors: Sponsor[] = [
 	},
 
 	// Partners
+	// Small business supporter
+	{
+		name: "Wake Dental Arts",
+		imagePath: ["/assets/sponsors/wake-dental-arts.jpeg", "/assets/sponsors/cary-dental-arts.jpeg"],
+		level: "small-business-supporter",
+		href: "https://wakedentalarts.com/",
+	},
 ]
 
 // Utility function to get sponsors by level - more efficient than maintaining a separate structure
