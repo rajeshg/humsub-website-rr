@@ -119,6 +119,11 @@ export const sponsors: Sponsor[] = [
 		href: "https://crsgranite.com/",
 		label: "Shuttle Sponsor",
 	},
+	{
+		name: "Sajjan Agarwal",
+		imagePath: "/assets/sponsors/sajjan-agarwal-logo.png",
+		level: "gold",
+	},
 
 	// Silver Sponsors
 	{
