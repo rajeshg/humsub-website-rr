@@ -14,7 +14,6 @@ type ViewMode = "items" | "images"
 export const EventDashboard: React.FC<{ role: "registration" | "backstage" | null }> = ({ role }) => {
 	const [items, setItems] = useState<Item[]>([])
 	const [role_users, setRoleUsers] = useState<string[]>([])
-	const [openDrawerId, setOpenDrawerId] = useState<string | null>(null)
 	const [showCompletedItems, setShowCompletedItems] = useState(false)
 	const [viewMode, setViewMode] = useState<ViewMode>("items")
 	const [now, setNow] = useState(Date.now())
@@ -179,72 +178,83 @@ export const EventDashboard: React.FC<{ role: "registration" | "backstage" | nul
 	}
 
 	return (
-		<div className="flex flex-col h-full">
-			<div className="p-4 border-b space-y-4">
-				{/* Main header row */}
-				<div className="flex justify-between items-start">
-					<div className="flex flex-col gap-1">
-						<h1 className="text-2xl font-bold">Event Dashboard</h1>
-						{role_users.length > 0 && (
-							<div className="text-sm text-muted-foreground">Connected: {role_users.join(", ")}</div>
-						)}
-					</div>
-
-					{/* Subtle connection status indicator */}
-					<div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-						<div
-							className={`w-2 h-2 rounded-full ${
-								wsStatus === "open"
-									? "bg-green-500 animate-pulse"
-									: wsStatus === "connecting"
-										? "bg-yellow-500 animate-pulse"
-										: "bg-red-500"
-							}`}
-							title={`Connection: ${wsStatus}`}
-						/>
-						<span className="capitalize">{wsStatus}</span>
-					</div>
-				</div>
-
-				{/* Controls row */}
-				<div className="flex flex-col sm:flex-row gap-3 sm:items-center">
-					{/* View Mode Tabs - Backstage Only */}
-					{role === "backstage" && (
-						<div className="flex items-center gap-1 bg-muted p-1 rounded-lg w-fit">
-							<Button
-								variant={viewMode === "items" ? "default" : "ghost"}
-								size="sm"
-								onClick={() => setViewMode("items")}
-								className="text-xs px-3 py-1.5 h-auto"
-							>
-								📋 Items
-							</Button>
-							<Button
-								variant={viewMode === "images" ? "default" : "ghost"}
-								size="sm"
-								onClick={() => setViewMode("images")}
-								className="text-xs px-3 py-1.5 h-auto"
-							>
-								🖼️ Images
-							</Button>
+		<div className="flex flex-col h-full items-center">
+			{/* Updated header for Hum Sub */}
+			<div className="p-4 border-b w-full">
+				<div className="w-full max-w-5xl mx-auto">
+					<div className="flex items-center justify-between gap-4">
+						{/* Logo + Title */}
+						<div className="flex items-center gap-4">
+							<img src="/assets/25yr-logo.png" alt="Hum Sub logo" className="w-12 h-12 rounded-md object-contain" />
+							<div className="flex flex-col">
+								<h1 className="text-2xl font-extrabold tracking-tight">Stage Timer</h1>
+							</div>
 						</div>
-					)}
 
-					{/* Filter controls */}
-					<div className="flex items-center gap-2">
-						<span className="text-sm text-muted-foreground">Show:</span>
-						<Button
-							variant={showCompletedItems ? "default" : "outline"}
-							size="sm"
-							onClick={() => setShowCompletedItems(!showCompletedItems)}
-							className="text-xs px-3 py-1.5 h-auto"
-						>
-							Completed ({items.filter((item) => item.state === "DONE").length})
-						</Button>
+						{/* Connection status */}
+						<div className="flex flex-col items-end gap-2">
+							<div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+								<div
+									className={`w-2 h-2 rounded-full ${
+										wsStatus === "open"
+											? "bg-green-500 animate-pulse"
+											: wsStatus === "connecting"
+												? "bg-yellow-500 animate-pulse"
+												: "bg-red-500"
+									}`}
+									title={`Connection: ${wsStatus}`}
+								/>
+								<span className="capitalize">{wsStatus}</span>
+							</div>
+							{role_users.length > 0 && (
+								<div className="text-sm text-muted-foreground">Connected: {role_users.join(", ")}</div>
+							)}
+						</div>
+					</div>
+
+					{/* Controls row (unchanged) */}
+					<div className="mt-4">
+						{/* Controls row */}
+						<div className="flex flex-col sm:flex-row gap-3 sm:items-center">
+							{/* View Mode Tabs */}
+							<div className="flex items-center gap-1 bg-muted p-1 rounded-lg w-fit">
+								<Button
+									variant={viewMode === "items" ? "default" : "ghost"}
+									size="sm"
+									onClick={() => setViewMode("items")}
+									className="text-xs px-3 py-1.5 h-auto"
+								>
+									📋 Items
+								</Button>
+								{role === "backstage" && (
+									<Button
+										variant={viewMode === "images" ? "default" : "ghost"}
+										size="sm"
+										onClick={() => setViewMode("images")}
+										className="text-xs px-3 py-1.5 h-auto"
+									>
+										🖼️ Images
+									</Button>
+								)}
+							</div>
+
+							{/* Filter controls */}
+							<div className="flex items-center gap-2">
+								<span className="text-sm text-muted-foreground">Show:</span>
+								<Button
+									variant={showCompletedItems ? "default" : "outline"}
+									size="sm"
+									onClick={() => setShowCompletedItems(!showCompletedItems)}
+									className="text-xs px-3 py-1.5 h-auto"
+								>
+									Completed ({items.filter((item) => item.state === "DONE").length})
+								</Button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div className="flex-1 overflow-auto p-4">
+			<div className="flex-1 overflow-auto px-1 md:p-4 w-full max-w-5xl mx-auto">
 				{viewMode === "items" ? (
 					<DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
 						<SortableContext items={filteredItems.map((item) => item.id)} strategy={verticalListSortingStrategy}>
@@ -257,8 +267,6 @@ export const EventDashboard: React.FC<{ role: "registration" | "backstage" | nul
 										onStartTimer={handleStartTimer}
 										now={now}
 										role={role}
-										openDrawerId={openDrawerId}
-										setOpenDrawerId={setOpenDrawerId}
 									/>
 								))}
 							</div>

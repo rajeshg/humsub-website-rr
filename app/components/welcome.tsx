@@ -12,7 +12,7 @@ export function Welcome({ events }: { events: EventMeta[] }) {
 		<div id="container" className="container mx-auto max-w-7xl not-prose">
 			<main className="md:mx-4 flex flex-col dark:text-slate-100">
 				<div className="flex flex-col md:flex-row gap-4">
-					{/* Membership and Raffle Links */}
+					{/* Membership and Live Streaming Links */}
 					<div className="flex flex-col items-center my-4 w-full md:w-1/2">
 						<div className="w-full h-full bg-base-100/60 dark:bg-slate-800/60 rounded-xl shadow border border-base-200 dark:border-slate-700 px-6 py-5 flex flex-col items-center backdrop-blur">
 							<h3 className="text-lg font-bold text-primary dark:text-amber-300 mt-0 mb-2 flex items-center gap-2">
@@ -20,7 +20,7 @@ export function Welcome({ events }: { events: EventMeta[] }) {
 								Join the Fun!
 							</h3>
 							<p className="text-sm text-center text-base-content/70 dark:text-slate-300 mb-3">
-								Become a member or try your luck in our raffle. Get involved and support the community!
+								Become a member. Get involved and support the community!
 							</p>
 							<div className="flex w-full gap-3 flex-col sm:flex-row">
 								<Link
@@ -32,19 +32,6 @@ export function Welcome({ events }: { events: EventMeta[] }) {
 								>
 									<Icon icon="mdi:account-group" className="h-5 w-5" />
 									<span className="truncate">Membership</span>
-								</Link>
-								<span className="hidden sm:inline self-center text-base-content/30 dark:text-slate-500 font-bold">
-									|
-								</span>
-								<Link
-									to="/2025-raffle"
-									title="Participate in Raffle"
-									className="w-full sm:flex-1 sm:min-w-0 flex items-center justify-center gap-2 px-3 py-2 rounded-lg font-semibold text-base md:text-lg transition-all
-									text-primary dark:text-amber-300 bg-primary/5 dark:bg-amber-300/10 hover:bg-primary/20 dark:hover:bg-amber-300/20
-									decoration-2 decoration-primary dark:decoration-amber-300 no-underline shadow-sm hover:scale-105"
-								>
-									<Icon icon="mdi:ticket-percent" className="h-5 w-5" />
-									<span className="truncate">Raffle</span>
 								</Link>
 							</div>
 						</div>

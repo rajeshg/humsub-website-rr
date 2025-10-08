@@ -109,9 +109,6 @@ export default function MainLayout() {
 											<ListItem title="Membership" href="/membership">
 												Join Hum Sub — priority Diwali seating and member perks.
 											</ListItem>
-											<ListItem title="Raffle" href="/2025-raffle">
-												Enter the 2025 Diwali raffle (sponsored by Lufthansa).
-											</ListItem>
 										</ul>
 									</NavigationMenuContent>
 								</NavigationMenuItem>
@@ -233,21 +230,12 @@ export default function MainLayout() {
 												</Link>
 											</SheetTrigger>
 
-											{/* Added mobile Membership & Raffle links under About Us */}
 											<SheetTrigger asChild>
 												<Link
 													to="/membership"
 													className="block py-1.5 px-3 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors"
 												>
 													Membership
-												</Link>
-											</SheetTrigger>
-											<SheetTrigger asChild>
-												<Link
-													to="/2025-raffle"
-													className="block py-1.5 px-3 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors"
-												>
-													Raffle
 												</Link>
 											</SheetTrigger>
 										</div>

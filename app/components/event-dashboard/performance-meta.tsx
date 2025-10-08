@@ -1,13 +1,22 @@
+import { Icon } from "@iconify-icon/react/dist/iconify.mjs"
 import type { PerformanceItem } from "~/counter"
 
 // Helper to format durations
 const formatDuration = (d?: number | string) => {
 	if (d == null) return undefined
+	// If number assumed to be seconds
 	if (typeof d === "number") {
-		const m = Math.floor(d / 60)
-		const s = d % 60
-		return m > 0 ? `${m}m ${s}s` : `${s}s`
+		const minutes = Math.floor(d / 60)
+		const seconds = Math.floor(d % 60)
+		if (minutes > 0) {
+			return seconds > 0 ? `${minutes}m ${seconds}s` : `${minutes}m`
+		}
+		return `${seconds}s`
 	}
+	// If string, try to coerce numeric string first
+	const n = Number(d)
+	if (!Number.isNaN(n)) return formatDuration(n)
+	// Fallback to raw string
 	return String(d)
 }
 
@@ -26,32 +35,76 @@ export const PerformanceMeta: React.FC<PerformanceMetaProps> = ({ performance })
 
 	if (!hasMeta) return null
 
+	// Compact layout: more columns on wider screens and inline labels to use horizontal space
 	return (
-		<>
-			{performance.style && (
-				<div className="flex">
-					<span className="w-32 flex-shrink-0 text-xs font-medium">Style:</span>
-					<span className="text-xs text-muted-foreground">{performance.style}</span>
-				</div>
-			)}
-			{typeof performance.teamSize === "number" && (
-				<div className="flex">
-					<span className="w-32 flex-shrink-0 text-xs font-medium">Team Size:</span>
-					<span className="text-xs text-muted-foreground">{performance.teamSize}</span>
-				</div>
-			)}
+		<dl
+			className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-sm text-muted-foreground"
+			aria-label="Performance metadata"
+		>
 			{performance.choreographers && (
-				<div className="flex">
-					<span className="w-32 flex-shrink-0 text-xs font-medium">Choreographers:</span>
-					<span className="text-xs text-muted-foreground">{performance.choreographers}</span>
+				<div className="flex items-start gap-1">
+					<dt className="sr-only">Choreographers</dt>
+					<Icon icon="mdi:person-outline" className="h-5 w-5 text-muted-foreground mt-1 flex-shrink-0" />
+					<dd className="mt-0">
+						<div className="hidden sm:block font-medium text-xs text-foreground mb-2">Choreographers</div>
+						<div className="text-xs text-muted-foreground mt-1">{performance.choreographers}</div>
+					</dd>
 				</div>
 			)}
+
+			{typeof performance.teamSize === "number" && (
+				<div className="flex items-start gap-1">
+					<dt className="sr-only">Team Size</dt>
+					<Icon icon="mdi:people" className="h-5 w-5 text-muted-foreground mt-1 flex-shrink-0" />
+					<dd className="mt-0">
+						<div className="hidden sm:block font-medium text-xs text-foreground">Team Size</div>
+						<div className="text-xs text-muted-foreground mt-1">{performance.teamSize}</div>
+					</dd>
+				</div>
+			)}
+
+			{performance.style && (
+				<div className="flex items-start gap-1">
+					<dt className="sr-only">Style</dt>
+					<Icon icon="mdi:format-line-style" className="h-5 w-5 text-muted-foreground mt-1 flex-shrink-0" />
+					<dd className="mt-0">
+						<div className="hidden sm:block font-medium text-xs text-foreground">Style</div>
+						<div className="text-xs text-muted-foreground mt-1">{performance.style}</div>
+					</dd>
+				</div>
+			)}
+
 			{duration && (
-				<div className="flex">
-					<span className="w-32 flex-shrink-0 text-xs font-medium">Duration:</span>
-					<span className="text-xs text-muted-foreground">{duration}</span>
+				<div className="flex items-start gap-1">
+					<dt className="sr-only">Duration</dt>
+					<Icon icon="ion:time-outline" className="h-5 w-5 text-muted-foreground mt-1 flex-shrink-0" />
+					<dd className="mt-0">
+						<div className="hidden sm:block font-medium text-xs text-foreground">Duration</div>
+						<div className="text-xs text-muted-foreground mt-1">{performance.duration}</div>
+					</dd>
 				</div>
 			)}
-		</>
+			{performance.rehearsalTime && (
+				<div className="flex items-start gap-1">
+					<dt className="sr-only">Rehearsal Time</dt>
+					<Icon icon="mdi:calendar-clock" className="h-5 w-5 text-muted-foreground mt-1 flex-shrink-0" />
+					<dd className="mt-0">
+						<div className="hidden sm:block font-medium text-xs text-foreground">Rehearsal Time</div>
+						<div className="text-xs text-muted-foreground mt-1">{performance.rehearsalTime}</div>
+					</dd>
+				</div>
+			)}
+
+			{performance.eventTime && (
+				<div className="flex items-start gap-1">
+					<dt className="sr-only">Performance Time</dt>
+					<Icon icon="mdi:calendar-clock" className="h-5 w-5 text-muted-foreground mt-1 flex-shrink-0" />
+					<dd className="mt-0">
+						<div className="hidden sm:block font-medium text-xs text-foreground">Event Time</div>
+						<div className="text-xs text-muted-foreground mt-1">{performance.eventTime}</div>
+					</dd>
+				</div>
+			)}
+		</dl>
 	)
 }

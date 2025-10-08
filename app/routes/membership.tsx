@@ -70,18 +70,6 @@ export default function Membership() {
 					</li>
 				</ul>
 
-				<div className="mt-6 p-4 rounded-md bg-blue-50 dark:bg-blue-900/40 border border-blue-100 dark:border-blue-800">
-					<h3 className="text-lg font-medium">Note</h3>
-					<p className="mt-2 text-sm text-muted-foreground">
-						This year, membership is offered <strong>FREE</strong> as a benefit when you purchase a raffle ticket
-						(sponsored by Lufthansa). See full details on our{" "}
-						<Link to="/2025-raffle" className="text-blue-600 dark:text-blue-300 underline">
-							raffle sign‑up page
-						</Link>
-						.
-					</p>
-				</div>
-
 				<div className="text-center mt-8">
 					<Link to="/membership/signup" aria-label="Open membership sign-up">
 						<Button size="lg">Signup for Membership</Button>

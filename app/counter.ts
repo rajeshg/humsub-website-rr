@@ -24,6 +24,8 @@ export interface PerformanceItem {
 	choreographers?: string | null
 	// human-friendly duration string like "04:30" (optional)
 	duration?: string | null
+	eventTime: string | null
+	rehearsalTime?: string | null
 }
 
 export interface BreakItem {
@@ -114,6 +116,10 @@ export class Counter extends DurableObject {
 		for (const it of this.event.items) {
 			if (it.type === "PERFORMANCE") {
 				const p = it as PerformanceItem
+				// Ensure eventTime and rehearsalTime are explicit (present or null) - only if undefined
+				if (p.eventTime === undefined) p.eventTime = null
+				if (p.rehearsalTime === undefined) p.rehearsalTime = null
+
 				if ((p.durationSeconds === undefined || p.durationSeconds === null) && p.duration) {
 					const parsedSec = parseDurationToSeconds(p.duration)
 					if (parsedSec !== null) p.durationSeconds = parsedSec
@@ -143,6 +149,10 @@ export class Counter extends DurableObject {
 					for (const it of this.event.items) {
 						if (it.type === "PERFORMANCE") {
 							const p = it as PerformanceItem
+							// Ensure eventTime and rehearsalTime are explicit (present or null) - only if undefined
+							if (p.eventTime === undefined) p.eventTime = null
+							if (p.rehearsalTime === undefined) p.rehearsalTime = null
+
 							if ((p.durationSeconds === undefined || p.durationSeconds === null) && p.duration) {
 								const parsedSec = parseDurationToSeconds(p.duration)
 								if (parsedSec !== null) p.durationSeconds = parsedSec
@@ -216,6 +226,10 @@ export class Counter extends DurableObject {
 			for (const it of this.event.items) {
 				if (it.type === "PERFORMANCE") {
 					const p = it as PerformanceItem
+					// Ensure eventTime and rehearsalTime are explicit (present or null) - only if undefined
+					if (p.eventTime === undefined) p.eventTime = null
+					if (p.rehearsalTime === undefined) p.rehearsalTime = null
+
 					if ((p.durationSeconds === undefined || p.durationSeconds === null) && p.duration) {
 						const parsedSec = parseDurationToSeconds(p.duration)
 						if (parsedSec !== null) p.durationSeconds = parsedSec
@@ -472,6 +486,10 @@ export class Counter extends DurableObject {
 		for (const it of this.event.items) {
 			if (it.type === "PERFORMANCE") {
 				const p = it as PerformanceItem
+				// Ensure eventTime and rehearsalTime are explicit (present or null) - only if undefined
+				if (p.eventTime === undefined) p.eventTime = null
+				if (p.rehearsalTime === undefined) p.rehearsalTime = null
+
 				if ((p.durationSeconds === undefined || p.durationSeconds === null) && p.duration) {
 					const parsedSec = parseDurationToSeconds(p.duration)
 					if (parsedSec !== null) p.durationSeconds = parsedSec
@@ -521,6 +539,8 @@ export class Counter extends DurableObject {
 				teamSize?: number | null
 				choreographers?: string | null
 				duration?: string | null
+				eventTime?: string | null
+				rehearsalTime?: string | null
 			}
 			const {
 				itemId,
@@ -535,6 +555,8 @@ export class Counter extends DurableObject {
 				teamSize,
 				choreographers,
 				duration,
+				eventTime,
+				rehearsalTime,
 			} = data
 
 			const item = this.event.items.find((i) => i.itemId === itemId)
@@ -586,6 +608,8 @@ export class Counter extends DurableObject {
 					if (style !== undefined) perf.style = style
 					if (teamSize !== undefined) perf.teamSize = teamSize
 					if (choreographers !== undefined) perf.choreographers = choreographers
+					if (eventTime !== undefined) perf.eventTime = eventTime
+					if (rehearsalTime !== undefined) perf.rehearsalTime = rehearsalTime
 					if (duration !== undefined) {
 						perf.duration = duration
 						const parsed = parseDurationToSeconds(duration)
@@ -671,6 +695,8 @@ export class Counter extends DurableObject {
 				teamSize?: number | null
 				choreographers?: string | null
 				duration?: string | null
+				eventTime?: string | null
+				rehearsalTime?: string | null
 			}
 			const itemId = crypto.randomUUID()
 			// determine item type and validated initial state
@@ -712,6 +738,9 @@ export class Counter extends DurableObject {
 					teamSize: newItemData.teamSize ?? null,
 					choreographers: newItemData.choreographers ?? null,
 					duration: newItemData.duration ?? null,
+					// ensure new fields are explicit
+					eventTime: newItemData.eventTime ?? null,
+					rehearsalTime: newItemData.rehearsalTime ?? null,
 				}
 			}
 
