@@ -1,5 +1,6 @@
 import { Icon } from "@iconify-icon/react/dist/iconify.mjs"
 import type { PerformanceItem } from "~/counter"
+import { formatTime } from "~/lib/format-time"
 
 // Helper to format durations
 const formatDuration = (d?: number | string) => {
@@ -80,7 +81,7 @@ export const PerformanceMeta: React.FC<PerformanceMetaProps> = ({ performance })
 					<Icon icon="ion:time-outline" className="h-5 w-5 text-muted-foreground mt-1 flex-shrink-0" />
 					<dd className="mt-0">
 						<div className="hidden sm:block font-medium text-xs text-foreground">Duration</div>
-						<div className="text-xs text-muted-foreground mt-1">{performance.duration}</div>
+						<div className="text-xs text-muted-foreground mt-1">{duration}</div>
 					</dd>
 				</div>
 			)}
@@ -90,7 +91,7 @@ export const PerformanceMeta: React.FC<PerformanceMetaProps> = ({ performance })
 					<Icon icon="mdi:calendar-clock" className="h-5 w-5 text-muted-foreground mt-1 flex-shrink-0" />
 					<dd className="mt-0">
 						<div className="hidden sm:block font-medium text-xs text-foreground">Rehearsal Time</div>
-						<div className="text-xs text-muted-foreground mt-1">{performance.rehearsalTime}</div>
+						<div className="text-xs text-muted-foreground mt-1">{formatTime(performance.rehearsalTime)}</div>
 					</dd>
 				</div>
 			)}
@@ -101,7 +102,7 @@ export const PerformanceMeta: React.FC<PerformanceMetaProps> = ({ performance })
 					<Icon icon="mdi:calendar-clock" className="h-5 w-5 text-muted-foreground mt-1 flex-shrink-0" />
 					<dd className="mt-0">
 						<div className="hidden sm:block font-medium text-xs text-foreground">Event Time</div>
-						<div className="text-xs text-muted-foreground mt-1">{performance.eventTime}</div>
+						<div className="text-xs text-muted-foreground mt-1">{formatTime(performance.eventTime)}</div>
 					</dd>
 				</div>
 			)}

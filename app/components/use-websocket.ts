@@ -27,6 +27,25 @@ export const useWebSocket = (workerPath: string) => {
 					return
 				}
 
+				// handle full event reset
+				if (msg.type === "event_reset" && msg.state && typeof msg.state === "object") {
+					setEventState(msg.state as EventState)
+					return
+				}
+
+				// handle item created
+				if (msg.type === "item_created" && msg.item && typeof msg.item === "object") {
+					const itemObj = msg.item as Record<string, unknown>
+					if (typeof itemObj.itemId === "string") {
+						const item = itemObj as unknown as Item
+						setEventState((prev) => {
+							if (!prev) return prev
+							return { ...prev, items: Array.isArray(prev.items) ? [...prev.items, item] : [item] }
+						})
+					}
+					return
+				}
+
 				if (msg.type === "item_updated" && msg.item && typeof msg.item === "object") {
 					const itemObj = msg.item as Record<string, unknown>
 					if (typeof itemObj.itemId === "string") {

@@ -8,6 +8,11 @@ import { ImageDisplay } from "~/components/stage-timer/image-display"
 import { Progress } from "~/components/ui/progress"
 import { useWebSocket } from "~/components/use-websocket"
 import type { Item, PerformanceItem } from "~/counter"
+import imageManifest from "~/lib/image-manifest.json"
+
+// Precompute filler paths at module level so selection is stable and doesn't need to be
+// recomputed on every render beyond the controlled memo below.
+const FILLER_PATHS: string[] = (imageManifest?.filler ?? []).map((f) => f.path)
 
 // Helper for formatting time
 const formatTime = (seconds: number) => {
@@ -59,53 +64,11 @@ export default function StageTimer() {
 	// Track current time for countdown
 	const [now, setNow] = useState(() => Date.now())
 
-	// Track filler image display state
-	const [showFillerImages, setShowFillerImages] = useState(false)
-	const [fillerTimeoutStart, setFillerTimeoutStart] = useState<number | null>(null)
-
-	// Randomly select filler image when filler images are shown
-	const fillerImage = useMemo(() => {
-		const images = ["diwali.png", "holi.png"]
-		return images[Math.floor(Math.random() * images.length)]
-	}, []) // Randomly select once
-
 	// Update time every second
 	useEffect(() => {
 		const id = setInterval(() => setNow(Date.now()), 1000)
 		return () => clearInterval(id)
 	}, [])
-
-	// Handle filler image timeout logic
-	useEffect(() => {
-		if (!eventState?.items) return
-
-		// Check if any item just became DONE
-		const hasDoneItems = eventState.items.some((item) => item.state === "DONE")
-
-		if (hasDoneItems && !showFillerImages && fillerTimeoutStart === null) {
-			// Start showing filler images and set timeout
-			setShowFillerImages(true)
-			setFillerTimeoutStart(Date.now())
-		} else if (!hasDoneItems && showFillerImages) {
-			// Reset when no more DONE items
-			setShowFillerImages(false)
-			setFillerTimeoutStart(null)
-		}
-	}, [eventState?.items, showFillerImages, fillerTimeoutStart])
-
-	// Handle 30-second timeout for filler images
-	useEffect(() => {
-		if (!showFillerImages || fillerTimeoutStart === null) return
-
-		const timeoutDuration = 30 * 1000 // 30 seconds
-		const elapsed = Date.now() - fillerTimeoutStart
-
-		if (elapsed >= timeoutDuration) {
-			// Timeout reached, hide filler images
-			setShowFillerImages(false)
-			setFillerTimeoutStart(null)
-		}
-	}, [showFillerImages, fillerTimeoutStart])
 
 	// Process event data and determine current and next items
 	const { currentItem, nextItems } = useMemo(() => {
@@ -154,6 +117,18 @@ export default function StageTimer() {
 		}
 	}, [eventState])
 
+	// Client-side single random filler image selection (no rotation)
+	const shouldShowFiller = useMemo(() => {
+		return !currentItem || eventState?.viewState === "image"
+	}, [eventState?.viewState, currentItem])
+
+	const selectedFiller = useMemo(() => {
+		if (!shouldShowFiller) return null
+		if (!FILLER_PATHS || FILLER_PATHS.length === 0) return null
+		const idx = Math.floor(Math.random() * FILLER_PATHS.length)
+		return FILLER_PATHS[idx]
+	}, [shouldShowFiller])
+
 	// If no event state yet, show loading
 	if (!eventState) {
 		return (
@@ -170,13 +145,13 @@ export default function StageTimer() {
 			<div className="min-h-screen w-full flex flex-col p-1 bg-slate-100 dark:bg-slate-900 md:hidden">
 				{/* Header - Top for mobile */}
 				<div className="bg-purple-700 text-white py-2 px-3 shadow-lg flex flex-col items-center justify-between rounded-md mb-2">
-					<div className="w-12 h-12 flex-shrink-0 bg-white rounded-full p-1 flex items-center justify-center mb-2">
+					<div className="w-12 h-12 flex-shrink-0 bg-white rounded-full p-1 flex items-center justify-center">
 						<img src="/assets/25yr-logo.png" alt="Hum Sub 25 Years Logo" className="w-full h-full object-contain" />
 					</div>
 					<h1 className="text-lg font-bold text-center tracking-wide px-2">{eventState.name}</h1>
 
 					{/* Special Sponsors - Always Visible */}
-					<div className="flex items-center gap-2 mb-2">
+					<div className="flex items-center gap-2">
 						{/* Marius Pharmaceuticals */}
 						<div className="flex flex-col items-center gap-1">
 							<div className="bg-white rounded-lg p-1 shadow-md">
@@ -204,19 +179,15 @@ export default function StageTimer() {
 				</div>
 
 				{/* Main stage view - takes most space on mobile */}
-				<div className="flex-1 min-h-[60vh] relative mb-2">
-					<div className="h-full bg-white dark:bg-gray-800 shadow-lg">
+				<div className="flex-1 min-h-[32vh] relative mb-2">
+					<div className="h-full bg-white dark:bg-gray-800 shadow-lg py-2">
 						{eventState.viewState === "item" ? (
 							<div className="flex flex-col h-full">
 								{/* Main display area - takes maximum space */}
 								<div className="flex-grow">
 									{!currentItem ? (
-										showFillerImages ? (
-											<ImageDisplay
-												imagePath={`/assets/stage-timer/filler/${fillerImage}`}
-												isCollection={false}
-												now={now}
-											/>
+										selectedFiller ? (
+											<ImageDisplay imagePath={selectedFiller} isCollection={false} now={now} />
 										) : (
 											<div className="w-full h-full"></div>
 										)
@@ -287,9 +258,9 @@ export default function StageTimer() {
 
 								{/* Performance metadata - positioned at bottom */}
 								{currentItem && (
-									<div className="mt-auto p-2">
+									<div className="mt-auto p-1">
 										{/* Performance metadata */}
-										<div className="grid grid-cols-1 gap-3 bg-slate-50 dark:bg-slate-800 p-3 rounded-lg">
+										<div className="grid grid-cols-2 gap-3 bg-slate-50 dark:bg-slate-800 p-3 rounded-lg">
 											{currentItem.choreographers && (
 												<div className="flex flex-col">
 													<span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase">
@@ -360,13 +331,6 @@ export default function StageTimer() {
 							</div>
 						)}
 					</div>
-
-					{/* Small sponsor display for mobile */}
-					<div className="absolute bottom-2 right-2 z-10">
-						<div className="scale-75 origin-bottom-right">
-							<StageSponsorDisplay />
-						</div>
-					</div>
 				</div>
 
 				{/* Coming Up Next - Below main stage on mobile */}
@@ -435,12 +399,8 @@ export default function StageTimer() {
 										{/* Main display area - takes maximum space */}
 										<div className="flex-grow">
 											{!currentItem ? (
-												showFillerImages ? (
-													<ImageDisplay
-														imagePath={`/assets/stage-timer/filler/${fillerImage}`}
-														isCollection={false}
-														now={now}
-													/>
+												selectedFiller ? (
+													<ImageDisplay imagePath={selectedFiller} isCollection={false} now={now} />
 												) : (
 													<div className="w-full h-full"></div>
 												)
@@ -516,7 +476,7 @@ export default function StageTimer() {
 										{currentItem && (
 											<div className="mt-auto p-2 md:p-6">
 												{/* Performance metadata */}
-												<div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-8 bg-slate-50 dark:bg-slate-800 p-3 md:p-6 rounded-lg">
+												<div className="grid grid-cols-2 gap-2 md:gap-8 bg-slate-50 dark:bg-slate-800 p-3 md:p-6 rounded-lg">
 													{currentItem.choreographers && (
 														<div className="flex flex-col">
 															<span className="text-xs md:text-xl font-semibold text-slate-500 dark:text-slate-400 uppercase">
@@ -590,7 +550,9 @@ export default function StageTimer() {
 								)}
 							</div>
 
-							{/* Sponsor Display - Absolutely positioned at bottom right, very small on mobile */}
+							{/* Sponsor Display - Absolutely positioned at bottom right, different placement by breakpoint */}
+							{/* This StageSponsorDisplay lives inside the desktop/TV layout (parent is visible at md+).
+								It will be visible on medium+ screens and can have different scaling/positioning */}
 							<div className="absolute bottom-2 right-2 z-10 md:bottom-0 md:right-0">
 								<div className="scale-75 md:scale-100 origin-bottom-right">
 									<StageSponsorDisplay />

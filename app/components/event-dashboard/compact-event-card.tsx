@@ -76,7 +76,7 @@ export const CompactEventCard: React.FC<CompactEventCardProps> = ({ item }) => {
 							)}
 						</div>
 						{(item as PerformanceItem).duration && (
-							<div className="text-xs md:text-sm font-mono bg-slate-100 dark:bg-slate-700 px-1 md:px-2 py-0.5 md:py-1 rounded ml-2 flex-shrink-0">
+							<div className="text-xs md:text-sm font-mono bg-slate-100 dark:bg-slate-700 px-1 md:px-2 py-0.5 md:py-1 rounded ml-2 flex-shrink-0 flex place-items-center">
 								{(item as PerformanceItem).duration}
 							</div>
 						)}
