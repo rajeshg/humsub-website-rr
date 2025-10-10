@@ -1,12 +1,14 @@
 name: CI
 
-# We run CI on every push
+# This workflow runs on push/pull_request as well as supports being called
+# as a reusable workflow from other workflows (workflow_call).
 on:
   push:
     branches:
       - main
   pull_request:
     types: [opened, synchronize]
+  workflow_call: {}
 
 # Automatically cancel running workflows when there's a new one
 concurrency:

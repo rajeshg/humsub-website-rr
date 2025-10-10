@@ -76,7 +76,7 @@ export default function MainLayout() {
 						<NavigationMenu>
 							<NavigationMenuList>
 								<NavigationMenuItem>
-									<Link to="/" className={cn(navigationMenuTriggerStyle(), "text-foreground")}>
+									<Link to="/home" className={cn(navigationMenuTriggerStyle(), "text-foreground")}>
 										Home
 									</Link>
 								</NavigationMenuItem>
@@ -170,7 +170,7 @@ export default function MainLayout() {
 								<nav className="flex flex-col space-y-1 p-2">
 									<SheetTrigger asChild>
 										<Link
-											to="/"
+											to="/home"
 											className="block py-2 px-3 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors text-lg font-medium"
 										>
 											Home
@@ -322,7 +322,7 @@ export default function MainLayout() {
 			<footer className="px-4 py-2 mt-auto">
 				<div className="container mx-auto flex flex-col sm:flex-row justify-between items-start gap-8">
 					<div className="flex flex-col items-start">
-						<Link to="/" className="mb-2">
+						<Link to="/home" className="mb-2">
 							<img src="/assets/25yr-logo.png" alt="hum sub logo" width={60} />
 						</Link>
 						<p className="text-gray-700 dark:text-gray-300 text-sm">

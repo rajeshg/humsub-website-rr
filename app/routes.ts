@@ -19,7 +19,8 @@ const mdxFilesForEvents = processGlobFiles(import.meta.glob("../app/content/even
 
 export default [
 	layout("routes/main-layout.tsx", [
-		index("routes/home.tsx"),
+		index("routes/index.tsx"),
+		route("home", "routes/home.tsx"),
 		route("about", "routes/about.tsx"),
 		route("vision-mission", "routes/vision-mission.tsx"),
 		route("contact-us", "routes/contact-us.tsx"),

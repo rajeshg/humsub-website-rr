@@ -1,6 +1,11 @@
 {
   "filler": [
     {
+      "name": "YAA-2025-Diwali-Slide.jpg",
+      "path": "/assets/stage-timer/filler/YAA-2025-Diwali-Slide.jpg",
+      "folder": "filler"
+    },
+    {
       "name": "basantbahar24-0303-160300fin2.webp",
       "path": "/assets/stage-timer/filler/basantbahar24-0303-160300fin2.webp",
       "folder": "filler"
@@ -29,32 +34,22 @@
       "name": "hum-sab-diwali-282.webp",
       "path": "/assets/stage-timer/filler/hum-sab-diwali-282.webp",
       "folder": "filler"
+    },
+    {
+      "name": "tgt-flyer-2025.png",
+      "path": "/assets/stage-timer/filler/tgt-flyer-2025.png",
+      "folder": "filler"
     }
   ],
   "specialpromo": [
     {
-      "name": "Diwali-flyer-2024-V3-scaled.jpg",
-      "path": "/assets/stage-timer/specialpromo/Diwali-flyer-2024-V3-scaled.jpg",
+      "name": "YAA-2025-Diwali-Slide.jpg",
+      "path": "/assets/stage-timer/specialpromo/YAA-2025-Diwali-Slide.jpg",
       "folder": "specialpromo"
     },
     {
-      "name": "HD2024_Vendor_Layout_V1-1-1152x1536.jpg",
-      "path": "/assets/stage-timer/specialpromo/HD2024_Vendor_Layout_V1-1-1152x1536.jpg",
-      "folder": "specialpromo"
-    },
-    {
-      "name": "bb-2025-yaadein.jpg",
-      "path": "/assets/stage-timer/specialpromo/bb-2025-yaadein.jpg",
-      "folder": "specialpromo"
-    },
-    {
-      "name": "day-of-yoga-2025.jpg",
-      "path": "/assets/stage-timer/specialpromo/day-of-yoga-2025.jpg",
-      "folder": "specialpromo"
-    },
-    {
-      "name": "hd2025-flyer.jpg",
-      "path": "/assets/stage-timer/specialpromo/hd2025-flyer.jpg",
+      "name": "tgt-flyer-2025.png",
+      "path": "/assets/stage-timer/specialpromo/tgt-flyer-2025.png",
       "folder": "specialpromo"
     }
   ]
