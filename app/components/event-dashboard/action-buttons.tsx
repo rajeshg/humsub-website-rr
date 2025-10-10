@@ -61,7 +61,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({ item, role, onUpda
 								</Button>
 							)}
 
-							{(item.state === "CHECKED IN" || item.state === "BACKSTAGE") && (
+							{(item.state === "CHECKED IN" || item.state === "BACKSTAGE" || item.state === "READY TO GO") && (
 								<Button
 									variant="default"
 									onClick={() => onStartTimer(item.itemId)}
@@ -131,6 +131,22 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({ item, role, onUpda
 										<span>Load</span>
 									</Button>
 
+									<Button
+										variant="default"
+										onClick={() => onStartTimer(item.itemId)}
+										title="Start Performance"
+										aria-label="Start Performance"
+										className={`${buttonClasses} flex-1 bg-emerald-600 hover:bg-emerald-700 text-white`}
+									>
+										<Icon icon="mdi:play" className="w-3.5 h-3.5 flex-shrink-0" />
+										<span>Start</span>
+									</Button>
+								</div>
+							)}
+
+							{item.state === "READY TO GO" && (
+								/* Row 2: Start only (after loaded) */
+								<div className="flex gap-1.5">
 									<Button
 										variant="default"
 										onClick={() => onStartTimer(item.itemId)}
