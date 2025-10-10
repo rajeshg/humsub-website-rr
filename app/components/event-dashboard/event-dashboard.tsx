@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { Toaster } from "sonner"
 import type { BreakState, Item, PerformanceState } from "~/counter"
 import { Button } from "../ui/button"
+import { Checkbox } from "../ui/checkbox"
 import { ImagePicker } from "./image-picker"
 import { SortableItemCard } from "./sortable-item-card"
 
@@ -240,15 +241,16 @@ export const EventDashboard: React.FC<{ role: "registration" | "backstage" | nul
 
 							{/* Filter controls */}
 							<div className="flex items-center gap-2">
-								<span className="text-sm text-muted-foreground">Show:</span>
-								<Button
-									variant={showCompletedItems ? "default" : "outline"}
-									size="sm"
-									onClick={() => setShowCompletedItems(!showCompletedItems)}
-									className="text-xs px-3 py-1.5 h-auto"
-								>
-									Completed ({items.filter((item) => item.state === "DONE").length})
-								</Button>
+								<div className="flex items-center gap-2">
+									<Checkbox
+										id="show-completed"
+										checked={showCompletedItems}
+										onCheckedChange={(checked) => setShowCompletedItems(checked === true)}
+									/>
+									<label htmlFor="show-completed" className="text-sm text-muted-foreground cursor-pointer">
+										Show Completed ({items.filter((item) => item.state === "DONE").length})
+									</label>
+								</div>
 							</div>
 						</div>
 					</div>
