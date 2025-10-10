@@ -1,14 +1,12 @@
 import { DndContext, type DragEndEvent, PointerSensor, closestCenter, useSensor, useSensors } from "@dnd-kit/core"
 import { SortableContext, arrayMove, verticalListSortingStrategy } from "@dnd-kit/sortable"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Toaster } from "sonner"
 import type { BreakState, Item, PerformanceState } from "~/counter"
 import { Button } from "../ui/button"
 import { Checkbox } from "../ui/checkbox"
 import { ImagePicker } from "./image-picker"
 import { SortableItemCard } from "./sortable-item-card"
-
-const dedupe = (arr: string[]) => Array.from(new Set(arr))
 
 type ViewMode = "items" | "images"
 
@@ -20,97 +18,88 @@ export const EventDashboard: React.FC<{ role: "registration" | "backstage" | nul
 	const [now, setNow] = useState(Date.now())
 	const wsUrl = "/api/durable"
 
-	// Update every second for timers
-	useEffect(() => {
-		const interval = setInterval(() => setNow(Date.now()), 1000)
-		return () => clearInterval(interval)
-	}, [])
-
-	// Items for the sortable list, with optional filtering of DONE items
-	const localItems = items.map((item, index) => ({
-		id: item.itemId,
-		index,
-		...item,
-	}))
-
-	const filteredItems = showCompletedItems ? localItems : localItems.filter((item) => item.state !== "DONE")
+	// WebSocket reconnection state
+	const [reconnectAttempts, setReconnectAttempts] = useState(0)
+	const maxReconnectAttempts = 5
+	const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
 	// WebSocket send function - we'll create our own simple WebSocket connection
 	const [ws, setWs] = useState<WebSocket | null>(null)
-	const [wsStatus, setWsStatus] = useState<"connecting" | "open" | "closed">("closed")
-
-	useEffect(() => {
-		if (typeof window === "undefined") return
-
-		const wsProtocol = window.location.protocol === "https:" ? "wss:" : "ws:"
-		const host = window.location.host
-		const path = wsUrl.startsWith("/") ? wsUrl : `/${wsUrl}`
-		const websocketUrl = `${wsProtocol}//${host}${path}`
-
-		const websocket = new WebSocket(websocketUrl)
-		setWsStatus("connecting")
-
-		websocket.onopen = () => {
-			setWsStatus("open")
-			setWs(websocket)
-		}
-
-		websocket.onclose = () => {
-			setWsStatus("closed")
-			setWs(null)
-		}
-
-		websocket.onmessage = (event) => {
-			try {
-				const data = JSON.parse(event.data) as Record<string, unknown>
-
-				if (data.type === "initial_state" && data.state && typeof data.state === "object") {
-					const state = data.state as { items: unknown[] }
-					if (Array.isArray(state.items)) {
-						setItems(state.items as Item[])
-					}
-				} else if (data.type === "item_updated" && data.item) {
-					// Handle individual item updates
-					const updatedItem = data.item as Item
-					setItems((prevItems) => prevItems.map((item) => (item.itemId === updatedItem.itemId ? updatedItem : item)))
-				} else if (data.type === "order_updated" && Array.isArray(data.order)) {
-					// Handle item reordering
-					const newOrder = data.order as string[]
-					setItems((prevItems) => {
-						const reordered: Item[] = []
-						for (const itemId of newOrder) {
-							const found = prevItems.find((item) => item.itemId === itemId)
-							if (found) reordered.push(found)
-						}
-						// Add any items not in the new order to the end
-						for (const item of prevItems) {
-							if (!reordered.find((r) => r.itemId === item.itemId)) {
-								reordered.push(item)
-							}
-						}
-						return reordered
-					})
-				} else if (data.type === "SYNC" && Array.isArray(data.items)) {
-					setItems(data.items as Item[])
-				} else if (data.type === "ROLE_USERS" && data.users) {
-					const dedupedUsers = dedupe(data.users as string[])
-					setRoleUsers(dedupedUsers)
-				}
-			} catch (error) {
-				console.error("Failed to parse WebSocket message:", error)
-			}
-		}
-
-		return () => {
-			websocket.close()
-		}
-	}, []) // wsUrl is constant, no need to include in dependencies
+	const [wsStatus, setWsStatus] = useState<"connecting" | "open" | "closed" | "reconnecting">("closed")
 
 	const send = (message: string) => {
 		if (ws && wsStatus === "open") {
 			ws.send(message)
 		}
 	}
+
+	// WebSocket connection effect
+	// biome-ignore lint/correctness/useExhaustiveDependencies: ws is set inside the effect and used in cleanup
+	useEffect(() => {
+		const connect = () => {
+			if (reconnectAttempts >= maxReconnectAttempts) return
+
+			setWsStatus(reconnectAttempts > 0 ? "reconnecting" : "connecting")
+			const socket = new WebSocket(wsUrl)
+
+			socket.onopen = () => {
+				setWs(socket)
+				setWsStatus("open")
+				setReconnectAttempts(0)
+			}
+
+			socket.onclose = () => {
+				setWs(null)
+				setWsStatus("closed")
+				// Attempt to reconnect
+				if (reconnectAttempts < maxReconnectAttempts) {
+					setReconnectAttempts((prev) => prev + 1)
+					reconnectTimeoutRef.current = setTimeout(connect, 1000 * (reconnectAttempts + 1))
+				}
+			}
+
+			socket.onerror = () => {
+				setWsStatus("closed")
+			}
+
+			socket.onmessage = (event) => {
+				try {
+					const data = JSON.parse(event.data) as Record<string, unknown>
+					if (data.type === "initial_state") {
+						const state = data.state as { items: Item[]; role_users?: string[] }
+						setItems(state.items)
+						setRoleUsers(state.role_users || [])
+					} else if (data.type === "item_updated") {
+						const item = data.item as Item
+						setItems((prev) => prev.map((i) => (i.itemId === item.itemId ? item : i)))
+					} else if (data.type === "item_created") {
+						const item = data.item as Item
+						setItems((prev) => [...prev, item])
+					} else if (data.type === "order_updated") {
+						const state = data.state as { items: Item[] }
+						setItems(state.items)
+					}
+				} catch (err) {
+					console.error("Failed to parse WebSocket message:", err)
+				}
+			}
+		}
+
+		connect()
+
+		return () => {
+			if (ws) ws.close()
+			if (reconnectTimeoutRef.current) clearTimeout(reconnectTimeoutRef.current)
+		}
+	}, [reconnectAttempts])
+
+	// Update now every second
+	useEffect(() => {
+		const interval = setInterval(() => setNow(Date.now()), 1000)
+		return () => clearInterval(interval)
+	}, [])
+
+	const filteredItems = showCompletedItems ? items : items.filter((item) => item.state !== "DONE")
 
 	const handleUpdateState = (itemId: string, newState: PerformanceState | BreakState) => {
 		const message = {
@@ -165,8 +154,8 @@ export const EventDashboard: React.FC<{ role: "registration" | "backstage" | nul
 	function handleDragEnd(event: DragEndEvent) {
 		const { active, over } = event
 		if (over && active.id !== over.id) {
-			const oldIndex = filteredItems.findIndex((item) => item.id === active.id)
-			const newIndex = filteredItems.findIndex((item) => item.id === over.id)
+			const oldIndex = filteredItems.findIndex((item) => item.itemId === active.id)
+			const newIndex = filteredItems.findIndex((item) => item.itemId === over.id)
 			const newItems = arrayMove(filteredItems, oldIndex, newIndex)
 
 			const message = {
@@ -199,11 +188,11 @@ export const EventDashboard: React.FC<{ role: "registration" | "backstage" | nul
 									className={`w-2 h-2 rounded-full ${
 										wsStatus === "open"
 											? "bg-green-500 animate-pulse"
-											: wsStatus === "connecting"
+											: wsStatus === "connecting" || wsStatus === "reconnecting"
 												? "bg-yellow-500 animate-pulse"
 												: "bg-red-500"
 									}`}
-									title={`Connection: ${wsStatus}`}
+									title={`Connection: ${wsStatus}${reconnectAttempts > 0 ? ` (${reconnectAttempts}/${maxReconnectAttempts})` : ""}`}
 								/>
 								<span className="capitalize">{wsStatus}</span>
 							</div>
@@ -259,7 +248,7 @@ export const EventDashboard: React.FC<{ role: "registration" | "backstage" | nul
 			<div className="flex-1 overflow-auto px-1 md:p-4 w-full max-w-5xl mx-auto">
 				<div className={viewMode === "items" ? "block" : "hidden"} aria-hidden={viewMode !== "items"}>
 					<DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-						<SortableContext items={filteredItems.map((item) => item.id)} strategy={verticalListSortingStrategy}>
+						<SortableContext items={filteredItems.map((item) => item.itemId)} strategy={verticalListSortingStrategy}>
 							<div className="space-y-4">
 								{filteredItems.map((item) => (
 									<SortableItemCard
