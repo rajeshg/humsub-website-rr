@@ -203,7 +203,8 @@ export default function StageTimer() {
 													</span>
 												</div>
 												<h2 className="text-xl font-bold text-slate-800 dark:text-white mb-2 whitespace-normal break-words px-2">
-													{currentItem.name}
+													{currentItem.itemId.startsWith("#") ? "" : "#"}
+													{currentItem.itemId} {currentItem.name}
 												</h2>
 												<div className="text-3xl font-mono font-bold text-slate-400 tracking-wider">
 													{currentItem.timer_start_time
@@ -414,7 +415,8 @@ export default function StageTimer() {
 															{currentItem.timer_start_time ? "Now Playing" : "Up Next"}
 														</span>
 														<h2 className="text-lg md:text-2xl font-bold text-slate-800 dark:text-white whitespace-normal break-words px-2">
-															{currentItem.name}
+															{currentItem.itemId.startsWith("#") ? "" : "#"}
+															{currentItem.itemId} {currentItem.name}
 														</h2>
 													</div>
 													<div className="flex items-center justify-between w-full px-4 gap-4">
