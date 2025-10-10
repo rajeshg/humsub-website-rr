@@ -255,7 +255,7 @@ export const EventDashboard: React.FC<{ role: "registration" | "backstage" | nul
 				</div>
 			</div>
 			<div className="flex-1 overflow-auto px-1 md:p-4 w-full max-w-5xl mx-auto">
-				{viewMode === "items" ? (
+				<div className={viewMode === "items" ? "block" : "hidden"} aria-hidden={viewMode !== "items"}>
 					<DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
 						<SortableContext items={filteredItems.map((item) => item.id)} strategy={verticalListSortingStrategy}>
 							<div className="space-y-4">
@@ -272,7 +272,9 @@ export const EventDashboard: React.FC<{ role: "registration" | "backstage" | nul
 							</div>
 						</SortableContext>
 					</DndContext>
-				) : (
+				</div>
+
+				<div className={viewMode === "images" ? "block" : "hidden"} aria-hidden={viewMode !== "images"}>
 					<div className="h-full">
 						<ImagePicker
 							onSelectImage={(imagePath) => {
@@ -285,7 +287,7 @@ export const EventDashboard: React.FC<{ role: "registration" | "backstage" | nul
 							}}
 						/>
 					</div>
-				)}
+				</div>
 			</div>{" "}
 			<Toaster />
 		</div>

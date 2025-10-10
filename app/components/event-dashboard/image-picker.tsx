@@ -1,3 +1,4 @@
+import { useMemo } from "react"
 import { Button } from "~/components/ui/button"
 import imageCollections from "~/lib/image-manifest.json"
 
@@ -13,8 +14,8 @@ interface ImagePickerProps {
 }
 
 export function ImagePicker({ onSelectImage, onClearSelection }: ImagePickerProps) {
-	// Combine all images from all folders
-	const images: ImageData[] = [...imageCollections.filler, ...imageCollections.specialpromo]
+	// Combine all images from all folders (memoized to keep stable references)
+	const images: ImageData[] = useMemo(() => [...imageCollections.filler, ...imageCollections.specialpromo], [])
 
 	const handleSelectImage = (imagePath: string) => {
 		onSelectImage(imagePath)

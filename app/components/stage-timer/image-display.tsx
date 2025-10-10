@@ -81,12 +81,15 @@ export function ImageDisplay({
 	}
 
 	return (
-		<div className="w-full h-full relative bg-black/10 overflow-hidden flex items-center justify-center">
-			<img
-				src={imagePath}
-				alt="Stage display"
-				className="max-w-full max-h-full object-contain transition-opacity duration-1000"
-			/>
+		<div className="w-full h-full relative bg-black/10 overflow-hidden">
+			{/* center and constrain the image strictly inside the container */}
+			<div className="w-full h-full flex items-center justify-center">
+				<img
+					src={imagePath}
+					alt="Stage display"
+					className="max-w-full max-h-full object-contain transition-opacity duration-1000"
+				/>
+			</div>
 			{isCollection && (
 				<div className="absolute top-4 right-4 bg-black/50 text-white px-2 py-1 rounded text-sm">Collection Mode</div>
 			)}

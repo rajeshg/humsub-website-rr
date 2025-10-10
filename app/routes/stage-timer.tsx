@@ -129,6 +129,9 @@ export default function StageTimer() {
 		return FILLER_PATHS[idx]
 	}, [shouldShowFiller])
 
+	// Resolve the effective image path (controller-selected image or client filler)
+	const effectiveImagePath: string | null = eventState?.selectedImage ?? selectedFiller ?? null
+
 	// If no event state yet, show loading
 	if (!eventState) {
 		return (
@@ -179,15 +182,15 @@ export default function StageTimer() {
 				</div>
 
 				{/* Main stage view - takes most space on mobile */}
-				<div className="flex-1 min-h-[32vh] relative mb-2">
-					<div className="h-full bg-white dark:bg-gray-800 shadow-lg py-2">
+				<div className="relative mb-4 h-[45vh]">
+					<div className="h-full bg-white dark:bg-gray-800 shadow-lg py-2 overflow-hidden">
 						{eventState.viewState === "item" ? (
 							<div className="flex flex-col h-full">
 								{/* Main display area - takes maximum space */}
 								<div className="flex-grow">
 									{!currentItem ? (
-										selectedFiller ? (
-											<ImageDisplay imagePath={selectedFiller} isCollection={false} now={now} />
+										effectiveImagePath ? (
+											<ImageDisplay imagePath={effectiveImagePath} isCollection={false} now={now} />
 										) : (
 											<div className="w-full h-full"></div>
 										)
@@ -308,7 +311,7 @@ export default function StageTimer() {
 								)}
 							</div>
 						) : eventState.viewState === "image" ? (
-							<div className="h-full pb-24">
+							<div className="h-full md:pb-0 pb-6">
 								<ImageDisplay
 									imagePath={eventState.selectedImage}
 									isCollection={eventState.imageMode === "collection"}
@@ -318,7 +321,7 @@ export default function StageTimer() {
 								/>
 							</div>
 						) : (
-							<div className="flex flex-col items-center justify-center h-full p-4 pb-24">
+							<div className="flex flex-col items-center justify-center h-full p-4 pb-6">
 								<div className="flex flex-col items-center justify-center flex-grow">
 									<Icon icon="mdi:stage" className="w-16 h-16 text-purple-300" />
 									<h3 className="text-lg font-bold mt-4 text-slate-800 dark:text-white text-center px-2">
@@ -392,15 +395,15 @@ export default function StageTimer() {
 						</div>
 
 						{/* Stage area */}
-						<div id="stage" className="flex-grow mt-2 relative">
-							<div className="h-full bg-white dark:bg-gray-800 shadow-lg border-l-8 border-l-purple-600">
+						<div id="stage" className="flex-grow mt-2 relative min-h-0">
+							<div className="h-full bg-white dark:bg-gray-800 shadow-lg border-l-8 border-l-purple-600 min-h-0">
 								{eventState.viewState === "item" ? (
 									<div className="flex flex-col h-full">
 										{/* Main display area - takes maximum space */}
-										<div className="flex-grow">
+										<div className="flex-grow min-h-0">
 											{!currentItem ? (
-												selectedFiller ? (
-													<ImageDisplay imagePath={selectedFiller} isCollection={false} now={now} />
+												effectiveImagePath ? (
+													<ImageDisplay imagePath={effectiveImagePath} isCollection={false} now={now} />
 												) : (
 													<div className="w-full h-full"></div>
 												)
@@ -526,7 +529,7 @@ export default function StageTimer() {
 										)}
 									</div>
 								) : eventState.viewState === "image" ? (
-									<div className="h-full pb-24">
+									<div className="h-full md:pb-0 pb-6">
 										<ImageDisplay
 											imagePath={eventState.selectedImage}
 											isCollection={eventState.imageMode === "collection"}
@@ -536,7 +539,7 @@ export default function StageTimer() {
 										/>
 									</div>
 								) : (
-									<div className="flex flex-col items-center justify-center h-full p-4 md:p-8 pb-24">
+									<div className="flex flex-col items-center justify-center h-full p-4 md:p-8 pb-6">
 										<div className="flex flex-col items-center justify-center flex-grow">
 											<Icon icon="mdi:stage" className="w-16 h-16 md:w-32 md:h-32 text-purple-300" />
 											<h3 className="text-lg md:text-5xl font-bold mt-4 md:mt-8 text-slate-800 dark:text-white text-center px-2">
