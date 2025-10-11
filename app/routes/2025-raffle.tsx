@@ -51,8 +51,9 @@ export default function Raffle2025() {
 									Celebrate Diwali with a chance to fly anywhere Lufthansa flies!<sup>*</sup>
 									<br />
 									<ul>
-										<li>🎟️ $50 per raffle ticket</li>
-										<li>💡 $100 = 2 tickets = double the chances!</li>
+										<li>🎟️ 1 ticket for $10</li>
+										<li>💡 3 tickets for $25</li>
+										<li>💡 7 tickets for $50</li>
 									</ul>
 								</p>
 								<p className="text-lg">
