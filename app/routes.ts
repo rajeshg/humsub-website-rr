@@ -59,5 +59,7 @@ export default [
 	]),
 	route("durable", "routes/durable.tsx"),
 	route("stage-timer", "routes/stage-timer.tsx"),
+	// Top-level poll route for TGT 2025 (no main layout/navigation)
+	route("tgt-2025-poll-results", "routes/tgt-2025-poll-results.tsx"),
 	route("api/youtube", "routes/api/youtube.ts"),
-] satisfies RouteConfig
+] as RouteConfig

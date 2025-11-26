@@ -12,7 +12,7 @@ export default function BasantBahar() {
 				classical dance forms. This is our signature Basant Bahar event, held in the month of March.
 			</p>
 			<p>
-				Unlike Cary Diwali, our autumn event, Basant Bahar is aimed at encouraging the showcasing of our classical
+				Unlike Hum Sub Diwali, our autumn event, Basant Bahar is aimed at encouraging the showcasing of our classical
 				traditions in music and dance. Past editions have had Kathak, Kuchipudi, Odissi, and Bharatanatyam dances,
 				percussion instruments such as the table, dhol, and mridangam, and string and wind instruments such as the
 				veena, violin, and flute. We also present dance-dramas based on stories from Indian mythology, which are rich in
