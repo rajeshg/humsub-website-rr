@@ -11,9 +11,9 @@ declare module "react-router" {
 
 export default {
 	future: {
-		unstable_middleware: true,
 		unstable_optimizeDeps: true,
-		unstable_splitRouteModules: true,
-		unstable_viteEnvironmentApi: true,
+		v8_middleware: true,
+		v8_splitRouteModules: true,
+		v8_viteEnvironmentApi: true,
 	},
 } satisfies Config

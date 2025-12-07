@@ -43,6 +43,7 @@ export default [
 			route("events/holi", "routes/events/holi.tsx"),
 			route("events/basant-bahar", "routes/events/basant-bahar.tsx"),
 			route("events/exhibition", "routes/events/exhibition.tsx"),
+			route("events/tgt-2025-poll-results", "routes/events/tgt-2025-poll-results.tsx"),
 			route("events", "routes/events-home.tsx"),
 			route("event", "routes/events-detail.tsx", [
 				...mdxFilesForEvents.map(({ path: routePath, file }) => route(routePath, file)),
@@ -59,7 +60,5 @@ export default [
 	]),
 	route("durable", "routes/durable.tsx"),
 	route("stage-timer", "routes/stage-timer.tsx"),
-	// Top-level poll route for TGT 2025 (no main layout/navigation)
-	route("tgt-2025-poll-results", "routes/tgt-2025-poll-results.tsx"),
 	route("api/youtube", "routes/api/youtube.ts"),
 ] as RouteConfig
