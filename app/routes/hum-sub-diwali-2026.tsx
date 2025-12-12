@@ -1,4 +1,4 @@
-import { CalendarDays, Car, MapPin, Package, Users } from "lucide-react"
+import { CalendarDays, MapPin, Users } from "lucide-react"
 import { Link } from "react-router"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "~/components/ui/accordion"
 import { Badge } from "~/components/ui/badge"
@@ -143,7 +143,7 @@ export default function HumSubDiwali2026() {
 							</h1>
 							<div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-amber-500 dark:from-orange-400 dark:to-amber-400 mx-auto rounded-full animate-in zoom-in-50 duration-1000 delay-700"></div>
 						</div>
-						
+
 						{/* Event Details with Enhanced Card */}
 						<div className="bg-white/90 dark:bg-gray-800/95 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-orange-200/50 dark:border-orange-600/30 shadow-2xl max-w-2xl mx-auto transform hover:scale-105 transition-transform duration-300 animate-in slide-in-from-bottom-4 duration-1000 delay-500 mb-8">
 							<div className="space-y-4 text-gray-800 dark:text-gray-100">
@@ -390,7 +390,7 @@ export default function HumSubDiwali2026() {
 											</p>
 										</div>
 										<p className="text-muted-foreground">
-											Stay tuned for vendor and cultural participation opportunities for Hum Sub Diwali 2026. 
+											Stay tuned for vendor and cultural participation opportunities for Hum Sub Diwali 2026.
 											Applications will be available on our website in May 2026.
 										</p>
 									</div>
