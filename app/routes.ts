@@ -50,6 +50,7 @@ export default [
 			]),
 			// this is an alias for the diwali event route at the path /event/diwali-2025
 			route("hum-sub-diwali-2025", "routes/hum-sub-diwali-2025.tsx"),
+			route("hum-sub-diwali-2026", "routes/hum-sub-diwali-2026.tsx"),
 		]),
 		route("blog", "routes/blog-layout.tsx", [
 			index("routes/blog-home.tsx"),
