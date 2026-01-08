@@ -48,6 +48,14 @@ export default function YouthAmbassador() {
 				<li>Program evaluation and documentation</li>
 				<li>Networking and relationship-building with other local organizations</li>
 			</ol>
+			<h2>Youth Ambassadors (2025-2026)</h2>
+			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-transparent">
+				<YACard name="Rishi Sankaran" imagePath="/assets/ya/rishi-sankaran.jpeg" />
+				<YACard name="Apaarpreet Bajaj" imagePath="/assets/ya/Apaarpreet-Bajaj.jpeg" />
+				<YACard name="Ahana Satija" imagePath="/assets/ya/ahana-satija.jpeg" />
+				<YACard name="Ishaan Kancharla" imagePath="/assets/ya/ishaan-kancharla.jpeg" />
+				<YACard name="Janhawi Patil" imagePath="/assets/ya/janhawi-patil.jpeg" />
+			</div>
 			<h2>Youth Ambassadors (2024-2025)</h2>
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-transparent">
 				<YACard name="Sonia Daptardar" imagePath="/assets/ya/Sonia-Daptardar.jpeg" />

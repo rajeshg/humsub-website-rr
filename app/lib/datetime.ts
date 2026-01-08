@@ -51,7 +51,7 @@ export function generateUserFriendlyDateString(isoWithDateTimeOffsetString: stri
 
 export function parseLocalDate(
 	dateStr: string,
-	timeZone = "America/New_York"
+	timeZone = DEFAULT_TIMEZONE
 ): { dateStr: string; dateTimeISO: string; dateTimeUserFriendly: string } {
 	const dateTimeISO = convertToTimezoneOffsettedString(dateStr, timeZone)
 	const dateTimeUserFriendly = generateUserFriendlyDateString(dateTimeISO)
@@ -147,4 +147,41 @@ export function dateRangeFormatter(startDateISO: string, endDateISO?: string): s
 	const start = format(startDate, options)
 	const end = format(endDate, options)
 	return `${start} - ${end}`
+}
+
+/**
+ * Parses event frontmatter dates and returns formatted date fields.
+ * Ensures consistent timezone handling across all date parsing.
+ * @param frontmatter - The event frontmatter object with start-date and end-date fields
+ * @param timezone - The timezone to use for date parsing, defaults to 'America/New_York'
+ * @returns An object with parsed ISO dates and user-friendly formatted date range
+ */
+export function parseEventDates(
+	frontmatter: Record<string, unknown>,
+	timezone: string = DEFAULT_TIMEZONE
+): {
+	startDateISO: string
+	endDateISO?: string
+	dateRangeUserFriendly: string
+} {
+	const startDateStr = frontmatter["start-date"] as string | undefined
+	const endDateStr = frontmatter["end-date"] as string | undefined
+
+	if (!startDateStr) {
+		return {
+			startDateISO: "",
+			endDateISO: undefined,
+			dateRangeUserFriendly: "",
+		}
+	}
+
+	const startDateISO = parseLocalDate(startDateStr, timezone).dateTimeISO
+	const endDateISO = endDateStr ? parseLocalDate(endDateStr, timezone).dateTimeISO : undefined
+	const dateRangeUserFriendly = dateRangeFormatter(startDateISO, endDateISO)
+
+	return {
+		startDateISO,
+		endDateISO,
+		dateRangeUserFriendly,
+	}
 }

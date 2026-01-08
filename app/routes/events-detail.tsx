@@ -1,10 +1,8 @@
 import { Icon } from "@iconify-icon/react"
-import { preload } from "react-dom"
 import { Link, Outlet, redirect } from "react-router"
 import blogCss from "~/blog.css?url"
 import { Button } from "~/components/ui/button"
-import type { EventMeta } from "~/events.server"
-import { dateRangeFormatter, parseLocalDate } from "~/lib/datetime"
+import { getEventBySlug } from "~/events.server"
 import type { Route } from "./+types/events-detail"
 
 export async function loader({ request }: Route.LoaderArgs) {
@@ -20,31 +18,18 @@ export async function loader({ request }: Route.LoaderArgs) {
 		return redirect(redirects[path], { status: 301 })
 	}
 
-	const event = (await import(`../content/events/${path}.mdx`)) as EventMeta
-	if (event.frontmatter?.["start-date"]) {
-		event.frontmatter.startDateISO = event.frontmatter["start-date"]
-			? parseLocalDate(event.frontmatter["start-date"], "America/New_York").dateTimeISO
-			: ""
+	if (!path) {
+		throw new Response("Not Found", { status: 404 })
 	}
-	if (event.frontmatter?.["end-date"]) {
-		event.frontmatter.endDateISO = event.frontmatter["end-date"]
-			? parseLocalDate(event.frontmatter["end-date"]).dateTimeISO
-			: undefined
-	}
-	if (event.frontmatter.startDateISO) {
-		event.frontmatter.dateRangeUserFriendly = dateRangeFormatter(
-			event.frontmatter.startDateISO,
-			event.frontmatter.endDateISO
-		)
-	}
-	if (!event.frontmatter) {
+
+	const event = await getEventBySlug(path)
+	if (!event || !event.frontmatter) {
 		throw new Response("Not Found", { status: 404 })
 	}
 	return { event }
 }
 
 export async function clientLoader({ serverLoader }: Route.ClientLoaderArgs) {
-	preload(blogCss, { as: "style" })
 	return await serverLoader()
 }
 

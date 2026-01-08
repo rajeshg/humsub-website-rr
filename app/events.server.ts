@@ -1,4 +1,4 @@
-import { dateRangeFormatter, parseLocalDate } from "./lib/datetime"
+import { parseEventDates, parseLocalDate } from "./lib/datetime"
 
 export type Frontmatter = {
 	slug: string
@@ -21,7 +21,14 @@ export type EventMeta = {
 	frontmatter: Frontmatter
 }
 
-export async function getAllEvents(): Promise<EventMeta[]> {
+// Cache for events to avoid repeated imports
+let cachedEvents: EventMeta[] | null = null
+
+async function initializeEvents(): Promise<EventMeta[]> {
+	if (cachedEvents) {
+		return cachedEvents
+	}
+
 	try {
 		// Use Vite's import.meta.glob to find all MDX files in the content/events directory
 		const eventFiles = import.meta.glob("/app/content/events/*.mdx", { eager: true })
@@ -31,24 +38,35 @@ export async function getAllEvents(): Promise<EventMeta[]> {
 		}))
 		for (const event of allEvents) {
 			if (event.frontmatter) {
-				event.frontmatter.startDateISO = parseLocalDate(event.frontmatter["start-date"]).dateTimeISO
-				event.frontmatter.endDateISO = event.frontmatter["end-date"]
-					? parseLocalDate(event.frontmatter["end-date"]).dateTimeISO
-					: undefined
-				event.frontmatter.startDateUserFriendly = parseLocalDate(event.frontmatter["start-date"]).dateTimeUserFriendly
-				event.frontmatter.endDateUserFriendly = event.frontmatter["end-date"]
-					? parseLocalDate(event.frontmatter["end-date"]).dateTimeUserFriendly
-					: undefined
-				event.frontmatter.dateRangeUserFriendly = dateRangeFormatter(
-					event.frontmatter.startDateISO,
-					event.frontmatter.endDateISO
-				)
+				const parsedDates = parseEventDates(event.frontmatter)
+				event.frontmatter.startDateISO = parsedDates.startDateISO
+				event.frontmatter.endDateISO = parsedDates.endDateISO
+				event.frontmatter.dateRangeUserFriendly = parsedDates.dateRangeUserFriendly
+				// Also compute user-friendly individual dates for backward compatibility
+				if (event.frontmatter.startDateISO) {
+					event.frontmatter.startDateUserFriendly = parseLocalDate(event.frontmatter["start-date"]).dateTimeUserFriendly
+				}
+				if (event.frontmatter.endDateISO) {
+					event.frontmatter.endDateUserFriendly = parseLocalDate(
+						event.frontmatter["end-date"] as string
+					).dateTimeUserFriendly
+				}
 			}
 		}
 
-		return allEvents.filter((event): event is EventMeta => event.frontmatter !== undefined)
+		cachedEvents = allEvents.filter((event): event is EventMeta => event.frontmatter !== undefined)
+		return cachedEvents
 	} catch (error) {
 		console.error("Error loading events:", error)
+		return []
 	}
-	return []
+}
+
+export async function getAllEvents(): Promise<EventMeta[]> {
+	return initializeEvents()
+}
+
+export async function getEventBySlug(slug: string): Promise<EventMeta | null> {
+	const allEvents = await initializeEvents()
+	return allEvents.find((event) => event.slug === slug) || null
 }

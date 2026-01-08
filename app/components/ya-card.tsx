@@ -10,7 +10,7 @@ type Props = {
 export default function YACard({ name, href, description, imagePath }: Props) {
 	return (
 		<Card className="h-full overflow-hidden transition-transform duration-300 hover:scale-105">
-			<CardContent className="aspect-[3/4] flex flex-col items-center justify-center">
+			<CardContent className="aspect-square sm:aspect-[3/4] flex flex-col items-center justify-center p-2 sm:p-4">
 				{href ? (
 					<a href={href} target="_blank" rel="noreferrer">
 						<img src={imagePath} alt={name} className="h-auto max-h-96 rounded-lg object-contain" />
@@ -18,7 +18,7 @@ export default function YACard({ name, href, description, imagePath }: Props) {
 				) : (
 					<img src={imagePath} alt={name} className="h-auto max-h-96 rounded-lg object-contain" />
 				)}
-				<CardTitle className="text-lg text-center">{name}</CardTitle>
+				<CardTitle className="text-base sm:text-lg text-center mt-2">{name}</CardTitle>
 				{description && <CardDescription className="text-center text-sm mt-1">{description}</CardDescription>}
 			</CardContent>
 		</Card>
