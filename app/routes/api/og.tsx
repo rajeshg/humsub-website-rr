@@ -45,10 +45,7 @@ export async function loader({ request }: Route.LoaderArgs) {
 		titleLineHeight = 1.1
 	}
 
-	const [fontData, logoData] = await Promise.all([
-		getFont("Inter-Bold"),
-		fetch("https://humsub.org/assets/25yr-logo.png").then((res) => res.arrayBuffer()),
-	])
+	const fontData = await getFont("Inter-Bold")
 
 	return new ImageResponse(
 		<div
@@ -76,7 +73,7 @@ export async function loader({ request }: Route.LoaderArgs) {
 					height: "100%",
 				}}
 			>
-				{/* Logo + Hum Sub - Row with logo/text side by side */}
+				{/* Hum Sub Header */}
 				<div
 					style={{
 						display: "flex",
@@ -84,18 +81,7 @@ export async function loader({ request }: Route.LoaderArgs) {
 						marginBottom: "40px",
 					}}
 				>
-					<div
-						style={{
-							display: "flex",
-							backgroundColor: "white",
-							borderRadius: "16px",
-							padding: "10px",
-							boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.3)",
-						}}
-					>
-						<img src="humsub-logo" alt="Hum Sub Logo" style={{ width: "60px", height: "60px", objectFit: "contain" }} />
-					</div>
-					<div style={{ marginLeft: "20px", display: "flex", flexDirection: "column" }}>
+					<div style={{ display: "flex", flexDirection: "column" }}>
 						<span style={{ fontSize: "36px", fontWeight: "bold", color: "#f8fafc", lineHeight: 1 }}>Hum Sub</span>
 						<span
 							style={{
@@ -200,12 +186,6 @@ export async function loader({ request }: Route.LoaderArgs) {
 					data: new Uint8Array(fontData as ArrayBuffer),
 					weight: 700,
 					style: "normal",
-				},
-			],
-			persistentImages: [
-				{
-					src: "humsub-logo",
-					data: logoData,
 				},
 			],
 		}
