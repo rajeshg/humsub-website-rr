@@ -198,7 +198,7 @@ export async function loader({ request }: Route.LoaderArgs) {
 			fonts: [
 				{
 					name: "Inter",
-					data: fontData,
+					data: new Uint8Array(fontData as ArrayBuffer),
 					weight: 700,
 					style: "normal",
 				},
