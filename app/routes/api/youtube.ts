@@ -15,7 +15,7 @@ type YouTubeSearchResponse = {
 	nextPageToken?: string
 }
 
-export async function loader({ params }: Route.LoaderArgs) {
+export async function loader({ request }: Route.LoaderArgs) {
 	const cachedVideos = await env.KV.get("youtube-videos")
 	const YOUTUBE_API_KEY = env.YOUTUBE_API_KEY
 
@@ -28,7 +28,8 @@ export async function loader({ params }: Route.LoaderArgs) {
 	// If not cached, fetch the videos from YouTube API
 	console.warn("Cache MISS. Fetching videos from YouTube API")
 	let videos: string[] = []
-	let nextPageToken = params.nextPageToken
+	const requestUrl = new URL(request.url)
+	let nextPageToken = requestUrl.searchParams.get("nextPageToken") || undefined
 
 	try {
 		do {

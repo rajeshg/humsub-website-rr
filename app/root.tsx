@@ -18,6 +18,10 @@ export const links: Route.LinksFunction = () => [
 ]
 
 export function meta({ location }: Route.MetaArgs) {
+	const ogUrl = new URL("https://humsub.org/api/og")
+	ogUrl.searchParams.set("title", "Hum Sub")
+	ogUrl.searchParams.set("location", "Triangle Area of North Carolina")
+
 	return [
 		{ title: "Hum Sub" },
 		{
@@ -31,10 +35,10 @@ export function meta({ location }: Route.MetaArgs) {
 			content:
 				"Hum Sub is a non-profit cultural organization dedicated to sharing India's diverse traditions through community events in North Carolina's Triangle area.",
 		},
-		{ name: "og:image", content: "https://humsub-website-rr.socialmedia-6ce.workers.dev/og-image.png" },
-		{ name: "og:image:width", content: "1000" },
-		{ name: "og:image:height", content: "525" },
-		{ name: "og:url", content: `https://humsub-website-rr.socialmedia-6ce.workers.dev${location.pathname}` },
+		{ name: "og:image", content: ogUrl.toString() },
+		{ name: "og:image:width", content: "1200" },
+		{ name: "og:image:height", content: "630" },
+		{ name: "og:url", content: `https://humsub.org${location.pathname}` },
 	]
 }
 

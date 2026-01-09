@@ -7,6 +7,24 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "~/componen
 import { sponsors as sponsors2025 } from "~/lib/sponsors"
 import { useTimeUntil } from "~/lib/timeuntil"
 
+export function meta() {
+	const title = "Hum Sub Diwali 2026 Celebration"
+	const date = "October 10, 2026"
+	const location = "Triangle Area of North Carolina"
+
+	const ogUrl = new URL("https://humsub.org/api/og")
+	ogUrl.searchParams.set("title", title)
+	ogUrl.searchParams.set("date", date)
+	ogUrl.searchParams.set("location", location)
+
+	return [
+		{ title: `${title} | Hum Sub` },
+		{ property: "og:title", content: `${title} | Hum Sub` },
+		{ property: "og:image", content: ogUrl.toString() },
+		{ property: "og:url", content: "https://humsub.org/hum-sub-diwali-2026" },
+	]
+}
+
 interface HeroProps {
 	eventDate: Date
 }

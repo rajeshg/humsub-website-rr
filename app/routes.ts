@@ -62,4 +62,5 @@ export default [
 	route("durable", "routes/durable.tsx"),
 	route("stage-timer", "routes/stage-timer.tsx"),
 	route("api/youtube", "routes/api/youtube.ts"),
+	route("api/og", "routes/api/og.tsx"),
 ] as RouteConfig

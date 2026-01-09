@@ -35,13 +35,18 @@ export async function clientLoader({ serverLoader }: Route.ClientLoaderArgs) {
 
 export function meta({ params, data }: Route.MetaArgs) {
 	const { event } = data
-	const { title, image } = event.frontmatter || {}
+	const { title, dateRangeUserFriendly, location } = event.frontmatter || {}
+
+	const ogUrl = new URL("https://humsub.org/api/og")
+	if (title) ogUrl.searchParams.set("title", title)
+	if (dateRangeUserFriendly) ogUrl.searchParams.set("date", dateRangeUserFriendly)
+	if (location) ogUrl.searchParams.set("location", location)
 
 	return [
 		{ title },
 		{ property: "og:title", content: `${title} | Hum Sub` },
-		{ property: "og:image", content: `https://humsub-website-rr.socialmedia-6ce.workers.dev/${image}` },
-		{ property: "og:url", content: `https://humsub-website-rr.socialmedia-6ce.workers.dev/event/${params.slug}` },
+		{ property: "og:image", content: ogUrl.toString() },
+		{ property: "og:url", content: `https://humsub.org/event/${(params as { slug?: string }).slug || ""}` },
 	]
 }
 
