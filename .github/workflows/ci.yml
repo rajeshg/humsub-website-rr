@@ -62,6 +62,8 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+    env:
+      TZ: America/New_York
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
