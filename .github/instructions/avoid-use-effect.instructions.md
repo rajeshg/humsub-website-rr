@@ -2,6 +2,7 @@
 description: Avoid useEffect
 applyTo: "*.tsx,*.jsx"
 ---
+
 ### Avoid useEffect
 
 [You Might Not Need `useEffect`](https://react.dev/learn/you-might-not-need-an-effect)
@@ -13,43 +14,43 @@ Instead of using `useEffect`, use ref callbacks, event handlers with
 // This example was ripped from the docs:
 // ✅ Good
 function ProductPage({ product, addToCart }) {
-	function buyProduct() {
-		addToCart(product)
-		showNotification(`Added ${product.name} to the shopping cart!`)
-	}
+  function buyProduct() {
+    addToCart(product)
+    showNotification(`Added ${product.name} to the shopping cart!`)
+  }
 
-	function handleBuyClick() {
-		buyProduct()
-	}
+  function handleBuyClick() {
+    buyProduct()
+  }
 
-	function handleCheckoutClick() {
-		buyProduct()
-		navigateTo('/checkout')
-	}
-	// ...
+  function handleCheckoutClick() {
+    buyProduct()
+    navigateTo("/checkout")
+  }
+  // ...
 }
 
 useEffect(() => {
-	setCount(count + 1)
+  setCount(count + 1)
 }, [count])
 
 // ❌ Avoid
 function ProductPage({ product, addToCart }) {
-	useEffect(() => {
-		if (product.isInCart) {
-			showNotification(`Added ${product.name} to the shopping cart!`)
-		}
-	}, [product])
+  useEffect(() => {
+    if (product.isInCart) {
+      showNotification(`Added ${product.name} to the shopping cart!`)
+    }
+  }, [product])
 
-	function handleBuyClick() {
-		addToCart(product)
-	}
+  function handleBuyClick() {
+    addToCart(product)
+  }
 
-	function handleCheckoutClick() {
-		addToCart(product)
-		navigateTo('/checkout')
-	}
-	// ...
+  function handleCheckoutClick() {
+    addToCart(product)
+    navigateTo("/checkout")
+  }
+  // ...
 }
 ```
 
@@ -61,20 +62,20 @@ Here's an example of a situation where `useEffect` is appropriate:
 ```tsx
 // ✅ Good
 useEffect(() => {
-	const controller = new AbortController()
+  const controller = new AbortController()
 
-	window.addEventListener(
-		'keydown',
-		(event: KeyboardEvent) => {
-			if (event.key !== 'Escape') return
+  window.addEventListener(
+    "keydown",
+    (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return
 
-			// do something based on escape key being pressed
-		},
-		{ signal: controller.signal },
-	)
+      // do something based on escape key being pressed
+    },
+    { signal: controller.signal }
+  )
 
-	return () => {
-		controller.abort()
-	}
+  return () => {
+    controller.abort()
+  }
 }, [])
 ```

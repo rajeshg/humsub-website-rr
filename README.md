@@ -9,7 +9,7 @@ This is the official website for Hum Sub, built with React Router and deployed o
 ## Features
 
 - 🚀 **React Router v7** for routing and SSR
-- ☁️ **Cloudflare Workers** for edge deployment  
+- ☁️ **Cloudflare Workers** for edge deployment
 - 🎭 **Event Management** with real-time dashboard
 - 🧪 **Comprehensive Testing** with Vitest and Testing Library
 - 🎨 **Modern UI** with Tailwind CSS and shadcn/ui
@@ -94,17 +94,20 @@ This will init the deploy script of wrangler and guide you to deploy the applica
 This project includes automated CI/CD workflows:
 
 **CI Workflow** (runs on every push/PR):
+
 - ✅ Linting and formatting checks
-- ✅ Full test suite execution  
+- ✅ Full test suite execution
 - ✅ TypeScript type checking
 - ✅ Build verification
 
 **Test Workflow** (runs on push/PR + daily):
+
 - ✅ Unit tests with coverage reporting
 - ✅ Component-specific test suites
 - ✅ Coverage artifact upload
 
 **Deploy Workflow** (manual trigger + main branch):
+
 - ✅ Waits for CI to pass
 - ✅ Builds and deploys to Cloudflare Workers
 
@@ -141,11 +144,12 @@ This project uses [Tailwind CSS](https://tailwindcss.com/) with [shadcn/ui](http
 The project includes a comprehensive testing strategy:
 
 - **Unit Tests**: Individual functions and utilities (35 tests)
-- **Component Tests**: React component behavior and rendering (32 tests)  
+- **Component Tests**: React component behavior and rendering (32 tests)
 - **Coverage Reporting**: Detailed coverage analysis with multiple output formats
 - **CI Integration**: Automated testing on every commit and PR
 
 Key tested components:
+
 - Event Dashboard (StateBadge, CompactEventCard, CountdownDisplay)
 - DateTime utilities with timezone handling
 - UI components and state management

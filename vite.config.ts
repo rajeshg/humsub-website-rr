@@ -10,16 +10,16 @@ import tsconfigPaths from "vite-tsconfig-paths"
 import { imageManifestPlugin } from "./vite-plugin-image-manifest"
 
 export default defineConfig({
-	server: { port: 3000 },
-	plugins: [
-		imageManifestPlugin(),
-		cloudflare({ viteEnvironment: { name: "ssr" } }),
-		tailwindcss(),
-		mdx({
-			remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
-			rehypePlugins: [rehypePrettyCode],
-		}),
-		reactRouter(),
-		tsconfigPaths(),
-	],
+  server: { port: 3000 },
+  plugins: [
+    imageManifestPlugin(),
+    cloudflare({ viteEnvironment: { name: "ssr" } }),
+    tailwindcss(),
+    mdx({
+      remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
+      rehypePlugins: [rehypePrettyCode],
+    }),
+    reactRouter(),
+    tsconfigPaths(),
+  ],
 })

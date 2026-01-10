@@ -7,9 +7,9 @@ const RoleSchema = z.enum(["registration", "backstage"])
 type Role = z.infer<typeof RoleSchema>
 
 export default function Durable() {
-	const [searchParams] = useSearchParams()
-	const parsed = RoleSchema.safeParse(searchParams.get("role"))
-	const role: Role = parsed.success ? parsed.data : "registration"
+  const [searchParams] = useSearchParams()
+  const parsed = RoleSchema.safeParse(searchParams.get("role"))
+  const role: Role = parsed.success ? parsed.data : "registration"
 
-	return <EventDashboard role={role} />
+  return <EventDashboard role={role} />
 }

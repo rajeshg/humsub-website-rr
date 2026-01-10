@@ -116,18 +116,18 @@ import { Form, useActionData, redirect } from "react-router";
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const email = formData.get("email");
-  
+
   if (!email) {
     return { error: "Email is required" };
   }
-  
+
   await sendContactEmail(email);
   return redirect("/thank-you");
 }
 
 export default function Contact() {
   const actionData = useActionData<typeof action>();
-  
+
   return (
     <Form method="post">
       <input name="email" type="email" required />
@@ -150,15 +150,15 @@ import { Link, NavLink } from "react-router";
 function Navigation() {
   return (
     <nav className="flex space-x-4">
-      <Link 
-        to="/" 
+      <Link
+        to="/"
         className="text-blue-600 hover:text-blue-800"
       >
         Home
       </Link>
-      <NavLink 
+      <NavLink
         to="/about"
-        className={({ isActive }) => 
+        className={({ isActive }) =>
           isActive ? "text-blue-800 font-bold" : "text-blue-600"
         }
       >
@@ -176,7 +176,7 @@ import { useNavigate } from "react-router";
 
 function LoginForm() {
   const navigate = useNavigate();
-  
+
   const handleSubmit = async (formData: FormData) => {
     try {
       await login(formData);
@@ -185,7 +185,7 @@ function LoginForm() {
       // Handle error
     }
   };
-  
+
   return (
     <form onSubmit={handleSubmit}>
       {/* form fields */}
@@ -204,7 +204,7 @@ import { useRouteError, isRouteErrorResponse } from "react-router";
 
 export function ErrorBoundary() {
   const error = useRouteError();
-  
+
   if (isRouteErrorResponse(error)) {
     return (
       <div>
@@ -213,7 +213,7 @@ export function ErrorBoundary() {
       </div>
     );
   }
-  
+
   return (
     <div>
       <h1>Oops!</h1>
@@ -229,11 +229,11 @@ export function ErrorBoundary() {
 
 ```typescript
 interface UserParams {
-  userId: string;
+  userId: string
 }
 
 export default function UserProfile() {
-  const { userId } = useParams() as UserParams;
+  const { userId } = useParams() as UserParams
   // userId is now typed as string
 }
 ```
@@ -242,18 +242,18 @@ export default function UserProfile() {
 
 ```typescript
 interface User {
-  id: string;
-  name: string;
-  email: string;
+  id: string
+  name: string
+  email: string
 }
 
 export async function loader({ params }: LoaderFunctionArgs) {
-  const user: User = await getUserById(params.userId);
-  return { user };
+  const user: User = await getUserById(params.userId)
+  return { user }
 }
 
 export default function UserProfile() {
-  const { user } = useLoaderData<typeof loader>();
+  const { user } = useLoaderData<typeof loader>()
   // user is properly typed
 }
 ```
@@ -268,7 +268,7 @@ import { useSearchParams } from "react-router";
 function ProductList() {
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("q") || "";
-  
+
   const updateSearch = (newQuery: string) => {
     setSearchParams(prev => {
       if (newQuery) {
@@ -279,10 +279,10 @@ function ProductList() {
       return prev;
     });
   };
-  
+
   return (
     <div>
-      <input 
+      <input
         value={query}
         onChange={(e) => updateSearch(e.target.value)}
         placeholder="Search products..."
@@ -306,11 +306,11 @@ interface ProtectedRouteProps {
 
 export function ProtectedRoute({ children, isAuthenticated }: ProtectedRouteProps) {
   const location = useLocation();
-  
+
   if (!isAuthenticated) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
-  
+
   return <>{children}</>;
 }
 ```
@@ -331,35 +331,39 @@ export function ProtectedRoute({ children, isAuthenticated }: ProtectedRouteProp
 ## Avoid These Patterns
 
 ❌ **Don't use useEffect for data fetching in routes**
+
 ```typescript
 // Bad
 function UserProfile() {
-  const [user, setUser] = useState(null);
-  const { userId } = useParams();
-  
+  const [user, setUser] = useState(null)
+  const { userId } = useParams()
+
   useEffect(() => {
-    fetchUser(userId).then(setUser);
-  }, [userId]);
+    fetchUser(userId).then(setUser)
+  }, [userId])
 }
 ```
 
 ✅ **Use route loaders instead**
+
 ```typescript
 // Good
 export async function loader({ params }: LoaderFunctionArgs) {
-  return { user: await fetchUser(params.userId) };
+  return { user: await fetchUser(params.userId) }
 }
 ```
 
 ❌ **Don't use window.location for navigation**
+
 ```typescript
 // Bad
-window.location.href = "/dashboard";
+window.location.href = "/dashboard"
 ```
 
 ✅ **Use React Router's navigation**
+
 ```typescript
 // Good
-const navigate = useNavigate();
-navigate("/dashboard");
+const navigate = useNavigate()
+navigate("/dashboard")
 ```

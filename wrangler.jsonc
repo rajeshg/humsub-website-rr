@@ -1,22 +1,22 @@
 {
-	"$schema": "https://unpkg.com/wrangler@latest/config-schema.json",
-	"name": "humsub-website-rr",
-	"main": "./app/entry.worker.ts",
-	"compatibility_date": "2025-04-07",
-	"compatibility_flags": ["nodejs_compat"],
-	"workers_dev": true,
-	"dev": { "port": 3000 },
-	"placement": { "mode": "off" },
-	"observability": { "enabled": true },
-	"assets": { "directory": "./build/client", "binding": "ASSETS" },
-	"kv_namespaces": [{ "binding": "KV", "id": "3f35c1ccd68f43a79e9fcbaecf376377" }],
-	"durable_objects": {
-		"bindings": [{ "name": "COUNTER_DO", "class_name": "Counter" }]
-	},
-	"migrations": [
-		{
-			"tag": "v1",
-			"new_sqlite_classes": ["Counter"]
-		}
-	]
+  "$schema": "https://unpkg.com/wrangler@latest/config-schema.json",
+  "name": "humsub-website-rr",
+  "main": "./app/entry.worker.ts",
+  "compatibility_date": "2025-04-07",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "dev": { "port": 3000 },
+  "placement": { "mode": "off" },
+  "observability": { "enabled": true },
+  "assets": { "directory": "./build/client", "binding": "ASSETS" },
+  "kv_namespaces": [{ "binding": "KV", "id": "3f35c1ccd68f43a79e9fcbaecf376377" }],
+  "durable_objects": {
+    "bindings": [{ "name": "COUNTER_DO", "class_name": "Counter" }],
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["Counter"],
+    },
+  ],
 }

@@ -1,0 +1,19 @@
+{
+  "rules": {
+    "no-console": ["warn", { "allow": ["error", "warn"] }]
+  },
+  "ignorePatterns": [
+    "**/*.css",
+    "test/**/*.ts",
+    "vite-plugin-image-manifest.ts",
+    "app/lib/image-manifest.ts",
+    ".vscode/**/*.md*",
+    "node_modules/**",
+    "build/**",
+    ".next/**",
+    "dist/**",
+    "fetch-data.ts",
+    "app/components/use-dnd-kit.ts",
+    "app/content/**"
+  ]
+}

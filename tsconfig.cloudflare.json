@@ -1,20 +1,20 @@
 {
-	"extends": "./tsconfig.json",
-	"compilerOptions": {
-		"composite": true,
-		"jsx": "react-jsx",
-		"rootDirs": [".", "./.react-router/types"],
-		"paths": {
-			"~/*": ["./app/*"]
-		},
-		"types": ["@total-typescript/ts-reset", "@cloudflare/workers-types", "vite/client"]
-	},
-	"include": [
-		".react-router/types/**/*",
-		"app/**/*",
-		"app/**/.server/**/*",
-		"app/**/.client/**/*",
-		"worker-configuration.d.ts",
-		"react-router.config.ts"
-	]
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "jsx": "react-jsx",
+    "rootDirs": [".", "./.react-router/types"],
+    "paths": {
+      "~/*": ["./app/*"]
+    },
+    "types": ["@total-typescript/ts-reset", "@cloudflare/workers-types", "vite/client"]
+  },
+  "include": [
+    ".react-router/types/**/*",
+    "app/**/*",
+    "app/**/.server/**/*",
+    "app/**/.client/**/*",
+    "worker-configuration.d.ts",
+    "react-router.config.ts"
+  ]
 }
