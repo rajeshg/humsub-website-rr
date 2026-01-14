@@ -43,7 +43,7 @@ export default function OurTeam() {
         <YACard name="Harjeet Kaur Lotay" imagePath="/assets/team/harjeet-kaur-lotay.jpg" description="BOD" />
         <YACard name="Nishant Munjal" imagePath="/assets/team/nishant-munjal.jpeg" description="BOD" />
         <YACard name="Alka Sinha" imagePath="/assets/team/male-profile-image-placeholder.png" description="BOD" />
-        <YACard name="Gurleen Baja" imagePath="/assets/team/male-profile-image-placeholder.png" description="BOD" />
+        <YACard name="Gurleen Bajaj" imagePath="/assets/team/male-profile-image-placeholder.png" description="BOD" />
         <YACard name="Shraddha Joshi" imagePath="/assets/team/male-profile-image-placeholder.png" description="BOD" />
       </div>
 
