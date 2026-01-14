@@ -1,24 +1,32 @@
+import type { MetaFunction } from "react-router"
 import YACard from "~/components/ya-card"
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Our Team | Hum Sub" },
+    { name: "description", content: "Meet the Hum Sub Board of Directors and volunteers." },
+  ]
+}
 
 export default function OurTeam() {
   return (
     <div>
-      <title>Our Team | Hum Sub</title>
       <h1>Our Team</h1>
       <p>
         We are a passionate team of volunteers dedicated to sharing the social and cultural traditions of India with
         residents of the North Carolina Triangle area and beyond. Our diverse backgrounds and expertise allow us to
         approach challenges from multiple perspectives.
       </p>
+
       <img
-        src="../assets/team/humsub-bod-team-2024.jpeg"
+        src="/assets/team/humsub-bod-team-2024.jpeg"
         alt="2025 Board of Directors"
         title="2025 Board of Directors"
         className="mx-auto"
       />
 
       <h2>2026 Board Of Directors of Hum Sub Inc</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-transparent">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 bg-transparent">
         <YACard name="Usha Sankar" imagePath="/assets/team/usha-sankar.jpg" description="President" />
         <YACard name="Rajesh Gollapudi" imagePath="/assets/team/rajesh-gollapudi.jpg" description="Vice President" />
         <YACard name="Ekta Bhatia" imagePath="/assets/team/ekta-bhatia.jpeg" description="Secretary" />
@@ -40,11 +48,15 @@ export default function OurTeam() {
       </div>
 
       <h2>2026 Board Of Trustees of Hum Sub Inc</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-transparent">
-        <YACard name="Satish Garimella" imagePath="/assets/team/satish-garimella-boa.jpg" />
-        <YACard name="Mamta Bisarya" imagePath="/assets/team/mamta-bisarya-boa.jpeg" />
-        <YACard name="Dipak Prasad" imagePath="/assets/team/dipak-prasad-boa.jpg" />
-        <YACard name="V S Jeyakumar" imagePath="/assets/team/male-profile-image-placeholder.png" />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 bg-transparent">
+        <YACard name="Mamta Bisarya" imagePath="/assets/team/mamta-bisarya-boa.jpeg" description="Trustee" />
+        <YACard name="Dipak Prasad" imagePath="/assets/team/dipak-prasad-boa.jpg" description="Trustee" />
+        <YACard name="Satish Garimella" imagePath="/assets/team/satish-garimella-boa.jpg" description="Trustee" />
+        <YACard
+          name="V S Jeyakumar"
+          imagePath="/assets/team/male-profile-image-placeholder.png"
+          description="Trustee"
+        />
       </div>
     </div>
   )
