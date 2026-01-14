@@ -11,18 +11,15 @@ interface ContactInfo {
 // Reusable card for officers and committees
 function buildTelLink(phone: string): string {
   // Extract DTMF extension numbers after each 'Option' or 'Sub Option'
-  const regex = /(Option|Sub Option)[^\d]*(\d+)/gi
-  let match;
-  let digits: string[] = [];
-  while ((match = regex.exec(phone)) !== null) {
-    digits.push(match[2])
-  }
+  const regex = /(?:Option|Sub Option)[^\d]*(\d+)/gi
+  const matches = phone.matchAll(regex)
+  const digits = Array.from(matches, (match) => match[1])
   if (digits.length > 0) {
     return `tel:9193714470${digits.map((d) => ",," + d).join("")}`
   }
   // fallback to all digits in string if no matches
-  const fallback = phone.replace(/[^\d#*]/g, "");
-  return fallback ? `tel:${fallback}` : "tel:9193714470";
+  const fallback = phone.replace(/\D/g, "")
+  return fallback ? `tel:${fallback}` : "tel:9193714470"
 }
 
 function ContactCard({ title, name, phone, email }: { title: string; name: string; phone: string; email: string }) {
