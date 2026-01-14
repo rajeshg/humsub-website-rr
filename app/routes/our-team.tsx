@@ -17,31 +17,34 @@ export default function OurTeam() {
         className="mx-auto"
       />
 
-      <h2>2025 Board Of Directors of Hum Sub Inc</h2>
+      <h2>2026 Board Of Directors of Hum Sub Inc</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-transparent">
-        <YACard name="Sachin Joshi" imagePath="/assets/team/sachin-joshi.png" description="President" />
-        <YACard name="Amardeep Bajaj" imagePath="/assets/team/amardeep-bajaj.jpg" description="Vice President" />
+        <YACard name="Usha Sankar" imagePath="/assets/team/usha-sankar.jpg" description="President" />
+        <YACard name="Rajesh Gollapudi" imagePath="/assets/team/rajesh-gollapudi.jpg" description="Vice President" />
         <YACard name="Ekta Bhatia" imagePath="/assets/team/ekta-bhatia.jpeg" description="Secretary" />
-        <YACard name="Kaajal Nanavati" imagePath="/assets/team/kaajal-nanavati.jpg" description="Treasurer" />
-        <YACard name="Anandakrishnan Narayanan" imagePath="/assets/team/anand-narayanan.jpg" />
-        <YACard name="Prakash Punj" imagePath="/assets/team/prakash-punj.jpeg" />
-        <YACard name="Usha Sankar" imagePath="/assets/team/usha-sankar.jpg" />
-        <YACard name="Dipendra Lamichhane" imagePath="/assets/team/dipendra-lamichhane.jpg" />
-        <YACard name="Narendra Kalyankar" imagePath="/assets/team/narendra-kalyankar.jpg" />
-        <YACard name="Nishant Munjal" imagePath="/assets/team/nishant-munjal.jpeg" />
-        <YACard name="Vandana Pawar" imagePath="/assets/team/vandana-pawar.jpg" />
-        <YACard name="Harjeet Kaur Lotay" imagePath="/assets/team/harjeet-kaur-lotay.jpg" />
-        <YACard name="Hema Pandey" imagePath="/assets/team/hema-pandey.jpeg" />
-        <YACard name="Padmaja Sharma" imagePath="/assets/team/padmaja-sharma.jpg" />
-        <YACard name="Rajesh Gollapudi" imagePath="/assets/team/rajesh-gollapudi.jpg" />
+        <YACard
+          name="Prathik Nanavati"
+          imagePath="/assets/team/male-profile-image-placeholder.png"
+          description="Treasurer"
+        />
+        <YACard name="Prakash Punj" imagePath="/assets/team/prakash-punj.jpeg" description="BOD" />
+        <YACard name="Hema Pandey" imagePath="/assets/team/hema-pandey.jpeg" description="BOD" />
+        <YACard name="Sandeep Sharma" imagePath="/assets/team/male-profile-image-placeholder.png" description="BOD" />
+        <YACard name="Anandakrishnan Narayanan" imagePath="/assets/team/anand-narayanan.jpg" description="BOD" />
+        <YACard name="Dipendra Lamichhane (Dipu)" imagePath="/assets/team/dipendra-lamichhane.jpg" description="BOD" />
+        <YACard name="Harjeet Kaur Lotay" imagePath="/assets/team/harjeet-kaur-lotay.jpg" description="BOD" />
+        <YACard name="Nishant Munjal" imagePath="/assets/team/nishant-munjal.jpeg" description="BOD" />
+        <YACard name="Alka Sinha" imagePath="/assets/team/male-profile-image-placeholder.png" description="BOD" />
+        <YACard name="Gurleen Baja" imagePath="/assets/team/male-profile-image-placeholder.png" description="BOD" />
+        <YACard name="Shraddha Joshi" imagePath="/assets/team/male-profile-image-placeholder.png" description="BOD" />
       </div>
 
-      <h2>2025 Board Of Trustees of Hum Sub Inc</h2>
+      <h2>2026 Board Of Trustees of Hum Sub Inc</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-transparent">
-        <YACard name="Sridevi Jagannath" imagePath="/assets/team/sridevi-jagannath-boa.jpg" />
         <YACard name="Satish Garimella" imagePath="/assets/team/satish-garimella-boa.jpg" />
         <YACard name="Mamta Bisarya" imagePath="/assets/team/mamta-bisarya-boa.jpeg" />
         <YACard name="Dipak Prasad" imagePath="/assets/team/dipak-prasad-boa.jpg" />
+        <YACard name="V S Jeyakumar" imagePath="/assets/team/male-profile-image-placeholder.png" />
       </div>
     </div>
   )
