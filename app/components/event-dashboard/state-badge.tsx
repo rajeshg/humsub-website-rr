@@ -1,7 +1,17 @@
-import { Icon } from "@iconify-icon/react/dist/iconify.mjs"
+import React from "react"
+import { UserCheck, DoorOpen, PersonStanding, Target, CheckCircle, Clock } from "lucide-react"
 import { Spinner } from "~/components/spinner"
 import type { Item } from "~/counter"
 import { STATE_STYLES } from "./event-constants"
+
+const iconMap: Record<string, React.ComponentType<{ className?: string; "aria-hidden"?: boolean }>> = {
+  "mdi:account-check": UserCheck,
+  "mdi:door": DoorOpen,
+  "mdi:human-female-dance": PersonStanding,
+  "mdi:bullseye": Target,
+  "mdi:check-circle": CheckCircle,
+  "mdi:clock-start": Clock,
+}
 
 interface StateBadgeProps {
   state: Item["state"]
@@ -21,7 +31,11 @@ export const StateBadge: React.FC<StateBadgeProps> = ({ state }) => {
       {state === "PERFORMING" ? (
         <Spinner className="w-6 h-6 text-emerald-600 dark:text-emerald-300" />
       ) : (
-        style.icon && <Icon icon={style.icon} className="w-6 h-6" aria-hidden />
+        style.icon &&
+        (() => {
+          const IconComponent = iconMap[style.icon]
+          return IconComponent ? <IconComponent className="w-6 h-6" aria-hidden /> : null
+        })()
       )}
       {/* smaller default text on mobile, same on md+ */}
       <span className="font-bold uppercase text-lg md:text-2xl tracking-wider">{style.label || state}</span>

@@ -6,7 +6,7 @@ import { getSponsorsByLevel } from "~/lib/sponsors"
 
 export default function OurSponsors() {
   return (
-    <div>
+    <div className="prose dark:prose-invert max-w-none">
       <title>Our Sponsors | Hum Sub</title>
       <h1>2025 Sponsors</h1>
 

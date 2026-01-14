@@ -1,4 +1,4 @@
-import { Icon } from "@iconify-icon/react/dist/iconify.mjs"
+import { ClipboardCheck, Tent, Monitor, Play, CheckCircle, Undo } from "lucide-react"
 import type { BreakState, Item, PerformanceState } from "~/counter"
 import { Button } from "../ui/button"
 
@@ -31,7 +31,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({ item, role, onUpda
             aria-label="Mark Team as Checked In"
             className={buttonClasses}
           >
-            <Icon icon="mdi:clipboard-check" className="w-3.5 h-3.5 flex-shrink-0" />
+            <ClipboardCheck className="w-3.5 h-3.5 flex-shrink-0" />
             <span>Check In</span>
           </Button>
 
@@ -42,7 +42,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({ item, role, onUpda
             aria-label="Move to Backstage"
             className={buttonClasses}
           >
-            <Icon icon="mdi:tent" className="w-3.5 h-3.5 flex-shrink-0" />
+            <Tent className="w-3.5 h-3.5 flex-shrink-0" />
             <span>Backstage</span>
           </Button>
 
@@ -56,7 +56,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({ item, role, onUpda
                   className={buttonClasses}
                   onClick={() => onUpdateState(item.itemId, "READY TO GO")}
                 >
-                  <Icon icon="mdi:monitor" className="w-3.5 h-3.5 flex-shrink-0" />
+                  <Monitor className="w-3.5 h-3.5 flex-shrink-0" />
                   <span>Load</span>
                 </Button>
               )}
@@ -69,7 +69,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({ item, role, onUpda
                   aria-label="Start Performance"
                   className={`${primaryButtonClasses} bg-emerald-600 hover:bg-emerald-700 text-white`}
                 >
-                  <Icon icon="mdi:play" className="w-4 h-4 flex-shrink-0" />
+                  <Play className="w-4 h-4 flex-shrink-0" />
                   <span>Start</span>
                 </Button>
               )}
@@ -81,7 +81,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({ item, role, onUpda
                 aria-label="Mark as Done"
                 className={buttonClasses}
               >
-                <Icon icon="mdi:check-circle" className="w-3.5 h-3.5 flex-shrink-0" />
+                <CheckCircle className="w-3.5 h-3.5 flex-shrink-0" />
                 <span>Done</span>
               </Button>
             </>
@@ -99,7 +99,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({ item, role, onUpda
               aria-label="Mark Team as Checked In"
               className={`${buttonClasses} flex-1`}
             >
-              <Icon icon="mdi:clipboard-check" className="w-3.5 h-3.5 flex-shrink-0" />
+              <ClipboardCheck className="w-3.5 h-3.5 flex-shrink-0" />
               <span>Check In</span>
             </Button>
 
@@ -110,7 +110,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({ item, role, onUpda
               aria-label="Move to Backstage"
               className={`${buttonClasses} flex-1`}
             >
-              <Icon icon="mdi:tent" className="w-3.5 h-3.5 flex-shrink-0" />
+              <Tent className="w-3.5 h-3.5 flex-shrink-0" />
               <span>Backstage</span>
             </Button>
           </div>
@@ -127,7 +127,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({ item, role, onUpda
                     className={`${buttonClasses} flex-1`}
                     onClick={() => onUpdateState(item.itemId, "READY TO GO")}
                   >
-                    <Icon icon="mdi:monitor" className="w-3.5 h-3.5 flex-shrink-0" />
+                    <Monitor className="w-3.5 h-3.5 flex-shrink-0" />
                     <span>Load</span>
                   </Button>
 
@@ -138,7 +138,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({ item, role, onUpda
                     aria-label="Start Performance"
                     className={`${buttonClasses} flex-1 bg-emerald-600 hover:bg-emerald-700 text-white`}
                   >
-                    <Icon icon="mdi:play" className="w-3.5 h-3.5 flex-shrink-0" />
+                    <Play className="w-3.5 h-3.5 flex-shrink-0" />
                     <span>Start</span>
                   </Button>
                 </div>
@@ -154,7 +154,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({ item, role, onUpda
                     aria-label="Start Performance"
                     className={`${buttonClasses} flex-1 bg-emerald-600 hover:bg-emerald-700 text-white`}
                   >
-                    <Icon icon="mdi:play" className="w-3.5 h-3.5 flex-shrink-0" />
+                    <Play className="w-3.5 h-3.5 flex-shrink-0" />
                     <span>Start</span>
                   </Button>
                 </div>
@@ -169,7 +169,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({ item, role, onUpda
                   aria-label="Mark as Done"
                   className={`${buttonClasses} w-1/2`}
                 >
-                  <Icon icon="mdi:check-circle" className="w-3.5 h-3.5 flex-shrink-0" />
+                  <CheckCircle className="w-3.5 h-3.5 flex-shrink-0" />
                   <span>Done</span>
                 </Button>
               </div>
@@ -192,7 +192,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({ item, role, onUpda
           aria-label="Mark as Done"
           className={buttonClasses}
         >
-          <Icon icon="mdi:check-circle" className="w-3.5 h-3.5 flex-shrink-0" />
+          <CheckCircle className="w-3.5 h-3.5 flex-shrink-0" />
           <span>Done</span>
         </Button>
 
@@ -204,7 +204,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({ item, role, onUpda
             aria-label="Reset"
             className={buttonClasses}
           >
-            <Icon icon="mdi:undo" className="w-3.5 h-3.5 flex-shrink-0" />
+            <Undo className="w-3.5 h-3.5 flex-shrink-0" />
             <span>Reset</span>
           </Button>
         )}
@@ -221,7 +221,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({ item, role, onUpda
             aria-label="Mark as Done"
             className={`${buttonClasses} flex-1`}
           >
-            <Icon icon="mdi:check-circle" className="w-3.5 h-3.5 flex-shrink-0" />
+            <CheckCircle className="w-3.5 h-3.5 flex-shrink-0" />
             <span>Done</span>
           </Button>
 
@@ -232,7 +232,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({ item, role, onUpda
             aria-label="Reset"
             className={`${buttonClasses} flex-1`}
           >
-            <Icon icon="mdi:undo" className="w-3.5 h-3.5 flex-shrink-0" />
+            <Undo className="w-3.5 h-3.5 flex-shrink-0" />
             <span>Reset</span>
           </Button>
         </div>

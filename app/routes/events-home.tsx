@@ -1,8 +1,8 @@
 import { Link } from "react-router"
 import EventCard from "~/components/event-card"
-import { Button } from "~/components/ui/button"
 import { getAllEvents } from "~/events.server"
 import type { Route } from "./+types/events-home"
+import { Calendar, History } from "lucide-react"
 
 export async function loader() {
   const events = await getAllEvents()
@@ -24,37 +24,52 @@ export async function loader() {
 
 export default function EventsHome({ loaderData }: Route.ComponentProps) {
   return (
-    <div>
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 md:py-10">
       <title>Events | Hum Sub</title>
-      <h1>Events</h1>
 
-      {/* Main Events Section */}
-      <section className="mb-8">
-        <p className="mb-4">
-          Hum Sub hosts flagship events like{" "}
-          <Link to="/events/diwali" className="underline text-primary hover:text-primary/80 transition-colors">
+      {/* Page Header Area */}
+      <div className="mb-10 border-b border-primary/10 pb-6">
+        <h1 className="text-4xl md:text-5xl font-black mb-3 text-primary tracking-tight uppercase italic">Events</h1>
+        <p className="text-base md:text-lg text-muted-foreground max-w-3xl leading-relaxed">
+          Celebrating Indian culture and heritage in the Triangle area through our flagship events.
+        </p>
+        <div className="flex flex-wrap gap-x-6 gap-y-3 mt-6 text-xs font-black uppercase tracking-[0.2em]">
+          <Link
+            to="/events/diwali"
+            className="text-primary/60 hover:text-primary transition-colors border-b-2 border-transparent hover:border-primary"
+          >
             Diwali
           </Link>
-          {", "}
-          <Link to="/events/holi" className="underline text-primary hover:text-primary/80 transition-colors">
+          <Link
+            to="/events/holi"
+            className="text-primary/60 hover:text-primary transition-colors border-b-2 border-transparent hover:border-primary"
+          >
             Holi
           </Link>
-          {", "}
-          <Link to="/events/basant-bahar" className="underline text-primary hover:text-primary/80 transition-colors">
+          <Link
+            to="/events/basant-bahar"
+            className="text-primary/60 hover:text-primary transition-colors border-b-2 border-transparent hover:border-primary"
+          >
             Basant Bahar
           </Link>
-          {", and an "}
-          <Link to="/events/exhibition" className="underline text-primary hover:text-primary/80 transition-colors">
+          <Link
+            to="/events/exhibition"
+            className="text-primary/60 hover:text-primary transition-colors border-b-2 border-transparent hover:border-primary"
+          >
             Exhibition
-          </Link>{" "}
-          celebrating Indian culture and heritage.
-        </p>
-      </section>
+          </Link>
+        </div>
+      </div>
 
-      <section className="mb-8">
-        <h2 className="mb-0 md:mb-2">Upcoming Events</h2>
+      <section className="mb-16">
+        <div className="flex items-center gap-4 mb-8 border-b border-primary/5 pb-4">
+          <Calendar className="w-6 h-6 md:w-7 h-7 text-primary" />
+          <h2 className="text-xl md:text-3xl font-black text-primary uppercase tracking-tight leading-none">
+            Upcoming Events
+          </h2>
+        </div>
         {loaderData.upcomingEvents.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {loaderData.upcomingEvents.map((event) => (
               <EventCard
                 key={event.slug}
@@ -68,37 +83,22 @@ export default function EventsHome({ loaderData }: Route.ComponentProps) {
             ))}
           </div>
         ) : (
-          <p>No upcoming events.</p>
+          <div className="bg-muted/5 rounded-3xl p-12 text-center border border-dashed border-muted/30">
+            <Calendar className="w-16 h-16 text-muted/20 mx-auto mb-4" />
+            <p className="text-xl text-muted-foreground font-bold">No upcoming events scheduled right now.</p>
+          </div>
         )}
       </section>
-      {/* Discover India Series Link */}
-      <section className="mb-8">
-        <div className="flex flex-col md:flex-row gap-6">
-          <figure className="not-prose">
-            <img
-              src="/assets/discover-india-series-2025.jpeg"
-              alt="Discover India Series"
-              className="w-full md:w-64 max-h-56 object-contain"
-            />
-          </figure>
-          <div className="mt-0">
-            <h2 className="mt-0 text-2xl font-bold">Discover India Series</h2>
-            <p className="text-base">
-              Year-round event series celebrating India's rich culture and heritage. Click to learn more!
-            </p>
-            <div className="flex justify-end">
-              <Button asChild>
-                <Link to="/discover-india-series">Learn More</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <section>
-        <h2>Past Events</h2>
+      <section className="mb-12">
+        <div className="flex items-center gap-4 mb-8 border-b border-muted/10 pb-4">
+          <History className="w-6 h-6 md:w-7 h-7 text-muted-foreground" />
+          <h2 className="text-xl md:text-2xl font-black text-muted-foreground uppercase tracking-tight leading-none">
+            Past Events
+          </h2>
+        </div>
         {loaderData.pastEvents.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 opacity-90 transition-all duration-500">
             {loaderData.pastEvents.slice(0, 8).map((event) => (
               <EventCard
                 key={event.slug}
@@ -112,7 +112,7 @@ export default function EventsHome({ loaderData }: Route.ComponentProps) {
             ))}
           </div>
         ) : (
-          <p>No past events.</p>
+          <p className="text-muted-foreground italic text-lg font-medium">No past events recorded.</p>
         )}
       </section>
     </div>

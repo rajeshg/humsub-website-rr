@@ -1,4 +1,4 @@
-import { Icon } from "@iconify-icon/react"
+import { Star, Users, Zap, Heart, Store, Info } from "lucide-react"
 
 import { Link } from "react-router"
 import { PictureCarousel } from "~/components/picture-carousel"
@@ -16,7 +16,7 @@ export function Welcome({ events }: { events: EventMeta[] }) {
           <div className="flex flex-col items-center my-4 w-full md:w-1/2">
             <div className="w-full h-full bg-base-100/60 dark:bg-slate-800/60 rounded-xl shadow border border-base-200 dark:border-slate-700 px-6 py-5 flex flex-col items-center backdrop-blur">
               <h3 className="text-lg font-bold text-primary dark:text-amber-300 mt-0 mb-2 flex items-center gap-2">
-                <Icon icon="mdi:star-four-points" className="h-5 w-5 animate-spin [animation-duration:3s]" />
+                <Star className="h-5 w-5 animate-spin [animation-duration:3s]" />
                 Join the Fun!
               </h3>
               <p className="text-sm text-center text-base-content/70 dark:text-slate-300 mb-3">
@@ -30,7 +30,7 @@ export function Welcome({ events }: { events: EventMeta[] }) {
 									text-primary dark:text-amber-300 bg-primary/5 dark:bg-amber-300/10 hover:bg-primary/20 dark:hover:bg-amber-300/20
 									decoration-2 decoration-primary dark:decoration-amber-300 no-underline shadow-sm hover:scale-105"
                 >
-                  <Icon icon="mdi:account-group" className="h-5 w-5" />
+                  <Users className="h-5 w-5" />
                   <span className="truncate">Membership</span>
                 </Link>
               </div>
@@ -170,7 +170,7 @@ export function Welcome({ events }: { events: EventMeta[] }) {
           <div className="bg-base-200/50 dark:bg-slate-700/70 rounded-lg p-3 md:p-2 flex flex-col items-center text-center gap-2">
             <div className="flex flex-col justify-center items-center gap-1">
               <div className="flex items-center justify-center h-6 w-6 text-blue-700 dark:text-blue-400">
-                <Icon icon="mdi:lightning-bolt" className="h-full w-full" />
+                <Zap className="h-full w-full" />
               </div>
               <div className="text-sm font-medium text-gray-700 dark:text-slate-200 leading-none">Attendees</div>
             </div>
@@ -183,7 +183,7 @@ export function Welcome({ events }: { events: EventMeta[] }) {
           <div className="bg-base-200/50 dark:bg-slate-700/70 rounded-lg p-3 md:p-2 flex flex-col items-center text-center gap-2">
             <div className="flex flex-col justify-center items-center gap-1">
               <div className="flex items-center justify-center h-6 w-6 text-red-700 dark:text-red-400">
-                <Icon icon="mdi:heart" className="h-full w-full" />
+                <Heart className="h-full w-full" />
               </div>
               <div className="text-sm font-medium text-gray-700 dark:text-slate-200 leading-none">Performers</div>
             </div>
@@ -196,7 +196,7 @@ export function Welcome({ events }: { events: EventMeta[] }) {
           <div className="bg-base-200/50 dark:bg-slate-700/70 rounded-lg p-3 md:p-2 flex flex-col items-center text-center gap-2">
             <div className="flex flex-col justify-center items-center gap-1">
               <div className="flex items-center justify-center h-6 w-6 text-yellow-700 dark:text-yellow-400">
-                <Icon icon="mdi:store" className="h-full w-full" />
+                <Store className="h-full w-full" />
               </div>
               <div className="text-sm font-medium text-gray-700 dark:text-slate-200 leading-none">Vendors</div>
             </div>
@@ -209,7 +209,7 @@ export function Welcome({ events }: { events: EventMeta[] }) {
           <div className="bg-base-200/50 dark:bg-slate-700/70 rounded-lg p-3 md:p-2 flex flex-col items-center text-center gap-2">
             <div className="flex flex-col justify-center items-center gap-1">
               <div className="flex items-center justify-center h-6 w-6 text-green-700 dark:text-green-400">
-                <Icon icon="mdi:information" className="h-full w-full" />
+                <Info className="h-full w-full" />
               </div>
               <div className="text-sm font-medium text-gray-700 dark:text-slate-200 leading-none">
                 Years in existence

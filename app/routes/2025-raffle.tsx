@@ -3,7 +3,7 @@ import { Button } from "~/components/ui/button"
 
 export default function Raffle2025() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-800 dark:from-gray-900 dark:to-gray-800">
+    <div className="prose dark:prose-invert max-w-none min-h-screen bg-gray-50 dark:bg-gray-800 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4 py-6 sm:py-8 lg:py-12">
         {/* Header Section */}
         <div className="text-center mb-8">

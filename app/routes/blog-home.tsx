@@ -1,4 +1,4 @@
-import { Icon } from "@iconify-icon/react/dist/iconify.mjs"
+import { ArrowRight } from "lucide-react"
 import { Link } from "react-router"
 
 import { getFeaturedOrLatestPosts } from "~/posts.server"
@@ -15,7 +15,7 @@ export default function Blog({ loaderData }: Route.ComponentProps) {
     <>
       <title>Blog | Hum Sub</title>
       <meta name="description" content="Articles about React Router, web development, and modern web architecture" />
-      <div>
+      <div className="prose dark:prose-invert max-w-none">
         <h1 className="text-4xl font-bold mb-4">Blog</h1>
         <p className="text-xl text-gray-600 dark:text-gray-300 mb-12">
           A collection of articles about React Router, web development, and modern web architecture.
@@ -39,7 +39,7 @@ export default function Blog({ loaderData }: Route.ComponentProps) {
                     </time>
                   </div>
                   <div className="flex items-center text-blue-600 dark:text-blue-400">
-                    <Icon icon="mdi:arrow-right" />
+                    <ArrowRight />
                   </div>
                 </div>
               </Link>

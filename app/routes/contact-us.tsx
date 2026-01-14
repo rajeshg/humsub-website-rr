@@ -1,4 +1,4 @@
-import { Icon } from "@iconify-icon/react"
+import { Phone, Mail } from "lucide-react"
 
 // Define contact info type
 interface ContactInfo {
@@ -30,19 +30,15 @@ function ContactCard({ title, name, phone, email }: { title: string; name: strin
     <div className="rounded-lg border bg-muted/30 p-3 flex flex-col gap-1">
       <div className="font-bold text-base text-card-foreground mb-1">{title}</div>
       <div className="text-sm text-muted-foreground mb-1">{name}</div>
-      <a
-        href={tel}
-        className="flex items-center gap-1 text-xs hover:text-primary underline"
-        title={`Call ${title}`}
-      >
-        <Icon icon="lucide:phone" aria-hidden="true" className="w-4 h-4" />
-        <span>
-          {extension ? `Ext: ${extension}` : phone}
-        </span>
+      <a href={tel} className="flex items-center gap-1 text-xs hover:text-primary underline" title={`Call ${title}`}>
+        <Phone aria-hidden="true" className="w-4 h-4" />
+        <span>{extension ? `Ext: ${extension}` : phone}</span>
       </a>
       <div className="flex items-center gap-1 text-xs">
-        <Icon icon="lucide:mail" aria-hidden="true" className="w-4 h-4" />
-        <a href={`mailto:${email}`} className="underline hover:text-primary" title={`Email ${title}`}>{email}</a>
+        <Mail aria-hidden="true" className="w-4 h-4" />
+        <a href={`mailto:${email}`} className="underline hover:text-primary" title={`Email ${title}`}>
+          {email}
+        </a>
       </div>
     </div>
   )
@@ -142,7 +138,7 @@ export default function ContactUs() {
   ]
 
   return (
-    <div>
+    <div className="prose dark:prose-invert max-w-none">
       <title>Contact Us | Hum Sub</title>
       <h1>Contact Us</h1>
       <h2 className="text-2xl font-bold mb-4">Officers</h2>

@@ -1,8 +1,6 @@
-import { Icon } from "@iconify-icon/react"
+import { Calendar, MapPin } from "lucide-react"
 import { Link } from "react-router"
-
 import { Button } from "~/components/ui/button"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "~/components/ui/card"
 import { Badge } from "./ui/badge"
 
 export default function EventCard({
@@ -21,39 +19,41 @@ export default function EventCard({
   isPast?: boolean
 }) {
   return (
-    <Card className="h-full overflow-hidden flex flex-col transition-transform duration-300 hover:scale-105 py-0">
+    <div className="group h-full flex flex-col rounded-xl border border-muted bg-background shadow-md hover:shadow-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1">
       <div className="relative aspect-[16/9] overflow-hidden">
-        <img src={imageUrl} alt={title} width={400} height={225} className="w-full h-full object-cover object-top" />
+        <img
+          src={imageUrl}
+          alt={title}
+          width={400}
+          height={225}
+          className={`w-full h-full object-cover object-top transition-all duration-500 group-hover:scale-110 ${isPast ? "grayscale opacity-70" : ""}`}
+        />
         {isPast && (
           <div className="absolute inset-0 bg-background/70 flex items-center justify-center">
             <Badge variant={"destructive"}>Past Event</Badge>
           </div>
         )}
       </div>
-
-      <CardHeader className="p-4">
-        <CardTitle className="line-clamp-2 text-lg">{title}</CardTitle>
-      </CardHeader>
-
-      <CardContent className="p-4 pt-0 flex-grow">
-        <div className="space-y-2 text-sm">
+      <div className="px-4 pt-4 pb-2">
+        <div className="line-clamp-2 text-xl font-bold text-primary mb-1">{title}</div>
+      </div>
+      <div className="px-4 pb-2 flex-grow">
+        <div className="space-y-1 text-base">
           <div className="flex items-center gap-2">
-            <Icon icon="mdi:calendar" className="text-primary flex-shrink-0" />
-            <span className="text-muted-foreground">{dateRange}</span>
+            <Calendar className="text-primary flex-shrink-0 w-5 h-5" />
+            <span className="font-semibold text-foreground">{dateRange}</span>
           </div>
-
           <div className="flex items-center gap-2">
-            <Icon icon="mdi:map-marker" className="text-primary flex-shrink-0" />
-            <span className="text-muted-foreground line-clamp-1">{location}</span>
+            <MapPin className="text-primary flex-shrink-0 w-5 h-5" />
+            <span className="font-medium text-muted-foreground line-clamp-1">{location}</span>
           </div>
         </div>
-      </CardContent>
-
-      <CardFooter className="p-4 pt-0">
+      </div>
+      <div className="px-4 pb-4">
         <Button asChild size="sm" className="w-full">
           <Link to={`/event/${slug}`}>{isPast ? "View Details" : "Learn More"}</Link>
         </Button>
-      </CardFooter>
-    </Card>
+      </div>
+    </div>
   )
 }

@@ -59,7 +59,7 @@ export default function BlogLayout({ loaderData }: Route.ComponentProps) {
       ) : null}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row-reverse gap-8">
-          <main className="flex-1 min-w-0 order-1 lg:order-2">
+          <main className="flex-1 min-w-0 order-1 lg:order-2 prose dark:prose-invert max-w-none">
             <Outlet />
           </main>
           <aside className="lg:w-80 lg:sticky lg:top-8 lg:self-start bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 order-2 lg:order-1">

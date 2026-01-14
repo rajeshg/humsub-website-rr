@@ -29,7 +29,7 @@ export default function GalleryPage() {
   }
 
   return (
-    <div>
+    <div className="prose dark:prose-invert max-w-none">
       <title>Gallery | Hum Sub</title>
       <h1>Gallery - Pictures & Videos</h1>
 

@@ -14,7 +14,7 @@ export async function optimisticAction(
       rollback()
       toast.error(failureMessage)
     }
-  } catch (_err) {
+  } catch {
     rollback()
     toast.error(failureMessage)
   }

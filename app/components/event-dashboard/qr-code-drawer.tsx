@@ -1,4 +1,4 @@
-import { Icon } from "@iconify-icon/react/dist/iconify.mjs"
+import { QrCode } from "lucide-react"
 import { QRCodeDisplay } from "../qrcode"
 import { Button } from "../ui/button"
 import { Drawer, DrawerClose, DrawerContent, DrawerTitle, DrawerTrigger } from "../ui/drawer"
@@ -19,7 +19,7 @@ export const QRCodeDrawer: React.FC<QRCodeDrawerProps> = ({ itemId, isOpen, onOp
           aria-label="Show QR code"
           className="flex items-center justify-center md:w-auto md:h-auto md:px-3 md:py-2"
         >
-          <Icon icon="mdi:qrcode" />
+          <QrCode />
           <span className="inline ml-2 text-sm">Show QR Code</span>
         </Button>
       </DrawerTrigger>

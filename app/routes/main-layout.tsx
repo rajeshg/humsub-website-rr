@@ -1,8 +1,6 @@
-import { Menu } from "lucide-react"
+import { Menu, ExternalLink, Twitter, Youtube, Instagram, Facebook } from "lucide-react"
 import type React from "react"
 import { Link, Outlet } from "react-router"
-
-import { Icon } from "@iconify-icon/react"
 import CountdownHeader from "~/components/countdown-header"
 import {
   NavigationMenu,
@@ -55,7 +53,7 @@ export function PortalButton() {
         type="button"
         className="flex items-center px-4 py-2 bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/80 transition-colors"
       >
-        <Icon icon="mdi:external-link" className="mr-2" />
+        <ExternalLink className="mr-2" />
         <span>Portal</span>
       </button>
     </a>
@@ -315,7 +313,7 @@ export default function MainLayout() {
       <main className="flex-grow relative bg-gradient-to-br from-blue-400/10 via-purple-500/10 to-pink-500/10 dark:from-blue-700/10 dark:via-purple-800/10 dark:to-pink-800/10">
         <CountdownHeader eventDate={diwaliDate} />
 
-        <div className="relative z-10 prose dark:prose-invert max-w-7xl mx-auto py-4 px-2 ">
+        <div className="relative z-10 max-w-7xl mx-auto py-2 px-4 ">
           <Outlet />
         </div>
       </main>
@@ -335,23 +333,23 @@ export default function MainLayout() {
             <h6 className="font-semibold text-gray-900 dark:text-gray-100 mb-3">Social</h6>
             <div className="flex space-x-4">
               <a href="https://x.com/HumSubInc" target="_blank" rel="noreferrer noopener">
-                <Icon icon="line-md:twitter-x" />
+                <Twitter />
               </a>
               <a href="https://www.youtube.com/@HumSubInc" target="_blank" rel="noreferrer noopener">
-                <Icon icon="mdi:youtube" />
+                <Youtube />
               </a>
               <a href="https://www.instagram.com/humsubinc/" target="_blank" rel="noreferrer noopener">
-                <Icon icon="mdi:instagram" />
+                <Instagram />
               </a>
               <a href="https://www.facebook.com/humsubinc" target="_blank" rel="noreferrer noopener">
-                <Icon icon="mdi:facebook" />
+                <Facebook />
               </a>
             </div>
           </div>
         </div>
       </footer>
       {/* Global Site Tag (gtag.js) - Google Analytics */}
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-5WQKXND2YV"></script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-5WQKXND2YV" />
 
       <script
         // biome-ignore lint/security/noDangerouslySetInnerHtml: We are using this to set the gtag script inline

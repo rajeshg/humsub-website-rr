@@ -1,72 +1,59 @@
 export default function VisionMission() {
   return (
-    <div>
+    <div className="prose dark:prose-invert max-w-none">
       <title>Vision & Mission | Hum Sub</title>
-      <h1>Vision & Mission</h1>
+      <div className="not-prose max-w-4xl mx-auto py-8 md:py-12">
+        <h1 className="text-4xl md:text-5xl font-black text-primary mb-10 tracking-tight">Vision & Mission</h1>
 
-      <section>
-        <h2>Vision</h2>
-        <p>
-          To share the wide, varied culture and heritage of India with the communities of the North Carolina Triangle
-          area and beyond through family-oriented cultural events geared toward learning, diversity awareness and
-          inclusivity while helping to build a stronger foundation for our next generation.
-        </p>
-      </section>
+        <div className="space-y-12 text-lg leading-relaxed text-muted-foreground">
+          <section className="bg-primary/5 rounded-3xl p-8 md:p-10 border border-primary/10">
+            <h2 className="text-2xl font-bold text-primary mb-4">Our Vision</h2>
+            <p className="text-foreground font-medium italic">
+              "To share the wide, varied culture and heritage of India with the communities of the North Carolina
+              Triangle area and beyond through family-oriented cultural events geared toward learning, diversity
+              awareness and inclusivity while helping to build a stronger foundation for our next generation."
+            </p>
+          </section>
 
-      <section>
-        <h2>Who we are</h2>
-        <p>
-          Hum Sub's mission is to spread awareness of the social and cultural traditions of India in the Triangle area
-          and beyond. We do so by promoting, supporting and organizing family-oriented events throughout the year that
-          generate greater cultural awareness to build a foundation of inclusivity, harmony and appreciation of the
-          value of diversity amongst our citizenry. Our focal areas include Youth Leadership, Community Outreach, Senior
-          Citizen Inclusion just to name a few. We partner with local arts and cultural agencies, as well as with town
-          governments, so that all our events and activities are easily accessible to the broader Triangle area and
-          include and attract participation from the entire community. Through our yearly events and participation in
-          community activities, we have become a regular fixture in the local cultural scene and have become the
-          organization that represents Indian culture and heritage in the Triangle area.
-        </p>
-        <p>
-          Hum Sub strives to promote greater awareness of the Indian social and cultural traditions through annual
-          celebrations of Diwali (Festival of Lights held in October each year), Basant Bahar (festival of spring, held
-          in spring each year) and other cultural events. Hum Sub relies entirely on community support and local
-          business sponsorships to make its programs and events possible. For its activities, Hum Sub collaborates with
-          local agencies and other cultural organizations besides working hand–in–hand with local towns. Our programs
-          include stage performances, cultural exhibits, a wide variety of cuisines from local Indian restaurants and
-          craft sales from showcased vendors across the NC Triangle area and nearby states.
-        </p>
-      </section>
+          <section>
+            <h2 className="text-2xl font-bold text-foreground mb-4 border-b pb-2">Our Mission</h2>
+            <p>
+              Hum Sub's mission is to spread awareness of the social and cultural traditions of India in the Triangle
+              area and beyond. We do so by promoting, supporting and organizing family-oriented events throughout the
+              year that generate greater cultural awareness to build a foundation of inclusivity, harmony and
+              appreciation of the value of diversity amongst our citizenry.
+            </p>
+            <p className="mt-4">
+              Our focal areas include Youth Leadership, Community Outreach, Senior Citizen Inclusion just to name a few.
+              We partner with local arts and cultural agencies, as well as with town governments, so that all our events
+              and activities are easily accessible to the broader Triangle area and include and attract participation
+              from the entire community.
+            </p>
+          </section>
 
-      <section>
-        <h2>How it all began</h2>
-        <p>
-          The Hindi phrase "Hum Sub" means "All of us." Hum Sub, Inc. was founded in 2001 by a group of Indian Americans
-          living in the Triangle area of NC, to address the growing need to share India's diverse and colorful cultural
-          heritage with the local community at large.
-        </p>
-        <p>The founding families were:</p>
-        <ul>
-          <li>Poonam and Dr. Ajay Ajmani</li>
-          <li>Mamta and Pradeep Bisarya</li>
-          <li>Madhu and Inder Dev</li>
-          <li>Pam and Dilip Gandhi</li>
-          <li>Poonam and Gyan Gupta</li>
-          <li>Bimal Shah</li>
-          <li>Ritu and DK Singh</li>
-        </ul>
-        <p>
-          The group wanted to increase awareness of Indian culture by organizing cultural events. Their idea was to
-          bring the same level of professionalism that people exhibited at work to the organization and produce quality
-          events. After their first successful sold-out event, Basant Bahar held at Green Hope High School, the group
-          approached Lyman Collins, Cultural Arts Manager at the Town of Cary with the idea of organizing an event open
-          to general public with the Town's partnership. Mr. Collins embraced the idea and the first Cary Diwali was
-          held with at Herb C. Young Community Center attracting a record crowd of over 2500 people. Both the Town of
-          Cary and Hum Sub realized that they would need a bigger venue the following year to host this event and the
-          new Koka Booth Amphitheatre seemed like a good fit. Since then, both Basant Bahar and Cary Diwali have grown
-          both in quality and popularity. Cary Diwali was renamed to Hum Sub Diwali in 2022 and is the Triangle's
-          signature Indian event and the biggest free-to-attend event in the southeastern United States.
-        </p>
-      </section>
+          <section className="bg-muted/30 rounded-3xl p-8 border border-muted">
+            <h2 className="text-2xl font-bold text-foreground mb-4">Core Focus</h2>
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 list-none pl-0 font-medium text-foreground">
+              <li className="flex items-center gap-3 bg-background p-4 rounded-xl border shadow-sm">
+                <span className="text-primary font-bold">✓</span>
+                <span>Youth Leadership</span>
+              </li>
+              <li className="flex items-center gap-3 bg-background p-4 rounded-xl border shadow-sm">
+                <span className="text-primary font-bold">✓</span>
+                <span>Community Outreach</span>
+              </li>
+              <li className="flex items-center gap-3 bg-background p-4 rounded-xl border shadow-sm">
+                <span className="text-primary font-bold">✓</span>
+                <span>Inclusivity & Diversity</span>
+              </li>
+              <li className="flex items-center gap-3 bg-background p-4 rounded-xl border shadow-sm">
+                <span className="text-primary font-bold">✓</span>
+                <span>Cultural Awareness</span>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </div>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import { Icon } from "@iconify-icon/react/dist/iconify.mjs"
+import { Theater } from "lucide-react"
 import { useEffect, useMemo, useState } from "react"
 import { CompactEventCard, StateBadge } from "~/components/event-dashboard"
 import { Spinner } from "~/components/spinner"
@@ -328,7 +328,7 @@ export default function StageTimer() {
             ) : (
               <div className="flex flex-col items-center justify-center h-full p-4 pb-6">
                 <div className="flex flex-col items-center justify-center flex-grow">
-                  <Icon icon="mdi:stage" className="w-16 h-16 text-purple-300" />
+                  <Theater className="w-16 h-16 text-purple-300" />
                   <h3 className="text-lg font-bold mt-4 text-slate-800 dark:text-white text-center px-2">
                     No Content Selected
                   </h3>
@@ -547,7 +547,7 @@ export default function StageTimer() {
                 ) : (
                   <div className="flex flex-col items-center justify-center h-full p-4 md:p-8 pb-6">
                     <div className="flex flex-col items-center justify-center flex-grow">
-                      <Icon icon="mdi:stage" className="w-16 h-16 md:w-32 md:h-32 text-purple-300" />
+                      <Theater className="w-16 h-16 md:w-32 md:h-32 text-purple-300" />
                       <h3 className="text-lg md:text-5xl font-bold mt-4 md:mt-8 text-slate-800 dark:text-white text-center px-2">
                         No Content Selected
                       </h3>

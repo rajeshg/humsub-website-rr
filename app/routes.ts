@@ -45,9 +45,11 @@ export default [
       route("events/exhibition", "routes/events/exhibition.tsx"),
       route("events/tgt-2025-poll-results", "routes/events/tgt-2025-poll-results.tsx"),
       route("events", "routes/events-home.tsx"),
-      route("event", "routes/events-detail.tsx", [
-        ...mdxFilesForEvents.map(({ path: routePath, file }) => route(routePath, file)),
-      ]),
+      route(
+        "event",
+        "routes/events-detail.tsx",
+        mdxFilesForEvents.map(({ path: routePath, file }) => route(routePath, file))
+      ),
       // this is an alias for the diwali event route at the path /event/diwali-2025
       route("hum-sub-diwali-2025", "routes/hum-sub-diwali-2025.tsx"),
       route("hum-sub-diwali-2026", "routes/hum-sub-diwali-2026.tsx"),

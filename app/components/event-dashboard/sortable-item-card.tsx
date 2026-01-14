@@ -1,6 +1,6 @@
 import { useSortable } from "@dnd-kit/sortable"
 import { CSS } from "@dnd-kit/utilities"
-import { Icon } from "@iconify-icon/react/dist/iconify.mjs"
+import { GripHorizontal } from "lucide-react"
 import type { BreakState, Item, PerformanceItem, PerformanceState } from "~/counter"
 import { Progress } from "../ui/progress"
 import { ActionButtons } from "./action-buttons"
@@ -69,7 +69,7 @@ export const SortableItemCard: React.FC<SortableItemCardProps> = ({ item, onUpda
             {...listeners}
             aria-hidden
           >
-            <Icon icon="teenyicons:drag-horizontal-outline" className="w-5 h-5" />
+            <GripHorizontal className="w-5 h-5" />
           </div>
         )}
 
