@@ -66,7 +66,7 @@ export default function MainLayout() {
       <header className="px-4 py-2">
         <div className="container mx-auto flex items-center justify-between">
           <Link to="/" className="text-2xl font-bold">
-            <img src="/assets/25yr-logo.png" alt="hum sub logo" width={60} />
+            <img src="/assets/humsub-logo.png" alt="hum sub logo" width={60} />
           </Link>
 
           {/* Desktop Navigation */}
@@ -161,7 +161,7 @@ export default function MainLayout() {
               </SheetTrigger>
               <SheetContent side="left" className="w-64 bg-background text-foreground overflow-y-auto p-0">
                 <SheetHeader className="text-left p-4 border-b">
-                  <img src="/assets/25yr-logo.png" alt="Hum Sub Logo" width={40} className="mb-2" />
+                  <img src="/assets/humsub-logo.png" alt="Hum Sub Logo" width={40} className="mb-2" />
                   <SheetTitle>Hum Sub</SheetTitle>
                   <SheetDescription>Explore our programs, events, and resources</SheetDescription>
                 </SheetHeader>
@@ -321,7 +321,7 @@ export default function MainLayout() {
         <div className="container mx-auto flex flex-col sm:flex-row justify-between items-start gap-8">
           <div className="flex flex-col items-start">
             <Link to="/" className="mb-2">
-              <img src="/assets/25yr-logo.png" alt="hum sub logo" width={60} />
+              <img src="/assets/humsub-logo.png" alt="hum sub logo" width={60} />
             </Link>
             <p className="text-gray-700 dark:text-gray-300 text-sm">
               Hum Sub Inc.

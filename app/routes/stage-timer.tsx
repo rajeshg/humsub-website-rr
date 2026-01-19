@@ -153,7 +153,7 @@ export default function StageTimer() {
         {/* Header - Top for mobile */}
         <div className="bg-purple-700 text-white py-2 px-3 shadow-lg flex flex-col items-center justify-between rounded-md mb-2">
           <div className="w-12 h-12 flex-shrink-0 bg-white rounded-full p-1 flex items-center justify-center">
-            <img src="/assets/25yr-logo.png" alt="Hum Sub 25 Years Logo" className="w-full h-full object-contain" />
+            <img src="/assets/humsub-logo.png" alt="Hum Sub 25 Years Logo" className="w-full h-full object-contain" />
           </div>
           <h1 className="text-lg font-bold text-center tracking-wide px-2">{eventState.name}</h1>
 
@@ -367,7 +367,11 @@ export default function StageTimer() {
             {/* Header placed inside left column so header + stage read as one unit */}
             <div className="bg-purple-700 text-white py-2 px-4 shadow-lg flex flex-row items-center justify-between rounded-md mb-2">
               <div className="w-24 h-24 flex-shrink-0 bg-white rounded-full p-1 flex items-center justify-center">
-                <img src="/assets/25yr-logo.png" alt="Hum Sub 25 Years Logo" className="w-full h-full object-contain" />
+                <img
+                  src="/assets/humsub-logo.png"
+                  alt="Hum Sub 25 Years Logo"
+                  className="w-full h-full object-contain"
+                />
               </div>
               <h1 className="text-3xl font-bold text-center flex-grow tracking-wide">{eventState.name}</h1>
 
