@@ -3,7 +3,7 @@ import LiteYouTubeEmbed from "react-lite-youtube-embed"
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css"
 
 export default function YoutubeGallery() {
-  const [videos, setVideos] = useState<string[]>([])
+  const [videos, setVideos] = useState<{ id: string; title: string }[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [currentPage, setCurrentPage] = useState(1)
@@ -19,8 +19,8 @@ export default function YoutubeGallery() {
           throw new Error("Failed to fetch videos")
         }
 
-        const data = (await response.json()) as { videos?: string[] }
-        setVideos(data.videos || [])
+        const data = (await response.json()) as { videos?: { id: string; title: string }[] }
+        setVideos(data.videos?.filter((video) => video.id) || [])
       } catch (err) {
         setError(err instanceof Error ? err.message : "An error occurred")
       } finally {
@@ -55,10 +55,17 @@ export default function YoutubeGallery() {
 
       {!loading && !error && (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {currentVideos.map((videoId) => (
-              <div key={videoId} className="border rounded-md overflow-hidden shadow-md aspect-video">
-                <LiteYouTubeEmbed id={videoId} title="Hum Sub Video" noCookie={true} />
+          <div className="not-prose grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {currentVideos.map((video) => (
+              <div key={video.id} className="border rounded-lg overflow-hidden shadow-lg bg-white dark:bg-gray-800">
+                <div className="aspect-video">
+                  <LiteYouTubeEmbed id={video.id} title={video.title} noCookie={true} />
+                </div>
+                <div className="p-4 bg-gray-50 dark:bg-gray-700">
+                  <h3 className="text-base md:text-sm font-semibold line-clamp-2 text-gray-900 dark:text-gray-100 capitalize leading-snug">
+                    {video.title}
+                  </h3>
+                </div>
               </div>
             ))}
           </div>

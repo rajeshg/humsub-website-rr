@@ -61,7 +61,7 @@ export default function EventsDetail({ loaderData }: Route.ComponentProps) {
 
   return (
     <div className="max-w-6xl mx-auto sm:px-6 py-6 md:py-10">
-      <nav className="mb-2 md:mb-6 px-4 sm:px-0">
+      <nav className="mb-2 md:mb-6 px-0">
         <Link
           to="/events"
           className="group inline-flex items-center text-[10px] md:text-xs font-bold text-muted-foreground hover:text-primary transition-colors uppercase tracking-widest"
@@ -73,7 +73,7 @@ export default function EventsDetail({ loaderData }: Route.ComponentProps) {
 
       <link href={blogCss} rel="stylesheet" />
 
-      <header className="mb-6 px-4 sm:px-0">
+      <header className="mb-6 px-0">
         <h1 className="text-3xl md:text-5xl font-black text-primary tracking-tight mb-4 uppercase italic">{title}</h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 not-prose">
@@ -88,11 +88,16 @@ export default function EventsDetail({ loaderData }: Route.ComponentProps) {
             >
               <Calendar className="w-6 h-6 md:w-7 h-7 text-primary hover:scale-110 transition-transform" />
             </a>
-            <div>
+            <div className="flex-1 min-w-0">
               <p className="text-[10px] md:text-xs uppercase font-black text-primary/40 tracking-widest mb-0.5 leading-none">
                 Date & Time
               </p>
-              <p className="font-bold text-sm md:text-lg leading-tight text-foreground">{dateRangeUserFriendly}</p>
+              <p
+                className="font-bold text-sm md:text-lg leading-tight text-foreground whitespace-normal overflow-hidden"
+                style={{ WebkitLineClamp: 2, WebkitBoxOrient: "vertical", display: "-webkit-box" }}
+              >
+                {dateRangeUserFriendly}
+              </p>
             </div>
           </div>
 
@@ -106,11 +111,13 @@ export default function EventsDetail({ loaderData }: Route.ComponentProps) {
               >
                 <MapPin className="w-6 h-6 md:w-7 h-7 text-primary hover:scale-110 transition-transform" />
               </a>
-              <div>
+              <div className="flex-1 min-w-0">
                 <p className="text-[10px] md:text-xs uppercase font-black text-primary/40 tracking-widest mb-0.5 leading-none">
                   Location
                 </p>
-                <p className="font-bold text-sm md:text-lg leading-tight text-foreground">{location}</p>
+                <p className="font-bold text-sm md:text-lg leading-tight text-foreground whitespace-normal">
+                  {location}
+                </p>
               </div>
             </div>
           )}

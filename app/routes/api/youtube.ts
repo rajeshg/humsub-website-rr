@@ -11,12 +11,15 @@ type YouTubeSearchResponse = {
     id: {
       videoId: string
     }
+    snippet: {
+      title: string
+    }
   }[]
   nextPageToken?: string
 }
 
 export async function loader({ request }: Route.LoaderArgs) {
-  const cachedVideos = await env.KV.get("youtube-videos")
+  const cachedVideos = await env.KV.get("youtube-videos-v2")
   const YOUTUBE_API_KEY = env.YOUTUBE_API_KEY
 
   if (cachedVideos) {
@@ -39,7 +42,7 @@ export async function loader({ request }: Route.LoaderArgs) {
       }
       const response = await fetch(url)
       const data = (await response.json()) as YouTubeSearchResponse
-      videos = [...videos, ...data.items.map((item) => item.id.videoId)]
+      videos = [...videos, ...data.items.map((item) => ({ id: item.id.videoId, title: item.snippet.title }))]
       nextPageToken = data.nextPageToken || ""
     } while (nextPageToken)
   } catch (error) {
@@ -50,7 +53,7 @@ export async function loader({ request }: Route.LoaderArgs) {
   }
   // put the videos in the cache
   try {
-    await env.KV.put("youtube-videos", JSON.stringify(videos), {
+    await env.KV.put("youtube-videos-v2", JSON.stringify(videos), {
       expirationTtl: 60 * 60 * 24, // Cache for 1 day
     })
   } catch (error) {
