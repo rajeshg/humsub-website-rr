@@ -54,8 +54,8 @@ export default function OurTeam() {
           <YACard name="Harjeet Kaur Lotay" imagePath="/assets/team/harjeet-kaur-lotay.jpg" description="BOD" />
           <YACard name="Nishant Munjal" imagePath="/assets/team/nishant-munjal.jpeg" description="BOD" />
           <YACard name="Alka Sinha" imagePath="/assets/team/alka-sinha-bod.jpeg" description="BOD" />
-          <YACard name="Gurleen Bajaj" imagePath="/assets/team/male-profile-image-placeholder.png" description="BOD" />
-          <YACard name="Shraddha Joshi" imagePath="/assets/team/male-profile-image-placeholder.png" description="BOD" />
+          <YACard name="Sampurna Srivastava" imagePath="/assets/team/sampurna-srivastava-bod.jpeg" description="BOD" />
+          <YACard name="Shraddha Joshi" imagePath="/assets/team/shraddha-joshi-bod.png" description="BOD" />
           <YACard
             name="Manisha Bijjaragi"
             imagePath="/assets/team/male-profile-image-placeholder.png"
