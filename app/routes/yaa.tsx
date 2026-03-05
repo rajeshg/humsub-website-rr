@@ -42,7 +42,7 @@ export default function YAA() {
         <p className="mb-4">
           For more information, please check at{" "}
           <a
-            href="https://humsub.org/assets/YAA-2025-Guidelines.pdf"
+            href="https://humsub.org/assets/YAA-2026-Guidelines.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="text-primary underline"
@@ -53,26 +53,26 @@ export default function YAA() {
         </p>
         <ul className="list-disc pl-6 mb-6 space-y-2">
           <li>
-            <a href="/assets/YAA-2025-Guidelines.pdf" className="text-primary underline">
-              YAA-2025 Guideline updates
+            <a href="/assets/YAA-2026-Guidelines.pdf" className="text-primary underline">
+              YAA-2026 Guideline updates
             </a>
           </li>
           <li>
             <a
-              href="https://form.jotform.com/250638631820152"
+              href="https://form.jotform.com/HumSubPresident/hum-sub-yaa-2026"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary underline"
             >
-              YAA-2025 Application Link
+              YAA-2026 Application Link
             </a>
           </li>
         </ul>
-        <p className="font-bold mb-2">YAA-2025 timeline is as follows:</p>
+        <p className="font-bold mb-2">YAA-2026 timeline is as follows:</p>
         <ul className="list-disc pl-6 mb-8 space-y-2">
-          <li>Applications Deadline: Sep 14, 2025</li>
-          <li>Winners Notified: Oct 11, 2025 at Hum Sub Diwali</li>
-          <li>Awards presented at Hum Sub Diwali 2025: Oct 11, 2025</li>
+          <li>Applications Deadline: Sep 13, 2026</li>
+          <li>Winners Notified: Oct 10, 2026 at Hum Sub Diwali</li>
+          <li>Awards presented at Hum Sub Diwali 2026: Oct 10, 2026</li>
         </ul>
         <img
           src="/assets/YAA-2025-Application-QRcode.png"
@@ -83,6 +83,28 @@ export default function YAA() {
       </div>
 
       <div className="space-y-12">
+        <section>
+          <h2 className="text-2xl font-bold border-b pb-2 mb-6">2025 WINNERS</h2>
+          <h3 className="text-lg font-semibold mb-2">High School</h3>
+          <ul className="list-disc pl-6 mb-4 space-y-1">
+            <li>
+              <span className="font-medium">1st place:</span> Alys Traylor, Janhawi Patil{" "}
+              <span className="italic text-muted-foreground">(tied)</span>
+            </li>
+            <li>
+              <span className="font-medium">2nd place:</span> Ahana Satija
+            </li>
+          </ul>
+          <h3 className="text-lg font-semibold mb-2">Middle School</h3>
+          <ul className="list-disc pl-6 space-y-1">
+            <li>
+              <span className="font-medium">1st place:</span> Anika Natarajan
+            </li>
+            <li>
+              <span className="font-medium">2nd place:</span> Kushi Gottimukkala
+            </li>
+          </ul>
+        </section>
         <section>
           <h2 className="text-2xl font-bold border-b pb-2 mb-6">2024 WINNERS</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">

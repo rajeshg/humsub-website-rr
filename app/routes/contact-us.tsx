@@ -107,7 +107,7 @@ export default function ContactUs() {
     },
     {
       title: "Exhibition",
-      name: "Gurleen Bajaj",
+      name: "Alka Sinha",
       phone: "919-371-4470, Option 2, Sub Option 6",
       email: "exhibition@humsub.net",
     },
