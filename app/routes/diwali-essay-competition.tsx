@@ -20,7 +20,7 @@ export default function DiwaliEssayCompetition() {
           {/* Flyer Image */}
           <figure className="w-full max-w-4xl mb-12 shadow-2xl rounded-3xl overflow-hidden border bg-muted/5 flex items-center justify-center p-6">
             <img
-              src="/assets/Hum-Sub-Diwali-Essay-Competition-2025.jpeg"
+              src="/assets/Hum-Sub-Diwali-Essay-Competition-2026.png"
               alt="Hum Sub - Essay Competition Flyer"
               className="max-w-full h-auto object-contain mx-auto transition-transform duration-500 hover:scale-[1.02]"
             />
@@ -98,11 +98,18 @@ export default function DiwaliEssayCompetition() {
 
           {/* Entry Form Section */}
           <div className="w-full max-w-5xl text-center py-12 border-t border-dashed border-muted">
-            <h3 className="text-3xl font-black text-primary mb-4">Applications Closed</h3>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              The deadline for submissions was September 21, 2025. We were thrilled by the level of participation and
-              look forward to announcing the winners!
+            <h3 className="text-3xl font-black text-primary mb-4">Submit Your Entry</h3>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
+              The deadline for submissions is September 15, 2026.
             </p>
+            <div className="w-full max-w-3xl mx-auto overflow-x-auto rounded border border-gray-200 dark:border-gray-700">
+              <iframe
+                title="Hum Sub - Diwali Essay Competition Form"
+                sandbox="allow-scripts allow-forms"
+                className="w-full min-h-[1650px] border-0"
+                src="https://form.jotform.com/242075159180051"
+              ></iframe>
+            </div>
           </div>
 
           {/* Footer */}
