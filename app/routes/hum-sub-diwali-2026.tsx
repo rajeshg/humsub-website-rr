@@ -1,4 +1,4 @@
-import { CalendarDays, MapPin, Users } from "lucide-react"
+import { CalendarDays, Car, MapPin, Package, Users } from "lucide-react"
 import { Link } from "react-router"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "~/components/ui/accordion"
 import { Badge } from "~/components/ui/badge"
@@ -340,7 +340,7 @@ export default function HumSubDiwali2026() {
                       </div>
                       <div className="flex items-center gap-4 p-3 bg-white dark:bg-gray-800 rounded-lg border border-orange-100 dark:border-orange-900">
                         <span className="text-lg font-bold text-orange-600 dark:text-orange-400 min-w-[80px]">
-                          9:45 AM
+                          10:00 AM
                         </span>
                         <span>Cultural Performances Begin (Main Stage)</span>
                       </div>
@@ -397,20 +397,167 @@ export default function HumSubDiwali2026() {
                     <div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-full">
                       <span className="text-xl text-amber-600 dark:text-amber-400">🎪</span>
                     </div>
-                    <span>Vendor & Cultural Participation</span>
+                    <span>Vendor Participation</span>
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent className="px-6 pb-6 bg-gray-50/50 dark:bg-gray-800/50">
+                  <div className="space-y-6">
+                    <div className="bg-green-50 dark:bg-green-950/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                      <p className="text-green-800 dark:text-green-200 font-medium">
+                        <span className="text-green-600 dark:text-green-400">📋</span> Applications will open soon for
+                        Hum Sub Diwali 2026!
+                      </p>
+                    </div>
+
+                    <div className="space-y-4">
+                      <h4 className="font-bold text-gray-900 dark:text-gray-100 text-lg">
+                        <span className="text-amber-600 dark:text-amber-400">📐</span> Vendor Layout
+                      </h4>
+                      <div className="w-full">
+                        <div className="hidden sm:block">
+                          <object
+                            data="/assets/events/HD2026_Vendor_Layout_V1.pdf"
+                            type="application/pdf"
+                            width="100%"
+                            height="600vh"
+                            className="rounded-lg border border-gray-200 dark:border-gray-700"
+                            aria-label="HD2026 Vendor Layout PDF"
+                          >
+                            <iframe
+                              src="/assets/events/HD2026_Vendor_Layout_V1.pdf"
+                              title="HD2026 Vendor Layout PDF"
+                              width="100%"
+                              height="600vh"
+                              className="rounded-lg border-0"
+                              style={{ border: "none", overflow: "hidden" }}
+                            >
+                              This browser does not support embedded PDFs. You can{" "}
+                              <a
+                                href="/assets/events/HD2026_Vendor_Layout_V1.pdf"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="underline text-blue-600"
+                              >
+                                download the PDF
+                              </a>
+                              .
+                            </iframe>
+                          </object>
+                        </div>
+
+                        <div className="block sm:hidden space-y-4 text-center">
+                          <div className="flex justify-center">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              className="h-16 w-16 text-gray-400 dark:text-gray-500"
+                              aria-hidden="true"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="1.5"
+                                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                              />
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M14 2v6h6" />
+                              <text
+                                x="6"
+                                y="17"
+                                className="text-sm"
+                                fill="currentColor"
+                                fontSize="8"
+                                fontFamily="System, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial"
+                              >
+                                PDF
+                              </text>
+                            </svg>
+                          </div>
+
+                          <p className="text-sm text-muted-foreground max-w-md mx-auto">
+                            PDF preview may not be supported in some mobile browsers. Open or download the vendor layout
+                            to view it.
+                          </p>
+
+                          <div className="flex justify-center gap-3">
+                            <a
+                              href="/assets/events/HD2026_Vendor_Layout_V1.pdf"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-lg shadow-sm hover:bg-blue-700 transition"
+                            >
+                              Open PDF
+                            </a>
+                            <a
+                              href="/assets/events/HD2026_Vendor_Layout_V1.pdf"
+                              download
+                              className="inline-flex items-center justify-center px-4 py-2 border rounded-lg text-sm"
+                            >
+                              Download
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <p className="text-muted-foreground">
+                      Review the vendor application and guidelines document for all requirements, deadlines, and
+                      submission details.
+                    </p>
+                    <div className="flex justify-center gap-3">
+                      <a
+                        href="/assets/events/HD2026-Vendor Application and Guidelines.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center px-6 py-2 bg-blue-600 text-white rounded-lg shadow-sm hover:bg-blue-700 transition"
+                      >
+                        View Guidelines
+                      </a>
+                      <a
+                        href="/assets/events/HD2026-Vendor Application and Guidelines.pdf"
+                        download
+                        className="inline-flex items-center justify-center px-6 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition"
+                      >
+                        Download
+                      </a>
+                    </div>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem
+                value="cultural-participation"
+                className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all duration-200"
+              >
+                <AccordionTrigger className="px-6 py-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-lg font-semibold">
+                  <span className="flex items-center gap-3 w-full">
+                    <div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-full">
+                      <span className="text-xl text-purple-600 dark:text-purple-400">🎭</span>
+                    </div>
+                    <span>Cultural Program Participation</span>
                   </span>
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-6 bg-gray-50/50 dark:bg-gray-800/50">
                   <div className="space-y-4">
+                    <p className="text-muted-foreground">
+                      Are you interested in performing or showcasing your cultural talent at Hum Sub Diwali 2026? We
+                      welcome dancers, musicians, artists, and cultural performers!
+                    </p>
                     <div className="bg-blue-50 dark:bg-blue-950/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
-                      <p className="text-blue-800 dark:text-blue-200 font-medium">
-                        <span className="text-blue-600 dark:text-blue-400">📋</span> Applications will open in May 2026
+                      <p className="text-blue-800 dark:text-blue-200 text-sm">
+                        <span className="font-semibold">📧 Contact us:</span> Reach out to our cultural committee for
+                        performance opportunities and submission details.
                       </p>
                     </div>
-                    <p className="text-muted-foreground">
-                      Stay tuned for vendor and cultural participation opportunities for Hum Sub Diwali 2026.
-                      Applications will be available on our website in May 2026.
-                    </p>
+                    <div className="flex justify-center">
+                      <a
+                        href="/contact-us"
+                        className="inline-flex items-center justify-center px-6 py-2 bg-purple-600 text-white rounded-lg shadow-sm hover:bg-purple-700 transition"
+                      >
+                        Get in Touch
+                      </a>
+                    </div>
                   </div>
                 </AccordionContent>
               </AccordionItem>

@@ -11,6 +11,7 @@ export async function loader({ request }: Route.LoaderArgs) {
   // Handle redirects for specific events
   const redirects: Record<string, string> = {
     "diwali-2025": "/hum-sub-diwali-2025",
+    "diwali-2026": "/hum-sub-diwali-2026",
   }
   if (path && redirects[path]) {
     return redirect(redirects[path], { status: 301 })
