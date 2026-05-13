@@ -1,4 +1,4 @@
-import { CalendarDays, Car, MapPin, Package, Users } from "lucide-react"
+import { CalendarDays, MapPin, Users } from "lucide-react"
 import { Link } from "react-router"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "~/components/ui/accordion"
 import { Badge } from "~/components/ui/badge"
@@ -539,11 +539,34 @@ export default function HumSubDiwali2026() {
                   </span>
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-6 bg-gray-50/50 dark:bg-gray-800/50">
-                  <div className="space-y-4">
+                  <div className="space-y-6">
                     <p className="text-muted-foreground">
                       Are you interested in performing or showcasing your cultural talent at Hum Sub Diwali 2026? We
                       welcome dancers, musicians, artists, and cultural performers!
                     </p>
+
+                    <div className="space-y-3">
+                      <h5 className="font-semibold text-gray-900 dark:text-gray-100">📅 Important Dates</h5>
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-3 p-2 bg-white dark:bg-gray-800 rounded border border-orange-100 dark:border-orange-900">
+                          <span className="font-bold text-orange-600 dark:text-orange-400 min-w-[90px]">May 24</span>
+                          <span className="text-sm text-gray-700 dark:text-gray-300">Forms Open</span>
+                        </div>
+                        <div className="flex items-center gap-3 p-2 bg-white dark:bg-gray-800 rounded border border-orange-100 dark:border-orange-900">
+                          <span className="font-bold text-orange-600 dark:text-orange-400 min-w-[90px]">June 15</span>
+                          <span className="text-sm text-gray-700 dark:text-gray-300">Application Deadline</span>
+                        </div>
+                        <div className="flex items-center gap-3 p-2 bg-white dark:bg-gray-800 rounded border border-orange-100 dark:border-orange-900">
+                          <span className="font-bold text-orange-600 dark:text-orange-400 min-w-[90px]">Aug 29</span>
+                          <span className="text-sm text-gray-700 dark:text-gray-300">Auditions</span>
+                        </div>
+                        <div className="flex items-center gap-3 p-2 bg-gradient-to-r from-amber-100 to-orange-100 dark:from-amber-900/20 dark:to-orange-900/20 rounded border border-amber-200 dark:border-amber-800">
+                          <span className="font-bold text-amber-600 dark:text-amber-400 min-w-[90px]">Oct 10</span>
+                          <span className="text-sm text-gray-700 dark:text-gray-300 font-semibold">🎉 Event Day</span>
+                        </div>
+                      </div>
+                    </div>
+
                     <div className="bg-blue-50 dark:bg-blue-950/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
                       <p className="text-blue-800 dark:text-blue-200 text-sm">
                         <span className="font-semibold">📧 Contact us:</span> Reach out to our cultural committee for
