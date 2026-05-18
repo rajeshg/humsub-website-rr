@@ -558,28 +558,13 @@ export default function HumSubDiwali2026() {
                         </div>
                         <div className="flex items-center gap-3 p-2 bg-white dark:bg-gray-800 rounded border border-orange-100 dark:border-orange-900">
                           <span className="font-bold text-orange-600 dark:text-orange-400 min-w-[90px]">Aug 29</span>
-                          <span className="text-sm text-gray-700 dark:text-gray-300">Auditions</span>
+                          <span className="text-sm text-gray-700 dark:text-gray-300">Auditions at Cary Arts Center</span>
                         </div>
                         <div className="flex items-center gap-3 p-2 bg-gradient-to-r from-amber-100 to-orange-100 dark:from-amber-900/20 dark:to-orange-900/20 rounded border border-amber-200 dark:border-amber-800">
                           <span className="font-bold text-amber-600 dark:text-amber-400 min-w-[90px]">Oct 10</span>
                           <span className="text-sm text-gray-700 dark:text-gray-300 font-semibold">🎉 Event Day</span>
                         </div>
                       </div>
-                    </div>
-
-                    <div className="bg-blue-50 dark:bg-blue-950/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
-                      <p className="text-blue-800 dark:text-blue-200 text-sm">
-                        <span className="font-semibold">📧 Contact us:</span> Reach out to our cultural committee for
-                        performance opportunities and submission details.
-                      </p>
-                    </div>
-                    <div className="flex justify-center">
-                      <a
-                        href="/contact-us"
-                        className="inline-flex items-center justify-center px-6 py-2 bg-purple-600 text-white rounded-lg shadow-sm hover:bg-purple-700 transition"
-                      >
-                        Get in Touch
-                      </a>
                     </div>
                   </div>
                 </AccordionContent>
