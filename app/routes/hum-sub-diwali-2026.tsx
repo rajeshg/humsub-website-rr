@@ -133,7 +133,7 @@ function Diwali2026SponsorsGrid() {
 
 export default function HumSubDiwali2026() {
   // Set event date to Diwali 2026 - October 10, 2026 at 9:00 AM
-  const eventDate = new Date(2026, 9, 10, 9, 0, 0) // Month is 0-indexed, so 9 = October
+  const eventDate = new Date(2026, 9, 10, 0, 0, 0) // Month is 0-indexed, so 9 = October
 
   return (
     <div className="container bg-white dark:bg-black">
@@ -169,7 +169,7 @@ export default function HumSubDiwali2026() {
                   <div className="p-2 bg-orange-100 dark:bg-orange-900/60 rounded-full">
                     <CalendarDays className="h-6 w-6 text-amber-600 dark:text-amber-300" />
                   </div>
-                  <span className="text-balance">October 10, 2026 9 AM - 9 PM</span>
+                  <span className="text-balance">October 10, 2026</span>
                 </div>
                 <div className="flex gap-3 md:text-xl font-medium">
                   <div className="p-2 bg-orange-100 dark:bg-orange-900/60 rounded-full">
@@ -315,6 +315,7 @@ export default function HumSubDiwali2026() {
           </Card>
 
           {/* Detailed Information Sections */}
+          {/*
           <div className="mt-16">
             <Accordion type="single" collapsible className="w-full space-y-6" defaultValue="schedule">
               <AccordionItem
@@ -369,6 +370,7 @@ export default function HumSubDiwali2026() {
               </AccordionItem>
             </Accordion>
           </div>
+          */}
         </section>
         <section className="space-y-12">
           <div className="text-center space-y-6">
@@ -620,54 +622,6 @@ export default function HumSubDiwali2026() {
                             className="no-underline"
                           >
                             Sign Up to Volunteer
-                          </a>
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem
-                value="mobile-app"
-                className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all duration-200"
-              >
-                <AccordionTrigger className="px-6 py-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-lg font-semibold">
-                  <span className="flex items-center gap-3 w-full">
-                    <div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-full">
-                      <span className="text-xl text-blue-600 dark:text-blue-400">📱</span>
-                    </div>
-                    <span>Hum Sub Mobile App</span>
-                  </span>
-                </AccordionTrigger>
-                <AccordionContent className="px-6 pb-6 bg-gray-50/50 dark:bg-gray-800/50">
-                  <div className="space-y-4">
-                    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
-                      <h4 className="font-bold text-gray-900 dark:text-gray-100 mb-3 text-lg">
-                        <span className="text-blue-600 dark:text-blue-400">📱</span> Stay Connected
-                      </h4>
-                      <p className="text-muted-foreground mb-4">
-                        Stay connected and get the most out of your Hum Sub experience with our mobile app!
-                      </p>
-                      <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mt-6">
-                        <Button asChild className="w-full sm:w-auto">
-                          <a
-                            href="https://apps.apple.com/us/app/hum-sub/id6636518213"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="no-underline"
-                          >
-                            Download for iOS
-                          </a>
-                        </Button>
-                        <Button variant="secondary" asChild className="w-full sm:w-auto">
-                          <a
-                            href="https://play.google.com/store/apps/details?id=com.humsub2.app"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="no-underline"
-                          >
-                            Download for Android
                           </a>
                         </Button>
                       </div>
