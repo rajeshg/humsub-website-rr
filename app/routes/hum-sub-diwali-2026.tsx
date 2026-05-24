@@ -406,8 +406,16 @@ export default function HumSubDiwali2026() {
                   <div className="space-y-6">
                     <div className="bg-green-50 dark:bg-green-950/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
                       <p className="text-green-800 dark:text-green-200 font-medium">
-                        <span className="text-green-600 dark:text-green-400">📋</span> Applications will open soon for
-                        Hum Sub Diwali 2026!
+                        <span className="text-green-600 dark:text-green-400">📋</span> Applications are now open! Visit{" "}
+                        <a
+                          href="https://portal.humsub.org"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline font-semibold hover:text-green-900 dark:hover:text-green-100"
+                        >
+                          portal.humsub.org
+                        </a>{" "}
+                        to submit your vendor application.
                       </p>
                     </div>
 
@@ -542,6 +550,21 @@ export default function HumSubDiwali2026() {
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-6 bg-gray-50/50 dark:bg-gray-800/50">
                   <div className="space-y-6">
+                    <div className="bg-green-50 dark:bg-green-950/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                      <p className="text-green-800 dark:text-green-200 font-medium">
+                        <span className="text-green-600 dark:text-green-400">🎭</span> Applications are now open! Visit{" "}
+                        <a
+                          href="https://portal.humsub.org"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline font-semibold hover:text-green-900 dark:hover:text-green-100"
+                        >
+                          portal.humsub.org
+                        </a>{" "}
+                        to submit your cultural program application.
+                      </p>
+                    </div>
+
                     <p className="text-muted-foreground">
                       Are you interested in performing or showcasing your cultural talent at Hum Sub Diwali 2026? We
                       welcome dancers, musicians, artists, and cultural performers!

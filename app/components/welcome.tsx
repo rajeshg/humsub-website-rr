@@ -10,6 +10,30 @@ import type { EventMeta } from "~/events.server"
 export function Welcome({ events }: { events: EventMeta[] }) {
   return (
     <div id="container" className="container mx-auto max-w-7xl not-prose">
+      {/* Cultural Applications Banner */}
+      <div className="mb-6 bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/30 dark:to-indigo-900/30 border-2 border-purple-300 dark:border-purple-700 rounded-lg p-4 shadow-md">
+        <div className="flex items-start gap-3">
+          <span className="text-2xl">🎭</span>
+          <div className="flex-1">
+            <h3 className="font-bold text-purple-900 dark:text-purple-100 text-lg mb-1">
+              Cultural Applications Now Open!
+            </h3>
+            <p className="text-purple-800 dark:text-purple-200 mb-3">
+              Hum Sub Diwali 2026 cultural program applications are now open. If you're interested in performing or
+              showcasing your cultural talent, submit your application now!
+            </p>
+            <a
+              href="https://portal.humsub.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition-colors shadow-sm"
+            >
+              Submit Application
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+      </div>
       <main className="md:mx-4 flex flex-col dark:text-slate-100">
         <div className="flex flex-col md:flex-row gap-4">
           {/* Membership and Live Streaming Links */}
