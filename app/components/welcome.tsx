@@ -10,27 +10,52 @@ import type { EventMeta } from "~/events.server"
 export function Welcome({ events }: { events: EventMeta[] }) {
   return (
     <div id="container" className="container mx-auto max-w-7xl not-prose">
-      {/* Cultural Applications Banner */}
-      <div className="mb-6 bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/30 dark:to-indigo-900/30 border-2 border-purple-300 dark:border-purple-700 rounded-lg p-4 shadow-md">
-        <div className="flex items-start gap-3">
-          <span className="text-2xl">🎭</span>
-          <div className="flex-1">
-            <h3 className="font-bold text-purple-900 dark:text-purple-100 text-lg mb-1">
-              Cultural Applications Now Open!
-            </h3>
-            <p className="text-purple-800 dark:text-purple-200 mb-3">
-              Hum Sub Diwali 2026 cultural program applications are now open. If you're interested in performing or
-              showcasing your cultural talent, submit your application now!
-            </p>
-            <a
-              href="https://portal.humsub.org"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition-colors shadow-sm"
-            >
-              Submit Application
-              <span>→</span>
-            </a>
+      {/* Applications Banners */}
+      <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/30 dark:to-indigo-900/30 border md:border-2 border-purple-300 dark:border-purple-700 rounded-lg p-3 md:p-4 shadow-md">
+          <div className="flex items-start gap-2 md:gap-3">
+            <span className="text-lg md:text-2xl">🎭</span>
+            <div className="flex-1 min-w-0">
+              <h3 className="font-bold text-purple-900 dark:text-purple-100 md:text-lg mb-1">
+                Cultural Applications Now Open for Hum Sub Diwali 2026!
+              </h3>
+              <p className="hidden sm:block text-purple-800 dark:text-purple-200 md:text-base mb-2 md:mb-3">
+                Hum Sub Diwali 2026 cultural program applications are now open. If you're interested in performing or
+                showcasing your cultural talent, submit your application now!
+              </p>
+              <a
+                href="https://portal.humsub.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition-colors shadow-sm text-xs md:text-base"
+              >
+                Submit Application
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/30 dark:to-orange-900/30 border md:border-2 border-amber-300 dark:border-amber-700 rounded-lg p-3 md:p-4 shadow-md">
+          <div className="flex items-start gap-2 md:gap-3">
+            <span className="text-lg md:text-2xl">🏪</span>
+            <div className="flex-1 min-w-0">
+              <h3 className="font-bold text-amber-900 dark:text-amber-100 md:text-lg mb-1">
+                Vendor Applications Now Open for Hum Sub Diwali 2026!
+              </h3>
+              <p className="hidden sm:block text-amber-800 dark:text-amber-200 md:text-base mb-2 md:mb-3">
+                Hum Sub Diwali 2026 vendor applications are now open. If you're interested in selling your products or
+                services, submit your application now!
+              </p>
+              <a
+                href="https://portal.humsub.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-lg transition-colors shadow-sm text-xs md:text-base"
+              >
+                Submit Application
+                <span>→</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
