@@ -28,12 +28,8 @@ export async function loader({ request }: Route.LoaderArgs) {
   return { event }
 }
 
-export async function clientLoader({ serverLoader }: Route.ClientLoaderArgs) {
-  return await serverLoader()
-}
-
-export function meta({ params, data }: Route.MetaArgs) {
-  const { event } = data
+export function meta({ params, loaderData }: Route.MetaArgs) {
+  const { event } = loaderData
   const { title, dateRangeUserFriendly, location } = event.frontmatter || {}
 
   const description = `${title}. ${location}. ${dateRangeUserFriendly}. Join us for this exciting Hum Sub event.`

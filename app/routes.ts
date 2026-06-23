@@ -45,6 +45,7 @@ export default [
       route("events/exhibition", "routes/events/exhibition.tsx"),
       route("events/tgt-2025-poll-results", "routes/events/tgt-2025-poll-results.tsx"),
       route("events", "routes/events-home.tsx"),
+      route("event/diwali-2026", "routes/event-diwali-2026-redirect.tsx"),
       route(
         "event",
         "routes/events-detail.tsx",
