@@ -6,11 +6,10 @@ import { getPosts } from "~/posts.server"
 import { parseLocalDate } from "~/lib/datetime"
 import type { Route } from "./+types/blog-layout"
 
-export async function loader({ request }: Route.LoaderArgs) {
+export async function loader({ url }: Route.LoaderArgs) {
   const posts = await getPosts()
 
   // Get the frontmatter for the current post
-  const url = new URL(request.url)
   const slug = url.pathname.split("/").pop()
   const post = posts.find((post) => post.slug === slug)
 

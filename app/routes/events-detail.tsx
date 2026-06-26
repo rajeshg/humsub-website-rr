@@ -4,8 +4,7 @@ import blogCss from "~/blog.css?url"
 import { getEventBySlug } from "~/events.server"
 import type { Route } from "./+types/events-detail"
 
-export async function loader({ request }: Route.LoaderArgs) {
-  const url = new URL(request.url)
+export async function loader({ url }: Route.LoaderArgs) {
   const path = url.pathname.split("/").pop()
 
   // Handle redirects for specific events
