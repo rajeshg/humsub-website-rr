@@ -10,27 +10,52 @@ import type { EventMeta } from "~/events.server"
 export function Welcome({ events }: { events: EventMeta[] }) {
   return (
     <div id="container" className="container mx-auto max-w-7xl not-prose">
-      {/* Vendor Applications Banner */}
-      <div className="mb-6 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/30 dark:to-orange-900/30 border md:border-2 border-amber-300 dark:border-amber-700 rounded-lg p-3 md:p-4 shadow-md">
-        <div className="flex items-start gap-2 md:gap-3">
-          <span className="text-lg md:text-2xl">🏪</span>
-          <div className="flex-1 min-w-0">
-            <h3 className="font-bold text-amber-900 dark:text-amber-100 md:text-lg mb-1">
-              Vendor Applications Now Open for Hum Sub Diwali 2026!
-            </h3>
-            <p className="hidden sm:block text-amber-800 dark:text-amber-200 md:text-base mb-2 md:mb-3">
-              Hum Sub Diwali 2026 vendor applications are now open. If you're interested in selling your products or
-              services, submit your application now!
-            </p>
-            <a
-              href="https://portal.humsub.org"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-lg transition-colors shadow-sm text-xs md:text-base"
-            >
-              Submit Application
-              <span>→</span>
-            </a>
+      {/* Application Banners */}
+      <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="bg-gradient-to-r from-sky-50 to-blue-50 dark:from-sky-900/30 dark:to-blue-900/30 border md:border-2 border-sky-300 dark:border-sky-700 rounded-lg p-3 md:p-4 shadow-md">
+          <div className="flex items-start gap-2 md:gap-3">
+            <span className="text-lg md:text-2xl">⭐</span>
+            <div className="flex-1 min-w-0">
+              <h3 className="font-bold text-sky-900 dark:text-sky-100 md:text-lg mb-1">
+                Triangle Got Talent 2026 Applications Now Open!
+              </h3>
+              <p className="hidden sm:block text-sky-800 dark:text-sky-200 md:text-base mb-2 md:mb-3">
+                Triangle Got Talent is back! Apply now to showcase your talent and compete for the title of Triangle Top
+                Talent.
+              </p>
+              <a
+                href="https://forms.gle/dmxfNCehzv3Gr5hb8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white font-semibold rounded-lg transition-colors shadow-sm text-xs md:text-base"
+              >
+                Submit Application
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/30 dark:to-orange-900/30 border md:border-2 border-amber-300 dark:border-amber-700 rounded-lg p-3 md:p-4 shadow-md">
+          <div className="flex items-start gap-2 md:gap-3">
+            <span className="text-lg md:text-2xl">🏪</span>
+            <div className="flex-1 min-w-0">
+              <h3 className="font-bold text-amber-900 dark:text-amber-100 md:text-lg mb-1">
+                Vendor Applications Now Open for Hum Sub Diwali 2026!
+              </h3>
+              <p className="hidden sm:block text-amber-800 dark:text-amber-200 md:text-base mb-2 md:mb-3">
+                Hum Sub Diwali 2026 vendor applications are now open. If you're interested in selling your products or
+                services, submit your application now!
+              </p>
+              <a
+                href="https://portal.humsub.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-lg transition-colors shadow-sm text-xs md:text-base"
+              >
+                Submit Application
+                <span>→</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
