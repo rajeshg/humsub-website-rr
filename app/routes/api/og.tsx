@@ -1,30 +1,27 @@
 import { env } from "cloudflare:workers"
-import { ImageResponse } from "@takumi-rs/image-response/wasm"
-// @ts-ignore - wasm import
-import wasmModule from "@takumi-rs/wasm/takumi_wasm_bg.wasm"
+import { ImageResponse } from "takumi-js/response"
 import type { Route } from "./+types/og"
 
-async function getFont(fontName: string) {
-  // Try to get from KV first
-  const cachedFont = await env.KV.get(`font-${fontName}`, {
-    type: "arrayBuffer",
-  })
-  if (cachedFont) {
-    return cachedFont
-  }
+async function getFont(fontName: string): Promise<ArrayBuffer> {
+  const cached = await env.KV.get(`font-${fontName}`, { type: "arrayBuffer" })
+  if (cached) return cached
 
-  // Fallback to fetching from CDN (Google Fonts)
   const response = await fetch(
     "https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfMZhrib2Bg-4.ttf"
   )
-  const fontBuffer = await response.arrayBuffer()
+  const buffer = await response.arrayBuffer()
+  await env.KV.put(`font-${fontName}`, buffer, { expirationTtl: 60 * 60 * 24 * 30 })
+  return buffer
+}
 
-  // Cache in KV for 30 days
-  await env.KV.put(`font-${fontName}`, fontBuffer, {
-    expirationTtl: 60 * 60 * 24 * 30,
-  })
+async function getLogo(requestUrl: string): Promise<ArrayBuffer> {
+  const cached = await env.KV.get("logo-humsub", { type: "arrayBuffer" })
+  if (cached) return cached
 
-  return fontBuffer
+  const logoUrl = new URL("/assets/humsub-logo.png", requestUrl).toString()
+  const buffer = await fetch(logoUrl).then((res) => res.arrayBuffer())
+  await env.KV.put("logo-humsub", buffer, { expirationTtl: 60 * 60 * 24 * 30 })
+  return buffer
 }
 
 export async function loader({ request }: Route.LoaderArgs) {
@@ -33,34 +30,7 @@ export async function loader({ request }: Route.LoaderArgs) {
   const date = searchParams.get("date") || ""
   const location = searchParams.get("location") || "Triangle Area of North Carolina"
 
-  // Dynamic font sizing based on title length
-  const titleLength = title.length
-  let titleFontSize = 90
-  let titleLineHeight = 1.05
-
-  if (titleLength > 80) {
-    titleFontSize = 50
-    titleLineHeight = 1.2
-  } else if (titleLength > 50) {
-    titleFontSize = 60
-    titleLineHeight = 1.15
-  } else if (titleLength > 30) {
-    titleFontSize = 75
-    titleLineHeight = 1.1
-  }
-
-  const fontData = await getFont("Inter-Bold")
-
-  const logoUrl = new URL("/assets/humsub-logo.png", request.url).toString()
-  const cachedLogo = await env.KV.get("logo-humsub", { type: "arrayBuffer" })
-  const logoBytes = cachedLogo
-    ? new Uint8Array(cachedLogo)
-    : await fetch(logoUrl)
-        .then((res) => res.arrayBuffer())
-        .then(async (buf) => {
-          await env.KV.put("logo-humsub", buf, { expirationTtl: 60 * 60 * 24 * 30 })
-          return new Uint8Array(buf)
-        })
+  const [fontData, logoData] = await Promise.all([getFont("Inter-Bold"), getLogo(request.url)])
 
   return new ImageResponse(
     <div
@@ -71,6 +41,7 @@ export async function loader({ request }: Route.LoaderArgs) {
         flexDirection: "column",
         alignItems: "flex-start",
         justifyContent: "flex-start",
+        position: "relative",
         backgroundColor: "#020617",
         backgroundImage:
           "radial-gradient(circle at 0% 0%, #334155 0%, transparent 50%), radial-gradient(circle at 100% 100%, #1e293b 0%, transparent 50%)",
@@ -79,47 +50,15 @@ export async function loader({ request }: Route.LoaderArgs) {
         color: "white",
       }}
     >
-      {/* Branding & Info Column */}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          width: "100%",
-          height: "100%",
-        }}
-      >
-        {/* Logo + Hum Sub Header */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            marginBottom: "40px",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              backgroundColor: "white",
-              borderRadius: "16px",
-              padding: "10px",
-              boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.3)",
-              marginRight: "20px",
-            }}
-          >
-            <img src="humsub-logo" alt="Hum Sub Logo" style={{ width: "60px", height: "60px", objectFit: "contain" }} />
-          </div>
-
+      <div style={{ display: "flex", flexDirection: "column", width: "100%", height: "100%" }}>
+        <div style={{ display: "flex", alignItems: "center", marginBottom: "48px" }}>
+          <img
+            src="humsub-logo"
+            alt=""
+            style={{ width: "60px", height: "60px", objectFit: "contain", marginRight: "20px" }}
+          />
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <span
-              style={{
-                fontSize: "36px",
-                fontWeight: "bold",
-                color: "#f8fafc",
-                lineHeight: 1,
-              }}
-            >
-              Hum Sub
-            </span>
+            <span style={{ fontSize: "36px", fontWeight: "bold", color: "#f8fafc", lineHeight: 1 }}>Hum Sub</span>
             <span
               style={{
                 fontSize: "16px",
@@ -134,48 +73,25 @@ export async function loader({ request }: Route.LoaderArgs) {
           </div>
         </div>
 
-        {/* Title Area - Aligned with logo left edge */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            flexGrow: 1,
-            justifyContent: "center",
-            width: "100%",
-          }}
-        >
+        <div style={{ display: "flex", flexDirection: "column", flexGrow: 1, justifyContent: "center", width: "100%" }}>
           <div
             style={{
-              fontSize: `${titleFontSize}px`,
+              fontSize: "96px",
               fontWeight: "bold",
-              lineHeight: titleLineHeight,
+              lineHeight: 1.05,
               color: "#ffffff",
-              margin: 0,
-              padding: 0,
-              maxWidth: "900px",
+              maxWidth: "920px",
               textAlign: "left",
-              marginLeft: "-4px",
+              textFit: "shrink",
             }}
           >
             {title}
           </div>
           {date && (
-            <div
-              style={{
-                fontSize: "36px",
-                color: "#fb923c",
-                fontWeight: "bold",
-                marginTop: "20px",
-                marginBottom: "20px",
-                marginLeft: "-2px",
-              }}
-            >
-              {date}
-            </div>
+            <div style={{ fontSize: "36px", color: "#fb923c", fontWeight: "bold", marginTop: "28px" }}>{date}</div>
           )}
         </div>
 
-        {/* Left-Aligned Metadata Footer - Aligned with logo left edge */}
         <div
           style={{
             display: "flex",
@@ -185,60 +101,46 @@ export async function loader({ request }: Route.LoaderArgs) {
             width: "100%",
           }}
         >
-          <div
-            style={{
-              fontSize: "24px",
-              color: "#cbd5e1",
-              fontWeight: "500",
-              marginBottom: "8px",
-            }}
-          >
-            {location}
-          </div>
+          <div style={{ fontSize: "24px", color: "#cbd5e1", fontWeight: "500", marginBottom: "8px" }}>{location}</div>
           <div style={{ fontSize: "20px", color: "#64748b", fontWeight: "bold" }}>humsub.org</div>
         </div>
       </div>
 
-      {/* Slogan Button - anchored to bottom right - hide for very long titles */}
-      {titleLength <= 80 && (
-        <div
-          style={{
-            position: "absolute",
-            bottom: "80px",
-            right: "80px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            background: "linear-gradient(to right, #f97316, #fbbf24)",
-            padding: "16px 40px",
-            borderRadius: "100px",
-            color: "white",
-            fontSize: "20px",
-            fontWeight: "bold",
-            boxShadow: "0 20px 25px -5px rgba(249, 115, 22, 0.3)",
-          }}
-        >
-          Bringing Communities Together
-        </div>
-      )}
+      <div
+        style={{
+          position: "absolute",
+          bottom: "80px",
+          right: "80px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: "linear-gradient(to right, #f97316, #fbbf24)",
+          padding: "14px 36px",
+          borderRadius: "100px",
+          color: "white",
+          fontSize: "18px",
+          fontWeight: "bold",
+        }}
+      >
+        Bringing Communities Together
+      </div>
     </div>,
     {
       width: 1200,
       height: 630,
-      module: wasmModule,
       format: "png",
       fonts: [
         {
           name: "Inter",
-          data: new Uint8Array(fontData as ArrayBuffer),
+          data: fontData,
           weight: 700,
           style: "normal",
         },
       ],
-      persistentImages: [
+      images: [
         {
           src: "humsub-logo",
-          data: logoBytes,
+          data: logoData,
         },
       ],
     }
