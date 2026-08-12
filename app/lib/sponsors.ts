@@ -54,29 +54,12 @@ export const sponsors: Sponsor[] = [
   },
   // Gold Sponsors
   {
-    name: "Lufthansa Airlines",
-    imagePath: "/assets/sponsors/logo-lufthansa.png",
-    level: "gold",
-    description: "Exclusive Travel Partner",
-    href: "https://www.lufthansa.com/us/en/homepage",
-    label: "Travel Partner",
-  },
-  {
     name: "Pinnacle Financial Partners",
     imagePath: "/assets/sponsors/pinnacle-financial-partners-color.jpg",
     level: "gold",
     description: "Exclusive sponsor for Exhibition Booth",
     href: "https://www.pnfp.com/",
     label: "Exhibition Booth Sponsor",
-  },
-  {
-    name: "The Pratt Villas",
-    imagePath: "/assets/sponsors/the-pratt-villas-logo.jpeg",
-    level: "gold",
-    description:
-      "Hospitality Partner generously sponsoring accommodations and hosting our artists and guests at HumSub Diwali.",
-    href: "/sponsor/the-pratt-villas",
-    label: "Hospitality Partner",
   },
   {
     name: "Raj Jewels",
@@ -93,7 +76,7 @@ export const sponsors: Sponsor[] = [
   {
     name: "CRS Marble & Granite",
     imagePath: "/assets/sponsors/logo_crs.jpg",
-    level: "silver",
+    level: "gold",
     description: "Exclusive sponsor for Shuttle Service",
     href: "https://crsgranite.com/",
     label: "Shuttle Sponsor",
