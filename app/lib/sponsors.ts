@@ -46,33 +46,12 @@ export const sponsors: Sponsor[] = [
     label: "Youth Achievement Award Sponsor",
   },
   {
-    name: "Empowerly",
-    imagePath: "/assets/sponsors/empowerly.png",
-    level: "diamond",
-    description: "Education partner and exclusive sponsor for our Essay Competition.",
-    href: "/sponsor/empowerly",
-    label: "Education partner",
-  },
-  {
-    name: "Publix Super Markets",
-    imagePath: "/assets/sponsors/publix.png",
-    level: "diamond",
-    href: "https://www.publix.com/",
-  },
-  {
     name: "Madhur Mathur and Ashok Mathur",
     imagePath: "/assets/sponsors/madhur_ashok_mathur.png",
     level: "diamond",
     description: "Exclusive fireworks sponsor",
     label: "Fireworks Sponsor",
   },
-  {
-    name: "BMW of Southpoint",
-    imagePath: "/assets/sponsors/BMW-joint-new-logo.png",
-    level: "diamond",
-    href: "https://www.bmwsouthpoint.com/",
-  },
-
   // Gold Sponsors
   {
     name: "Lufthansa Airlines",
@@ -114,7 +93,7 @@ export const sponsors: Sponsor[] = [
   {
     name: "CRS Marble & Granite",
     imagePath: "/assets/sponsors/logo_crs.jpg",
-    level: "gold",
+    level: "silver",
     description: "Exclusive sponsor for Shuttle Service",
     href: "https://crsgranite.com/",
     label: "Shuttle Sponsor",
@@ -139,10 +118,20 @@ export const sponsors: Sponsor[] = [
     href: "https://cornerstonepediatrics.org/",
   },
   {
-    name: "Khara Orthodontics",
-    imagePath: "/assets/sponsors/khara.webp",
+    name: "Lune Spark",
+    imagePath: "/assets/sponsors/lune-spark.jpg",
     level: "silver",
-    href: "https://www.kharabraces.com/",
+    description:
+      "Lune Spark Center for Creativity is an arts center offering classes and camps in art, music, drama, filmmaking and more, with locations in Apex, Chapel Hill and Holly Springs.",
+    href: "https://www.lunespark.com/",
+  },
+  {
+    name: "Foley Orthodontics",
+    imagePath: "/assets/sponsors/foley-orthodontics.png",
+    level: "silver",
+    description:
+      "Board-certified Cary orthodontist Dr. John Foley provides braces and Invisalign care for patients of all ages, with the latest in orthodontic technology.",
+    href: "https://foleyorthodontics.com/",
   },
 
   // Bronze Sponsors
@@ -152,21 +141,7 @@ export const sponsors: Sponsor[] = [
     imagePath: "/assets/sponsors/sudha-satpal-rathie.png",
     level: "bronze",
   },
-  {
-    name: "Lime & Lemon Indian Grill & Bar",
-    imagePath: "/assets/sponsors/lime-n-lemon-grill.jpeg",
-    level: "bronze",
-    href: "https://www.lnlrestaurant.com/",
-  },
   // Media Partners
-  {
-    name: "Radio Nyra",
-    imagePath: "/assets/sponsors/Radio-Nyra-logo.jpeg",
-    level: "media",
-    href: "https://radionyra.com/",
-    label: "Media Partner",
-  },
-
   // Grantors
   {
     name: "Town of Cary, NC",

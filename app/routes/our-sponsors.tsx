@@ -8,7 +8,7 @@ export default function OurSponsors() {
   return (
     <div className="prose dark:prose-invert max-w-none">
       <title>Our Sponsors | Hum Sub</title>
-      <h1>2025 Sponsors</h1>
+      <h1>2026 Sponsors</h1>
 
       <Card className="border-2 border-orange-400">
         <CardContent>
