@@ -28,49 +28,49 @@ export default function OurSponsors() {
       </Card>
 
       <h2>Diamond Sponsors</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-transparent">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-transparent masonry-grid">
         {getSponsorsByLevel("diamond").map((sponsor) => (
           <SponsorCard key={sponsor.name} {...sponsor} />
         ))}
       </div>
 
       <h2>Gold Sponsors</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-transparent">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-transparent masonry-grid">
         {getSponsorsByLevel("gold").map((sponsor) => (
           <SponsorCard key={sponsor.name} {...sponsor} />
         ))}
       </div>
 
       <h2>Silver Sponsors</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-transparent">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-transparent masonry-grid">
         {getSponsorsByLevel("silver").map((sponsor) => (
           <SponsorCard key={sponsor.name} {...sponsor} />
         ))}
       </div>
 
       <h2>Bronze Sponsors</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-transparent">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-transparent masonry-grid">
         {getSponsorsByLevel("bronze").map((sponsor) => (
           <SponsorCard key={sponsor.name} {...sponsor} />
         ))}
       </div>
 
       <h2>Media Partners</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-transparent">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-transparent masonry-grid">
         {getSponsorsByLevel("media").map((sponsor) => (
           <SponsorCard key={sponsor.name} {...sponsor} />
         ))}
       </div>
 
       <h2>Grantors</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 bg-transparent">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 bg-transparent masonry-grid">
         {getSponsorsByLevel("grantor").map((sponsor) => (
           <SponsorCard key={sponsor.name} {...sponsor} />
         ))}
       </div>
 
       <h2>Small Business Supporter</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-transparent">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-transparent masonry-grid">
         {getSponsorsByLevel("small-business-supporter").map((sponsor) => (
           <SponsorCard key={sponsor.name} {...sponsor} />
         ))}
@@ -82,7 +82,7 @@ export default function OurSponsors() {
       </p>
       {/* - No partners anymore. Removed Cary Ballet.
 			<h2>Partners</h2>
-			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-transparent">
+			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-transparent masonry-grid">
 				{getSponsorsByLevel("partner").map((sponsor) => (
 					<SponsorCard key={sponsor.name} {...sponsor} />
 				))}

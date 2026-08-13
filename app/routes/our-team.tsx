@@ -33,7 +33,7 @@ export default function OurTeam() {
 
       <section className="mb-16">
         <h2 className="text-2xl md:text-3xl font-bold border-b pb-3 mb-8">2026 Board Of Directors</h2>
-        <div className="not-prose grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="not-prose grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 masonry-grid">
           <YACard name="Usha Sankar" imagePath="/assets/team/usha-sankar.jpg" description="President" />
           <YACard name="Rajesh Gollapudi" imagePath="/assets/team/rajesh-gollapudi.jpg" description="Vice President" />
           <YACard name="Ekta Bhatia" imagePath="/assets/team/ekta-bhatia.jpeg" description="Secretary" />
@@ -66,7 +66,7 @@ export default function OurTeam() {
 
       <section className="mb-12">
         <h2 className="text-2xl md:text-3xl font-bold border-b pb-3 mb-8">2026 Board Of Trustees</h2>
-        <div className="not-prose grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="not-prose grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 masonry-grid">
           <YACard name="Mamta Bisarya" imagePath="/assets/team/mamta-bisarya-boa.jpeg" description="Trustee" />
           <YACard name="Dipak Prasad" imagePath="/assets/team/dipak-prasad-boa.jpg" description="Trustee" />
           <YACard name="Satish Garimella" imagePath="/assets/team/satish-garimella-boa.jpg" description="Trustee" />

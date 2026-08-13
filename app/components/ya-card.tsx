@@ -9,7 +9,7 @@ type Props = {
 
 export default function YACard({ name, href, description, imagePath }: Props) {
   return (
-    <Card className="h-full overflow-hidden transition-transform duration-300 hover:scale-105">
+    <Card className="overflow-hidden transition-transform duration-300 pointer-fine:hover:scale-105">
       <CardContent className="max-w-xs w-full flex flex-col items-center p-2">
         {href ? (
           <a href={href} target="_blank" rel="noreferrer">

@@ -136,3 +136,16 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* Card grids: size each card to its own content instead of stretching every
+   card in a row to the tallest one. Where supported, CSS Grid masonry packs the
+   cards into an organic, tightly-packed layout (no row-aligned white space). */
+.masonry-grid {
+  align-items: start;
+}
+
+@supports (grid-template-rows: masonry) {
+  .masonry-grid {
+    grid-template-rows: masonry;
+  }
+}
