@@ -1,36 +1,21 @@
-import { env } from "cloudflare:workers"
 import { ImageResponse } from "takumi-js/response"
+import { HUMSUB_LOGO_BASE64 } from "~/lib/humsub-logo"
 import type { Route } from "./+types/og"
 
-async function getFont(fontName: string): Promise<ArrayBuffer> {
-  const cached = await env.KV.get(`font-${fontName}`, { type: "arrayBuffer" })
-  if (cached) return cached
-
-  const response = await fetch(
-    "https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfMZhrib2Bg-4.ttf"
-  )
-  const buffer = await response.arrayBuffer()
-  await env.KV.put(`font-${fontName}`, buffer, { expirationTtl: 60 * 60 * 24 * 30 })
-  return buffer
+function b64ToArrayBuffer(b64: string): ArrayBuffer {
+  const bin = atob(b64)
+  const bytes = new Uint8Array(bin.length)
+  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i)
+  return bytes.buffer
 }
 
-async function getLogo(requestUrl: string): Promise<ArrayBuffer> {
-  const cached = await env.KV.get("logo-humsub", { type: "arrayBuffer" })
-  if (cached) return cached
-
-  const logoUrl = new URL("/assets/humsub-logo.png", requestUrl).toString()
-  const buffer = await fetch(logoUrl).then((res) => res.arrayBuffer())
-  await env.KV.put("logo-humsub", buffer, { expirationTtl: 60 * 60 * 24 * 30 })
-  return buffer
-}
+const LOGO_DATA = b64ToArrayBuffer(HUMSUB_LOGO_BASE64)
 
 export async function loader({ request }: Route.LoaderArgs) {
   const { searchParams } = new URL(request.url)
   const title = searchParams.get("title") || "Hum Sub"
   const date = searchParams.get("date") || ""
   const location = searchParams.get("location") || "Triangle Area of North Carolina"
-
-  const [fontData, logoData] = await Promise.all([getFont("Inter-Bold"), getLogo(request.url)])
 
   return new ImageResponse(
     <div
@@ -45,17 +30,17 @@ export async function loader({ request }: Route.LoaderArgs) {
         backgroundColor: "#020617",
         backgroundImage:
           "radial-gradient(circle at 0% 0%, #334155 0%, transparent 50%), radial-gradient(circle at 100% 100%, #1e293b 0%, transparent 50%)",
-        padding: "80px",
-        fontFamily: "Inter",
+        padding: "56px",
+        fontFamily: "system-ui, sans-serif",
         color: "white",
       }}
     >
       <div style={{ display: "flex", flexDirection: "column", width: "100%", height: "100%" }}>
-        <div style={{ display: "flex", alignItems: "center", marginBottom: "48px" }}>
+        <div style={{ display: "flex", alignItems: "center", marginBottom: "40px" }}>
           <img
             src="humsub-logo"
             alt=""
-            style={{ width: "60px", height: "60px", objectFit: "contain", marginRight: "20px" }}
+            style={{ width: "96px", height: "64px", objectFit: "contain", marginRight: "20px" }}
           />
           <div style={{ display: "flex", flexDirection: "column" }}>
             <span style={{ fontSize: "36px", fontWeight: "bold", color: "#f8fafc", lineHeight: 1 }}>Hum Sub</span>
@@ -82,7 +67,6 @@ export async function loader({ request }: Route.LoaderArgs) {
               color: "#ffffff",
               maxWidth: "920px",
               textAlign: "left",
-              textFit: "shrink",
             }}
           >
             {title}
@@ -109,8 +93,8 @@ export async function loader({ request }: Route.LoaderArgs) {
       <div
         style={{
           position: "absolute",
-          bottom: "80px",
-          right: "80px",
+          bottom: "56px",
+          right: "56px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -129,20 +113,7 @@ export async function loader({ request }: Route.LoaderArgs) {
       width: 1200,
       height: 630,
       format: "png",
-      fonts: [
-        {
-          name: "Inter",
-          data: fontData,
-          weight: 700,
-          style: "normal",
-        },
-      ],
-      images: [
-        {
-          src: "humsub-logo",
-          data: logoData,
-        },
-      ],
+      images: [{ src: "humsub-logo", data: LOGO_DATA }],
     }
   )
 }
