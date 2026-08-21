@@ -1,5 +1,6 @@
 import { DndContext, type DragEndEvent, PointerSensor, closestCenter, useSensor, useSensors } from "@dnd-kit/core"
 import { SortableContext, arrayMove, verticalListSortingStrategy } from "@dnd-kit/sortable"
+import { Search } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import { Toaster } from "sonner"
 import type { BreakState, Item, PerformanceState } from "~/counter"
@@ -16,6 +17,7 @@ export const EventDashboard: React.FC<{ role: "registration" | "backstage" | nul
   const [showCompletedItems, setShowCompletedItems] = useState(false)
   const [viewMode, setViewMode] = useState<ViewMode>("items")
   const [now, setNow] = useState(Date.now())
+  const [searchQuery, setSearchQuery] = useState("")
   const wsUrl = "/api/durable"
 
   // WebSocket reconnection state
@@ -78,6 +80,10 @@ export const EventDashboard: React.FC<{ role: "registration" | "backstage" | nul
           } else if (data.type === "order_updated") {
             const state = data.state as { items: Item[] }
             setItems(state.items)
+          } else if (data.type === "event_reset") {
+            const state = data.state as { items: Item[]; role_users?: string[] }
+            setItems(Array.isArray(state?.items) ? state.items : [])
+            setRoleUsers(state?.role_users || [])
           }
         } catch (err) {
           console.error("Failed to parse WebSocket message:", err)
@@ -100,6 +106,16 @@ export const EventDashboard: React.FC<{ role: "registration" | "backstage" | nul
   }, [])
 
   const filteredItems = showCompletedItems ? items : items.filter((item) => item.state !== "DONE")
+
+  // Lightweight local filter: case-insensitive substring match on name or choreographer(s).
+  const searchLower = searchQuery.trim().toLowerCase()
+  const searchedItems = searchLower
+    ? filteredItems.filter(
+        (item) =>
+          (item.name || "").toLowerCase().includes(searchLower) ||
+          (item.choreographers || "").toLowerCase().includes(searchLower)
+      )
+    : filteredItems
 
   const handleUpdateState = (itemId: string, newState: PerformanceState | BreakState) => {
     const message = {
@@ -154,9 +170,9 @@ export const EventDashboard: React.FC<{ role: "registration" | "backstage" | nul
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event
     if (over && active.id !== over.id) {
-      const oldIndex = filteredItems.findIndex((item) => item.itemId === active.id)
-      const newIndex = filteredItems.findIndex((item) => item.itemId === over.id)
-      const newItems = arrayMove(filteredItems, oldIndex, newIndex)
+      const oldIndex = searchedItems.findIndex((item) => item.itemId === active.id)
+      const newIndex = searchedItems.findIndex((item) => item.itemId === over.id)
+      const newItems = arrayMove(searchedItems, oldIndex, newIndex)
 
       const message = {
         action: "reorderItems",
@@ -164,6 +180,18 @@ export const EventDashboard: React.FC<{ role: "registration" | "backstage" | nul
       }
 
       send(JSON.stringify(message))
+
+      // Optimistic reorder so the card stays put immediately instead of snapping back
+      // while waiting for the server broadcast. Mirrors the backend: reorder the visible
+      // list, then keep hidden (DONE) items after it in their current relative order.
+      setItems((prev) => {
+        if (showCompletedItems) {
+          return arrayMove(prev, oldIndex, newIndex)
+        }
+        const done = prev.filter((item) => item.state === "DONE")
+        const rest = prev.filter((item) => item.state !== "DONE")
+        return [...arrayMove(rest, oldIndex, newIndex), ...done]
+      })
     }
   }
 
@@ -175,7 +203,7 @@ export const EventDashboard: React.FC<{ role: "registration" | "backstage" | nul
           <div className="flex items-center justify-between gap-4">
             {/* Logo + Title */}
             <div className="flex items-center gap-4">
-              <img src="/assets/25yr-logo.png" alt="Hum Sub logo" className="w-12 h-12 rounded-md object-contain" />
+              <img src="/assets/humsub-logo.png" alt="Hum Sub logo" className="w-12 h-12 rounded-md object-contain" />
               <div className="flex flex-col">
                 <h1 className="text-2xl font-extrabold tracking-tight">Stage Timer</h1>
               </div>
@@ -204,29 +232,31 @@ export const EventDashboard: React.FC<{ role: "registration" | "backstage" | nul
 
           {/* Controls row (unchanged) */}
           <div className="mt-4">
+            {/* Search bar - lightweight local filter by name or choreographer */}
+            <div className="relative mb-3">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <input
+                type="search"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search by name or choreographer..."
+                className="w-full pl-9 pr-3 py-2 text-sm rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-zinc-900 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+              />
+            </div>
             {/* Controls row */}
             <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
-              {/* View Mode Tabs */}
-              <div className="flex items-center gap-1 bg-muted p-1 rounded-lg w-fit">
+              {/* View toggle (backstage only). Items is the default view, so only Images
+                  needs a control — it becomes "Back to Items" while the image picker is open. */}
+              {role === "backstage" && (
                 <Button
-                  variant={viewMode === "items" ? "default" : "ghost"}
+                  variant={viewMode === "images" ? "default" : "outline"}
                   size="sm"
-                  onClick={() => setViewMode("items")}
-                  className="text-xs px-3 py-1.5 h-auto"
+                  onClick={() => setViewMode(viewMode === "images" ? "items" : "images")}
+                  className="text-xs px-3 py-1.5 h-auto w-fit"
                 >
-                  📋 Items
+                  {viewMode === "images" ? "📋 Back to Items" : "🖼️ Images"}
                 </Button>
-                {role === "backstage" && (
-                  <Button
-                    variant={viewMode === "images" ? "default" : "ghost"}
-                    size="sm"
-                    onClick={() => setViewMode("images")}
-                    className="text-xs px-3 py-1.5 h-auto"
-                  >
-                    🖼️ Images
-                  </Button>
-                )}
-              </div>
+              )}
 
               {/* Filter controls */}
               <div className="flex items-center gap-2">
@@ -248,9 +278,9 @@ export const EventDashboard: React.FC<{ role: "registration" | "backstage" | nul
       <div className="flex-1 overflow-auto px-1 md:p-4 w-full max-w-5xl mx-auto">
         <div className={viewMode === "items" ? "block" : "hidden"} aria-hidden={viewMode !== "items"}>
           <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-            <SortableContext items={filteredItems.map((item) => item.itemId)} strategy={verticalListSortingStrategy}>
+            <SortableContext items={searchedItems.map((item) => item.itemId)} strategy={verticalListSortingStrategy}>
               <div className="space-y-4">
-                {filteredItems.map((item) => (
+                {searchedItems.map((item) => (
                   <SortableItemCard
                     key={item.itemId}
                     item={item}

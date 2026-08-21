@@ -35,7 +35,7 @@ async function main() {
   // allow CLI override: tsx scripts/reset-event.ts <url> <authToken>
   const cliUrl = process.argv[2]
   const cliAuth = process.argv[3]
-  const url = cliUrl || "https://humsub.org/api/durable/resetEvent"
+  const url = cliUrl || "https://humsub.org/api/durable/startEvent"
   const headers: Record<string, string> = { "Content-Type": "application/json" }
   if (cliAuth) headers.Authorization = `Bearer ${cliAuth}`
 

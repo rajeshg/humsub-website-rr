@@ -30,6 +30,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "~": path.resolve(__dirname, "./app"),
+      "cloudflare:workers": path.resolve(__dirname, "./test/mocks/cloudflare-workers.ts"),
     },
   },
 })

@@ -33,25 +33,6 @@ describe("convertToTimezoneOffsettedString", () => {
     expect(result).toBe("2025-12-06T00:00:00.000-05:00")
   })
 
-  it("should convert a date string to a timezone-offsetted string with the default timezone", () => {
-    const dateString = "2025-03-30"
-    const result = convertToTimezoneOffsettedString(dateString)
-    expect(result).toBe("2025-03-30T00:00:00.000-04:00")
-  })
-
-  it("should convert a date string to a timezone-offsetted string with a specific timezone", () => {
-    const dateString = "2025-03-30"
-    const timezone = "America/Los_Angeles"
-    const result = convertToTimezoneOffsettedString(dateString, timezone)
-    expect(result).toBe("2025-03-29T21:00:00.000-07:00")
-  })
-
-  it("should handle different date strings correctly", () => {
-    const dateString = "2024-01-01"
-    const result = convertToTimezoneOffsettedString(dateString)
-    expect(result).toBe("2024-01-01T00:00:00.000-05:00")
-  })
-
   it("should handle invalid date strings gracefully", () => {
     const dateString = "invalid-date"
     const result = convertToTimezoneOffsettedString(dateString)

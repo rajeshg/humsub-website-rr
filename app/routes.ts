@@ -64,6 +64,8 @@ export default [
   ]),
   route("durable", "routes/durable.tsx"),
   route("stage-timer", "routes/stage-timer.tsx"),
+  // Hidden admin route for starting a new event (renamed to something non-obvious).
+  route("event-setup", "routes/event-setup.tsx"),
   route("api/youtube", "routes/api/youtube.ts"),
   route("api/og", "routes/api/og.tsx"),
 ] as RouteConfig

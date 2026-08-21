@@ -60,19 +60,6 @@ export const SortableItemCard: React.FC<SortableItemCardProps> = ({ item, onUpda
           </div>
         </div>
 
-        {/* Drag handle */}
-        {role !== "registration" && (
-          // hide drag handle on small screens to save horizontal space
-          <div
-            className="hidden md:flex items-center justify-center cursor-grab"
-            {...attributes}
-            {...listeners}
-            aria-hidden
-          >
-            <GripHorizontal className="w-5 h-5" />
-          </div>
-        )}
-
         {/* Main content - responsive layout: title on top, then meta+actions row */}
         <div className="flex flex-col flex-1 min-w-0 gap-0 ml-8 gap-2">
           {/* Top row: Title + type badge */}
@@ -143,6 +130,19 @@ export const SortableItemCard: React.FC<SortableItemCardProps> = ({ item, onUpda
             </div>
           </div>
         </div>
+
+        {/* Drag handle - on the right so it stays clear of the state-bar label.
+            Hidden below md (touch devices use tap actions instead). */}
+        {role !== "registration" && (
+          <div
+            className="hidden md:flex items-center justify-center cursor-grab relative z-10 shrink-0"
+            {...attributes}
+            {...listeners}
+            aria-hidden
+          >
+            <GripHorizontal className="w-5 h-5" />
+          </div>
+        )}
       </div>
     </div>
   )

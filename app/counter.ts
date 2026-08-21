@@ -1,5 +1,4 @@
 import { DurableObject } from "cloudflare:workers"
-import results from "../results.json"
 
 // For PERFORMANCE items
 export type PerformanceState = "NONE" | "CHECKED IN" | "BACKSTAGE" | "READY TO GO" | "PERFORMING" | "DONE"
@@ -88,24 +87,9 @@ export class Counter extends DurableObject {
     // Initialize filler images from the manifest
     this.initializeFillerImages()
 
-    // Use contents of results.json directly if it is an array, otherwise fallback to empty array
-    this.event = {
-      name: "Hum Sub Diwali 2025",
-      startDate: "2025-10-11T09:00:00Z",
-      endDate: null,
-      items: Array.isArray(results) ? (results as Item[]) : [],
-      // View state defaults
-      viewState: "item",
-      selectedItemId: null,
-      selectedImage: null,
-      imageMode: "single",
-      imageCollection: [],
-      collectionInterval: 30,
-      // Hibernation recovery
-      collectionCurrentIndex: 0,
-      collectionLastRotation: 0,
-      activeTimers: [],
-    }
+    // Start with no event. A fresh event is loaded explicitly via startEvent();
+    // persisted mid-event state (if any) is restored asynchronously by loadState().
+    this.event = this.emptyState()
 
     // Fire-and-forget loading of persisted event (if any)
     this.loadState().catch(() => {
@@ -183,6 +167,26 @@ export class Counter extends DurableObject {
   // Type guard for EventState without using `any`
   private isEventState(obj: unknown): obj is EventState {
     return typeof obj === "object" && obj !== null && Array.isArray((obj as { items?: unknown }).items)
+  }
+
+  // Fresh event with no segments. All view/timer fields are present so the client
+  // and view-state logic can rely on them being defined.
+  private emptyState(): EventState {
+    return {
+      name: "",
+      startDate: null,
+      endDate: null,
+      items: [],
+      viewState: "item",
+      selectedItemId: null,
+      selectedImage: null,
+      imageMode: "single",
+      imageCollection: [],
+      collectionInterval: 30,
+      collectionCurrentIndex: 0,
+      collectionLastRotation: 0,
+      activeTimers: [],
+    }
   }
 
   // Load persisted event from storage and apply it
@@ -449,9 +453,10 @@ export class Counter extends DurableObject {
     }
   }
 
-  // Reset or overwrite the full event state. If payload is provided and valid, use it;
-  // otherwise fall back to the embedded results.json contents.
-  async resetEvent(payload?: EventState) {
+  // Start a fresh event, discarding all prior state (timers + persisted storage).
+  // A valid payload becomes the new event; otherwise the DO starts with no segments.
+  // Partial payloads are merged against emptyState() defaults so view/timer fields stay defined.
+  async startEvent(payload?: EventState) {
     // clear scheduled timers
     for (const t of this.timers.values()) {
       try {
@@ -459,27 +464,17 @@ export class Counter extends DurableObject {
       } catch {}
     }
     this.timers.clear()
+    this.clearCollectionTimer()
 
-    if (payload && this.isEventState(payload)) {
-      this.event = payload
-    } else {
-      this.event = {
-        name: "Hum Sub Diwali 2025",
-        startDate: "2025-10-11T09:00:00Z",
-        endDate: null,
-        items: Array.isArray(results) ? (results as Item[]) : [],
-        // View state defaults
-        viewState: "item",
-        selectedItemId: null,
-        selectedImage: null,
-        imageMode: "single",
-        imageCollection: [],
-        collectionInterval: 30,
-        // Hibernation recovery
-        collectionCurrentIndex: 0,
-        collectionLastRotation: 0,
-        activeTimers: [],
-      }
+    const provided = payload && this.isEventState(payload) ? payload : null
+    this.event = {
+      ...this.emptyState(),
+      ...provided,
+      name: provided?.name ?? "",
+      startDate: provided?.startDate ?? null,
+      endDate: provided?.endDate ?? null,
+      items: provided?.items ?? [],
+      activeTimers: [],
     }
 
     // Normalize durations and schedule timers for PERFORMANCE items
@@ -500,6 +495,13 @@ export class Counter extends DurableObject {
           } catch {}
         }
       }
+    }
+
+    // Clear all persisted state (removes the previous event's data and ordering)
+    try {
+      await this.stateObj.storage.deleteAll()
+    } catch {
+      // storage may not support deleteAll (e.g. some test mocks); ignore
     }
 
     // persist and notify clients
@@ -827,11 +829,11 @@ export class Counter extends DurableObject {
       }
     }
 
-    // API to reset/overwrite the event state
-    if (request.method === "POST" && url.pathname === "/api/durable/resetEvent") {
+    // API to start a fresh event (clears prior data and loads a new roster)
+    if (request.method === "POST" && url.pathname === "/api/durable/startEvent") {
       try {
         const body = await request.json().catch(() => null)
-        await this.resetEvent(this.isEventState(body) ? body : undefined)
+        await this.startEvent(this.isEventState(body) ? body : undefined)
         return new Response(JSON.stringify({ success: true }))
       } catch (err) {
         return new Response(JSON.stringify({ error: String(err) }), { status: 500 })
@@ -984,7 +986,7 @@ export class Counter extends DurableObject {
       await this.stateObj.storage.put("order", data.itemIds)
 
       // Broadcast the reordered items
-      this.broadcast({ type: "order_updated", order: data.itemIds })
+      this.broadcast({ type: "order_updated", order: data.itemIds, state: this.event })
       await this.saveState().catch(() => {})
     } else if (data.action === "selectImage" && typeof data.imagePath === "string") {
       this.event.viewState = "image"

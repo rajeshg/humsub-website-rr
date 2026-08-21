@@ -10,7 +10,7 @@ const eventId = "event-dashboard-1"
 export default {
   async fetch(request: Request) {
     const url = new URL(request.url)
-    if (url.pathname === "/api/durable/resetEvent" && request.method === "POST") {
+    if (url.pathname === "/api/durable/startEvent" && request.method === "POST") {
       // validate/parse the payload and call typed RPC on the Durable Object
       const id = env.COUNTER_DO.idFromName(eventId)
       const stub = env.COUNTER_DO.get(id) as unknown as Counter
@@ -22,7 +22,7 @@ export default {
           payload = body as EventState
         }
         // Let the durable object do final validation; pass undefined if payload invalid
-        await stub.resetEvent(payload)
+        await stub.startEvent(payload)
         return new Response(JSON.stringify({ success: true }), { status: 200 })
       } catch (err) {
         return new Response(JSON.stringify({ error: String(err) }), { status: 500 })
