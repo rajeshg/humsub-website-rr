@@ -1,4 +1,4 @@
-import { User, Users, Minus, Clock, CalendarClock } from "lucide-react"
+import { User, Users, Sparkles, Clock, CalendarClock } from "lucide-react"
 import type { PerformanceItem } from "~/counter"
 import { formatTime } from "~/lib/format-time"
 
@@ -45,7 +45,7 @@ export const PerformanceMeta: React.FC<PerformanceMetaProps> = ({ performance })
       {performance.choreographers && (
         <div className="flex items-start gap-1">
           <dt className="sr-only">Choreographers</dt>
-          <User className="h-5 w-5 text-muted-foreground mt-1 flex-shrink-0" />
+          <User className="h-4 w-4 text-muted-foreground mt-1 flex-shrink-0" />
           <dd className="mt-0">
             <div className="hidden sm:block font-medium text-xs text-foreground mb-2">Choreographers</div>
             <div className="text-xs text-muted-foreground mt-1">{performance.choreographers}</div>
@@ -56,7 +56,7 @@ export const PerformanceMeta: React.FC<PerformanceMetaProps> = ({ performance })
       {typeof performance.teamSize === "number" && (
         <div className="flex items-start gap-1">
           <dt className="sr-only">Team Size</dt>
-          <Users className="h-5 w-5 text-muted-foreground mt-1 flex-shrink-0" />
+          <Users className="h-4 w-4 text-muted-foreground mt-1 flex-shrink-0" />
           <dd className="mt-0">
             <div className="hidden sm:block font-medium text-xs text-foreground">Team Size</div>
             <div className="text-xs text-muted-foreground mt-1">{performance.teamSize}</div>
@@ -67,7 +67,7 @@ export const PerformanceMeta: React.FC<PerformanceMetaProps> = ({ performance })
       {performance.style && (
         <div className="flex items-start gap-1">
           <dt className="sr-only">Style</dt>
-          <Minus className="h-5 w-5 text-muted-foreground mt-1 flex-shrink-0" />
+          <Sparkles className="h-4 w-4 text-muted-foreground mt-1 flex-shrink-0" />
           <dd className="mt-0">
             <div className="hidden sm:block font-medium text-xs text-foreground">Style</div>
             <div className="text-xs text-muted-foreground mt-1">{performance.style}</div>
@@ -78,7 +78,7 @@ export const PerformanceMeta: React.FC<PerformanceMetaProps> = ({ performance })
       {duration && (
         <div className="flex items-start gap-1">
           <dt className="sr-only">Duration</dt>
-          <Clock className="h-5 w-5 text-muted-foreground mt-1 flex-shrink-0" />
+          <Clock className="h-4 w-4 text-muted-foreground mt-1 flex-shrink-0" />
           <dd className="mt-0">
             <div className="hidden sm:block font-medium text-xs text-foreground">Duration</div>
             <div className="text-xs text-muted-foreground mt-1">{duration}</div>
@@ -88,7 +88,7 @@ export const PerformanceMeta: React.FC<PerformanceMetaProps> = ({ performance })
       {performance.rehearsalTime && (
         <div className="flex items-start gap-1">
           <dt className="sr-only">Rehearsal Time</dt>
-          <CalendarClock className="h-5 w-5 text-muted-foreground mt-1 flex-shrink-0" />
+          <CalendarClock className="h-4 w-4 text-muted-foreground mt-1 flex-shrink-0" />
           <dd className="mt-0">
             <div className="hidden sm:block font-medium text-xs text-foreground">Rehearsal Time</div>
             <div className="text-xs text-muted-foreground mt-1">{formatTime(performance.rehearsalTime)}</div>
@@ -99,7 +99,7 @@ export const PerformanceMeta: React.FC<PerformanceMetaProps> = ({ performance })
       {performance.eventTime && (
         <div className="flex items-start gap-1">
           <dt className="sr-only">Performance Time</dt>
-          <CalendarClock className="h-5 w-5 text-muted-foreground mt-1 flex-shrink-0" />
+          <CalendarClock className="h-4 w-4 text-muted-foreground mt-1 flex-shrink-0" />
           <dd className="mt-0">
             <div className="hidden sm:block font-medium text-xs text-foreground">Event Time</div>
             <div className="text-xs text-muted-foreground mt-1">{formatTime(performance.eventTime)}</div>
