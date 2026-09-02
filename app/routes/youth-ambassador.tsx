@@ -70,6 +70,17 @@ export default function YouthAmbassador() {
         </div>
 
         <section className="mb-12">
+          <h2 className="text-2xl font-bold border-b pb-2 mb-6">Youth Ambassadors (2026-2027)</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            <YACard name="Rishi Sankaran" imagePath="/assets/ya/rishi-sankaran.jpeg" />
+            <YACard name="Anay Gupta" imagePath="/assets/ya/anay-gupta.jpeg" />
+            <YACard name="Ahana Satija" imagePath="/assets/ya/ahana-satija.jpeg" />
+            <YACard name="Ishaan Kancharla" imagePath="/assets/ya/ishaan-kancharla.jpeg" />
+            <YACard name="Janhawi Patil" imagePath="/assets/ya/janhawi-patil.jpeg" />
+          </div>
+        </section>
+
+        <section className="mb-12">
           <h2 className="text-2xl font-bold border-b pb-2 mb-6">Youth Ambassadors (2025-2026)</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             <YACard name="Rishi Sankaran" imagePath="/assets/ya/rishi-sankaran.jpeg" />
