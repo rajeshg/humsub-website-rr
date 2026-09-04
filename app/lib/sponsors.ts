@@ -116,6 +116,12 @@ export const sponsors: Sponsor[] = [
       "Board-certified Cary orthodontist Dr. John Foley provides braces and Invisalign care for patients of all ages, with the latest in orthodontic technology.",
     href: "https://foleyorthodontics.com/",
   },
+  {
+    name: "Growing Smiles Pediatric Dentistry",
+    imagePath: "/assets/sponsors/growing-smiles.jpg",
+    level: "silver",
+    href: "http://growingsmilesnc.com/",
+  },
 
   // Bronze Sponsors
 
