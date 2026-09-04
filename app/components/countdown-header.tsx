@@ -1,4 +1,4 @@
-import type { FC } from "react"
+import { useEffect, useState, type FC } from "react"
 import { Link } from "react-router"
 import { useTimeUntil } from "~/lib/timeuntil"
 
@@ -8,6 +8,14 @@ interface Props {
 
 export const CountdownHeader: FC<Props> = ({ eventDate }) => {
   const t = useTimeUntil(eventDate)
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Render nothing on SSR/first paint so server HTML matches (Date.now()
+  // differs per render) and we avoid hydration mismatch.
+  if (!mounted) return null
 
   // Hide component the day after the event
   if (t.shouldHide) return null
@@ -55,10 +63,10 @@ export const CountdownHeader: FC<Props> = ({ eventDate }) => {
             {/* Line 1: title */}
             <div className="w-full mx-auto text-center">
               <Link
-                to="/hum-sub-diwali-2025"
+                to="/hum-sub-diwali-2026"
                 className="block truncate text-base md:text-lg font-semibold text-orange-700 dark:text-orange-300 hover:underline decoration-orange-200 dark:decoration-orange-500"
               >
-                Hum Sub Diwali 2025
+                Hum Sub Diwali 2026
               </Link>
             </div>
 
@@ -91,12 +99,14 @@ export const CountdownHeader: FC<Props> = ({ eventDate }) => {
 
               {/* CTA */}
               <div className="flex-shrink-0 ml-4">
-                <Link
-                  to="/membership/signup"
+                <a
+                  href="https://www.zeffy.com/en-US/ticketing/hum-sub-diwali--2026"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center px-4 py-2 text-sm font-semibold text-white bg-orange-600 hover:bg-orange-700 dark:bg-orange-500 dark:hover:bg-orange-600 rounded-md shadow-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-1"
                 >
                   Purchase
-                </Link>
+                </a>
               </div>
             </div>
           </div>

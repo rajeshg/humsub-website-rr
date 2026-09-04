@@ -1,6 +1,6 @@
 import { Menu, ExternalLink, Twitter, Youtube, Instagram, Facebook } from "lucide-react"
 import type React from "react"
-import { Link, Outlet } from "react-router"
+import { Link, Outlet, useLocation } from "react-router"
 import CountdownHeader from "~/components/countdown-header"
 import {
   NavigationMenu,
@@ -16,7 +16,7 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import { ThemeToggle } from "~/components/ui/theme-toggle"
 import { cn } from "~/lib/utils"
 
-const diwaliDate = new Date(2025, 9, 11, 9, 0, 0)
+const diwaliDate = new Date(2026, 9, 10, 9, 0, 0)
 
 function ListItem({
   ref,
@@ -61,6 +61,10 @@ export function PortalButton() {
 }
 
 export default function MainLayout() {
+  const location = useLocation()
+  // Diwali event pages render their own hero countdown — hide the global
+  // header countdown there to avoid duplication.
+  const hideCountdown = location.pathname.startsWith("/hum-sub-diwali-")
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <header className="px-4 py-2">
@@ -311,7 +315,7 @@ export default function MainLayout() {
         </div>
       </header>
       <main className="flex-grow relative bg-gradient-to-br from-blue-400/10 via-purple-500/10 to-pink-500/10 dark:from-blue-700/10 dark:via-purple-800/10 dark:to-pink-800/10">
-        <CountdownHeader eventDate={diwaliDate} />
+        {!hideCountdown && <CountdownHeader eventDate={diwaliDate} />}
 
         <div className="relative z-10 max-w-7xl mx-auto py-2 px-4 ">
           <Outlet />
@@ -330,18 +334,33 @@ export default function MainLayout() {
             </p>
           </div>
           <div className="flex flex-col items-start">
-            <h6 className="font-semibold text-gray-900 dark:text-gray-100 mb-3">Social</h6>
+            <h2 className="font-semibold text-sm text-gray-900 dark:text-gray-100 mb-3">Social</h2>
             <div className="flex space-x-4">
-              <a href="https://x.com/HumSubInc" target="_blank" rel="noreferrer noopener">
+              <a href="https://x.com/HumSubInc" target="_blank" rel="noreferrer noopener" aria-label="Hum Sub on X">
                 <Twitter />
               </a>
-              <a href="https://www.youtube.com/@HumSubInc" target="_blank" rel="noreferrer noopener">
+              <a
+                href="https://www.youtube.com/@HumSubInc"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="Hum Sub on YouTube"
+              >
                 <Youtube />
               </a>
-              <a href="https://www.instagram.com/humsubinc/" target="_blank" rel="noreferrer noopener">
+              <a
+                href="https://www.instagram.com/humsubinc/"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="Hum Sub on Instagram"
+              >
                 <Instagram />
               </a>
-              <a href="https://www.facebook.com/humsubinc" target="_blank" rel="noreferrer noopener">
+              <a
+                href="https://www.facebook.com/humsubinc"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="Hum Sub on Facebook"
+              >
                 <Facebook />
               </a>
             </div>

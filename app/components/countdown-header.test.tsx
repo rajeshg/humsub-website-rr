@@ -57,7 +57,7 @@ describe("CountdownHeader", () => {
       })
 
       render(<CountdownHeader eventDate={eventDate} />)
-      expect(screen.getByText("Hum Sub Diwali 2025")).toBeInTheDocument()
+      expect(screen.getByText("Hum Sub Diwali 2026")).toBeInTheDocument()
     })
   })
 
@@ -160,9 +160,9 @@ describe("CountdownHeader", () => {
     it("should render event title link", () => {
       render(<CountdownHeader eventDate={eventDate} />)
 
-      const eventLink = screen.getByRole("link", { name: "Hum Sub Diwali 2025" })
+      const eventLink = screen.getByRole("link", { name: "Hum Sub Diwali 2026" })
       expect(eventLink).toBeInTheDocument()
-      expect(eventLink).toHaveAttribute("href", "/hum-sub-diwali-2025")
+      expect(eventLink).toHaveAttribute("href", "/hum-sub-diwali-2026")
     })
 
     it("should render purchase link", () => {
@@ -170,7 +170,7 @@ describe("CountdownHeader", () => {
 
       const purchaseLink = screen.getByRole("link", { name: "Purchase" })
       expect(purchaseLink).toBeInTheDocument()
-      expect(purchaseLink).toHaveAttribute("href", "/membership/signup")
+      expect(purchaseLink).toHaveAttribute("href", "https://www.zeffy.com/en-US/ticketing/hum-sub-diwali--2026")
     })
   })
 
@@ -274,7 +274,7 @@ describe("CountdownHeader", () => {
       render(<CountdownHeader eventDate={eventDate} />)
 
       // Check for responsive flex classes (two-line structure: column layout)
-      const layoutContainer = screen.getByText("Hum Sub Diwali 2025").closest("div")?.parentElement
+      const layoutContainer = screen.getByText("Hum Sub Diwali 2026").closest("div")?.parentElement
       expect(layoutContainer).toHaveClass("flex", "flex-col")
     })
 
@@ -282,7 +282,7 @@ describe("CountdownHeader", () => {
       render(<CountdownHeader eventDate={eventDate} />)
 
       // Check main container has gradient background - need to go up more levels in DOM
-      const titleElement = screen.getByText("Hum Sub Diwali 2025")
+      const titleElement = screen.getByText("Hum Sub Diwali 2026")
       const mainContainer = titleElement.closest("div")?.parentElement?.parentElement?.parentElement?.parentElement
       expect(mainContainer).toHaveClass("bg-gradient-to-r")
       expect(mainContainer).toHaveClass("from-orange-50")

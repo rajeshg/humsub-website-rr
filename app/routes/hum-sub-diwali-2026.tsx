@@ -1,4 +1,5 @@
-import { CalendarDays, MapPin, Users } from "lucide-react"
+import { useEffect, useState } from "react"
+import { CalendarDays, Car, MapPin, ShieldCheck, Users } from "lucide-react"
 import { Link } from "react-router"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "~/components/ui/accordion"
 import { Badge } from "~/components/ui/badge"
@@ -19,6 +20,10 @@ export function meta() {
 
   return [
     { title: `${title} | Hum Sub` },
+    {
+      name: "description",
+      content: `Join Hum Sub for Diwali 2026 on ${date} at Koka Booth Amphitheatre, Cary, NC — free admission, cultural performances, food vendors, and fireworks finale.`,
+    },
     { property: "og:title", content: `${title} | Hum Sub` },
     { property: "og:image", content: ogUrl.toString() },
     { property: "og:url", content: "https://humsub.org/hum-sub-diwali-2026" },
@@ -31,69 +36,92 @@ interface HeroProps {
 
 function Hero({ eventDate }: HeroProps) {
   const timeLeft = useTimeUntil(eventDate)
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Render a stable placeholder on SSR + first client paint so server HTML
+  // matches and we avoid hydration mismatch (Date.now() differs per render).
+  if (!mounted) {
+    return (
+      <div
+        aria-hidden="true"
+        className="mx-auto bg-white/20 dark:bg-slate-800/30 backdrop-blur-md rounded-xl p-6 border border-orange-200/30 dark:border-orange-600/30 shadow-2xl min-h-[112px]"
+      />
+    )
+  }
 
   return (
     <>
       {/* Countdown Timer */}
       {!timeLeft.isExpired && (
         <div className="mx-auto bg-white/20 dark:bg-slate-800/30 backdrop-blur-md rounded-xl p-6 border border-orange-200/30 dark:border-orange-600/30 shadow-2xl">
-          <div className="flex justify-center items-center gap-2 md:gap-4 flex-wrap">
+          <div
+            className="flex justify-center items-center gap-2 md:gap-4 flex-wrap"
+            role="timer"
+            aria-live="off"
+            suppressHydrationWarning
+          >
             {timeLeft.months > 0 && (
               <>
                 <div className="bg-orange-100/80 dark:bg-orange-900/60 backdrop-blur-sm rounded-lg p-3 md:p-4 min-w-[70px] md:min-w-[80px] border border-orange-300/50 dark:border-orange-600/50">
-                  <div className="text-xl md:text-2xl lg:text-3xl font-bold text-orange-800 dark:text-orange-200">
+                  <div className="text-xl md:text-2xl lg:text-3xl font-bold text-orange-800 dark:text-orange-200 tabular-nums">
                     {timeLeft.months.toString().padStart(2, "0")}
                   </div>
                   <div className="text-xs md:text-sm text-orange-700 dark:text-orange-300 uppercase tracking-wide">
                     Months
                   </div>
                 </div>
-                <div className="text-xl md:text-2xl lg:text-3xl font-bold text-orange-800 dark:text-orange-200 hidden sm:block">
+                <div
+                  aria-hidden="true"
+                  className="text-xl md:text-2xl lg:text-3xl font-bold text-orange-800 dark:text-orange-200"
+                >
                   :
                 </div>
               </>
             )}
-            {(timeLeft.days > 0 || timeLeft.months > 0) && (
-              <>
-                <div className="bg-orange-100/80 dark:bg-orange-900/60 backdrop-blur-sm rounded-lg p-3 md:p-4 min-w-[70px] md:min-w-[80px] border border-orange-300/50 dark:border-orange-600/50">
-                  <div className="text-xl md:text-2xl lg:text-3xl font-bold text-orange-800 dark:text-orange-200">
-                    {timeLeft.days.toString().padStart(2, "0")}
-                  </div>
-                  <div className="text-xs md:text-sm text-orange-700 dark:text-orange-300 uppercase tracking-wide">
-                    Days
-                  </div>
-                </div>
-                {timeLeft.days < 30 && (
-                  <div className="text-xl md:text-2xl lg:text-3xl font-bold text-orange-800 dark:text-orange-200 hidden sm:block">
-                    :
-                  </div>
-                )}
-              </>
-            )}
-            {timeLeft.days < 30 && (
-              <>
-                <div className="bg-orange-100/80 dark:bg-orange-900/60 backdrop-blur-sm rounded-lg p-3 md:p-4 min-w-[70px] md:min-w-[80px] border border-orange-300/50 dark:border-orange-600/50">
-                  <div className="text-xl md:text-2xl lg:text-3xl font-bold text-orange-800 dark:text-orange-200">
-                    {timeLeft.hours.toString().padStart(2, "0")}
-                  </div>
-                  <div className="text-xs md:text-sm text-orange-700 dark:text-orange-300 uppercase tracking-wide">
-                    Hours
-                  </div>
-                </div>
-                <div className="text-xl md:text-2xl lg:text-3xl font-bold text-orange-800 dark:text-orange-200 hidden sm:block">
-                  :
-                </div>
-                <div className="bg-orange-100/80 dark:bg-orange-900/60 backdrop-blur-sm rounded-lg p-3 md:p-4 min-w-[70px] md:min-w-[80px] border border-orange-300/50 dark:border-orange-600/50">
-                  <div className="text-xl md:text-2xl lg:text-3xl font-bold text-orange-800 dark:text-orange-200">
-                    {timeLeft.minutes.toString().padStart(2, "0")}
-                  </div>
-                  <div className="text-xs md:text-sm text-orange-700 dark:text-orange-300 uppercase tracking-wide">
-                    Minutes
-                  </div>
-                </div>
-              </>
-            )}
+            <div className="bg-orange-100/80 dark:bg-orange-900/60 backdrop-blur-sm rounded-lg p-3 md:p-4 min-w-[70px] md:min-w-[80px] border border-orange-300/50 dark:border-orange-600/50">
+              <div className="text-xl md:text-2xl lg:text-3xl font-bold text-orange-800 dark:text-orange-200 tabular-nums">
+                {timeLeft.days.toString().padStart(2, "0")}
+              </div>
+              <div className="text-xs md:text-sm text-orange-700 dark:text-orange-300 uppercase tracking-wide">
+                Days
+              </div>
+            </div>
+            <div
+              aria-hidden="true"
+              className="text-xl md:text-2xl lg:text-3xl font-bold text-orange-800 dark:text-orange-200"
+            >
+              :
+            </div>
+            <div className="bg-orange-100/80 dark:bg-orange-900/60 backdrop-blur-sm rounded-lg p-3 md:p-4 min-w-[70px] md:min-w-[80px] border border-orange-300/50 dark:border-orange-600/50">
+              <div className="text-xl md:text-2xl lg:text-3xl font-bold text-orange-800 dark:text-orange-200 tabular-nums">
+                {timeLeft.hours.toString().padStart(2, "0")}
+              </div>
+              <div className="text-xs md:text-sm text-orange-700 dark:text-orange-300 uppercase tracking-wide">
+                Hours
+              </div>
+            </div>
+            <div
+              aria-hidden="true"
+              className="text-xl md:text-2xl lg:text-3xl font-bold text-orange-800 dark:text-orange-200"
+            >
+              :
+            </div>
+            <div className="bg-orange-100/80 dark:bg-orange-900/60 backdrop-blur-sm rounded-lg p-3 md:p-4 min-w-[70px] md:min-w-[80px] border border-orange-300/50 dark:border-orange-600/50">
+              <div className="text-xl md:text-2xl lg:text-3xl font-bold text-orange-800 dark:text-orange-200 tabular-nums">
+                {timeLeft.minutes.toString().padStart(2, "0")}
+              </div>
+              <div className="text-xs md:text-sm text-orange-700 dark:text-orange-300 uppercase tracking-wide">
+                Minutes
+              </div>
+            </div>
           </div>
+          <span className="sr-only" aria-live="polite">
+            {timeLeft.months > 0 && `${timeLeft.months} months, `}
+            {timeLeft.days} days, {timeLeft.hours} hours, {timeLeft.minutes} minutes until Hum Sub Diwali 2026
+          </span>
         </div>
       )}
 
@@ -109,31 +137,65 @@ function Hero({ eventDate }: HeroProps) {
 }
 
 function Diwali2026SponsorsGrid() {
+  const prime = sponsors2025.filter((s) => s.level === "prime")
+  const rest = sponsors2025.filter((s) => s.level !== "prime")
   return (
-    <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-9 gap-2 items-center justify-center">
-      {sponsors2025.map((sponsor) => (
-        <a
-          key={sponsor.name}
-          href={sponsor.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex flex-col items-center group"
-        >
-          <img
-            src={Array.isArray(sponsor.imagePath) ? sponsor.imagePath[0] : sponsor.imagePath}
-            alt={sponsor.name}
-            className="h-24 w-24 object-contain p-1 rounded-lg bg-white mb-2 transition-transform group-hover:scale-105"
-            loading="lazy"
-          />
-        </a>
-      ))}
+    <div className="space-y-6">
+      {prime.length > 0 && (
+        <div className="flex flex-wrap items-center justify-center gap-6 pb-4 border-b border-gray-100 dark:border-gray-700">
+          {prime.map((sponsor, i) => (
+            <SponsorLogo key={sponsor.name} sponsor={sponsor} eager={i < 2} large />
+          ))}
+        </div>
+      )}
+      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4 items-center justify-center">
+        {rest.map((sponsor, i) => (
+          <SponsorLogo key={sponsor.name} sponsor={sponsor} eager={i < 6} />
+        ))}
+      </div>
     </div>
   )
 }
 
+function SponsorLogo({
+  sponsor,
+  eager = false,
+  large = false,
+}: {
+  sponsor: (typeof sponsors2025)[number]
+  eager?: boolean
+  large?: boolean
+}) {
+  const src = Array.isArray(sponsor.imagePath) ? sponsor.imagePath[0] : sponsor.imagePath
+  const img = (
+    <img
+      src={src}
+      alt={sponsor.name}
+      width={large ? 200 : 120}
+      height={large ? 100 : 60}
+      className={`${large ? "h-24 w-48" : "h-16 w-28"} object-contain p-2 rounded-lg bg-white border border-gray-100 dark:border-gray-700 transition-transform hover:scale-105`}
+      loading={eager ? "eager" : "lazy"}
+    />
+  )
+  if (!sponsor.href) {
+    return <div className="flex flex-col items-center text-center">{img}</div>
+  }
+  return (
+    <a
+      href={sponsor.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`${sponsor.name}${sponsor.label ? ` — ${sponsor.label}` : ""}`}
+      className="flex flex-col items-center text-center group"
+    >
+      {img}
+    </a>
+  )
+}
+
 export default function HumSubDiwali2026() {
-  // Set event date to Diwali 2026 - October 10, 2026 at 9:00 AM
-  const eventDate = new Date(2026, 9, 10, 0, 0, 0) // Month is 0-indexed, so 9 = October
+  // Set event date to Diwali 2026 - October 10, 2026 at 9:00 AM (gates open)
+  const eventDate = new Date(2026, 9, 10, 9, 0, 0) // Month is 0-indexed, so 9 = October
 
   return (
     <div className="container bg-white dark:bg-black">
@@ -169,7 +231,7 @@ export default function HumSubDiwali2026() {
                   <div className="p-2 bg-orange-100 dark:bg-orange-900/60 rounded-full">
                     <CalendarDays className="h-6 w-6 text-amber-600 dark:text-amber-300" />
                   </div>
-                  <span className="text-balance">October 10, 2026</span>
+                  <span className="text-balance">October 10, 2026 · 9 AM – 9 PM</span>
                 </div>
                 <div className="flex gap-3 md:text-xl font-medium">
                   <div className="p-2 bg-orange-100 dark:bg-orange-900/60 rounded-full">
@@ -209,12 +271,12 @@ export default function HumSubDiwali2026() {
                 className="bg-gradient-to-r from-orange-500 via-orange-600 to-amber-600 hover:from-orange-600 hover:via-orange-700 hover:to-amber-700 text-white font-bold px-10 py-4 rounded-2xl shadow-2xl hover:shadow-orange-500/25 transform hover:scale-110 transition-all duration-300 w-full sm:w-auto border-2 border-orange-400/50 group"
               >
                 <a
-                  href="https://www.zeffy.com/en-US/ticketing/hum-sub-annual-membership"
+                  href="https://www.zeffy.com/en-US/ticketing/hum-sub-diwali--2026"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="no-underline flex items-center gap-2"
                 >
-                  <span>Get your membership</span>
+                  <span>Buy Tickets — reserved seating</span>
                   <span className="group-hover:translate-x-1 transition-transform">→</span>
                 </a>
               </Button>
@@ -230,12 +292,42 @@ export default function HumSubDiwali2026() {
                 </a>
               </Button>
             </div>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              Entry is free. Members save on reserved seating —{" "}
+              <a
+                href="https://www.zeffy.com/en-US/ticketing/hum-sub-annual-membership"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline font-semibold"
+              >
+                get membership ($10/yr)
+              </a>
+              .
+            </p>
           </div>
         </div>
       </section>
 
       {/* Main Content Container */}
       <div className="container mx-auto px-4 sm:px-6 md:px-8 py-12 md:py-20 space-y-16 md:space-y-24">
+        <nav aria-label="On this page" className="flex flex-wrap items-center justify-center gap-2">
+          {[
+            ["Venue", "#venue"],
+            ["Parking", "#parking"],
+            ["Bags & Entry", "#bags-entry"],
+            ["Schedule", "#schedule"],
+            ["Get Involved", "#get-involved"],
+            ["Sponsors", "#sponsors"],
+          ].map(([label, href]) => (
+            <a
+              key={href}
+              href={href}
+              className="px-4 py-2 text-sm font-semibold rounded-full border border-orange-300 dark:border-orange-700 text-orange-700 dark:text-orange-300 bg-orange-50 dark:bg-orange-950/30 hover:bg-orange-100 dark:hover:bg-orange-900/40 transition-colors no-underline"
+            >
+              {label}
+            </a>
+          ))}
+        </nav>
         <section className="space-y-12">
           <div className="text-center space-y-6">
             <h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-orange-600 via-amber-600 to-yellow-600 dark:from-orange-300 dark:via-amber-300 dark:to-yellow-300 bg-clip-text text-transparent">
@@ -252,9 +344,12 @@ export default function HumSubDiwali2026() {
           </div>
 
           {/* Venue Details - Enhanced Card */}
-          <Card className="shadow-sm hover:shadow-md transition-all duration-200 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+          <Card
+            id="venue"
+            className="scroll-mt-24 shadow-sm hover:shadow-md transition-all duration-200 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
+          >
             <CardHeader className="pb-4">
-              <CardTitle className="text-2xl text-primary flex items-center gap-3">
+              <CardTitle className="text-2xl text-primary flex items-center gap-3" role="heading" aria-level={3}>
                 <div className="p-2 bg-primary/10 rounded-lg">
                   <MapPin className="h-6 w-6" />
                 </div>
@@ -266,10 +361,6 @@ export default function HumSubDiwali2026() {
                 <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                   <span className="font-semibold text-primary min-w-[100px]">Location:</span>
                   <span>Koka Booth Amphitheatre, 8003 Regency Pkwy, Cary, NC 27518</span>
-                </div>
-                <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-                  <span className="font-semibold text-primary min-w-[100px]">Parking:</span>
-                  <span>$10 General / $20 Preferred Parking</span>
                 </div>
                 <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                   <span className="font-semibold text-primary min-w-[100px]">Admission:</span>
@@ -284,8 +375,9 @@ export default function HumSubDiwali2026() {
 
               <div className="bg-orange-50 dark:bg-orange-950/20 p-4 rounded-lg border border-orange-200 dark:border-orange-800">
                 <p className="text-sm text-orange-800 dark:text-orange-200">
-                  <span className="font-semibold">Seating Note:</span> Membership required for reserved seating. $10
-                  annual membership available.
+                  <span className="font-semibold">Reserved seating:</span> Entry is free. Reserved seats are $12 early
+                  bird until Oct 6, $15 from Oct 7, or $10 for annual members. Membership details are on the membership
+                  page.
                 </p>
               </div>
 
@@ -296,7 +388,17 @@ export default function HumSubDiwali2026() {
                 </p>
               </div>
             </CardContent>
-            <CardFooter className="flex justify-center">
+            <CardFooter className="flex flex-col sm:flex-row justify-center gap-3">
+              <Button asChild size="lg" className="bg-orange-600 hover:bg-orange-700 text-white">
+                <a
+                  href="https://www.zeffy.com/en-US/ticketing/hum-sub-diwali--2026"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="no-underline"
+                >
+                  Buy Tickets
+                </a>
+              </Button>
               <Button
                 asChild
                 size="lg"
@@ -308,79 +410,177 @@ export default function HumSubDiwali2026() {
                   rel="noopener noreferrer"
                   className="no-underline"
                 >
-                  Buy Tickets
+                  Get Membership — $10/yr
                 </a>
               </Button>
             </CardFooter>
           </Card>
 
-          {/* Detailed Information Sections */}
-          {/*
-          <div className="mt-16">
-            <Accordion type="single" collapsible className="w-full space-y-6" defaultValue="schedule">
-              <AccordionItem
-                value="schedule"
-                className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all duration-200"
-              >
-                <AccordionTrigger className="px-6 py-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-lg font-semibold">
-                  <span className="flex items-center gap-3 w-full">
-                    <div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-full">
-                      <CalendarDays className="h-5 w-5 text-orange-600 dark:text-orange-400" />
-                    </div>
-                    <span>Schedule & Highlights</span>
-                  </span>
-                </AccordionTrigger>
-                <AccordionContent className="px-6 pb-6 bg-gray-50/50 dark:bg-gray-800/50">
-                  <div className="space-y-4">
-                    <div className="grid gap-3">
-                      <div className="flex items-center gap-4 p-3 bg-white dark:bg-gray-800 rounded-lg border border-orange-100 dark:border-orange-900">
-                        <span className="text-lg font-bold text-orange-600 dark:text-orange-400 min-w-[80px]">
-                          9:00 AM
-                        </span>
-                        <span>Gates Open, Food & Vendor Village</span>
-                      </div>
-                      <div className="flex items-center gap-4 p-3 bg-white dark:bg-gray-800 rounded-lg border border-orange-100 dark:border-orange-900">
-                        <span className="text-lg font-bold text-orange-600 dark:text-orange-400 min-w-[80px]">
-                          10:00 AM
-                        </span>
-                        <span>Cultural Performances Begin (Main Stage)</span>
-                      </div>
-                      <div className="flex items-center gap-4 p-3 bg-white dark:bg-gray-800 rounded-lg border border-orange-100 dark:border-orange-900">
-                        <span className="text-lg font-bold text-orange-600 dark:text-orange-400 min-w-[80px]">
-                          5:30 PM
-                        </span>
-                        <span>Special Evening Show with Featured Artists</span>
-                      </div>
-                      <div className="flex items-center gap-4 p-3 bg-gradient-to-r from-amber-100 to-orange-100 dark:from-amber-900/20 dark:to-orange-900/20 rounded-lg border border-amber-200 dark:border-amber-800">
-                        <span className="text-lg font-bold text-amber-600 dark:text-amber-400 min-w-[80px]">
-                          9:00 PM
-                        </span>
-                        <span className="font-semibold">✨ Grand Fireworks Finale ✨</span>
-                      </div>
-                    </div>
-                    <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800">
-                      <p className="text-blue-800 dark:text-blue-200 text-sm">
-                        <span className="font-semibold">All Day:</span> Enjoy exhibition booths, food vendors, and
-                        family-friendly activities available throughout the event. Special programs and demonstrations
-                        will be held hourly at the exhibition booth until 5 PM.
-                      </p>
-                    </div>
+          {/* Parking - Enhanced Card */}
+          <Card
+            id="parking"
+            className="scroll-mt-24 shadow-sm hover:shadow-md transition-all duration-200 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
+          >
+            <CardHeader className="pb-4">
+              <CardTitle className="text-2xl text-primary flex items-center gap-3" role="heading" aria-level={3}>
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <Car className="h-6 w-6" />
+                </div>
+                Parking
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-3">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                  <span className="font-semibold text-primary min-w-[100px]">General:</span>
+                  <span>$10</span>
+                </div>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                  <span className="font-semibold text-primary min-w-[100px]">Preferred:</span>
+                  <span>$20</span>
+                </div>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Koka Booth Amphitheatre is cashless — please plan to pay for parking with a card.
+              </p>
+              <div className="flex flex-col sm:flex-row justify-center gap-3">
+                <a
+                  href="/assets/events/Hum_Sub_Diwali_Parking_KBA_2025.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-6 py-2 bg-blue-600 text-white rounded-lg shadow-sm hover:bg-blue-700 transition"
+                >
+                  Open Parking Map (PDF)
+                </a>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Bag Policy & Allowed Items - Enhanced Card */}
+          <Card
+            id="bags-entry"
+            className="scroll-mt-24 shadow-sm hover:shadow-md transition-all duration-200 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
+          >
+            <CardHeader className="pb-4">
+              <CardTitle className="text-2xl text-primary flex items-center gap-3" role="heading" aria-level={3}>
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <ShieldCheck className="h-6 w-6" />
+                </div>
+                Bag Policy & Allowed Items
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="space-y-3">
+                <h3 className="font-semibold text-lg">Bag Policy</h3>
+                <p className="text-sm text-muted-foreground">
+                  Koka Booth Amphitheatre has enhanced its public safety policy to include a clear bag policy. See the
+                  official{" "}
+                  <a
+                    href="https://www.boothamphitheatre.com/events-tickets/bag-policy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline font-semibold"
+                  >
+                    Bag Policy
+                  </a>
+                  .
+                </p>
+                <ul className="list-disc pl-6 space-y-1 text-sm">
+                  <li>Bags 6&quot; x 8&quot; or smaller are permitted.</li>
+                  <li>Clear bags that do not exceed 12&quot; x 12&quot; x 9&quot;.</li>
+                  <li>Medical and parenting bags allowed.</li>
+                  <li>All bags are subject to search.</li>
+                </ul>
+                <p className="text-sm text-muted-foreground">
+                  Due to sight line issues and the safety of all guests, umbrellas will not be allowed.
+                </p>
+              </div>
+
+              <div className="space-y-3">
+                <h3 className="font-semibold text-lg">Items Allowed</h3>
+                <p className="text-sm text-muted-foreground">
+                  Guests are welcome to bring the following items to this event:
+                </p>
+                <ul className="list-disc pl-6 space-y-1 text-sm">
+                  <li>Small bags 6&quot; x 8&quot; or smaller, or clear bags up to 12&quot; x 12&quot; x 9&quot;.</li>
+                  <li>Small personal items must fit inside the allowed bag.</li>
+                  <li>Plastic factory-sealed bottled water (1 per person). No glass, cans, or flavored water.</li>
+                  <li>
+                    Select lawn chairs: no footrest, canopy, lounge chairs, tri-fold chairs, or swinging chairs.{" "}
+                    <a
+                      href="https://boothamphitheatre.production.carbonhouse.com/assets/doc/Lawn-Chairs-8.5-x-11-in-Final-2f3ba87149.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline font-semibold"
+                    >
+                      See examples
+                    </a>
+                    . Please remove the chair from the bag at the security checkpoint.
+                  </li>
+                  <li>Raincoats &amp; ponchos</li>
+                  <li>Strollers</li>
+                  <li>Tablets</li>
+                  <li>Reusable bottles (no glass). Water fill stations available in the Cobblestone Courtyard.</li>
+                  <li>All allowed bags will be searched.</li>
+                </ul>
+                <p className="text-sm text-muted-foreground">All patrons will walk through metal detectors.</p>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Schedule & Highlights */}
+          <Card
+            id="schedule"
+            className="scroll-mt-24 shadow-sm hover:shadow-md transition-all duration-200 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
+          >
+            <CardHeader className="pb-4">
+              <CardTitle className="text-2xl text-primary flex items-center gap-3" role="heading" aria-level={3}>
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <CalendarDays className="h-6 w-6" />
+                </div>
+                Schedule & Highlights
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div className="grid gap-3">
+                  <div className="flex items-center gap-4 p-3 bg-white dark:bg-gray-800 rounded-lg border border-orange-100 dark:border-orange-900">
+                    <span className="text-lg font-bold text-orange-600 dark:text-orange-400 min-w-[80px]">9:00 AM</span>
+                    <span>Gates Open, Food & Vendor Village</span>
                   </div>
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </div>
-          */}
+                  <div className="flex items-center gap-4 p-3 bg-white dark:bg-gray-800 rounded-lg border border-orange-100 dark:border-orange-900">
+                    <span className="text-lg font-bold text-orange-600 dark:text-orange-400 min-w-[80px]">9:45 AM</span>
+                    <span>Cultural Performances Begin (Main Stage)</span>
+                  </div>
+                  <div className="flex items-center gap-4 p-3 bg-white dark:bg-gray-800 rounded-lg border border-orange-100 dark:border-orange-900">
+                    <span className="text-lg font-bold text-orange-600 dark:text-orange-400 min-w-[80px]">6:00 PM</span>
+                    <span>Vidya Vox — Featured Artist Performance (Main Stage)</span>
+                  </div>
+                  <div className="flex items-center gap-4 p-3 bg-gradient-to-r from-amber-100 to-orange-100 dark:from-amber-900/20 dark:to-orange-900/20 rounded-lg border border-amber-200 dark:border-amber-800">
+                    <span className="text-lg font-bold text-amber-600 dark:text-amber-400 min-w-[80px]">8:45 PM</span>
+                    <span className="font-semibold">✨ Grand Fireworks Finale ✨</span>
+                  </div>
+                </div>
+                <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                  <p className="text-blue-800 dark:text-blue-200 text-sm">
+                    <span className="font-semibold">All Day:</span> Enjoy exhibition booths, food vendors, and
+                    family-friendly activities available throughout the event. Special programs and demonstrations will
+                    be held hourly at the exhibition booth until 5 PM.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </section>
-        <section className="space-y-12">
+        <section id="get-involved" className="scroll-mt-24 space-y-12">
           <div className="text-center space-y-6">
-            <h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-300 dark:via-purple-300 dark:to-pink-300 bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-orange-600 via-amber-600 to-yellow-600 dark:from-orange-300 dark:via-amber-300 dark:to-yellow-300 bg-clip-text text-transparent">
               Get Involved
             </h2>
             <div className="flex items-center justify-center gap-4">
-              <div className="w-16 h-0.5 bg-gradient-to-r from-transparent to-blue-400 rounded-full"></div>
-              <div className="w-8 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
-              <div className="w-16 h-0.5 bg-gradient-to-r from-purple-400 to-transparent rounded-full"></div>
+              <div className="w-16 h-0.5 bg-gradient-to-r from-transparent to-orange-400 rounded-full"></div>
+              <div className="w-8 h-1 bg-gradient-to-r from-orange-500 to-amber-500 rounded-full"></div>
+              <div className="w-16 h-0.5 bg-gradient-to-r from-amber-400 to-transparent rounded-full"></div>
             </div>
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Join our community and make Hum Sub Diwali 2026 even more special
@@ -389,14 +589,14 @@ export default function HumSubDiwali2026() {
 
           {/* Get Involved Accordion Sections */}
           <div className="mt-16">
-            <Accordion type="single" collapsible className="w-full space-y-6" defaultValue="vendor-participation">
+            <Accordion type="single" collapsible className="w-full space-y-6">
               <AccordionItem
                 value="vendor-participation"
                 className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all duration-200"
               >
                 <AccordionTrigger className="px-6 py-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-lg font-semibold">
                   <span className="flex items-center gap-3 w-full">
-                    <div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-full">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center bg-gray-100 dark:bg-gray-700 rounded-full">
                       <span className="text-xl text-amber-600 dark:text-amber-400">🎪</span>
                     </div>
                     <span>Vendor Participation</span>
@@ -420,117 +620,28 @@ export default function HumSubDiwali2026() {
                     </div>
 
                     <div className="space-y-4">
-                      <h4 className="font-bold text-gray-900 dark:text-gray-100 text-lg">
-                        <span className="text-amber-600 dark:text-amber-400">📐</span> Vendor Layout
-                      </h4>
-                      <div className="w-full">
-                        <div className="hidden sm:block">
-                          <object
-                            data="/assets/events/HD2026_Vendor_Layout_V1.pdf"
-                            type="application/pdf"
-                            width="100%"
-                            height="600vh"
-                            className="rounded-lg border border-gray-200 dark:border-gray-700"
-                            aria-label="HD2026 Vendor Layout PDF"
-                          >
-                            <iframe
-                              src="/assets/events/HD2026_Vendor_Layout_V1.pdf"
-                              title="HD2026 Vendor Layout PDF"
-                              width="100%"
-                              height="600vh"
-                              className="rounded-lg border-0"
-                              style={{ border: "none", overflow: "hidden" }}
-                            >
-                              This browser does not support embedded PDFs. You can{" "}
-                              <a
-                                href="/assets/events/HD2026_Vendor_Layout_V1.pdf"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="underline text-blue-600"
-                              >
-                                download the PDF
-                              </a>
-                              .
-                            </iframe>
-                          </object>
-                        </div>
-
-                        <div className="block sm:hidden space-y-4 text-center">
-                          <div className="flex justify-center">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              className="h-16 w-16 text-gray-400 dark:text-gray-500"
-                              aria-hidden="true"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="1.5"
-                                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
-                              />
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M14 2v6h6" />
-                              <text
-                                x="6"
-                                y="17"
-                                className="text-sm"
-                                fill="currentColor"
-                                fontSize="8"
-                                fontFamily="System, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial"
-                              >
-                                PDF
-                              </text>
-                            </svg>
-                          </div>
-
-                          <p className="text-sm text-muted-foreground max-w-md mx-auto">
-                            PDF preview may not be supported in some mobile browsers. Open or download the vendor layout
-                            to view it.
-                          </p>
-
-                          <div className="flex justify-center gap-3">
-                            <a
-                              href="/assets/events/HD2026_Vendor_Layout_V1.pdf"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-lg shadow-sm hover:bg-blue-700 transition"
-                            >
-                              Open PDF
-                            </a>
-                            <a
-                              href="/assets/events/HD2026_Vendor_Layout_V1.pdf"
-                              download
-                              className="inline-flex items-center justify-center px-4 py-2 border rounded-lg text-sm"
-                            >
-                              Download
-                            </a>
-                          </div>
-                        </div>
+                      <p className="text-muted-foreground text-center">
+                        Review the vendor layout and the application guidelines document for all requirements,
+                        deadlines, and submission details.
+                      </p>
+                      <div className="flex flex-col sm:flex-row justify-center gap-3">
+                        <a
+                          href="/assets/events/HD2026_Vendor_Layout_V1.pdf"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center px-6 py-2 bg-blue-600 text-white rounded-lg shadow-sm hover:bg-blue-700 transition"
+                        >
+                          Open Layout (PDF)
+                        </a>
+                        <a
+                          href="/assets/events/HD2026-Vendor Application and Guidelines.pdf"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center px-6 py-2 bg-blue-600 text-white rounded-lg shadow-sm hover:bg-blue-700 transition"
+                        >
+                          View Guidelines
+                        </a>
                       </div>
-                    </div>
-
-                    <p className="text-muted-foreground">
-                      Review the vendor application and guidelines document for all requirements, deadlines, and
-                      submission details.
-                    </p>
-                    <div className="flex justify-center gap-3">
-                      <a
-                        href="/assets/events/HD2026-Vendor Application and Guidelines.pdf"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center px-6 py-2 bg-blue-600 text-white rounded-lg shadow-sm hover:bg-blue-700 transition"
-                      >
-                        View Guidelines
-                      </a>
-                      <a
-                        href="/assets/events/HD2026-Vendor Application and Guidelines.pdf"
-                        download
-                        className="inline-flex items-center justify-center px-6 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition"
-                      >
-                        Download
-                      </a>
                     </div>
                   </div>
                 </AccordionContent>
@@ -542,7 +653,7 @@ export default function HumSubDiwali2026() {
               >
                 <AccordionTrigger className="px-6 py-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-lg font-semibold">
                   <span className="flex items-center gap-3 w-full">
-                    <div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-full">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center bg-gray-100 dark:bg-gray-700 rounded-full">
                       <span className="text-xl text-purple-600 dark:text-purple-400">🎭</span>
                     </div>
                     <span>Cultural Program Participation</span>
@@ -560,7 +671,7 @@ export default function HumSubDiwali2026() {
                         about auditions.
                       </p>
                     </div>
-
+                    {/*
                     <p className="text-muted-foreground">
                       Are you interested in performing or showcasing your cultural talent at Hum Sub Diwali 2026? We
                       welcome dancers, musicians, artists, and cultural performers!
@@ -589,6 +700,7 @@ export default function HumSubDiwali2026() {
                         </div>
                       </div>
                     </div>
+                    */}
                   </div>
                 </AccordionContent>
               </AccordionItem>
@@ -599,7 +711,7 @@ export default function HumSubDiwali2026() {
               >
                 <AccordionTrigger className="px-6 py-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-lg font-semibold">
                   <span className="flex items-center gap-3 w-full">
-                    <div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-full">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center bg-gray-100 dark:bg-gray-700 rounded-full">
                       <Users className="h-5 w-5 text-purple-600 dark:text-purple-400" />
                     </div>
                     <span>Volunteer With Us</span>
@@ -651,15 +763,15 @@ export default function HumSubDiwali2026() {
             </Accordion>
           </div>
         </section>
-        <section className="space-y-12">
+        <section id="sponsors" className="scroll-mt-24 space-y-12">
           <div className="text-center space-y-6">
-            <h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 dark:from-green-300 dark:via-emerald-300 dark:to-teal-300 bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-orange-600 via-amber-600 to-yellow-600 dark:from-orange-300 dark:via-amber-300 dark:to-yellow-300 bg-clip-text text-transparent">
               Our Sponsors
             </h2>
             <div className="flex items-center justify-center gap-4">
-              <div className="w-16 h-0.5 bg-gradient-to-r from-transparent to-green-400 rounded-full"></div>
-              <div className="w-8 h-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full"></div>
-              <div className="w-16 h-0.5 bg-gradient-to-r from-emerald-400 to-transparent rounded-full"></div>
+              <div className="w-16 h-0.5 bg-gradient-to-r from-transparent to-orange-400 rounded-full"></div>
+              <div className="w-8 h-1 bg-gradient-to-r from-orange-500 to-amber-500 rounded-full"></div>
+              <div className="w-16 h-0.5 bg-gradient-to-r from-amber-400 to-transparent rounded-full"></div>
             </div>
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Thank you to our amazing sponsors who make this celebration possible
