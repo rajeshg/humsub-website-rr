@@ -1,10 +1,38 @@
+import { Button } from "~/components/ui/button"
 import YACard from "~/components/ya-card"
+
+const YAA_FLYER_SRC = "/assets/yaa/YAA-2026-flyer.jpg"
+const YAA_APPLY_URL = "https://form.jotform.com/HumSubPresident/hum-sub-yaa-2026"
+const YAA_GUIDELINES_URL = "/assets/YAA-2026-Guidelines.pdf"
 
 export default function YAA() {
   return (
     <div className="prose dark:prose-invert max-w-none">
       <title>Youth Achievement Award | Hum Sub</title>
       <h1>Youth Achievement Award</h1>
+      <div className="not-prose mb-8 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
+        <div className="flex flex-col gap-3 p-4 sm:flex-row sm:justify-center">
+          <Button asChild size="lg" className="w-full bg-orange-600 hover:bg-orange-700 sm:w-auto">
+            <a href={YAA_APPLY_URL} target="_blank" rel="noopener noreferrer" className="no-underline">
+              Apply Now
+            </a>
+          </Button>
+          <Button asChild size="lg" variant="outline" className="w-full sm:w-auto">
+            <a href={YAA_GUIDELINES_URL} target="_blank" rel="noopener noreferrer" className="no-underline">
+              YAA Guidelines
+            </a>
+          </Button>
+        </div>
+        <img
+          src={YAA_FLYER_SRC}
+          alt="Youth Achievement Award 2026 flyer"
+          className="mx-auto block w-full max-w-xl object-contain"
+          loading="eager"
+          onError={(e) => {
+            e.currentTarget.style.display = "none"
+          }}
+        />
+      </div>
       <div className="not-prose">
         <p className="mb-6 text-lg text-muted-foreground">
           The Hum Sub Youth Achievement Award (YAA) is inspired by Buddha's parting message to his disciples – "Aapo
@@ -41,19 +69,14 @@ export default function YAA() {
         </div>
         <p className="mb-4">
           For more information, please check at{" "}
-          <a
-            href="https://humsub.org/assets/YAA-2026-Guidelines.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary underline"
-          >
+          <a href={YAA_GUIDELINES_URL} target="_blank" rel="noopener noreferrer" className="text-primary underline">
             YAA Guidelines
           </a>
           .
         </p>
         <ul className="list-disc pl-6 mb-6 space-y-2">
           <li>
-            <a href="/assets/YAA-2026-Guidelines.pdf" className="text-primary underline">
+            <a href={YAA_GUIDELINES_URL} target="_blank" rel="noopener noreferrer" className="text-primary underline">
               YAA-2026 Guideline updates
             </a>
           </li>
