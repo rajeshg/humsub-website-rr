@@ -23,15 +23,26 @@ export default function YAA() {
             </a>
           </Button>
         </div>
-        <img
-          src={YAA_FLYER_SRC}
-          alt="Youth Achievement Award 2026 flyer"
-          className="mx-auto block w-full max-w-xl object-contain"
-          loading="eager"
-          onError={(e) => {
-            e.currentTarget.style.display = "none"
-          }}
-        />
+        <div className="border-b border-gray-200 bg-amber-50 px-4 py-2 text-center text-sm font-medium text-amber-900 dark:border-gray-700 dark:bg-amber-950 dark:text-amber-100">
+          Deadline Extended: <s className="opacity-70">Sep 13, 2026</s> <span aria-hidden="true">→</span> Sep 20, 2026
+        </div>
+        <div className="relative mx-auto w-full max-w-xl">
+          <img
+            src={YAA_FLYER_SRC}
+            alt="Youth Achievement Award 2026 flyer"
+            className="block w-full object-contain"
+            loading="eager"
+            onError={(e) => {
+              e.currentTarget.style.display = "none"
+            }}
+          />
+          <div className="absolute right-[4%] bottom-[19%] left-[52%] rounded bg-[#6d1d22] px-2 py-1 text-center shadow-lg ring-1 ring-white/40">
+            <p className="text-[clamp(10px,2.5vw,14px)] leading-tight font-semibold text-white">
+              Applications Deadline: <s className="opacity-70">Sep 13, 2026</s>{" "}
+              <span className="font-bold text-yellow-300">Sep 20, 2026</span>
+            </p>
+          </div>
+        </div>
       </div>
       <div className="not-prose">
         <p className="mb-6 text-lg text-muted-foreground">
@@ -93,7 +104,7 @@ export default function YAA() {
         </ul>
         <p className="font-bold mb-2">YAA-2026 timeline is as follows:</p>
         <ul className="list-disc pl-6 mb-8 space-y-2">
-          <li>Applications Deadline: Sep 13, 2026</li>
+          <li>Applications Deadline: Sep 20, 2026</li>
           <li>Winners Notified: Oct 10, 2026 at Hum Sub Diwali</li>
           <li>Awards presented at Hum Sub Diwali 2026: Oct 10, 2026</li>
         </ul>
