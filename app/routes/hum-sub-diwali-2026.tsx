@@ -231,7 +231,7 @@ export default function HumSubDiwali2026() {
                   <div className="p-2 bg-orange-100 dark:bg-orange-900/60 rounded-full">
                     <CalendarDays className="h-6 w-6 text-amber-600 dark:text-amber-300" />
                   </div>
-                  <span className="text-balance">October 10, 2026 · 9 AM – 9 PM</span>
+                  <span className="text-balance">October 10, 2026 · 9 AM – 9:30 PM</span>
                 </div>
                 <div className="flex gap-3 md:text-xl font-medium">
                   <div className="p-2 bg-orange-100 dark:bg-orange-900/60 rounded-full">
