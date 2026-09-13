@@ -30,6 +30,7 @@ export default [
     route("youth-ambassador", "routes/youth-ambassador.tsx"),
     route("discover-india-series", "routes/discover-india-series.tsx"),
     route("diwali-essay-competition", "routes/diwali-essay-competition.tsx"),
+    route("sound-of-us", "routes/sound-of-us.tsx"),
     route("our-sponsors", "routes/our-sponsors.tsx"),
     route("sponsor/:sponsorSlug", "routes/sponsor.$sponsorSlug.tsx"),
     route("our-team", "routes/our-team.tsx"),
