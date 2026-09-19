@@ -61,16 +61,13 @@ export default function DiwaliEssayCompetition() {
           {/* Entry Form Section */}
           <div className="w-full max-w-5xl text-center py-12 border-t border-dashed border-muted">
             <h3 className="text-3xl font-black text-primary mb-4">Submit Your Entry</h3>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-              The deadline for submissions is September 15, 2026.
-            </p>
-            <div className="w-full max-w-3xl mx-auto overflow-x-auto rounded border border-gray-200 dark:border-gray-700">
-              <iframe
-                title="Hum Sub - Diwali Essay Competition Form"
-                sandbox="allow-scripts allow-forms"
-                className="w-full min-h-[1650px] border-0"
-                src="https://form.jotform.com/242075159180051"
-              ></iframe>
+            <div className="bg-red-50 dark:bg-red-950/20 p-6 rounded-lg border border-red-200 dark:border-red-800 max-w-2xl mx-auto">
+              <p className="text-red-800 dark:text-red-200 font-medium text-lg">
+                <span className="text-red-600 dark:text-red-400">⚠️</span> Applications are now closed.
+              </p>
+              <p className="text-red-700 dark:text-red-300 text-sm mt-2">
+                The submission deadline of September 15, 2026 has passed. Thank you to everyone who participated!
+              </p>
             </div>
           </div>
         </div>

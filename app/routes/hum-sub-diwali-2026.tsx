@@ -604,44 +604,15 @@ export default function HumSubDiwali2026() {
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-6 bg-gray-50/50 dark:bg-gray-800/50">
                   <div className="space-y-6">
-                    <div className="bg-green-50 dark:bg-green-950/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
-                      <p className="text-green-800 dark:text-green-200 font-medium">
-                        <span className="text-green-600 dark:text-green-400">📋</span> Applications are now open! Visit{" "}
-                        <a
-                          href="https://portal.humsub.org"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="underline font-semibold hover:text-green-900 dark:hover:text-green-100"
-                        >
-                          portal.humsub.org
-                        </a>{" "}
-                        to submit your vendor application.
+                    <div className="bg-red-50 dark:bg-red-950/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                      <p className="text-red-800 dark:text-red-200 font-medium">
+                        <span className="text-red-600 dark:text-red-400">📋</span> Applications are now closed. Thank
+                        you to everyone who submitted!
                       </p>
-                    </div>
-
-                    <div className="space-y-4">
-                      <p className="text-muted-foreground text-center">
-                        Review the vendor layout and the application guidelines document for all requirements,
-                        deadlines, and submission details.
+                      <p className="text-red-700 dark:text-red-300 text-sm mt-2">
+                        If you submitted an application, you will receive a response from our team with details about
+                        next steps.
                       </p>
-                      <div className="flex flex-col sm:flex-row justify-center gap-3">
-                        <a
-                          href="/assets/events/HD2026_Vendor_Layout_V1.pdf"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center px-6 py-2 bg-blue-600 text-white rounded-lg shadow-sm hover:bg-blue-700 transition"
-                        >
-                          Open Layout (PDF)
-                        </a>
-                        <a
-                          href="/assets/events/HD2026-Vendor Application and Guidelines.pdf"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center px-6 py-2 bg-blue-600 text-white rounded-lg shadow-sm hover:bg-blue-700 transition"
-                        >
-                          View Guidelines
-                        </a>
-                      </div>
                     </div>
                   </div>
                 </AccordionContent>
