@@ -293,14 +293,14 @@ export default function HumSubDiwali2026() {
               </Button>
             </div>
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              Entry is free. Members save on reserved seating —{" "}
+              Entry is free. Membership is $10/year and includes a reserved seat —{" "}
               <a
                 href="https://www.zeffy.com/en-US/ticketing/hum-sub-annual-membership"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline font-semibold"
               >
-                get membership ($10/yr)
+                get membership
               </a>
               .
             </p>
@@ -375,9 +375,9 @@ export default function HumSubDiwali2026() {
 
               <div className="bg-orange-50 dark:bg-orange-950/20 p-4 rounded-lg border border-orange-200 dark:border-orange-800">
                 <p className="text-sm text-orange-800 dark:text-orange-200">
-                  <span className="font-semibold">Reserved seating:</span> Entry is free. Reserved seats are $12 early
-                  bird until Oct 6, $15 from Oct 7, or $10 for annual members. Membership details are on the membership
-                  page.
+                  <span className="font-semibold">Reserved seating:</span> Entry is free. Reserved seating tickets are
+                  $12 early bird until Oct 6 and $15 from Oct 7. Or join Hum Sub for $10/year — membership includes one
+                  reserved seat. See membership details on the membership page.
                 </p>
               </div>
 

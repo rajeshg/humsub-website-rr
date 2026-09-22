@@ -45,13 +45,6 @@ export const sponsors: Sponsor[] = [
     href: "https://www.coastal24.com/",
     label: "Youth Achievement Award Sponsor",
   },
-  {
-    name: "Madhur Mathur and Ashok Mathur",
-    imagePath: "/assets/sponsors/madhur_ashok_mathur.png",
-    level: "diamond",
-    description: "Exclusive fireworks sponsor",
-    label: "Fireworks Sponsor",
-  },
   // Gold Sponsors
   {
     name: "Pinnacle Financial Partners",
@@ -81,12 +74,6 @@ export const sponsors: Sponsor[] = [
     href: "https://crsgranite.com/",
     label: "Shuttle Sponsor",
   },
-  {
-    name: "Sajjan Agarwal",
-    imagePath: "/assets/sponsors/sajjan-agarwal-logo.png",
-    level: "gold",
-  },
-
   // Silver Sponsors
   {
     name: "First Bank",
@@ -161,12 +148,6 @@ export const sponsors: Sponsor[] = [
 
   // Partners
   // Small business supporter
-  {
-    name: "Wake Dental Arts",
-    imagePath: ["/assets/sponsors/wake-dental-arts.jpeg", "/assets/sponsors/cary-dental-arts.jpeg"],
-    level: "small-business-supporter",
-    href: "https://wakedentalarts.com/",
-  },
 ]
 
 // Utility function to get sponsors by level - more efficient than maintaining a separate structure

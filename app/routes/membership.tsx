@@ -8,7 +8,7 @@ export function meta() {
     {
       name: "description",
       content:
-        "Annual membership: priority Diwali seating, year-round offers, and members-only perks that help fund community programming.",
+        "Annual membership: $10/year and includes one reserved seat at Hum Sub Diwali, while helping fund community programming.",
     },
   ]
 }
@@ -31,23 +31,19 @@ export default function Membership() {
           </div>
 
           <p className="text-lg leading-relaxed text-center mb-10 max-w-2xl mx-auto">
-            Membership is an annual plan that gives you priority access to our Diwali event's best seating and
-            members-only perks — while helping fund and grow community programming.
+            Membership is an annual plan that includes one reserved seat at our Diwali event — while helping fund and
+            grow community programming.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
             {[
               {
-                title: "Priority Seating",
-                desc: "Enjoy premium seating at Diwali with no extra charge (first come, first served).",
+                title: "Reserved Seat Included",
+                desc: "Your $10 annual membership includes one reserved seat at Hum Sub Diwali (a $12–$15 value).",
               },
               {
-                title: "Exclusive Offers",
-                desc: "Special year-round promotions and partner perks just for members.",
-              },
-              {
-                title: "Senior Access",
-                desc: "Front-section access included for our senior guests to keep seating fair.",
+                title: "Support Community Programming",
+                desc: "Your membership helps fund scholarships, cultural programs, and community initiatives.",
               },
             ].map((item, idx) => (
               <div
@@ -81,8 +77,9 @@ export default function Membership() {
                 q: "What's the difference between a ticket and membership?",
                 a: (
                   <>
-                    Membership provides year‑round priority access and member perks. Individual tickets grant access for
-                    a single event. To secure membership in advance, visit our{" "}
+                    Entry to Hum Sub Diwali is free. Tickets are for reserved seating. Membership is $10/year and
+                    includes one reserved seat, and it also helps fund community programming. To secure membership in
+                    advance, visit our{" "}
                     <Link to="/membership/signup" className="text-primary font-bold hover:underline">
                       membership sign‑up page
                     </Link>
@@ -92,7 +89,7 @@ export default function Membership() {
               },
               {
                 q: "Can I just buy tickets instead of membership?",
-                a: "Yes — single‑event tickets are available (often sold in person). Tickets grant event access only; membership adds priority and year‑round benefits.",
+                a: "Yes — reserved seating tickets are available online. Entry is free; tickets are for reserved seating. Membership includes one reserved seat and supports our programming.",
               },
               {
                 q: "Can we get membership in person at an event?",
@@ -108,7 +105,7 @@ export default function Membership() {
               },
               {
                 q: "Is seating reserved for members?",
-                a: "Seating is offered on a priority, first‑come first‑served basis for members. The front section is reserved for members. We recommend arriving early (around 5:30 PM) to take advantage of member seating.",
+                a: "Reserved seating is available to members and ticket holders. Membership includes one reserved seat. Gates open at 9:00 AM, and we recommend arriving early to make the most of the day.",
               },
               {
                 q: "I am a member — can I bring family members?",
@@ -126,9 +123,8 @@ export default function Membership() {
                 q: "Do I need a ticket or membership to take photos?",
                 a: (
                   <>
-                    To enhance the experience for our valued Hum Sub Members, the front-stage seating and photo area
-                    will be reserved exclusively for Members at Hum Sub Diwali. 📸 Your membership supports
-                    scholarships, cultural programs, and community initiatives.
+                    The front-stage seating and photo area at Hum Sub Diwali are reserved for our members and ticket
+                    holders. 📸 Your membership supports scholarships, cultural programs, and community initiatives.
                   </>
                 ),
               },
