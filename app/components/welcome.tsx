@@ -12,31 +12,7 @@ export function Welcome({ events }: { events: EventMeta[] }) {
     <div id="container" className="container mx-auto max-w-7xl not-prose">
       <main className="md:mx-4 flex flex-col dark:text-slate-100">
         <div className="flex flex-col md:flex-row gap-4">
-          {/* Membership and Live Streaming Links */}
-          <div className="flex flex-col items-center my-4 w-full md:w-1/2">
-            <div className="w-full h-full bg-base-100/60 dark:bg-slate-800/60 rounded-xl shadow border border-base-200 dark:border-slate-700 px-6 py-5 flex flex-col items-center backdrop-blur">
-              <h3 className="text-lg font-bold text-primary dark:text-amber-300 mt-0 mb-2 flex items-center gap-2">
-                <Star className="h-5 w-5 animate-spin [animation-duration:3s]" />
-                Join the Fun!
-              </h3>
-              <p className="text-sm text-center text-base-content/70 dark:text-slate-300 mb-3">
-                Become a member. Get involved and support the community!
-              </p>
-              <div className="flex w-full gap-3 flex-col sm:flex-row">
-                <Link
-                  to="/membership"
-                  title="Become a Member"
-                  className="w-full sm:flex-1 sm:min-w-0 flex items-center justify-center gap-2 px-3 py-2 rounded-lg font-semibold text-base md:text-lg transition-all
-									text-primary dark:text-amber-300 bg-primary/5 dark:bg-amber-300/10 hover:bg-primary/20 dark:hover:bg-amber-300/20
-									decoration-2 decoration-primary dark:decoration-amber-300 no-underline shadow-sm hover:scale-105"
-                >
-                  <Users className="h-5 w-5" />
-                  <span className="truncate">Membership</span>
-                </Link>
-              </div>
-            </div>
-          </div>
-
+          {/* Upcoming Events */}
           {events.length > 0 && (
             <section className="w-full md:w-1/2 my-4 flex flex-col text-center not-prose rounded-xl bg-base-200/50 dark:bg-slate-800/70 px-6 py-5 shadow-sm h-full">
               <div className="text-lg font-semibold flex items-center justify-center mb-2">
@@ -71,6 +47,35 @@ export function Welcome({ events }: { events: EventMeta[] }) {
               </div>
             </section>
           )}
+
+          {/* Membership */}
+          <div className="flex flex-col items-center my-4 w-full md:w-1/2">
+            <div className="w-full h-full bg-base-100/60 dark:bg-slate-800/60 rounded-xl shadow border border-base-200 dark:border-slate-700 px-6 py-4 flex flex-col items-center backdrop-blur">
+              <h3 className="text-base font-bold text-primary dark:text-amber-300 mt-0 mb-2 flex items-center gap-2">
+                <Star className="h-5 w-5 animate-spin [animation-duration:3s]" />
+                Join the Fun!
+              </h3>
+              <p className="text-xs sm:text-sm text-center text-base-content/70 dark:text-slate-300 mb-2">
+                Membership includes reserved seating all day at Hum Sub Diwali — one-time, per person, per calendar
+                year.
+              </p>
+              <p className="text-xs sm:text-sm font-semibold text-center text-base-content/80 dark:text-slate-300 mb-3">
+                $12 early bird (through Oct 6, 2026) · $15 from Oct 7, 2026
+              </p>
+              <div className="flex w-full gap-3 flex-col sm:flex-row">
+                <Link
+                  to="/membership"
+                  title="Get Hum Sub membership"
+                  className="w-full sm:flex-1 sm:min-w-0 flex items-center justify-center gap-2 px-3 py-2 rounded-lg font-semibold text-sm sm:text-base transition-all
+									text-primary dark:text-amber-300 bg-primary/5 dark:bg-amber-300/10 hover:bg-primary/20 dark:hover:bg-amber-300/20
+									decoration-2 decoration-primary dark:decoration-amber-300 no-underline shadow-sm hover:scale-105"
+                >
+                  <Users className="h-5 w-5" />
+                  <span className="truncate">Get Membership</span>
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">

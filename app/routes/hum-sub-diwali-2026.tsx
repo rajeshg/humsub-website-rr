@@ -8,6 +8,13 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "~/componen
 import { sponsors as sponsors2025 } from "~/lib/sponsors"
 import { useTimeUntil } from "~/lib/timeuntil"
 
+// Web banner for Diwali 2026 hero (16:9, 1920x1080).
+// Source: "WEB BANNER 1920x1080.jpg" from Downloads.
+// Other variants seen in Downloads:
+// - "WEB BANNER 1300x650.jpg" (2:1, lighter, good mobile fallback)
+// - "WEB BANNER 500x500.jpg" / "WEB BANNER 640x480.jpg" (square-ish, text too small for hero)
+const DIWALI_2026_BANNER_SRC = "/assets/events/hum-sub-diwali-2026-web-banner.jpg"
+
 export function meta() {
   const title = "Hum Sub Diwali 2026 Celebration"
   const date = "October 10, 2026"
@@ -211,6 +218,18 @@ export default function HumSubDiwali2026() {
         <div className="w-full px-4 md:px-4 relative z-10">
           {/* Hero Content */}
           <div className="text-center space-y-8 max-w-4xl mx-auto">
+            {/* Web Banner */}
+            <figure className="mx-auto w-full max-w-5xl overflow-hidden rounded-2xl border border-orange-200/50 bg-white shadow-2xl dark:border-orange-600/30">
+              <img
+                src={DIWALI_2026_BANNER_SRC}
+                alt="Hum Sub Diwali 2026 — Udaan Soaring High, headliner Vidya Vox with Rohith Jayaraman and live band, Oct 10 at Koka Booth Amphitheatre"
+                className="block h-auto w-full object-contain"
+                loading="eager"
+                fetchPriority="high"
+                width={1920}
+                height={1080}
+              />
+            </figure>
             {/* Main Title with Enhanced Styling */}
             <div className="space-y-4">
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-gray-900 dark:text-white leading-tight animate-in fade-in duration-1000">
@@ -276,7 +295,7 @@ export default function HumSubDiwali2026() {
                   rel="noopener noreferrer"
                   className="no-underline flex items-center gap-2"
                 >
-                  <span>Buy Tickets — reserved seating</span>
+                  <span>Get Membership — reserved seating</span>
                   <span className="group-hover:translate-x-1 transition-transform">→</span>
                 </a>
               </Button>
@@ -293,9 +312,10 @@ export default function HumSubDiwali2026() {
               </Button>
             </div>
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              Entry is free. Membership is $10/year and includes a reserved seat —{" "}
+              Entry is free. One-time membership — $12 early bird through Oct 6, $15 from Oct 7, per person, per
+              calendar year — includes reserved seating for the whole day.{" "}
               <a
-                href="https://www.zeffy.com/en-US/ticketing/hum-sub-annual-membership"
+                href="https://www.zeffy.com/en-US/ticketing/hum-sub-diwali--2026"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline font-semibold"
@@ -375,9 +395,10 @@ export default function HumSubDiwali2026() {
 
               <div className="bg-orange-50 dark:bg-orange-950/20 p-4 rounded-lg border border-orange-200 dark:border-orange-800">
                 <p className="text-sm text-orange-800 dark:text-orange-200">
-                  <span className="font-semibold">Reserved seating:</span> Entry is free. Reserved seating tickets are
-                  $12 early bird until Oct 6 and $15 from Oct 7. Or join Hum Sub for $10/year — membership includes one
-                  reserved seat. See membership details on the membership page.
+                  <span className="font-semibold">Reserved seating:</span> Entry is free. Reserved seating comes with
+                  Hum Sub membership — $12 early bird through Oct 6, $15 from Oct 7, per person, per calendar year.
+                  Membership is a one-time purchase and your seat is valid for the whole day. See membership details on
+                  the membership page.
                 </p>
               </div>
 
@@ -396,7 +417,7 @@ export default function HumSubDiwali2026() {
                   rel="noopener noreferrer"
                   className="no-underline"
                 >
-                  Buy Tickets
+                  Get Membership
                 </a>
               </Button>
               <Button
@@ -404,14 +425,9 @@ export default function HumSubDiwali2026() {
                 size="lg"
                 className="bg-white text-orange-600 hover:bg-gray-100 border-2 border-orange-300 dark:border-orange-700"
               >
-                <a
-                  href="https://www.zeffy.com/en-US/ticketing/hum-sub-annual-membership"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="no-underline"
-                >
-                  Get Membership — $10/yr
-                </a>
+                <Link to="/membership" className="no-underline">
+                  Membership Details
+                </Link>
               </Button>
             </CardFooter>
           </Card>
