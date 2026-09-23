@@ -66,14 +66,6 @@ export const sponsors: Sponsor[] = [
     level: "gold",
     href: "https://www.pnc.com/",
   },
-  {
-    name: "CRS Marble & Granite",
-    imagePath: "/assets/sponsors/logo_crs.jpg",
-    level: "gold",
-    description: "Exclusive sponsor for Shuttle Service",
-    href: "https://crsgranite.com/",
-    label: "Shuttle Sponsor",
-  },
   // Silver Sponsors
   {
     name: "First Bank",
