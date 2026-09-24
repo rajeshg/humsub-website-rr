@@ -54,7 +54,7 @@ function Hero({ eventDate }: HeroProps) {
     return (
       <div
         aria-hidden="true"
-        className="mx-auto bg-white/20 dark:bg-slate-800/30 backdrop-blur-md rounded-xl p-6 border border-orange-200/30 dark:border-orange-600/30 shadow-2xl min-h-[112px]"
+        className="mx-auto bg-white/20 dark:bg-slate-800/30 backdrop-blur-md rounded-xl p-4 md:p-6 border border-orange-200/30 dark:border-orange-600/30 shadow-2xl min-h-[96px]"
       />
     )
   }
@@ -63,64 +63,64 @@ function Hero({ eventDate }: HeroProps) {
     <>
       {/* Countdown Timer */}
       {!timeLeft.isExpired && (
-        <div className="mx-auto bg-white/20 dark:bg-slate-800/30 backdrop-blur-md rounded-xl p-6 border border-orange-200/30 dark:border-orange-600/30 shadow-2xl">
+        <div className="mx-auto bg-white/20 dark:bg-slate-800/30 backdrop-blur-md rounded-xl p-4 md:p-6 border border-orange-200/30 dark:border-orange-600/30 shadow-2xl">
           <div
-            className="flex justify-center items-center gap-2 md:gap-4 flex-wrap"
+            className="flex flex-wrap items-stretch gap-1.5 sm:gap-2 md:gap-4"
             role="timer"
             aria-live="off"
             suppressHydrationWarning
           >
             {timeLeft.months > 0 && (
               <>
-                <div className="bg-orange-100/80 dark:bg-orange-900/60 backdrop-blur-sm rounded-lg p-3 md:p-4 min-w-[70px] md:min-w-[80px] border border-orange-300/50 dark:border-orange-600/50">
+                <div className="flex-1 min-w-0 bg-orange-100/80 dark:bg-orange-900/60 backdrop-blur-sm rounded-lg p-1.5 md:p-4 text-center border border-orange-300/50 dark:border-orange-600/50">
                   <div className="text-xl md:text-2xl lg:text-3xl font-bold text-orange-800 dark:text-orange-200 tabular-nums">
                     {timeLeft.months.toString().padStart(2, "0")}
                   </div>
-                  <div className="text-xs md:text-sm text-orange-700 dark:text-orange-300 uppercase tracking-wide">
+                  <div className="text-[10px] md:text-sm text-orange-700 dark:text-orange-300 uppercase whitespace-nowrap">
                     Months
                   </div>
                 </div>
                 <div
                   aria-hidden="true"
-                  className="text-xl md:text-2xl lg:text-3xl font-bold text-orange-800 dark:text-orange-200"
+                  className="hidden md:block text-xl md:text-2xl lg:text-3xl font-bold text-orange-800 dark:text-orange-200"
                 >
                   :
                 </div>
               </>
             )}
-            <div className="bg-orange-100/80 dark:bg-orange-900/60 backdrop-blur-sm rounded-lg p-3 md:p-4 min-w-[70px] md:min-w-[80px] border border-orange-300/50 dark:border-orange-600/50">
+            <div className="flex-1 min-w-0 bg-orange-100/80 dark:bg-orange-900/60 backdrop-blur-sm rounded-lg p-1.5 md:p-4 text-center border border-orange-300/50 dark:border-orange-600/50">
               <div className="text-xl md:text-2xl lg:text-3xl font-bold text-orange-800 dark:text-orange-200 tabular-nums">
                 {timeLeft.days.toString().padStart(2, "0")}
               </div>
-              <div className="text-xs md:text-sm text-orange-700 dark:text-orange-300 uppercase tracking-wide">
+              <div className="text-[10px] md:text-sm text-orange-700 dark:text-orange-300 uppercase whitespace-nowrap">
                 Days
               </div>
             </div>
             <div
               aria-hidden="true"
-              className="text-xl md:text-2xl lg:text-3xl font-bold text-orange-800 dark:text-orange-200"
+              className="hidden md:block text-xl md:text-2xl lg:text-3xl font-bold text-orange-800 dark:text-orange-200"
             >
               :
             </div>
-            <div className="bg-orange-100/80 dark:bg-orange-900/60 backdrop-blur-sm rounded-lg p-3 md:p-4 min-w-[70px] md:min-w-[80px] border border-orange-300/50 dark:border-orange-600/50">
+            <div className="flex-1 min-w-0 bg-orange-100/80 dark:bg-orange-900/60 backdrop-blur-sm rounded-lg p-1.5 md:p-4 text-center border border-orange-300/50 dark:border-orange-600/50">
               <div className="text-xl md:text-2xl lg:text-3xl font-bold text-orange-800 dark:text-orange-200 tabular-nums">
                 {timeLeft.hours.toString().padStart(2, "0")}
               </div>
-              <div className="text-xs md:text-sm text-orange-700 dark:text-orange-300 uppercase tracking-wide">
+              <div className="text-[10px] md:text-sm text-orange-700 dark:text-orange-300 uppercase whitespace-nowrap">
                 Hours
               </div>
             </div>
             <div
               aria-hidden="true"
-              className="text-xl md:text-2xl lg:text-3xl font-bold text-orange-800 dark:text-orange-200"
+              className="hidden md:block text-xl md:text-2xl lg:text-3xl font-bold text-orange-800 dark:text-orange-200"
             >
               :
             </div>
-            <div className="bg-orange-100/80 dark:bg-orange-900/60 backdrop-blur-sm rounded-lg p-3 md:p-4 min-w-[70px] md:min-w-[80px] border border-orange-300/50 dark:border-orange-600/50">
+            <div className="flex-1 min-w-0 bg-orange-100/80 dark:bg-orange-900/60 backdrop-blur-sm rounded-lg p-1.5 md:p-4 text-center border border-orange-300/50 dark:border-orange-600/50">
               <div className="text-xl md:text-2xl lg:text-3xl font-bold text-orange-800 dark:text-orange-200 tabular-nums">
                 {timeLeft.minutes.toString().padStart(2, "0")}
               </div>
-              <div className="text-xs md:text-sm text-orange-700 dark:text-orange-300 uppercase tracking-wide">
+              <div className="text-[10px] md:text-sm text-orange-700 dark:text-orange-300 uppercase whitespace-nowrap">
                 Minutes
               </div>
             </div>
@@ -244,19 +244,19 @@ export default function HumSubDiwali2026() {
             </div>
 
             {/* Event Details with Enhanced Card */}
-            <div className="bg-white/90 dark:bg-gray-800/95 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-orange-200/50 dark:border-orange-600/30 shadow-2xl max-w-2xl mx-auto transform hover:scale-105 transition-transform duration-300 animate-in slide-in-from-bottom-4 duration-1000 delay-500 mb-8">
+            <div className="bg-white/90 dark:bg-gray-800/95 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-orange-200/50 dark:border-orange-600/30 shadow-2xl max-w-2xl mx-auto transform sm:hover:scale-105 transition-transform duration-300 animate-in slide-in-from-bottom-4 duration-1000 delay-500 mb-8">
               <div className="space-y-4 text-gray-800 dark:text-gray-100">
-                <div className="flex items-center gap-3 md:text-xl font-medium">
+                <div className="flex items-start gap-3 md:text-xl font-medium">
                   <div className="p-2 bg-orange-100 dark:bg-orange-900/60 rounded-full">
                     <CalendarDays className="h-6 w-6 text-amber-600 dark:text-amber-300" />
                   </div>
-                  <span className="text-balance">October 10, 2026 · 9 AM – 9:30 PM</span>
+                  <span className="text-left text-balance">October 10, 2026 · 9 AM – 9:30 PM</span>
                 </div>
-                <div className="flex gap-3 md:text-xl font-medium">
+                <div className="flex items-start gap-3 md:text-xl font-medium">
                   <div className="p-2 bg-orange-100 dark:bg-orange-900/60 rounded-full">
                     <MapPin className="h-6 w-6 text-amber-600 dark:text-amber-300" />
                   </div>
-                  <span>Koka Booth Amphitheatre, Cary, NC</span>
+                  <span className="text-left">Koka Booth Amphitheatre, Cary, NC</span>
                 </div>
                 <div className="text-center pt-2">
                   <Badge
@@ -410,7 +410,7 @@ export default function HumSubDiwali2026() {
               </div>
             </CardContent>
             <CardFooter className="flex flex-col sm:flex-row justify-center gap-3">
-              <Button asChild size="lg" className="bg-orange-600 hover:bg-orange-700 text-white">
+              <Button asChild size="lg" className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white">
                 <a
                   href="https://www.zeffy.com/en-US/ticketing/hum-sub-diwali--2026"
                   target="_blank"
@@ -423,7 +423,7 @@ export default function HumSubDiwali2026() {
               <Button
                 asChild
                 size="lg"
-                className="bg-white text-orange-600 hover:bg-gray-100 border-2 border-orange-300 dark:border-orange-700"
+                className="w-full sm:w-auto bg-white text-orange-600 hover:bg-gray-100 border-2 border-orange-300 dark:border-orange-700"
               >
                 <Link to="/membership" className="no-underline">
                   Membership Details
@@ -464,7 +464,7 @@ export default function HumSubDiwali2026() {
                   href="/assets/events/Hum_Sub_Diwali_Parking_KBA_2025.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-6 py-2 bg-blue-600 text-white rounded-lg shadow-sm hover:bg-blue-700 transition"
+                  className="inline-flex items-center justify-center w-full sm:w-auto px-6 py-2 bg-blue-600 text-white rounded-lg shadow-sm hover:bg-blue-700 transition"
                 >
                   Open Parking Map (PDF)
                 </a>
@@ -560,20 +560,46 @@ export default function HumSubDiwali2026() {
             <CardContent>
               <div className="space-y-4">
                 <div className="grid gap-3">
-                  <div className="flex items-center gap-4 p-3 bg-white dark:bg-gray-800 rounded-lg border border-orange-100 dark:border-orange-900">
-                    <span className="text-lg font-bold text-orange-600 dark:text-orange-400 min-w-[80px]">9:00 AM</span>
-                    <span>Gates Open, Food & Vendor Village</span>
+                  <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-4 p-3 bg-white dark:bg-gray-800 rounded-lg border border-orange-100 dark:border-orange-900">
+                    <span className="text-lg font-bold text-orange-600 dark:text-orange-400 w-44 shrink-0">9 AM</span>
+                    <span>Gates Open</span>
                   </div>
-                  <div className="flex items-center gap-4 p-3 bg-white dark:bg-gray-800 rounded-lg border border-orange-100 dark:border-orange-900">
-                    <span className="text-lg font-bold text-orange-600 dark:text-orange-400 min-w-[80px]">9:45 AM</span>
-                    <span>Cultural Performances Begin (Main Stage)</span>
+                  <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-4 p-3 bg-white dark:bg-gray-800 rounded-lg border border-orange-100 dark:border-orange-900">
+                    <span className="text-lg font-bold text-orange-600 dark:text-orange-400 w-44 shrink-0">
+                      10 AM – 5:30 PM
+                    </span>
+                    <div>
+                      <div>Daytime Cultural Performances</div>
+                      <div className="mt-0.5 text-sm text-muted-foreground">
+                        Formal inauguration at Noon — lamp lighting, Cary Mayor &amp; VIP speeches
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-4 p-3 bg-white dark:bg-gray-800 rounded-lg border border-orange-100 dark:border-orange-900">
-                    <span className="text-lg font-bold text-orange-600 dark:text-orange-400 min-w-[80px]">6:00 PM</span>
-                    <span>Vidya Vox — Featured Artist Performance (Main Stage)</span>
+                  <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-4 p-3 bg-white dark:bg-gray-800 rounded-lg border border-orange-100 dark:border-orange-900">
+                    <span className="text-lg font-bold text-orange-600 dark:text-orange-400 w-44 shrink-0">
+                      5:30 – 6:40 PM
+                    </span>
+                    <div>
+                      <div>Awards Ceremony</div>
+                      <div className="mt-0.5 text-sm text-muted-foreground">
+                        Theme music competition, celebrity/senior dance, Diwali essay &amp; YAA awards, Governor's
+                        message, National Anthem
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-4 p-3 bg-gradient-to-r from-amber-100 to-orange-100 dark:from-amber-900/20 dark:to-orange-900/20 rounded-lg border border-amber-200 dark:border-amber-800">
-                    <span className="text-lg font-bold text-amber-600 dark:text-amber-400 min-w-[80px]">8:45 PM</span>
+                  <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-4 p-3 bg-white dark:bg-gray-800 rounded-lg border border-orange-100 dark:border-orange-900">
+                    <span className="text-lg font-bold text-orange-600 dark:text-orange-400 w-44 shrink-0">
+                      7 – 9 PM
+                    </span>
+                    <div>
+                      <div>Evening Headline Performance</div>
+                      <div className="mt-0.5 text-sm text-muted-foreground">
+                        by Vidya Vox, Rohith Jayaraman and live band
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-4 p-3 bg-gradient-to-r from-amber-100 to-orange-100 dark:from-amber-900/20 dark:to-orange-900/20 rounded-lg border border-amber-200 dark:border-amber-800">
+                    <span className="text-lg font-bold text-amber-600 dark:text-amber-400 w-44 shrink-0">9 PM</span>
                     <span className="font-semibold">✨ Grand Fireworks Finale ✨</span>
                   </div>
                 </div>
@@ -719,17 +745,6 @@ export default function HumSubDiwali2026() {
                         By working together, great things can be accomplished. At Hum Sub, our strength lies in our
                         volunteer system. We encourage you to sign up for volunteer duties at our events including Hum
                         Sub Diwali, Basant Bahar, and special events.
-                      </p>
-                      <p className="text-muted-foreground mb-4">
-                        To volunteer with us, we kindly ask that you become a member first. This ensures our volunteers
-                        are part of our community and get priority access to opportunities.{" "}
-                        <Link
-                          to="/membership/signup"
-                          className="text-blue-600 dark:text-blue-400 underline hover:text-blue-800 dark:hover:text-blue-200"
-                        >
-                          Sign up for membership here
-                        </Link>
-                        .
                       </p>
                       <div className="flex justify-center mt-6">
                         <Button asChild size="lg" className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3">

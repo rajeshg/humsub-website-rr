@@ -1,4 +1,3 @@
-import { Link } from "react-router"
 import { Button } from "~/components/ui/button"
 
 export default function Volunteer() {
@@ -23,20 +22,6 @@ export default function Volunteer() {
             minimum age to register independently is 16) who support us during our events by giving us their time,
             talent, support, and hard work. It takes many hands and many hearts to complete our mission.
           </p>
-
-          <div className="bg-primary/5 rounded-2xl p-6 border border-primary/10">
-            <p className="m-0">
-              To volunteer with us, we kindly ask that you become a member first. This ensures our volunteers are part
-              of our community and get priority access to opportunities.{" "}
-              <Link
-                to="/membership"
-                className="text-primary font-bold underline underline-offset-4 hover:text-primary/80"
-              >
-                Sign up for membership here
-              </Link>
-              .
-            </p>
-          </div>
 
           <p>
             By working together, great things can be accomplished. Unity provides a strength that is denied to the
