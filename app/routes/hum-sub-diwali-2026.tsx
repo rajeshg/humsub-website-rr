@@ -446,22 +446,47 @@ export default function HumSubDiwali2026() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="space-y-3">
-                <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-                  <span className="font-semibold text-primary min-w-[100px]">General:</span>
-                  <span>$10</span>
-                </div>
-                <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+              <div className="space-y-3 text-sm sm:text-base">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
                   <span className="font-semibold text-primary min-w-[100px]">Preferred:</span>
-                  <span>$20</span>
+                  <span>$20 per car — limited, first-come first-served. Credit/debit only.</span>
+                </div>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+                  <span className="font-semibold text-primary min-w-[100px]">General:</span>
+                  <span>$10 per car — day of event only, first-come first-served. Credit/debit only.</span>
+                </div>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+                  <span className="font-semibold text-primary min-w-[100px]">Accessible:</span>
+                  <span>$10 per car — limited spaces, first-come first-served with proper hang tag or plate.</span>
                 </div>
               </div>
               <p className="text-sm text-muted-foreground">
-                Koka Booth Amphitheatre is cashless — please plan to pay for parking with a card.
+                Koka Booth Amphitheatre is cashless — all parking locations accept credit &amp; debit cards only. All
+                cars must pay to park in Amphitheatre-owned lots as they arrive. Some nearby businesses may also charge
+                for parking in their lots.
               </p>
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <p>
+                  <span className="font-semibold text-foreground">Drop-off &amp; pick-up:</span> if using a taxi, Uber,
+                  etc., follow the signs and parking staff to the designated pick-up &amp; drop-off area.
+                </p>
+                <p>
+                  <span className="font-semibold text-foreground">Courtesy shuttle:</span> drop-off and pick-up directly
+                  in front of the office building at 9000 Regency Parkway. Shuttles are van-style — please plan ahead if
+                  you have accessibility needs or are traveling with small children.
+                </p>
+              </div>
               <div className="flex flex-col sm:flex-row justify-center gap-3">
                 <a
-                  href="/assets/events/Hum_Sub_Diwali_Parking_KBA_2025.pdf"
+                  href="https://www.etix.com/ticket/p/62009178/preferred-parking-pass-october-102026-cary-koka-booth-amphitheatre"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center w-full sm:w-auto px-6 py-2 bg-orange-600 text-white rounded-lg shadow-sm hover:bg-orange-700 transition"
+                >
+                  Purchase Preferred Parking
+                </a>
+                <a
+                  href="https://boothamphitheatre.production.carbonhouse.com/assets/doc/2025-DIWALI-PARKING-MAP-WITH-CHIESI-LOT-687f1df749.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center w-full sm:w-auto px-6 py-2 bg-blue-600 text-white rounded-lg shadow-sm hover:bg-blue-700 transition"
