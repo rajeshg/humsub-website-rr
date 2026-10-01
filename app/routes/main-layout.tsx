@@ -142,6 +142,9 @@ export default function MainLayout() {
                       <ListItem title="Essay Competition" href="/diwali-essay-competition">
                         Learn more about the Diwali Essay Competition.
                       </ListItem>
+                      <ListItem title="The Sound of Us" href="/sound-of-us">
+                        Theme music competition — submit by Nov 25, 2026.
+                      </ListItem>
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
@@ -295,6 +298,14 @@ export default function MainLayout() {
                           className="block py-1.5 px-3 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors"
                         >
                           Diwali Essay Competition
+                        </Link>
+                      </SheetTrigger>
+                      <SheetTrigger asChild>
+                        <Link
+                          to="/sound-of-us"
+                          className="block py-1.5 px-3 hover:bg-secondary hover:text-secondary-foreground rounded-md transition-colors"
+                        >
+                          The Sound of Us
                         </Link>
                       </SheetTrigger>
                     </div>

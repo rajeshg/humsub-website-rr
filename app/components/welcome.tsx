@@ -1,4 +1,4 @@
-import { Star, Users, Zap, Heart, Store, Info } from "lucide-react"
+import { Star, Users, Zap, Heart, Store, Info, Music } from "lucide-react"
 
 import { Link } from "react-router"
 import { PictureCarousel } from "~/components/picture-carousel"
@@ -77,6 +77,30 @@ export function Welcome({ events }: { events: EventMeta[] }) {
             </div>
           </div>
         </div>
+
+        {/* Sound of Us spotlight */}
+        <section className="not-prose mx-auto my-4 w-full max-w-3xl overflow-hidden rounded-xl shadow-lg bg-gradient-to-r from-violet-700 via-fuchsia-600 to-orange-500 dark:from-violet-900 dark:via-fuchsia-800 dark:to-orange-700">
+          <div className="flex flex-col sm:flex-row items-center gap-3 px-5 py-4 text-white">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/20">
+              <Music className="h-5 w-5" />
+            </div>
+            <div className="flex-1 text-center sm:text-left">
+              <p className="text-xs font-bold uppercase tracking-widest text-white/80">Submit by Nov 25, 2026</p>
+              <h3 className="text-base sm:text-lg font-bold">The Sound of Us — Hum Sub Theme Music Competition</h3>
+              <p className="text-sm text-white/90">
+                Create an original 30–60 second theme. Open to all ages, genres, and traditions.
+              </p>
+            </div>
+            <Link
+              to="/sound-of-us"
+              title="The Sound of Us theme music competition"
+              className="inline-flex w-full sm:w-auto shrink-0 items-center justify-center gap-2 rounded-lg bg-white px-5 py-2 text-sm font-bold text-fuchsia-700 no-underline shadow transition-transform hover:scale-105"
+            >
+              Enter Now
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+        </section>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
           <PictureCarousel />

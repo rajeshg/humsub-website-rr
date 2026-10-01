@@ -1,5 +1,5 @@
 import { Link } from "react-router"
-import { Award, CalendarDays, ClipboardList, MapPin, Mic, Music, ShieldCheck, Trophy, Users } from "lucide-react"
+import { Award, CalendarDays, ClipboardList, Mic, Music, ShieldCheck, Trophy, Users } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card"
 
 const SUBMISSION_FORM_URL =
@@ -27,19 +27,15 @@ const pillars = [
 const keyDates = [
   {
     label: "Applications Open",
-    value: "September 14, 2026",
+    value: "September 21, 2026",
   },
   {
     label: "Submission Deadline",
-    value: "Saturday, October 3, 2026, 11:59 PM ET",
+    value: "Wednesday, November 25, 2026, 11:59 PM ET",
   },
   {
-    label: "Winning Theme",
-    value: "Announced and premiered at Hum Sub Diwali 2026 Celebration",
-  },
-  {
-    label: "Hum Sub Diwali 2026",
-    value: "October 10, 2026, 9 AM – 9:30 PM",
+    label: "Winner Announced",
+    value: "Triangle Got Talent Grand Finale — Saturday, December 5, 2026, Alston Ridge Middle School, Cary, NC",
   },
 ]
 
@@ -155,18 +151,22 @@ export default function SoundOfUs() {
               </CardTitle>
             </CardHeader>
             <CardContent className="p-4 sm:p-5">
-              <dl className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {keyDates.map((date) => (
-                  <div key={date.label}>
-                    <dt className="text-sm font-bold text-primary uppercase tracking-widest">{date.label}</dt>
-                    <dd className="text-lg mt-1">{date.value}</dd>
+              <dl>
+                {keyDates.map((date, index) => (
+                  <div key={date.label} className="relative flex gap-4 pb-6 last:pb-0">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
+                      {index + 1}
+                    </span>
+                    {index < keyDates.length - 1 && (
+                      <span aria-hidden="true" className="absolute top-9 bottom-0 left-[18px] w-px bg-primary/20" />
+                    )}
+                    <div>
+                      <dt className="text-sm font-bold text-primary uppercase tracking-widest">{date.label}</dt>
+                      <dd className="text-lg mt-1">{date.value}</dd>
+                    </div>
                   </div>
                 ))}
               </dl>
-              <p className="text-sm text-muted-foreground mt-6 flex items-center gap-2">
-                <MapPin className="h-4 w-4 shrink-0" />
-                Koka Booth Amphitheatre, Cary, NC
-              </p>
             </CardContent>
           </Card>
 
@@ -222,7 +222,7 @@ export default function SoundOfUs() {
               <p className="text-muted-foreground leading-relaxed">
                 Selected creators may be featured through Hum Sub and Lune Spark channels. The winning composition may
                 be refined or recorded with support from the Lune Spark music team before its final presentation — and
-                is planned to be recognized and featured at Hum Sub Diwali on Saturday, October 10, 2026.
+                is planned to be announced at Triangle Got Talent on Saturday, December 5, 2026.
               </p>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 By submitting, entrants confirm that they created or control the rights to the music and give Hum Sub
@@ -264,7 +264,8 @@ export default function SoundOfUs() {
               Submit Your Music
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-4">
-              Applications open September 14, 2026. The submission deadline is Saturday, October 3, 2026 at 11:59 PM ET.
+              Applications open September 21, 2026. The submission deadline is Wednesday, November 25, 2026 at 11:59 PM
+              ET.
             </p>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-8 flex items-center justify-center gap-2">
               <Users className="h-5 w-5 shrink-0" />
