@@ -43,8 +43,8 @@ function generateImageManifest() {
       }
     }
 
-    // Generate the manifest file as JSON
-    const manifestContent = JSON.stringify(imageCollections, null, 2)
+    // Generate the manifest file as JSON (trailing newline keeps formatters happy)
+    const manifestContent = `${JSON.stringify(imageCollections, null, 2)}\n`
 
     const manifestPath = join(process.cwd(), "app", "lib", "image-manifest.json")
     writeFileSync(manifestPath, manifestContent, "utf-8")

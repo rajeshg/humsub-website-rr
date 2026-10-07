@@ -20,13 +20,12 @@ export interface Sponsor {
 
 // Flat, ordered list for carousel and general use
 export const sponsors: Sponsor[] = [
-  // Prime Sponsor
+  // Prime Sponsors (personal)
   {
-    name: "Marius Pharmaceuticals",
-    imagePath: "/assets/sponsors/Marius_logo.png",
+    name: "Himanshu & Parul Shah",
+    imagePath: "/assets/sponsors/himanshu-parul-shah.png",
     level: "prime",
-    description: "Marius Pharmaceuticals is the prime sponsor for Hum Sub.",
-    href: "/sponsor/marius",
+    description: "Our prime sponsors for Hum Sub Diwali 2026.",
     label: "Prime Sponsor",
   },
 
@@ -145,4 +144,40 @@ export const sponsors: Sponsor[] = [
 // Utility function to get sponsors by level - more efficient than maintaining a separate structure
 export function getSponsorsByLevel(level: SponsorLevel): Sponsor[] {
   return sponsors.filter((sponsor) => sponsor.level === level)
+}
+
+// How long each sponsor stays on screen, by level (higher tiers get more time).
+// Shared by the corner rotation and the idle filler slides so both stay in sync.
+export const SPONSOR_DISPLAY_SECONDS: Record<SponsorLevel, number> = {
+  prime: 5,
+  diamond: 5,
+  gold: 4,
+  silver: 3,
+  bronze: 2,
+  media: 2,
+  grantor: 3,
+  partner: 2,
+  "small-business-supporter": 2,
+}
+
+export const slugifySponsorName = (name: string): string =>
+  name
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
+
+// Duration for an idle filler slide, derived from its filename:
+// HD2026-sponsor-<slug>.png -> that sponsor's level, plus the special slides.
+export function getFillerSlideDurationSeconds(path: string): number {
+  const base = path.split("/").pop() ?? ""
+  if (base.startsWith("HD2026-prime-sponsors")) return SPONSOR_DISPLAY_SECONDS.prime
+  if (base.startsWith("HD2026-grantors")) return SPONSOR_DISPLAY_SECONDS.grantor
+  if (base.startsWith("HD2026-welcome")) return 8
+  const match = /^HD2026-sponsor-(.+)\.\w+$/.exec(base)
+  if (match) {
+    const sponsor = sponsors.find((s) => slugifySponsorName(s.name) === match[1])
+    if (sponsor) return SPONSOR_DISPLAY_SECONDS[sponsor.level]
+  }
+  return 5
 }

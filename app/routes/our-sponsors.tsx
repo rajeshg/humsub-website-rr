@@ -5,6 +5,12 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "~/componen
 import { getSponsorsByLevel } from "~/lib/sponsors"
 
 export default function OurSponsors() {
+  const primeSponsor = getSponsorsByLevel("prime")[0]
+  const primeImages = primeSponsor
+    ? Array.isArray(primeSponsor.imagePath)
+      ? primeSponsor.imagePath
+      : [primeSponsor.imagePath]
+    : []
   return (
     <div className="prose dark:prose-invert max-w-none">
       <title>Our Sponsors | Hum Sub</title>
@@ -13,16 +19,18 @@ export default function OurSponsors() {
       <Card className="border-2 border-orange-400">
         <CardContent>
           <h2 className="text-black text-center text-primary text-3xl mt-2 mb-2">Prime Sponsor!</h2>
-          <PrimeSponsorCard
-            name="Marius Pharmaceuticals"
-            href="/sponsor/marius"
-            imagePaths={["/assets/sponsors/Marius_logo.png", "/assets/sponsors/rethink-testosterone-marius.jpeg"]}
-            description="Marius Pharmaceuticals is the prime sponsor for Hum Sub."
-          />
+          {primeSponsor && (
+            <PrimeSponsorCard
+              name={primeSponsor.name}
+              href={primeSponsor.href}
+              imagePaths={primeImages}
+              description={primeSponsor.description}
+              hideName
+            />
+          )}
           <p>
-            Marius Pharmaceuticals - ReThink Testosterone's main goal is to help men dealing with low testosterone or
-            Low T (male hypogonadism) better understand the symptoms of the condition and the impact it has on overall
-            health and options for treating it.
+            Himanshu & Parul Shah are our prime sponsors for Hum Sub Diwali 2026. We are deeply grateful for their
+            generous support of our community&apos;s celebration of cultural diversity and community engagement.
           </p>
         </CardContent>
       </Card>

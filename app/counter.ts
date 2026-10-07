@@ -573,8 +573,9 @@ export class Counter extends DurableObject {
             const allowed: PerformanceState[] = ["NONE", "CHECKED IN", "BACKSTAGE", "READY TO GO", "PERFORMING", "DONE"]
             if (allowed.includes(state as PerformanceState)) {
               item.state = state as PerformanceState
-              // If marking as CHECKED IN or BACKSTAGE, clear any running timers
-              if (item.state === "CHECKED IN" || item.state === "BACKSTAGE") {
+              // Clear any running timers when leaving a live-perform state
+              // (Reset to NONE must fully restore the item to its original state)
+              if (item.state === "NONE" || item.state === "CHECKED IN" || item.state === "BACKSTAGE") {
                 ;(item as PerformanceItem).timer_start_time = null
                 ;(item as PerformanceItem).timer_end_time = null
                 const t = this.timers.get(item.itemId)
@@ -881,8 +882,9 @@ export class Counter extends DurableObject {
           const allowed: PerformanceState[] = ["NONE", "CHECKED IN", "BACKSTAGE", "READY TO GO", "PERFORMING", "DONE"]
           if (allowed.includes(data.newState as PerformanceState)) {
             item.state = data.newState as PerformanceState
-            // If marking as CHECKED IN or BACKSTAGE, clear any running timers
-            if (item.state === "CHECKED IN" || item.state === "BACKSTAGE") {
+            // Clear any running timers when leaving a live-perform state
+            // (Reset to NONE must fully restore the item to its original state)
+            if (item.state === "NONE" || item.state === "CHECKED IN" || item.state === "BACKSTAGE") {
               ;(item as PerformanceItem).timer_start_time = null
               ;(item as PerformanceItem).timer_end_time = null
               const t = this.timers.get(item.itemId)

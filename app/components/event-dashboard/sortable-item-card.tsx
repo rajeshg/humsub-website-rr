@@ -75,7 +75,7 @@ export const SortableItemCard: React.FC<SortableItemCardProps> = ({ item, onUpda
           </div>
 
           {/* Second row: Metadata on left, Progress+Actions on right (desktop), stacked (mobile) */}
-          <div className="flex flex-col gap-1 md:flex-row md:items-center md:gap-4">
+          <div className="flex flex-col gap-1 xl:flex-row xl:items-center xl:gap-4">
             {/* Left: Metadata and timer */}
             <div className="flex flex-col min-w-0 flex-1 space-y-1">
               {item.type === "PERFORMANCE" &&
@@ -99,7 +99,7 @@ export const SortableItemCard: React.FC<SortableItemCardProps> = ({ item, onUpda
             </div>
 
             {/* Right: Progress + Countdown and Action buttons */}
-            <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3 min-w-0 md:min-w-[220px] md:justify-end">
+            <div className="flex flex-col gap-2 xl:flex-row xl:items-center xl:gap-3 min-w-0 xl:min-w-[220px] xl:justify-end">
               {item.type === "PERFORMANCE" &&
                 item.timer_start_time &&
                 (item as PerformanceItem).durationSeconds &&
@@ -132,10 +132,10 @@ export const SortableItemCard: React.FC<SortableItemCardProps> = ({ item, onUpda
         </div>
 
         {/* Drag handle - on the right so it stays clear of the state-bar label.
-            Hidden below md (touch devices use tap actions instead). */}
+            Desktop with a fine pointer only: on touch it fights scrolling. */}
         {role !== "registration" && (
           <div
-            className="hidden md:flex items-center justify-center cursor-grab relative z-10 shrink-0"
+            className="hidden [@media(pointer:fine)]:flex items-center justify-center cursor-grab relative z-10 shrink-0"
             {...attributes}
             {...listeners}
             aria-hidden

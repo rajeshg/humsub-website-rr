@@ -81,7 +81,7 @@ export function ImageDisplay({
   }
 
   return (
-    <div className="w-full h-full relative bg-black/10 overflow-hidden">
+    <div className="w-full h-full relative bg-[#5f2f83] overflow-hidden">
       {/* center and constrain the image strictly inside the container */}
       <div className="w-full h-full flex items-center justify-center">
         <img

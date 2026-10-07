@@ -36,14 +36,16 @@ export const PerformanceMeta: React.FC<PerformanceMetaProps> = ({ performance })
 
   if (!hasMeta) return null
 
-  // Compact layout: more columns on wider screens and inline labels to use horizontal space
+  // Compact layout: more columns on wider screens and inline labels to use horizontal space.
+  // Cells need min-w-0 so long labels can't overflow into the next column.
+  // 6 columns only on very wide screens - iPad widths stay at 3 so labels fit.
   return (
     <dl
-      className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-sm text-muted-foreground"
+      className="grid grid-cols-2 sm:grid-cols-3 2xl:grid-cols-6 gap-x-3 gap-y-2 text-sm text-muted-foreground"
       aria-label="Performance metadata"
     >
       {performance.choreographers && (
-        <div className="flex items-start gap-1">
+        <div className="flex items-start gap-1 min-w-0">
           <dt className="sr-only">Choreographers</dt>
           <User className="h-4 w-4 text-muted-foreground mt-1 flex-shrink-0" />
           <dd className="mt-0">
@@ -54,7 +56,7 @@ export const PerformanceMeta: React.FC<PerformanceMetaProps> = ({ performance })
       )}
 
       {typeof performance.teamSize === "number" && (
-        <div className="flex items-start gap-1">
+        <div className="flex items-start gap-1 min-w-0">
           <dt className="sr-only">Team Size</dt>
           <Users className="h-4 w-4 text-muted-foreground mt-1 flex-shrink-0" />
           <dd className="mt-0">
@@ -65,7 +67,7 @@ export const PerformanceMeta: React.FC<PerformanceMetaProps> = ({ performance })
       )}
 
       {performance.style && (
-        <div className="flex items-start gap-1">
+        <div className="flex items-start gap-1 min-w-0">
           <dt className="sr-only">Style</dt>
           <Sparkles className="h-4 w-4 text-muted-foreground mt-1 flex-shrink-0" />
           <dd className="mt-0">
@@ -76,7 +78,7 @@ export const PerformanceMeta: React.FC<PerformanceMetaProps> = ({ performance })
       )}
 
       {duration && (
-        <div className="flex items-start gap-1">
+        <div className="flex items-start gap-1 min-w-0">
           <dt className="sr-only">Duration</dt>
           <Clock className="h-4 w-4 text-muted-foreground mt-1 flex-shrink-0" />
           <dd className="mt-0">
@@ -86,7 +88,7 @@ export const PerformanceMeta: React.FC<PerformanceMetaProps> = ({ performance })
         </div>
       )}
       {performance.rehearsalTime && (
-        <div className="flex items-start gap-1">
+        <div className="flex items-start gap-1 min-w-0">
           <dt className="sr-only">Rehearsal Time</dt>
           <CalendarClock className="h-4 w-4 text-muted-foreground mt-1 flex-shrink-0" />
           <dd className="mt-0">
@@ -97,7 +99,7 @@ export const PerformanceMeta: React.FC<PerformanceMetaProps> = ({ performance })
       )}
 
       {performance.eventTime && (
-        <div className="flex items-start gap-1">
+        <div className="flex items-start gap-1 min-w-0">
           <dt className="sr-only">Performance Time</dt>
           <CalendarClock className="h-4 w-4 text-muted-foreground mt-1 flex-shrink-0" />
           <dd className="mt-0">

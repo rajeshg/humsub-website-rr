@@ -50,7 +50,7 @@ export const CompactEventCard: React.FC<CompactEventCardProps> = ({ item }) => {
           {/* Duration badge for performance items */}
           {item.type === "PERFORMANCE" && (item as PerformanceItem).duration && (
             <div className="flex-shrink-0">
-              <span className="inline-flex items-center px-2 py-1 rounded-md text-xs md:text-sm font-mono bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">
+              <span className="inline-flex items-center px-2 py-1 rounded-md text-xs md:text-sm font-mono bg-[#faf3e0] dark:bg-[#5f2f83] text-[#bc2067] dark:text-[#efa528] border border-[#e0b84a] dark:border-[#e8c07a]/50">
                 {(item as PerformanceItem).duration}
               </span>
             </div>
@@ -61,13 +61,11 @@ export const CompactEventCard: React.FC<CompactEventCardProps> = ({ item }) => {
         {item.type === "PERFORMANCE" && (
           <div className="mt-2 space-y-1">
             {(item as PerformanceItem).style && (
-              <div className="text-xs md:text-sm text-slate-600 dark:text-slate-300 font-medium">
-                {(item as PerformanceItem).style}
-              </div>
+              <div className="text-sm md:text-base text-[#6b2d86] font-medium">{(item as PerformanceItem).style}</div>
             )}
 
             {/* Choreographers and team size */}
-            <div className="flex items-center justify-between text-xs md:text-sm text-slate-500 dark:text-slate-400">
+            <div className="flex items-center justify-between text-sm md:text-base text-slate-500 dark:text-slate-400">
               <div className="flex-1 min-w-0">
                 {(item as PerformanceItem).choreographers && (
                   <span className="line-clamp-2">
