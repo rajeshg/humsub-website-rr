@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Spinner } from "~/components/spinner"
 
 interface ImageDisplayProps {
@@ -9,6 +9,14 @@ interface ImageDisplayProps {
   now?: number
 }
 
+// How long the incoming slide takes to fade over the outgoing one (ms)
+const FADE_MS = 700
+
+interface Layer {
+  src: string
+  key: number
+}
+
 export function ImageDisplay({
   imagePath,
   isCollection,
@@ -16,24 +24,59 @@ export function ImageDisplay({
   collectionLastRotation,
   now,
 }: ImageDisplayProps) {
-  const [loading, setLoading] = useState(true)
+  // Crossfade instead of swapping the img src: the previous slide stays mounted
+  // underneath while the next one fades in, so rotating fillers never flash a
+  // spinner or a blank frame (which read as flicker on the stage screen).
+  const [layers, setLayers] = useState<Layer[]>([])
   const [error, setError] = useState(false)
   const [countdown, setCountdown] = useState<number | null>(null)
+  const keyRef = useRef(0)
+  const timersRef = useRef<Set<ReturnType<typeof setTimeout>>>(new Set())
 
   useEffect(() => {
-    if (!imagePath) return
+    if (!imagePath) {
+      setLayers([])
+      setError(false)
+      return
+    }
 
-    setLoading(true)
+    let cancelled = false
     setError(false)
 
+    // Preload first; only put it on screen once it is decoded.
     const img = new Image()
-    img.onload = () => setLoading(false)
+    img.onload = () => {
+      if (cancelled) return
+      const key = ++keyRef.current
+      // Keep at most two layers (outgoing + incoming)
+      setLayers((prev) => [...prev, { src: imagePath, key }].slice(-2))
+
+      // Drop the outgoing layer once the fade has finished. slice(-1) always keeps
+      // the newest, so overlapping rotations can't remove the wrong layer.
+      const timer = setTimeout(() => {
+        timersRef.current.delete(timer)
+        setLayers((prev) => prev.slice(-1))
+      }, FADE_MS + 100)
+      timersRef.current.add(timer)
+    }
     img.onerror = () => {
-      setLoading(false)
-      setError(true)
+      // Keep whatever is already on screen rather than blanking the stage
+      if (!cancelled) setError(true)
     }
     img.src = imagePath
+
+    return () => {
+      cancelled = true
+    }
   }, [imagePath])
+
+  useEffect(() => {
+    const timers = timersRef.current
+    return () => {
+      for (const t of timers) clearTimeout(t)
+      timers.clear()
+    }
+  }, [])
 
   // Countdown timer for collection mode
   useEffect(() => {
@@ -56,7 +99,9 @@ export function ImageDisplay({
     return () => clearInterval(interval)
   }, [isCollection, collectionInterval, collectionLastRotation, now])
 
-  if (!imagePath) {
+  const hasImage = layers.length > 0
+
+  if (!hasImage && !imagePath) {
     return (
       <div className="flex items-center justify-center h-full">
         <p className="text-gray-500">No image selected</p>
@@ -64,15 +109,7 @@ export function ImageDisplay({
     )
   }
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center h-full">
-        <Spinner className="w-12 h-12" />
-      </div>
-    )
-  }
-
-  if (error) {
+  if (!hasImage && error) {
     return (
       <div className="flex items-center justify-center h-full">
         <p className="text-red-500">Failed to load image</p>
@@ -80,16 +117,31 @@ export function ImageDisplay({
     )
   }
 
+  if (!hasImage) {
+    return (
+      <div className="flex items-center justify-center h-full">
+        <Spinner className="w-12 h-12" />
+      </div>
+    )
+  }
+
   return (
     <div className="w-full h-full relative bg-[#5f2f83] overflow-hidden">
-      {/* center and constrain the image strictly inside the container */}
-      <div className="w-full h-full flex items-center justify-center">
-        <img
-          src={imagePath}
-          alt="Stage display"
-          className="max-w-full max-h-full object-contain transition-opacity duration-1000"
-        />
-      </div>
+      {/* Stacked layers: the newest fades in over the one it replaces */}
+      {layers.map((layer, index) => {
+        const isIncoming = index === layers.length - 1 && layers.length > 1
+        return (
+          <img
+            key={layer.key}
+            src={layer.src}
+            alt="Stage display"
+            className={`absolute inset-0 w-full h-full object-contain${
+              isIncoming ? " animate-in fade-in duration-700 ease-out" : ""
+            }`}
+          />
+        )
+      })}
+
       {isCollection && (
         <div className="absolute top-4 right-4 bg-black/50 text-white px-2 py-1 rounded text-sm">Collection Mode</div>
       )}

@@ -66,6 +66,10 @@ export interface Env {
   EVENT_STATUS_DO: DurableObjectNamespace
 }
 
+// Grace period after an act's duration before it is auto-completed, giving the
+// backstage volunteer a chance to mark it done manually first.
+const AUTO_DONE_GRACE_MS = 10_000
+
 export class Counter extends DurableObject {
   /* eslint-disable @typescript-eslint/no-explicit-any */
   private clients: Set<WebSocket>
@@ -292,7 +296,23 @@ export class Counter extends DurableObject {
     }
   }
 
-  // Schedule a timer to end a performance when its duration elapses
+  // Auto-complete an act once its duration has elapsed, plus a grace period so the
+  // backstage volunteer has time to tap Done themselves.
+  private completeElapsedItem(item: PerformanceItem) {
+    const it = this.event.items.find((i) => i.itemId === item.itemId) as PerformanceItem | undefined
+    if (!it || it.type !== "PERFORMANCE" || it.state !== "PERFORMING") return
+
+    // Record the true end of the act, not the moment the grace period expired
+    const endAt = (it.timer_start_time ?? Date.now()) + (it.durationSeconds ?? 0) * 1000
+    it.timer_end_time = it.timer_end_time ?? endAt
+    it.state = "DONE"
+
+    this.updateViewState()
+    this.broadcast({ type: "item_updated", item: it })
+    this.saveState().catch(() => {})
+  }
+
+  // Schedule a timer to end a performance when its duration elapses (plus grace)
   private scheduleTimerEnd(item: PerformanceItem) {
     // clear existing timer
     const existing = this.timers.get(item.itemId)
@@ -306,25 +326,20 @@ export class Counter extends DurableObject {
     if (!item.durationSeconds || !item.timer_start_time) return
 
     const endAt = item.timer_start_time + item.durationSeconds * 1000
+    const autoDoneAt = endAt + AUTO_DONE_GRACE_MS
     const now = Date.now()
-    if (endAt <= now) {
-      // duration already elapsed, finalize immediately
-      item.timer_end_time = item.timer_end_time ?? now
-      item.state = "DONE"
-      this.broadcast({ type: "item_updated", item })
+
+    if (autoDoneAt <= now) {
+      // duration (and grace) already elapsed, finalize immediately
+      this.completeElapsedItem(item)
       return
     }
 
-    const ms = endAt - now
+    const ms = autoDoneAt - now
     // schedule
     const id = setTimeout(() => {
-      // mark done if still running
-      const it = this.event.items.find((i) => i.itemId === item.itemId) as PerformanceItem | undefined
-      if (!it) return
-      it.timer_end_time = it.timer_end_time ?? Date.now()
-      it.state = "DONE"
       this.timers.delete(item.itemId)
-      this.broadcast({ type: "item_updated", item: it })
+      this.completeElapsedItem(item)
     }, ms) as unknown as number
 
     this.timers.set(item.itemId, id)
