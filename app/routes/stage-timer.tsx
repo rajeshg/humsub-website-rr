@@ -10,6 +10,7 @@ import { useWebSocket } from "~/components/use-websocket"
 import type { Item, PerformanceItem } from "~/counter"
 import imageManifest from "~/lib/image-manifest.json"
 import { getFillerSlideDurationSeconds, type Sponsor, sponsors } from "~/lib/sponsors"
+import { TIMER_TRACK, elapsedPercent, timerBarClass } from "~/lib/timer-tone"
 
 // Header sponsors are driven by the same list as the sponsors page
 // (app/routes/our-sponsors.tsx) so the stage timer stays in sync.
@@ -213,6 +214,9 @@ export default function StageTimer() {
   // Resolve the effective image path (controller-selected image or client filler)
   const effectiveImagePath: string | null = eventState?.selectedImage ?? selectedFiller ?? null
 
+  // Shared progress value + colour tone for the stage bars
+  const elapsedPct = elapsedPercent(currentItem?.timer_start_time, currentItem?.durationSeconds, now)
+
   // If no event state yet, show loading
   if (!eventState) {
     return (
@@ -281,34 +285,11 @@ export default function StageTimer() {
                       </div>
                       <div className="w-3/4">
                         <Progress
-                          value={
-                            currentItem.timer_start_time
-                              ? Math.min(
-                                  100,
-                                  Math.round(
-                                    ((now - currentItem.timer_start_time) /
-                                      ((currentItem.durationSeconds || 0) * 1000)) *
-                                      100
-                                  )
-                                )
-                              : 0
-                          }
-                          className={
-                            currentItem.timer_start_time
-                              ? Math.round(
-                                  ((now - currentItem.timer_start_time) / ((currentItem.durationSeconds || 0) * 1000)) *
-                                    100
-                                ) >= 80
-                                ? "h-8 [&>div]:bg-red-600 dark:[&>div]:bg-red-400"
-                                : Math.round(
-                                      ((now - currentItem.timer_start_time) /
-                                        ((currentItem.durationSeconds || 0) * 1000)) *
-                                        100
-                                    ) >= 50
-                                  ? "h-8 [&>div]:bg-amber-500 dark:[&>div]:bg-amber-400"
-                                  : "h-8 [&>div]:bg-emerald-500 dark:[&>div]:bg-emerald-400"
-                              : "h-8 [&>div]:bg-emerald-500/40 dark:[&>div]:bg-emerald-400/40"
-                          }
+                          value={elapsedPct}
+                          className={`h-8 ${TIMER_TRACK} ${timerBarClass(
+                            elapsedPct,
+                            Boolean(currentItem.timer_start_time)
+                          )}`}
                         />
                       </div>
                     </div>
@@ -490,35 +471,11 @@ export default function StageTimer() {
                             </div>
                             <div className="flex-1 min-w-0">
                               <Progress
-                                value={
-                                  currentItem.timer_start_time
-                                    ? Math.min(
-                                        100,
-                                        Math.round(
-                                          ((now - currentItem.timer_start_time) /
-                                            ((currentItem.durationSeconds || 0) * 1000)) *
-                                            100
-                                        )
-                                      )
-                                    : 0
-                                }
-                                className={
-                                  currentItem.timer_start_time
-                                    ? Math.round(
-                                        ((now - currentItem.timer_start_time) /
-                                          ((currentItem.durationSeconds || 0) * 1000)) *
-                                          100
-                                      ) >= 80
-                                      ? "h-3 bg-[#e8dcc4] [&>div]:bg-[#b23a2e]"
-                                      : Math.round(
-                                            ((now - currentItem.timer_start_time) /
-                                              ((currentItem.durationSeconds || 0) * 1000)) *
-                                              100
-                                          ) >= 50
-                                        ? "h-3 bg-[#e8dcc4] [&>div]:bg-[#c98a1e]"
-                                        : "h-3 bg-[#e8dcc4] [&>div]:bg-[#4f7a52]"
-                                    : "h-3 bg-[#e8dcc4] [&>div]:bg-[#cbbfa6]"
-                                }
+                                value={elapsedPct}
+                                className={`h-3 ${TIMER_TRACK} ${timerBarClass(
+                                  elapsedPct,
+                                  Boolean(currentItem.timer_start_time)
+                                )}`}
                               />
                             </div>
                           </div>

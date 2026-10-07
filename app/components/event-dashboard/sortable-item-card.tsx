@@ -7,6 +7,7 @@ import { ActionButtons } from "./action-buttons"
 import { CountdownDisplay } from "./countdown-display"
 import { getStateBgColor, getStateLabel } from "./event-constants"
 import { PerformanceMeta } from "./performance-meta"
+import { TIMER_TRACK, elapsedPercent, timerBarClass } from "~/lib/timer-tone"
 
 interface SortableItemCardProps {
   item: Item
@@ -107,16 +108,14 @@ export const SortableItemCard: React.FC<SortableItemCardProps> = ({ item, onUpda
                 (() => {
                   const p = item as PerformanceItem
                   const nowMs = now ?? Date.now()
-                  const elapsedMs = Math.max(0, nowMs - (p.timer_start_time || 0))
-                  const elapsedSec = Math.floor(elapsedMs / 1000)
                   const durationSec = p.durationSeconds || 1
-                  const pct = Math.min(100, Math.round((elapsedSec / durationSec) * 100))
+                  const pct = elapsedPercent(p.timer_start_time, durationSec, nowMs)
 
                   return (
                     <div className="w-24 md:w-36 flex flex-col items-center">
                       <Progress
                         value={pct}
-                        className={pct >= 80 ? "h-2 [&>div]:bg-red-600 dark:[&>div]:bg-red-400" : "h-2"}
+                        className={`h-2 ${TIMER_TRACK} ${timerBarClass(pct, Boolean(p.timer_start_time))}`}
                       />
                       <CountdownDisplay timerStart={item.timer_start_time} durationSeconds={durationSec} now={nowMs} />
                     </div>

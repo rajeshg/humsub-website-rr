@@ -146,8 +146,8 @@ export function getSponsorsByLevel(level: SponsorLevel): Sponsor[] {
   return sponsors.filter((sponsor) => sponsor.level === level)
 }
 
-// How long each sponsor stays on screen, by level (higher tiers get more time).
-// Shared by the corner rotation and the idle filler slides so both stay in sync.
+// How long each sponsor stays on screen in the small corner rotation, by level.
+// These are deliberately short - the logo is glanceable and the rotation should keep moving.
 export const SPONSOR_DISPLAY_SECONDS: Record<SponsorLevel, number> = {
   prime: 5,
   diamond: 5,
@@ -160,6 +160,27 @@ export const SPONSOR_DISPLAY_SECONDS: Record<SponsorLevel, number> = {
   "small-business-supporter": 2,
 }
 
+// How long the large full-screen slides stay up, tapered from the top tiers down.
+// Longer than the corner rotation: there is a logo plus a level and description to
+// read, and it is being read from across a room.
+export const FILLER_SLIDE_SECONDS: Record<SponsorLevel, number> = {
+  prime: 10,
+  diamond: 10,
+  gold: 8,
+  silver: 7,
+  grantor: 7,
+  bronze: 6,
+  media: 6,
+  partner: 6,
+  "small-business-supporter": 6,
+}
+
+// Special slides that carry more information than a single sponsor logo
+export const FILLER_WELCOME_SECONDS = 10
+export const FILLER_GRANTORS_SECONDS = 8
+export const FILLER_PROMO_SECONDS = 12
+export const FILLER_FALLBACK_SECONDS = 8
+
 export const slugifySponsorName = (name: string): string =>
   name
     .toLowerCase()
@@ -171,13 +192,15 @@ export const slugifySponsorName = (name: string): string =>
 // HD2026-sponsor-<slug>.png -> that sponsor's level, plus the special slides.
 export function getFillerSlideDurationSeconds(path: string): number {
   const base = path.split("/").pop() ?? ""
-  if (base.startsWith("HD2026-prime-sponsors")) return SPONSOR_DISPLAY_SECONDS.prime
-  if (base.startsWith("HD2026-grantors")) return SPONSOR_DISPLAY_SECONDS.grantor
-  if (base.startsWith("HD2026-welcome")) return 8
+  if (base.startsWith("HD2026-prime-sponsors")) return FILLER_SLIDE_SECONDS.prime
+  if (base.startsWith("HD2026-grantors")) return FILLER_GRANTORS_SECONDS
+  if (base.startsWith("HD2026-welcome")) return FILLER_WELCOME_SECONDS
+  // Promo flyers (TGT, theme music competition) are text-heavy, so they get the most time
+  if (base.startsWith("HD2026-promo-")) return FILLER_PROMO_SECONDS
   const match = /^HD2026-sponsor-(.+)\.\w+$/.exec(base)
   if (match) {
     const sponsor = sponsors.find((s) => slugifySponsorName(s.name) === match[1])
-    if (sponsor) return SPONSOR_DISPLAY_SECONDS[sponsor.level]
+    if (sponsor) return FILLER_SLIDE_SECONDS[sponsor.level]
   }
-  return 5
+  return FILLER_FALLBACK_SECONDS
 }
