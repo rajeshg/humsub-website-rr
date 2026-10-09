@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { CalendarDays, Car, MapPin, ShieldCheck, Users } from "lucide-react"
+import { CalendarDays, Car, Map, MapPin, ShieldCheck, Users } from "lucide-react"
 import { Link } from "react-router"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "~/components/ui/accordion"
 import { Badge } from "~/components/ui/badge"
@@ -333,6 +333,7 @@ export default function HumSubDiwali2026() {
         <nav aria-label="On this page" className="flex flex-wrap items-center justify-center gap-2">
           {[
             ["Venue", "#venue"],
+            ["Venue Layout", "#venue-layout"],
             ["Parking", "#parking"],
             ["Bags & Entry", "#bags-entry"],
             ["Schedule", "#schedule"],
@@ -428,6 +429,91 @@ export default function HumSubDiwali2026() {
                 <Link to="/membership" className="no-underline">
                   Membership Details
                 </Link>
+              </Button>
+            </CardFooter>
+          </Card>
+
+          {/* Venue Layout - Enhanced Card */}
+          <Card
+            id="venue-layout"
+            className="scroll-mt-24 shadow-sm hover:shadow-md transition-all duration-200 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
+          >
+            <CardHeader className="pb-4">
+              <CardTitle className="text-2xl text-primary flex items-center gap-3" role="heading" aria-level={3}>
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <Map className="h-6 w-6" />
+                </div>
+                Venue Layout &amp; Map
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <p className="text-sm text-gray-700 dark:text-gray-300">
+                Two views of Koka Booth Amphitheatre for Hum Sub Diwali 2026 — the full grounds, and the numbered booth
+                positions in the shopping area. Objects are not to scale.
+              </p>
+
+              <figure className="space-y-2">
+                <figcaption className="text-sm font-bold text-primary">Full venue map</figcaption>
+                <a
+                  href="/assets/events/HD2026-venue-map.webp"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                  aria-label="Open the full venue map at full size"
+                >
+                  <img
+                    src="/assets/events/HD2026-venue-map.webp"
+                    alt="Simplified site plan of Koka Booth Amphitheatre showing lawn booth positions A to DD, food booths, food trucks, the stage, ticket booth and surrounding grounds"
+                    className="w-full rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-shadow"
+                    loading="lazy"
+                  />
+                </a>
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  Where everything sits across the grounds &mdash; booth letters A&ndash;DD, food vendors, stage and
+                  facilities, shown over a simplified site plan.
+                </p>
+              </figure>
+
+              <figure className="space-y-2">
+                <figcaption className="text-sm font-bold text-primary">
+                  Shopping area &mdash; crescent deck booth layout
+                </figcaption>
+                <a
+                  href="/assets/events/HD2026-booth-layout.png"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                  aria-label="Open the booth layout at full size"
+                >
+                  <img
+                    src="/assets/events/HD2026-booth-layout.png"
+                    alt="Hum Sub Diwali 2026 shopping area booth layout showing numbered crescent deck booths 1 to 40, the stage, eating area, exits and steps, with the list of vendors by booth number"
+                    className="w-full rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-shadow"
+                    loading="lazy"
+                  />
+                </a>
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  Numbered booth positions around the crescent deck, with the vendor list by booth number.
+                </p>
+              </figure>
+
+              <div className="bg-orange-50 dark:bg-orange-950/20 p-4 rounded-lg border border-orange-200 dark:border-orange-800">
+                <p className="text-sm text-orange-800 dark:text-orange-200">
+                  <span className="font-semibold">Note:</span> Venue layout is subject to change. Please check back
+                  closer to the event date for the most up-to-date map.
+                </p>
+              </div>
+            </CardContent>
+            <CardFooter className="flex flex-col sm:flex-row justify-center gap-3">
+              <Button asChild size="lg" className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white">
+                <a
+                  href="/assets/events/HD2026_Vendor_Layout_V1.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="no-underline"
+                >
+                  Open Layout (PDF)
+                </a>
               </Button>
             </CardFooter>
           </Card>
