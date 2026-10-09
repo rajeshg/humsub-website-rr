@@ -6,6 +6,7 @@ import { StageSponsorDisplay } from "~/components/stage-sponsor-display"
 import { ImageDisplay } from "~/components/stage-timer/image-display"
 
 import { Progress } from "~/components/ui/progress"
+import { useAutoRefresh } from "~/components/use-auto-refresh"
 import { useWebSocket } from "~/components/use-websocket"
 import type { Item, PerformanceItem } from "~/counter"
 import imageManifest from "~/lib/image-manifest.json"
@@ -125,6 +126,7 @@ const _CountdownDisplay = ({
 }
 
 export default function StageTimer() {
+  useAutoRefresh()
   const workerUrl = "/api/durable" // Same worker URL as in EventDashboard
   const eventState = useWebSocket(workerUrl)
 
