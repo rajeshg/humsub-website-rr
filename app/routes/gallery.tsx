@@ -41,6 +41,11 @@ export default function GalleryPage() {
         <TabsContent value="pictures">
           <ul className="prose dark:prose-invert">
             <li>
+              <a target="_blank" rel="noopener noreferrer" href="https://flic.kr/s/aHBqjD7E1e">
+                Hum Sub Diwali 2026 (John Tal)
+              </a>
+            </li>
+            <li>
               <a
                 target="_blank"
                 rel="noopener noreferrer"

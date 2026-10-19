@@ -60,7 +60,7 @@ export function Welcome({ events }: { events: EventMeta[] }) {
                 year.
               </p>
               <p className="text-xs sm:text-sm font-semibold text-center text-base-content/80 dark:text-slate-300 mb-3">
-                $12 early bird (through Oct 6, 2026) · $15 from Oct 7, 2026
+                $15 per person
               </p>
               <div className="flex w-full gap-3 flex-col sm:flex-row">
                 <Link

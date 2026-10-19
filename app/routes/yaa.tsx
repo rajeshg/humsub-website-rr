@@ -118,6 +118,18 @@ export default function YAA() {
 
       <div className="space-y-12">
         <section>
+          <h2 className="text-2xl font-bold border-b pb-2 mb-6">2026 WINNERS</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            <YACard name="Dhruva Valluru" imagePath="/assets/yaa/2026/YAA-2026-Winner-HS-Dhruva-Valluru.jpg" />
+            <YACard
+              name="Hansitha Teluguntla"
+              imagePath="/assets/yaa/2026/YAA-2026-Winner-HS-Hansitha-Teluguntla.jpeg"
+            />
+            <YACard name="Bhargav Kher" imagePath="/assets/yaa/2026/YAA-2026-Winner-MS-Bhargav-Kher.jpeg" />
+            <YACard name="Varsha Vivek" imagePath="/assets/yaa/2026/YAA-2026-Winner-MS-Varsha-Vivek.jpeg" />
+          </div>
+        </section>
+        <section>
           <h2 className="text-2xl font-bold border-b pb-2 mb-6">2025 WINNERS</h2>
           <h3 className="text-lg font-semibold mb-2">High School</h3>
           <ul className="list-disc pl-6 mb-4 space-y-1">
